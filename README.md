@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# automation
-This repo contains all the code automated for quality checks
-=======
 # Cornerstone Automation
 
 A well-structured Python project with modern development practices.
@@ -100,4 +96,3 @@ cornerstone_automation/
 ## License
 
 This project is licensed under the MIT License. 
->>>>>>> b69b19c (Adding all the automation code to github repo for the 1st time)
