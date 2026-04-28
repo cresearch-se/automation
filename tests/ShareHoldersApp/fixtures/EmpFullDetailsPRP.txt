@@ -1,0 +1,1045 @@
+Folder Path||Emp ID||FY Folder Name||File Names
+Gergs, Carl_102288||102288||Jul2025-Jun2026||
+Young, Oliver_101344||101344||||
+Ponce de Leon, _102257||102257||Jul2025-Jun2026||
+Kreklewich, Ana_101112||101112||Jul2025-Jun2026||
+Tilson, Hannah_0531||0531||Jul2025-Jun2026||FF-Shannon_Olivieri_Tilson_H_0531_66089.pdf;FF-Shannon_180_Hatton_Tilson_H_0531_66141.pdf;
+Rishabh, Abhish_101944||101944||Jul2025-Jun2026||
+Grose, Andrew_101869||101869||Jul2025-Jun2026||
+Honnor, Kaman_101659||101659||Jul2025-Jun2026||FF-Shannon_Olivieri_Honnor_K_101659_66091.pdf;FF-Shannon_180_Wie_Honnor_K_101659_66138.pdf;FF-Shannon_180_Uboldi_Honnor_K_101659_66134.pdf;
+Shamsi, Javad_102114||102114||Jul2025-Jun2026||
+Martinez Franco_101939||101939||Jul2025-Jun2026||LL-Horizon_Self-Eval_Martinez_F_101939_67234.pdf;
+Chakma, Tridevi_101963||101963||Jul2025-Jun2026||
+Zhang, Florence_101237||101237||Jul2025-Jun2026||
+Hatton, Henry_101492||101492||Jul2025-Jun2026||FF-Shannon_180_Ranoszek_Hatton_H_101492_66139.pdf;FF-Shannon_180_Viatte_Hatton_H_101492_66137.pdf;FF-Shannon_180_Harper_Hatton_H_101492_66136.pdf;FF-Shannon_Tilson_Hatton_H_101492_66092.pdf;
+Sanchez, Esteba_101018||101018||||
+Hoddell, James_101479||101479||Jul2025-Jun2026||
+Baral, Chirayu_6371||6371||||
+Sherrill, Emma_6223||6223||||
+Merrill, Lincol_101178||101178||Jul2025-Jun2026||
+De Santis, Vivi_6334||6334||||
+Velicu, Maria_101103||101103||||
+Konstan, Benjam_101371||101371||Jul2025-Jun2026||
+Chhabra, Kanish_101250||101250||Jul2025-Jun2026||
+Kumar, Aseem_6276||6276||||
+Robo, Ines_101158||101158||Jul2025-Jun2026||
+Xiong, Max_101262||101262||Jul2025-Jun2026||
+Banerjea, Ankit_101186||101186||Jul2025-Jun2026||
+Ryabinina, Lidi_101249||101249||Jul2025-Jun2026||
+Colley, Liam_101350||101350||Jul2025-Jun2026||
+Swan, Andrew_101969||101969||Jul2025-Jun2026||
+Barnes, Ronnie_5249||5249||Jul2025-Jun2026||
+Ayhan, Alexande_5570||5570||Jul2025-Jun2026||SC-Talk_Wilson_Ayhan_A_5570_66174.pdf;
+Yang, Antti_101480||101480||Jul2025-Jun2026||
+Desbuquois, Ale_101491||101491||Jul2025-Jun2026||
+Tanndal, Julia_101181||101181||Jul2025-Jun2026||
+Adkins, Richard_0516||0516||Jul2025-Jun2026||
+Al-Chanati, Mot_101264||101264||Jul2025-Jun2026||
+Roketskiy, Niki_101964||101964||Jul2025-Jun2026||
+Creedon, Fintan_101483||101483||||
+Fenner, Jack_101735||101735||Jul2025-Jun2026||
+Miller, Ben_101166||101166||||
+Wie, Tim_101662||101662||Jul2025-Jun2026||FF-Shannon_Honnor_Wie_T_101662_66095.pdf;
+Cheng, Louise_101685||101685||Jul2025-Jun2026||
+Ruck, Jan_101731||101731||Jul2025-Jun2026||
+Agarwal, Tanush_101732||101732||Jul2025-Jun2026||
+Siddiqi, Emad_101175||101175||Jul2025-Jun2026||
+Han, Brooklyn_101736||101736||Jul2025-Jun2026||LL-Horizon_Hoddell_Han_B_101736_67001.pdf;LL-Horizon_Self-Eval_Han_B_101736_66931.pdf;LL-Horizon_180_Viatte_Han_B_101736_66978.pdf;LL-Horizon_180_Ranoszek_Han_B_101736_66996.pdf;
+Verghese, Alish_101733||101733||Jul2025-Jun2026||
+End, Alexandra_5644||5644||Jul2025-Jun2026||
+Bredendiek, Max_0543||0543||Jul2025-Jun2026||
+Krishnan, Kaush_101275||101275||Jul2025-Jun2026||FF-Shannon_Olivieri_Krishnan_K_101275_66709.pdf;
+Toru Delibasi, _101882||101882||Jul2025-Jun2026||
+Cojoc, Ancuta_101511||101511||Jul2025-Jun2026||Anca Cojoc KPI.docx;
+Kumar, Vikram_0521||0521||Jul2025-Jun2026||Vikram Kumar_KPIs_Jan 2026.docx;
+Lux, Matthias_5045||5045||Jul2025-Jun2026||Lux_Matthias_kpi.pdf;
+Mariscal, Elisa_101935||101935||Jul2025-Jun2026||
+Muhamedrahimov,_101753||101753||Jul2025-Jun2026||Rashid_M_Self_Evaluation_February_2026_v5.docx;
+Zafeiridou, Chr_5905||5905||Jul2025-Jun2026||1.30.2026 Zafeiridou KPI.docx;JD-Fermi_Jiang_Zafeiridou_C_5905_66566.pdf;SC-Talk_180_Shang_Zafeiridou_C_5905_66555.pdf;SC-Talk_180_Langer_Zafeiridou_C_5905_66541.pdf;
+Corus, Sinan_0538||0538||Jul2025-Jun2026||
+Sanders, Max_102263||102263||Jul2025-Jun2026||
+Viatte, Eleonor_101937||101937||Jul2025-Jun2026||LL-Horizon_Han_Viatte_E_101937_66977.pdf;FF-Shannon_Hatton_Viatte_E_101937_66096.pdf;
+Ene, Alexandra_101974||101974||Jul2025-Jun2026||
+Swarbrick, Nath_101975||101975||Jul2025-Jun2026||
+Ranoszek, Stefa_101936||101936||Jul2025-Jun2026||FF-Shannon_Hatton_Ranoszek_S_101936_66094.pdf;LL-Horizon_Han_Ranoszek_S_101936_66995.pdf;
+Uboldi, Lorenzo_101958||101958||Jul2025-Jun2026||FF-Shannon_Honnor_Uboldi_L_101958_66099.pdf;
+Sandars, Naomi_101217||101217||||
+Narayanan, Shar_101790||101790||Jul2025-Jun2026||
+Bocher, Miliana_102277||102277||Jul2025-Jun2026||
+Matiyani, Tanay_102287||102287||Jul2025-Jun2026||
+Krishnan, Vijay_101263||101263||||
+Wu, Jennifer_101611||101611||Jul2025-Jun2026||LL-Horizon_Self-Eval_Wu_J_101611_66929.pdf;
+Liu, Haoxuan_101859||101859||Jul2025-Jun2026||
+Ivanov, Fedor_101609||101609||Jul2025-Jun2026||
+Harper, Ben_101607||101607||Jul2025-Jun2026||
+Clegg, Samuel_101860||101860||Jul2025-Jun2026||
+Petrescu, Karin_102261||102261||Jul2025-Jun2026||LL-Horizon_Self-Eval_Petrescu_K_102261_67156.pdf;
+Kanovsky, Andre_101136||101136||Jul2025-Jun2026||
+Liu, Amy_101006||101006||||
+Desai, Deven_101451||101451||||
+Murphy, Rhys_101505||101505||Jul2025-Jun2026||
+Horn, Sidonie_101462||101462||||
+Ten Hagen, Rebe_101698||101698||Jul2025-Jun2026||GD-Paddle_Zhao_Ten_H_101698_66450.pdf;
+Shanosky, Nicol_101435||101435||||
+Izyumova, Anna_101620||101620||Jul2025-Jun2026||M-Kay_Li_Izyumova_A_101620_66835.pdf;
+Cleaveland, Lol_101686||101686||Jul2025-Jun2026||
+Balleisen, Aaro_101016||101016||||
+Song, Jooeun_101363||101363||||
+Park, Sally_101189||101189||Jul2025-Jun2026||
+Hans, Julia_101616||101616||Jul2025-Jun2026||
+Gavirneni, Megh_101614||101614||Jul2025-Jun2026||
+Stone, Julia_101688||101688||Jul2025-Jun2026||
+Gambhir, Krishn_101254||101254||||
+Dietrich, Liam_101624||101624||Jul2025-Jun2026||
+Raja, Trish_101455||101455||||
+Nathans, Dora_101327||101327||Jul2025-Jun2026||
+Moreno, Valenti_101700||101700||Jul2025-Jun2026||
+Ebert, Annalise_101621||101621||Jul2025-Jun2026||
+Benson, Alex_101134||101134||Jul2025-Jun2026||
+Perry, Charlie_101578||101578||Jul2025-Jun2026||
+Tieu, May_101328||101328||Jul2025-Jun2026||
+Choudhary, Saks_101623||101623||Jul2025-Jun2026||
+Bibilouri, Kath_101427||101427||||
+Hipp, Sylvia_101422||101422||||
+Slap, Thomas_101378||101378||||
+Royce, Alison_101514||101514||Jul2025-Jun2026||GT-Kookaburra_Wen_Royce_A_101514_66507.pdf;GT-Kookaburra_180_Smith_Royce_A_101514_66514.pdf;
+Perna, Liz_101674||101674||Jul2025-Jun2026||DOJ-Orient_Maier_Perna_L_101674_66274.pdf;
+Golchha, Rish_101317||101317||Jul2025-Jun2026||
+Rotti, Shashank_102000||102000||||
+Schaefer, Austi_102029||102029||||
+Liu, Isaac_102037||102037||||
+Strair, Katheri_6221||6221||Jul2025-Jun2026||C-Miner_Tam_Strair_K_6221_66623.pdf;C-Miner_180_Attias_Strair_K_6221_66831.pdf;
+Ksenofontova, S_101630||101630||Jul2025-Jun2026||
+Taylor, Yair_4928||4928||||
+Martin, Shawn_101412||101412||Jul2025-Jun2026||WC-Boxes_Antonie_Martin_S_101412_66441.pdf;WC-Boxes_180_Reyes_Martin_S_101412_66582.pdf;WH-Toast_Olivieri_Martin_S_101412_66714.pdf;
+Bodd, Jesper_5640||5640||||
+Edlebi, A.R._101176||101176||Jul2025-Jun2026||GD-Hop_Vajravelu_Edlebi_A_101176_66034.pdf;
+Sinha, Bharat_5976||5976||||
+Kindsgrab, Paul_101411||101411||Jul2025-Jun2026||GD-McMillan_Studart_Kindsgrab_P_101411_66702.pdf;
+Orane-Hutchinso_101159||101159||Jul2025-Jun2026||IRS-Galway_Zuluaga_Orane-Hutchinson_A_101159_66085.pdf;IRS-Galway_180_Halahurich_Orane-Hutchinson_A_101159_66084.pdf;
+Li, Ian_5165||5165||||
+Asmat, Danial_102040||102040||Jul2025-Jun2026||
+Ravaioli, Silvi_101442||101442||Jul2025-Jun2026||
+Ankney, Kevin_101401||101401||Jul2025-Jun2026||
+Alfaro Serrano,_101096||101096||Jul2025-Jun2026||
+Zhang, Yang_5963||5963||||
+Vega San Martin_6353||6353||||
+Mrowiec, Filip_101501||101501||Jul2025-Jun2026||
+Easton, Matthew_102178||102178||Jul2025-Jun2026||
+Garg, Naman_101655||101655||Jul2025-Jun2026||MM-Crowbar_Magyari_Garg_N_101655_66846.pdf;
+Jones, Collin_102044||102044||Jul2025-Jun2026||
+Khatri, Aditi A_101692||101692||Jul2025-Jun2026||CSM-Delta_Wethli_Khatri_A_101692_66820.pdf;
+De, Koustav_101507||101507||||
+Schwed, Austin_100385||100385||||
+Setayesh, Abe_101356||101356||Jul2025-Jun2026||
+Lee, Hongbum_101171||101171||||
+Harit, Tuhin_102167||102167||Jul2025-Jun2026||
+Montanari, Giov_101773||101773||Jul2025-Jun2026||LW-Arena_Corea-Smith_Montanari_G_101773_66464.pdf;
+Kye, Geunho_6264||6264||||
+Condrea, Cristi_101734||101734||Jul2025-Jun2026||SC-Talk_Langer_Condrea_C_101734_66550.pdf;
+Ryan, Jacob_6113||6113||Jul2025-Jun2026||
+Saliev, Shodi_101586||101586||Jul2025-Jun2026||
+Ungersboeck, Pa_101894||101894||Jul2025-Jun2026||
+Wu, Yidi_101587||101587||Jul2025-Jun2026||MT-Tennessee_Katsiardis_Wu_Y_101587_66758.pdf;GD-McMillan_180_Golchha_Wu_Y_101587_66721.pdf;GD-McMillan_180_Kottou_Wu_Y_101587_66720.pdf;GD-McMillan_180_Wen_Wu_Y_101587_66722.pdf;GD-McMillan_Kindsgrab_Wu_Y_101587_66668.pdf;MT-Tennessee_180_Kauffmann_Wu_Y_101587_66781.pdf;MT-Tennessee_180_Cleaveland_Wu_Y_101587_66779.pdf;
+Rusk, Lillian_101926||101926||Jul2025-Jun2026||
+Lehrer, Andy_101697||101697||Jul2025-Jun2026||GD-Hop_Haque_Lehrer_N_101697_67175.pdf;
+Park, Diana_5494||5494||Jul2025-Jun2026||
+Marti, Chitra_101604||101604||Jul2025-Jun2026||OM-Flaps_Corea-Smith_Marti_C_101604_66822.pdf;
+Armstrong, Jed_101658||101658||||
+Tremacoldi-Ross_102265||102265||Jul2025-Jun2026||
+Trubnikova, Ann_101409||101409||Jul2025-Jun2026||
+Lam, Ammon_101636||101636||Jul2025-Jun2026||QE-Glass_Hu_Lam_A_101636_66356.pdf;QE-Glass_Self-Eval_Lam_A_101636_66466.pdf;
+Morris-Levenson_101484||101484||||
+Yao, Iris_101723||101723||Jul2025-Jun2026||SC-Abel_180_Selvidge_Yao_Y_101723_66785.pdf;
+Krivenko, Pavel_102230||102230||Jul2025-Jun2026||
+Pisauro, Giovan_101857||101857||Jul2025-Jun2026||
+Reggiani, Pietr_101726||101726||Jul2025-Jun2026||
+Hess, Andrew_102193||102193||Jul2025-Jun2026||
+Augustin, Nick_101811||101811||Jul2025-Jun2026||
+Kronies, Alex_101498||101498||Jul2025-Jun2026||
+Fu, Lydia_102273||102273||Jul2025-Jun2026||
+Anyosa, Antony_101334||101334||Jul2025-Jun2026||
+Schwed, Austin_5766||5766||Jul2025-Jun2026||
+Vest, Jacob_6278||6278||Jul2025-Jun2026||
+Lakkis, Emil_101708||101708||Jul2025-Jun2026||
+Feng, Yun_6372||6372||||
+Reinhardt, Coli_102048||102048||Jul2025-Jun2026||
+Lemos, Marina_101850||101850||Jul2025-Jun2026||M-Kay_Li_Lemos_M_101850_66836.pdf;
+Ciasullo, Ludov_102234||102234||Jul2025-Jun2026||
+Li, Duoxi_101699||101699||Jul2025-Jun2026||M-Kay_180_Lemos_Li_D_101699_66861.pdf;M-Kay_180_Izyumova_Li_D_101699_66862.pdf;M-Kay_Bruegge_Li_D_101699_66675.pdf;
+Sharpe, Colin_101714||101714||Jul2025-Jun2026||WC-Boxes_Martin_Sharpe_C_101714_66442.pdf;
+Zhao, Shiyu_101449||101449||Jul2025-Jun2026||QE-Glass_180_Moreno_Zhao_S_101449_66361.pdf;QE-Glass_Self-Eval_Zhao_S_101449_66378.pdf;QE-Glass_180_Zhou_Zhao_S_101449_66363.pdf;QE-Glass_Semaan_Zhao_S_101449_66376.pdf;
+Cornejo, Claudi_6261||6261||||
+Bauer-Mitterleh_101097||101097||||
+Aamer, Rida_101466||101466||||
+Coady, Aoife_101033||101033||||
+Zhao, Juliana_6390||6390||||
+Braeuner, Julia_101431||101431||Jul2025-Jun2026||
+Taylor, Amanda_101044||101044||||
+Zhu, Kelly_101046||101046||Jul2025-Jun2026||
+Appel, Natalie_101297||101297||Jul2025-Jun2026||
+Nandwani, Gehna_101102||101102||||
+Brockman, Franc_101031||101031||||
+McCool, Alexand_6402||6402||||
+Goldberg, Benja_101424||101424||Jul2025-Jun2026||
+Silber, Jack_101008||101008||Jul2025-Jun2026||SC-Talk_Xue_Silber_J_101008_66544.pdf;SC-Talk_180_Lohrs_Silber_J_101008_66547.pdf;
+Ma, Xiaochu_101260||101260||Jul2025-Jun2026||
+Fulcher-Melendy_101135||101135||Jul2025-Jun2026||
+Qin, Dantong_101190||101190||||
+Adam, Kaiya_6325||6325||||
+Chen, Melanie_101270||101270||Jul2025-Jun2026||
+Mascali, Jack_100966||100966||||
+Schwed, Noah_100999||100999||||
+Grasse, Annie_101388||101388||Jul2025-Jun2026||LW-Arena_Morrison_Grasse_A_101388_66398.pdf;
+Zhou, Victoria_101377||101377||Jul2025-Jun2026||QE-Glass_Zhao_Zhou_V_101377_66362.pdf;
+Chatterton, Bre_6111||6111||||
+Brown, Aerin_6254||6254||||
+Paliouras, Pant_101012||101012||||
+Guo, Rebecca_101478||101478||Jul2025-Jun2026||
+Farrell, Sean_6300||6300||||
+Crane, Austin_5762||5762||||
+Meehan, Neil_6274||6274||||
+Walker, Henry_6255||6255||||
+Mastrobuono, Mi_101429||101429||Jul2025-Jun2026||
+Randhawa, Tej_102298||102298||Jul2025-Jun2026||
+Ibarra Gallardo_100995||100995||||
+Eem, Dongbeom_101054||101054||||
+Wang, Sophie_101213||101213||||
+Bountouraki, Me_101463||101463||Jul2025-Jun2026||
+Benson, Lori_1018||1018||||
+Cizel, Janko_5934||5934||Jul2025-Jun2026||2026-01-31 Cizel KPI.pdf;
+Lee, Lucy_5842||5842||Jul2025-Jun2026||2026 KPI -- Lucy Lee.docx;
+Connolly, John_5973||5973||Jul2025-Jun2026||
+Kropf, Andreas_6057||6057||Jul2025-Jun2026||KPI A. Kropf - Jan. 2026.pdf;
+Mydlarz, Jakub_5733||5733||Jul2025-Jun2026||
+Wethli, Kyla_5474||5474||Jul2025-Jun2026||Wethli 2026 KPI.pdf;
+Lew, Sean_5346||5346||Jul2025-Jun2026||2026.02.18 Sean Lew Key Performance Indicators.pdf;
+Travers, Brenda_5224||5224||Jul2025-Jun2026||GT-Kookaburra_Pandya_Travers_B_5224_66782.pdf;
+Li Bergolis, Ma_5674||5674||Jul2025-Jun2026||
+Krishnamurthy, _5585||5585||Jul2025-Jun2026||2026.01.29 -- Anand Krishnamurthy KPI.docx;
+Cohen, Ofer_5578||5578||Jul2025-Jun2026||2026.02.01 DRAFT Cohen KPI.docx;
+Rudolph, Brenda_1390||1390||Jul2025-Jun2026||
+Zuluaga, David_5316||5316||Jul2025-Jun2026||IRS-Galway_Teixeira_Zuluaga_D_5316_66087.pdf;
+Williams, Jerom_6031||6031||Jul2025-Jun2026||
+Milliken, Kyle_4641||4641||Jul2025-Jun2026||Milliken – KPI 2026.pdf;
+Raccuia, Elena_101760||101760||Jul2025-Jun2026||
+Cornell, Paul_101598||101598||Jul2025-Jun2026||
+Paton, Jacob_101396||101396||||
+Colom Bildstein_102267||102267||Jul2025-Jun2026||
+Khanna, Aryan_101322||101322||Jul2025-Jun2026||KE-Left_Mastrobuono_Khanna_A_101322_67198.pdf;
+Smith, Cecilia_102224||102224||Jul2025-Jun2026||GT-Kookaburra_Royce_Smith_C_102224_66513.pdf;
+Zuo, Andrew_102255||102255||Jul2025-Jun2026||
+Torres Rey, Pab_101833||101833||Jul2025-Jun2026||
+Zhang, Abby_101771||101771||Jul2025-Jun2026||
+Abbas, Zaheer_102196||102196||Jul2025-Jun2026||
+Miller, Gabe_101832||101832||Jul2025-Jun2026||
+Shah, Shriya_102219||102219||Jul2025-Jun2026||
+Lee, Sean_101157||101157||Jul2025-Jun2026||GT-Kookaburra_Wen_Lee_S_101157_66509.pdf;
+Lee, Allan_101294||101294||||
+Giritharan, Vik_101872||101872||Jul2025-Jun2026||
+Hammer, Bettina_102006||102006||Jul2025-Jun2026||CB-Radio_Gallen_Hammer_B_102006_66046.pdf;QE-Glass_Zhou_Hammer_B_102006_66358.pdf;QE-Glass_Self-Eval_Hammer_B_102006_66627.pdf;
+Saffold, Timoth_101397||101397||||
+Gudissa, Amerti_101406||101406||||
+Domaratzky, Lel_101393||101393||||
+Califano, Nicho_101957||101957||Jul2025-Jun2026||
+Krothapalli, Sa_101815||101815||Jul2025-Jun2026||
+Banning, Katie_101828||101828||Jul2025-Jun2026||
+Tawakley, Arnav_101594||101594||Jul2025-Jun2026||PR-Calcium_Coan_Tawakley_A_101594_66492.pdf;AP-Delta_Benson_Tawakley_A_101594_66601.pdf;
+Kauffmann, Amel_101546||101546||Jul2025-Jun2026||MT-Tennessee_Wu_Kauffmann_A_101546_66780.pdf;
+Kottou, Rafaela_101915||101915||Jul2025-Jun2026||
+Neher, Finn_101584||101584||Jul2025-Jun2026||
+Ferrugia, Justi_101549||101549||Jul2025-Jun2026||
+Hosemann, Paul_101353||101353||Jul2025-Jun2026||
+Farina, Maggie_101573||101573||Jul2025-Jun2026||
+Zhou, Katelin_101646||101646||Jul2025-Jun2026||
+Mayourian, Jaco_102209||102209||Jul2025-Jun2026||
+Neary, Kyle_101414||101414||||
+Kronenberg, Luc_101634||101634||Jul2025-Jun2026||GT-Kookaburra_Wen_Kronenberg_L_101634_66511.pdf;GT-Kookaburra_Self-Eval_Kronenberg_L_101634_66523.pdf;CB-Radio_Gallen_Kronenberg_L_101634_66052.pdf;
+Meyer, Aaron_101299||101299||||
+To, Hannah_101139||101139||||
+McAndie, James_101544||101544||Jul2025-Jun2026||LW-Arena_Corea-Smith_McAndie_J_101544_66386.pdf;
+Pensa, Mira_102166||102166||Jul2025-Jun2026||QE-Glass_Self-Eval_Pensa_M_102166_66367.pdf;
+Gao, Robert_101619||101619||||
+Zhang, Emily_101834||101834||Jul2025-Jun2026||
+Shin, Amy_101982||101982||Jul2025-Jun2026||
+Chen, Grace_101821||101821||Jul2025-Jun2026||
+Mouracade, Luke_101448||101448||||
+Pullman, Jackso_101137||101137||||
+Polubinski, Mad_101002||101002||||
+Patel, Shilvaan_101548||101548||Jul2025-Jun2026||
+Zheng, Lucas_102281||102281||Jul2025-Jun2026||
+Chang, Won-Jae_101917||101917||||
+Maiorini, Andre_101823||101823||Jul2025-Jun2026||
+Spicer, Zoe_102282||102282||Jul2025-Jun2026||
+Samuels, Charli_101824||101824||Jul2025-Jun2026||
+Moscarini, Luci_101420||101420||||
+Armbruster, Nie_101838||101838||Jul2025-Jun2026||
+Turchiano, Capr_102180||102180||Jul2025-Jun2026||
+Portnoy, Harry_101558||101558||||
+Yan, Emma_101534||101534||Jul2025-Jun2026||
+Amster, Isabell_101631||101631||Jul2025-Jun2026||
+Shang, Brandon_6139||6139||Jul2025-Jun2026||SC-Talk_Zafeiridou_Shang_K_6139_66554.pdf;
+Corea-Smith, Ar_6354||6354||Jul2025-Jun2026||
+Magyari, Ildiko_101789||101789||||
+Maeland, Odd-Jo_6311||6311||Jul2025-Jun2026||
+Calvin, Matthew_6320||6320||Jul2025-Jun2026||
+Hu, Kathleen_6135||6135||Jul2025-Jun2026||
+Shanks, Colin_5066||5066||Jul2025-Jun2026||
+Yanguas, Lucia_6382||6382||Jul2025-Jun2026||
+Batyi, Tamas_6430||6430||Jul2025-Jun2026||
+Potter, Alan_6222||6222||Jul2025-Jun2026||
+Liu, Fang_101172||101172||Jul2025-Jun2026||
+Zou, Qiqi_5900||5900||Jul2025-Jun2026||GT-Kookaburra_180_Wu_Zou_Q_5900_66504.pdf;GT-Kookaburra_180_Wen_Zou_Q_5900_66502.pdf;GT-Kookaburra_Gilley_Zou_Q_5900_66505.pdf;
+McKee, Graham_4960||4960||||
+Katsiardis, Cha_101099||101099||Jul2025-Jun2026||MT-Tennessee_180_Wu_Katsiardis_C_101099_66759.pdf;
+Haltenhof, Samu_6342||6342||Jul2025-Jun2026||
+Altuglu, Vildan_1437||1437||Jul2025-Jun2026||
+Kumler, Todd_5263||5263||||
+Bickford, Eric_1379||1379||Jul2025-Jun2026||
+Neher, Darwin_3378||3378||Jul2025-Jun2026||
+Rozoff, Jonatha_2109||2109||Jul2025-Jun2026||
+Cao, Yan_4591||4591||Jul2025-Jun2026||
+Schwartz, Allie_4692||4692||Jul2025-Jun2026||
+Fryd, Brian_4685||4685||||
+Sancheti, Sachi_4756||4756||Jul2025-Jun2026||
+Hussain, Samid_1037||1037||Jul2025-Jun2026||
+Russo, David_1057||1057||Jul2025-Jun2026||
+Jahchan, Kristy_101224||101224||Jul2025-Jun2026||
+Bouchard, Jack_6037||6037||Jul2025-Jun2026||
+Nguyen, Jessica_6007||6007||Jul2025-Jun2026||
+Effraimidis, Ge_102297||102297||Jul2025-Jun2026||
+Cattivelli, Lor_101147||101147||Jul2025-Jun2026||
+Gray, Catherine_6145||6145||||
+Fu, Iris_101216||101216||Jul2025-Jun2026||
+Harley, Danny_100991||100991||Jul2025-Jun2026||
+Ban, Steven_101996||101996||||
+Hsueh, Kevin_101222||101222||Jul2025-Jun2026||
+Gemayel, Chady_6415||6415||Jul2025-Jun2026||C-Miner_180_Velasquez_Gemayel_C_6415_66532.pdf;C-Miner_180_Bastos_Gemayel_C_6415_66608.pdf;
+Tandon, Vijeta_5369||5369||Jul2025-Jun2026||
+Martin, Nichola_6296||6296||||
+Chabra, David_101928||101928||Jul2025-Jun2026||
+Weber, Ainsley_101456||101456||||
+Kitto, Rachel_101805||101805||Jul2025-Jun2026||
+Vakutin, Daniel_101845||101845||Jul2025-Jun2026||
+Yuan, Isaac_101991||101991||Jul2025-Jun2026||
+Zeng, Baron_101930||101930||Jul2025-Jun2026||
+Linden, Neville_101553||101553||Jul2025-Jun2026||
+Upadhyaya, Maya_102293||102293||Jul2025-Jun2026||
+Rao, Agastya_101877||101877||Jul2025-Jun2026||
+Mondress, Max_101929||101929||Jul2025-Jun2026||
+Pallace, Trey_101992||101992||Jul2025-Jun2026||
+Aron, Kartik_101827||101827||Jul2025-Jun2026||
+Kumar, Mihir_101364||101364||||
+Tambrin, Zoe_102276||102276||Jul2025-Jun2026||
+Xu, David_101141||101141||||
+Grueber, David_101886||101886||Jul2025-Jun2026||
+Qiu, Haitian_102258||102258||Jul2025-Jun2026||
+Oswald, Kevin_6006||6006||Jul2025-Jun2026||
+Poissant, JP_5252||5252||Jul2025-Jun2026||JP Poissant_KPIs January 2026.pdf;
+Oka, Shane_5017||5017||Jul2025-Jun2026||2026.02.04_Shane Oka KPI.docx;
+Yavorsky, Nicho_4715||4715||||
+Han, Marcelo_5361||5361||Jul2025-Jun2026||2025 KPIs_Han as of Jan 2026.docx;
+Irwin, Carlyn_1458||1458||Jul2025-Jun2026||Irwin_KPI-Table A.pdf;Irwin KPI FY 2026.pdf;
+Morel, Pierrick_4857||4857||Jul2025-Jun2026||KPI 2.3.2026.pdf;
+Salitskiy, Igor_5937||5937||Jul2025-Jun2026||CSM-Delta_Self-Eval_Salitskiy_I_5937_67011.pdf;CSM-Delta_Barnes_Salitskiy_I_5937_67016.pdf;
+Lee, Jamie_4585||4585||Jul2025-Jun2026||2026.01.31 Jamie Lee KPI_v2.docx;2026.01.31 Jamie Lee KPI.docx;
+Diop, Marema_5806||5806||Jul2025-Jun2026||
+Yavorsky, Alexa_4671||4671||Jul2025-Jun2026||2026.01.30 - A. Yavorsky KPI_DRAFT.docx;
+Vasaly, Alex_5853||5853||Jul2025-Jun2026||KPIs_Alex Vasaly_January 2026.docx;
+West, Joseph_101082||101082||||
+Jaramishian, Ni_6271||6271||||
+Hrenko, Zachary_101004||101004||||
+Bin Abd Aziz, A_101318||101318||Jul2025-Jun2026||
+Wang, Belinda_101711||101711||Jul2025-Jun2026||
+Lebovitz, Shay_101519||101519||Jul2025-Jun2026||
+Shambayati, Shi_101303||101303||Jul2025-Jun2026||
+Diller, Kaylee_101710||101710||Jul2025-Jun2026||
+Chung, Jiwon_101713||101713||Jul2025-Jun2026||
+Srikanth, Sid_101316||101316||Jul2025-Jun2026||WF-Knuckle_Reyes_Srikanth_S_101316_66662.pdf;
+Stevens, Camero_101712||101712||Jul2025-Jun2026||
+Mann, Dalton_101041||101041||||
+Perry, Noah_6414||6414||||
+Kahn, Nicholas_101458||101458||Jul2025-Jun2026||
+Muscat, Joey_101131||101131||Jul2025-Jun2026||
+Ryan, Natalie_100988||100988||||
+Lalkiya, Parth_101200||101200||Jul2025-Jun2026||
+Collins, Siobha_101210||101210||Jul2025-Jun2026||AOS-Loonie_Langer_Collins_S_101210_66593.pdf;
+Glatt, Amanda_6332||6332||||
+Meyer, Nick_101452||101452||Jul2025-Jun2026||
+Joshi, Bhavna_100968||100968||||
+Wu, Jacqueline_6409||6409||||
+Kovacheva, Penk_5311||5311||Jul2025-Jun2026||
+Yavorsky, Nick_4715||4715||Jul2025-Jun2026||
+Harwood, Elaine_1023||1023||Jul2025-Jun2026||
+Pradhan, Ashish_4924||4924||Jul2025-Jun2026||
+Lacerda, Filipe_5421||5421||||
+Gupta, Kirti_101664||101664||Jul2025-Jun2026||
+Bonczek, Thomas_101369||101369||Jul2025-Jun2026||QE-Carga_Hu_Bonczek_T_101369_66789.pdf;
+Rabideau, Brend_102039||102039||||
+Zhu, Huihuang_102221||102221||Jul2025-Jun2026||
+Fu, Robin_101212||101212||||
+Fajury, Karim_101717||101717||||
+Cuevas Rodrigue_101366||101366||Jul2025-Jun2026||
+Rauch, Nick_101170||101170||Jul2025-Jun2026||CB-Radio_180_Li_Rauch_N_101170_67143.pdf;
+Medina-Cortina,_101716||101716||Jul2025-Jun2026||
+Alvarado, Danie_6431||6431||Jul2025-Jun2026||
+Tutuncu, Cem_101977||101977||Jul2025-Jun2026||
+Samaei, Erfan_101042||101042||Jul2025-Jun2026||LW-Arena_Morrison_Samaei_E_101042_66400.pdf;
+Baluja, Robert_102041||102041||Jul2025-Jun2026||LW-Arena_Gupta_Baluja_R_102041_66402.pdf;
+Attias, Jerrod_101169||101169||Jul2025-Jun2026||C-Miner_Strair_Attias_J_101169_66830.pdf;
+Freyd, Benjamin_101470||101470||Jul2025-Jun2026||
+Hrenko, Zach_101004||101004||Jul2025-Jun2026||
+De Magistris, E_101490||101490||||
+Liu, Jiahua_101290||101290||Jul2025-Jun2026||
+Arnold, Jonatha_101818||101818||Jul2025-Jun2026||
+Gao, Jessica_102009||102009||Jul2025-Jun2026||
+Mo, Sophia_102174||102174||Jul2025-Jun2026||
+Lehr, Nils_101722||101722||||
+Alhorr, Layane_101612||101612||Jul2025-Jun2026||JD-Kabul_Mishol_Alhorr_L_101612_66455.pdf;
+Guo, Elaine_101740||101740||Jul2025-Jun2026||
+Chen, Anhua_101856||101856||Jul2025-Jun2026||
+Wilson, John_101848||101848||Jul2025-Jun2026||
+Withers, James_6355||6355||Jul2025-Jun2026||SC-Talk_Chan_Withers_J_6355_66074.pdf;
+Sastri, Sachin_6106||6106||||
+Shuman, Jacob_6293||6293||Jul2025-Jun2026||DP-Bigfoot_Bruno_Shuman_J_6293_66278.pdf;
+Uribe, JP_101360||101360||Jul2025-Jun2026||BB-Autopilot_Michelozzi_Uribe_J_101360_66382.pdf;
+Banker, Mohin_102156||102156||Jul2025-Jun2026||
+Cui, Jenny_101335||101335||Jul2025-Jun2026||
+Zotov, Alex_102112||102112||Jul2025-Jun2026||
+Hassan, Ramin_101410||101410||||
+Cho, Hyein_102173||102173||Jul2025-Jun2026||
+Duarte Mascaren_101332||101332||Jul2025-Jun2026||
+Tamburelli, Tom_101813||101813||Jul2025-Jun2026||
+Shen, Siyi_101580||101580||Jul2025-Jun2026||
+Im, Joanne_101967||101967||Jul2025-Jun2026||
+Boyer, Chuck_5100||5100||Jul2025-Jun2026||BM-Host_Paulus_Boyer_C_5100_66126.pdf;G-Force_Chernin_Boyer_C_5100_66032.pdf;SR-Panther_Paulus_Boyer_C_5100_66124.pdf;
+Mishol, David_101946||101946||||
+Snodgrass, Patr_5309||5309||Jul2025-Jun2026||
+Martins, Fernan_6291||6291||Jul2025-Jun2026||
+Popov, Anton_6126||6126||Jul2025-Jun2026||
+Dinh, Phuong_5819||5819||||
+Hingorani, Prit_5624||5624||Jul2025-Jun2026||
+Carroll, Elizab_101707||101707||||
+Sherpa, Sonam_101571||101571||Jul2025-Jun2026||
+Kotrebai, Danie_101949||101949||Jul2025-Jun2026||
+Rupakheti, Aava_102215||102215||Jul2025-Jun2026||
+Cornelissen, An_101820||101820||Jul2025-Jun2026||PR-Calcium_Coan_Cornelissen_A_101820_66536.pdf;
+Sciubba, Ava_101954||101954||||
+Newdeck, Emily_101840||101840||Jul2025-Jun2026||
+Auster, Zach_101903||101903||Jul2025-Jun2026||
+Wruck, Alice_101593||101593||Jul2025-Jun2026||JDG-Otzi_Self-Eval_Wruck_A_101593_67302.pdf;
+Doyle, Rory_101839||101839||Jul2025-Jun2026||
+Pollard, Ben_101678||101678||||
+Ro, Caroline_101671||101671||||
+Ahuja, Pahal_101861||101861||Jul2025-Jun2026||
+Goyal, Devansh_101596||101596||Jul2025-Jun2026||
+Duesing, Charlo_102237||102237||Jul2025-Jun2026||
+Sajja, Shilpa_101706||101706||||
+Bluestone, Kayl_102011||102011||Jul2025-Jun2026||DPW-Meetings_Char_Zlotnick_K_102011_67208.pdf;
+Nunez del Arco _102169||102169||Jul2025-Jun2026||
+Doelfel, Savann_101394||101394||||
+Dobrinov, Isabe_101817||101817||Jul2025-Jun2026||
+Brady, Mackenzi_101632||101632||Jul2025-Jun2026||
+Tzung, Shelby_101978||101978||Jul2025-Jun2026||
+Tanenbaum, Hann_101959||101959||Jul2025-Jun2026||
+Miranda, Sean_102205||102205||Jul2025-Jun2026||
+Leventhal, Zach_102005||102005||Jul2025-Jun2026||JDG-Otzi_Self-Eval_Leventhal_Z_102005_67301.pdf;JD-Fermi_Self-Eval_Leventhal_Z_102005_66736.pdf;
+Escobar, Alejan_101851||101851||Jul2025-Jun2026||
+Marshall, Will_101567||101567||||
+Huang, Mackenzi_101920||101920||Jul2025-Jun2026||LW-Knocks_Su_Huang_M_101920_66515.pdf;JD-Kabul_Chandran_Huang_M_101920_66306.pdf;
+Wilkes, Aggie_102279||102279||Jul2025-Jun2026||
+Lacet-Brown, Sa_101561||101561||||
+Orientale, Sam_102246||102246||Jul2025-Jun2026||
+Greene, Victor_102200||102200||Jul2025-Jun2026||
+Bradley, Georgi_101721||101721||||
+Smith, Noah_101625||101625||||
+Lyons, Delaney_101972||101972||Jul2025-Jun2026||
+Shankar, Shreyu_101895||101895||Jul2025-Jun2026||
+Janmohamed, Kam_101440||101440||||
+Liu, Priscilla_101847||101847||Jul2025-Jun2026||
+Chen, Beatrice_101314||101314||||
+Anthony, Jake_101819||101819||Jul2025-Jun2026||
+Botadra, Manav_102232||102232||Jul2025-Jun2026||
+Weber, Ethan_101581||101581||Jul2025-Jun2026||SC-Talk_Withers_Weber_E_101581_66077.pdf;
+Sorger, Nick_101973||101973||Jul2025-Jun2026||
+Rogowski, Clare_102262||102262||Jul2025-Jun2026||
+Zhu, Yaoyao_101390||101390||||
+Flagg, David_102034||102034||Jul2025-Jun2026||SR-Panther_Juergens_Flagg_D_102034_66687.pdf;
+Klas, Christina_102202||102202||Jul2025-Jun2026||
+Pratt, Ryan_101763||101763||||
+Lee, Celis_101595||101595||Jul2025-Jun2026||PR-Calcium_Colella_Lee_C_101595_66349.pdf;
+Ruth, George_101807||101807||Jul2025-Jun2026||
+McCormack, Cory_102278||102278||Jul2025-Jun2026||
+Baert, Edith_101933||101933||Jul2025-Jun2026||
+Guo, Fang_5781||5781||Jul2025-Jun2026||2026 KPI for Fang Guo.pdf;
+Wilson, Scott_5043||5043||Jul2025-Jun2026||SC-Talk_180_Ayhan_Wilson_M_5043_66175.pdf;SC-Talk_180_Glandon_Wilson_M_5043_66177.pdf;SC-Talk_Fryd_Wilson_M_5043_66178.pdf;SC-Talk_180_Donlon_Wilson_M_5043_66169.pdf;
+Lazur, Heather_4466||4466||Jul2025-Jun2026||Heather Lazur_KPI_January 2026.pdf;
+Semaan, Samer_6067||6067||Jul2025-Jun2026||QE-Glass_180_Zhao_Semaan_S_6067_66377.pdf;Principal KPI_Samer R. Semaan_January 2026.pdf;
+Juergens, Jenni_6284||6284||Jul2025-Jun2026||2026 KPIs for Jen Juergens.pdf;2026.01.12 SR-Panther 180 Feedback for JJ.pdf;2026 KPIs for Jen Juergens.docx;SR-Panther_180_Flagg_Juergens_J_6284_66688.pdf;SR-Panther_180_Wu_Juergens_J_6284_66690.pdf;SR-Panther_180_Sides_Juergens_J_6284_66684.pdf;
+Stiglin, Laura_101781||101781||||
+Doyle, Joseph_5038||5038||Jul2025-Jun2026||2026 ARC KPI JBD.docx;
+Robinson, Dan_5196||5196||Jul2025-Jun2026||D Robinson Principal KPIs.pdf;
+Kim Song, Ernes_5153||5153||Jul2025-Jun2026||
+Gupta, Nikhil_6069||6069||Jul2025-Jun2026||2026.01.31 Nikhil Gupta KPI.docx;
+Elzinga, Andrew_5814||5814||Jul2025-Jun2026||2026.01.31 KPI for Andrew Elzinga.pdf;
+Abraham, Sarah_6205||6205||Jul2025-Jun2026||2026.01.31 Abraham KPI.docx;
+Fuller, Benjami_5777||5777||Jul2025-Jun2026||2026.01.31 Benjamin Fuller KPI.pdf;
+Mardini, Asma_101391||101391||||
+Frick, Ewan_101389||101389||||
+Rocafort, Rolan_101788||101788||Jul2025-Jun2026||
+Lohrs, Matt_101325||101325||Jul2025-Jun2026||SC-Talk_Silber_Lohrs_M_101325_66546.pdf;
+O'Loughlin, Mic_101642||101642||Jul2025-Jun2026||
+Coan, Rachel_101705||101705||Jul2025-Jun2026||PR-Calcium_180_Cornelissen_Coan_R_101705_66537.pdf;LW-Roc_Jin_Coan_R_101705_66228.pdf;PR-Calcium_180_Tawakley_Coan_R_101705_66493.pdf;
+LaFond, Henry_101227||101227||||
+Antoniou, Suzan_6257||6257||||
+Tong, Haoran_101330||101330||Jul2025-Jun2026||
+Shaar, Rebecca_100994||100994||||
+Lewis, Taylor_100996||100996||||
+Dauerman, Renee_101374||101374||||
+DeMartin, Luke_101670||101670||Jul2025-Jun2026||
+Char, Christine_101618||101618||Jul2025-Jun2026||JDG-Otzi_Self-Eval_Char_C_101618_67303.pdf;
+Heslop, Will_101885||101885||Jul2025-Jun2026||
+Zhu, Genghe_101338||101338||Jul2025-Jun2026||
+Zhou, Johnson_101626||101626||Jul2025-Jun2026||JD-Fermi_Self-Eval_Zhou_J_101626_66760.pdf;
+Smith, Alex_101204||101204||||
+Clark, Lindsey_101003||101003||||
+Liu, Victor_101432||101432||||
+Ostrow, Zach_101728||101728||Jul2025-Jun2026||
+Huang, Catelyn_100997||100997||||
+Eisenthal-Berko_102020||102020||||
+Farid, Monica_102269||102269||Jul2025-Jun2026||
+Doles, Robert_5564||5564||Jul2025-Jun2026||
+Young, Nathanie_101376||101376||Jul2025-Jun2026||
+Schweitzer, Eva_5565||5565||Jul2025-Jun2026||
+Morrison, Billy_5697||5697||Jul2025-Jun2026||LW-Arena_Gilbert_Morrison_B_5697_66410.pdf;
+Gao, Jie_102009||102009||||
+Zucker, Graham_6103||6103||||
+Lu, Kevin_101453||101453||Jul2025-Jun2026||
+Gould, Allison_6272||6272||||
+Zhu, Heting_101105||101105||||
+Kirsch, Jacob_101447||101447||Jul2025-Jun2026||
+Clydesdale, Rya_6258||6258||||
+Vaughn, Orly_101426||101426||Jul2025-Jun2026||
+Lobo, Isabelle_101372||101372||Jul2025-Jun2026||JD-Fermi_Self-Eval_Lobo_I_101372_66735.pdf;
+Goldblatt, Haya_101129||101129||Jul2025-Jun2026||
+White, Tess_101439||101439||Jul2025-Jun2026||
+MacIsaac, Ainsl_101766||101766||Jul2025-Jun2026||
+Weil, Thomas_101415||101415||||
+Rajesh, Divya_101868||101868||Jul2025-Jun2026||
+Kellenberg, Mat_101955||101955||Jul2025-Jun2026||WC-Zito_Dorshorst_Kellenberg_M_101955_66731.pdf;
+Shah, Aman_101537||101537||Jul2025-Jun2026||
+Jacobs, Lauren_101154||101154||||
+Lindahl, Jay_102203||102203||Jul2025-Jun2026||
+McDougall, Anna_101395||101395||||
+Nowak, Thomas_101385||101385||||
+Jacobs, Jason_101900||101900||Jul2025-Jun2026||
+Lim, Young Chan_101645||101645||||
+Edwards, Hannah_102171||102171||Jul2025-Jun2026||
+Wong, Christoph_101916||101916||Jul2025-Jun2026||
+Mohy El Din, Ka_101540||101540||Jul2025-Jun2026||
+Cheng, Michael_101907||101907||Jul2025-Jun2026||
+Kalaparthy, Mah_101307||101307||||
+Flynn, Claudia_102199||102199||Jul2025-Jun2026||
+Hitzeman, Jordy_102240||102240||Jul2025-Jun2026||
+Kobotis, Kallio_102186||102186||Jul2025-Jun2026||SC-Talk_Page_Kobotis_K_102186_66078.pdf;
+Guntupalli, Pra_101842||101842||Jul2025-Jun2026||
+Gadbois, Drew_101901||101901||Jul2025-Jun2026||
+Kamatovic, Stev_102242||102242||Jul2025-Jun2026||WC-Boxes_Porter_Kamatovic_S_102242_66488.pdf;
+Fraizer, Michae_101543||101543||Jul2025-Jun2026||
+Srinivasan, Nay_102280||102280||Jul2025-Jun2026||
+Ling, Anthony_101597||101597||Jul2025-Jun2026||
+Hemond, Quinn_101913||101913||Jul2025-Jun2026||
+Petrin, Eleanor_102206||102206||Jul2025-Jun2026||
+Konatham, Nikhi_102208||102208||Jul2025-Jun2026||
+Paranikas, Paul_101816||101816||Jul2025-Jun2026||
+McQuade, Sean_101898||101898||||
+Li, Gary_101956||101956||Jul2025-Jun2026||NR-Peace_Chen_Li_G_101956_66252.pdf;
+Stacey, Carina_101914||101914||Jul2025-Jun2026||NR-Peace_Chen_Stacey_C_101914_66254.pdf;
+Peppercorn, Eli_101672||101672||||
+Yan, Dylan_101826||101826||Jul2025-Jun2026||
+Bailey, Beatric_101911||101911||Jul2025-Jun2026||
+Checchio, Luke_101803||101803||Jul2025-Jun2026||
+Cross, Harrison_102197||102197||Jul2025-Jun2026||
+Mungee, Kushal_102228||102228||Jul2025-Jun2026||
+Scheck, Gabriel_102182||102182||Jul2025-Jun2026||
+Loraine, Lorele_101904||101904||Jul2025-Jun2026||
+Di Mario, Matte_101825||101825||Jul2025-Jun2026||
+El-Fishawy, Ste_102238||102238||Jul2025-Jun2026||
+Hatzius, Johann_101666||101666||||
+Duru, Chizoma_102183||102183||Jul2025-Jun2026||
+Pesko, Audra_101640||101640||Jul2025-Jun2026||
+Dueholm, Mick_102194||102194||Jul2025-Jun2026||
+Milad, Michael_101909||101909||Jul2025-Jun2026||
+Hall, Layton_101539||101539||Jul2025-Jun2026||
+Butz, Charlie_101001||101001||||
+Dorshorst, Kyle_101383||101383||Jul2025-Jun2026||WC-Zito_Aitkulova_Dorshorst_K_101383_66727.pdf;WC-Zito_180_Kellenberg_Dorshorst_K_101383_66732.pdf;
+Gossmann Gonzal_101403||101403||Jul2025-Jun2026||
+Roycroft, Clair_102135||102135||Jul2025-Jun2026||
+Chen, Michael_101208||101208||Jul2025-Jun2026||
+Alber, Andy_102217||102217||Jul2025-Jun2026||
+Wu, Ashley_101437||101437||Jul2025-Jun2026||
+Maier, Lauren_101665||101665||Jul2025-Jun2026||KS-Lando_Mukhopadhyay_Maier_L_101665_66258.pdf;DOJ-Orient_Lancer_Maier_L_101665_66260.pdf;
+Mahajan, Mansha_101379||101379||Jul2025-Jun2026||WC-Boxes_Reyes_Mahajan_M_101379_66496.pdf;
+Rockaway, Jerem_101138||101138||Jul2025-Jun2026||
+Jackson, Will_101064||101064||||
+Bhatia, Zander_101183||101183||||
+Lee, Shinyoung_101279||101279||Jul2025-Jun2026||
+Silva, Connor_101450||101450||Jul2025-Jun2026||
+Thompson, Trent_102023||102023||Jul2025-Jun2026||
+Kleiser, Kate_101207||101207||||
+Farzaneh, Alex_101459||101459||Jul2025-Jun2026||
+Carpenter, Bria_101419||101419||Jul2025-Jun2026||
+Donlon, Josie_101151||101151||Jul2025-Jun2026||CB-Viral_Charous_Donlon_J_101151_66434.pdf;SC-Talk_Wilson_Donlon_J_101151_66168.pdf;
+Malir, Matt_6260||6260||||
+Loring, Scott_5408||5408||||
+Kirkland, Cassi_5920||5920||Jul2025-Jun2026||
+Mishra, Dibya D_101892||101892||Jul2025-Jun2026||
+Poberejsky, Rom_101908||101908||Jul2025-Jun2026||
+Vernon, Spencer_5967||5967||Jul2025-Jun2026||JD-Bloom_Stichnoth_Vernon_S_5967_66059.pdf;
+Mahadeshwar, Ru_102245||102245||Jul2025-Jun2026||
+Leder Macek, Se_101070||101070||Jul2025-Jun2026||
+Sotherland, Nat_102251||102251||Jul2025-Jun2026||
+Wirth, Alex_101951||101951||Jul2025-Jun2026||
+Reyes, Julia_101078||101078||Jul2025-Jun2026||WC-Boxes_Martin_Reyes_J_101078_66443.pdf;WF-Knuckle_180_Srikanth_Reyes_J_101078_66663.pdf;
+Kim, Anthony_101445||101445||||
+Chen, Rui_5994||5994||Jul2025-Jun2026||NR-Peace_Stichnoth_Chen_R_5994_66250.pdf;NR-Peace_180_Li_Chen_R_5994_66253.pdf;
+Evans, Burke_5802||5802||Jul2025-Jun2026||
+Rajan, Tanya_102247||102247||Jul2025-Jun2026||
+Ross, Matt_101551||101551||Jul2025-Jun2026||
+Ding, Claire_101161||101161||Jul2025-Jun2026||
+Stonequist, Bre_102252||102252||Jul2025-Jun2026||
+Boge, Julia_6333||6333||Jul2025-Jun2026||
+Murto, Michael_102286||102286||Jul2025-Jun2026||
+Goravara, Rahul_6265||6265||||
+Murphy, Ben_6337||6337||||
+Teeple, Michael_101256||101256||Jul2025-Jun2026||
+Wang, Ting_101340||101340||||
+Zalke, Kenneth_101638||101638||Jul2025-Jun2026||
+Guo, Chuhan_101809||101809||Jul2025-Jun2026||
+Gupta, Sakshi_101579||101579||Jul2025-Jun2026||LW-Arena_180_Baluja_Gupta_S_101579_66403.pdf;
+Kakusa, Chifund_101932||101932||Jul2025-Jun2026||
+Daubenspeck, Ja_6303||6303||||
+Salas, José Die_101855||101855||Jul2025-Jun2026||
+Nadkarni, Shoum_101656||101656||Jul2025-Jun2026||
+Moran, Alex_101007||101007||Jul2025-Jun2026||
+Hashemi, Arshia_101533||101533||Jul2025-Jun2026||LW-Arena_Corea-Smith_Hashemi_A_101533_66404.pdf;LW-Arena_Self-Eval_Hashemi_A_101533_66414.pdf;
+Pascual, José M_101810||101810||Jul2025-Jun2026||
+Chan, Enoch_5698||5698||Jul2025-Jun2026||SC-Talk_180_Withers_Chan_E_5698_66198.pdf;SC-Talk_Martynova_Chan_E_5698_66072.pdf;
+Swaminath, Vive_101133||101133||||
+Dalmazzo, Jonas_102235||102235||Jul2025-Jun2026||
+Han, Yvonne_102296||102296||Jul2025-Jun2026||
+Zborowski, Bran_102254||102254||Jul2025-Jun2026||
+Gonzalez, Julia_6336||6336||Jul2025-Jun2026||
+Allen, Mitch_5600||5600||Jul2025-Jun2026||GT-Kookaburra_Pandya_Allen_M_5600_66499.pdf;
+Lin, Katie_5445||5445||Jul2025-Jun2026||
+Vissing, Ashley_6158||6158||Jul2025-Jun2026||
+Kuo, Stephanie_5321||5321||Jul2025-Jun2026||
+Hilfiker, Micha_6122||6122||Jul2025-Jun2026||
+Koegel, Kate_6345||6345||Jul2025-Jun2026||
+Carter, Michele_101049||101049||Jul2025-Jun2026||
+Glandon, Molly_6410||6410||Jul2025-Jun2026||SC-Talk_Wilson_Glandon_M_6410_66176.pdf;
+Colella, Camero_5653||5653||Jul2025-Jun2026||ML-Hook_180_Garud_Colella_C_5653_66287.pdf;
+Tauke, Sam_5888||5888||Jul2025-Jun2026||
+Fox, Katie_5432||5432||Jul2025-Jun2026||
+Yadav, Medha_101513||101513||||
+Reasner, Mason_101380||101380||Jul2025-Jun2026||
+Charous, Jason_6024||6024||Jul2025-Jun2026||GL-Racket_180_Sethi_Charous_J_6024_66429.pdf;GL-Racket_180_Murphy_Charous_J_6024_66431.pdf;
+Gonzales, Marie_101464||101464||Jul2025-Jun2026||
+Gallen, Trevor_101867||101867||||
+Tauke, Samuel_5888||5888||||
+Flynn, Pat_101365||101365||Jul2025-Jun2026||
+Kirk-Kim, Se-Ho_5604||5604||||
+Bruno, JP_5964||5964||Jul2025-Jun2026||DP-Bigfoot_McDowall_Bruno_J_5964_66321.pdf;DP-Bigfoot_180_Shuman_Bruno_J_5964_66279.pdf;
+Feldman, Rachel_101162||101162||Jul2025-Jun2026||
+Morales-Mosquer_101215||101215||Jul2025-Jun2026||
+Kim, Brian_5604||5604||Jul2025-Jun2026||
+Stichnoth, Caro_5857||5857||Jul2025-Jun2026||AB-Cars_Vasaly_Stichnoth_C_5857_66061.pdf;JD-Bloom_180_Vernon_Stichnoth_C_5857_66060.pdf;NR-Peace_Simon_Stichnoth_C_5857_66256.pdf;NR-Peace_180_Perry_Stichnoth_C_5857_66249.pdf;
+Lord, Matt_5915||5915||Jul2025-Jun2026||WC-Zito_180_Sethi_Lord_M_5915_66461.pdf;
+Vajravelu, Nata_5266||5266||Jul2025-Jun2026||
+Ferraz Musse, I_102047||102047||Jul2025-Jun2026||
+Petropoulos, We_101752||101752||Jul2025-Jun2026||
+Wang, Kitty_101905||101905||||
+D'Agostino, Mar_5716||5716||Jul2025-Jun2026||dagostino_kpi_2025_2026.pdf;
+McDowall, Ana_6440||6440||Jul2025-Jun2026||2025.01.29 KPIs.docx;
+Lin, Jerry_5078||5078||Jul2025-Jun2026||2026 Lin KPI.docx;
+Bai, Sally_6228||6228||Jul2025-Jun2026||
+Litten, Andrew_6073||6073||Jul2025-Jun2026||2026.01.30 Litten KPI.pdf;
+Olivieri, Elisa_5688||5688||Jul2025-Jun2026||2025.10.10 - KPI Elisa Olivieri.docx;FF-Shannon_180_Tilson_Olivieri_E_5688_66143.pdf;FF-Shannon_180_Honnor_Olivieri_E_5688_66142.pdf;
+Day, Alison_5528||5528||Jul2025-Jun2026||
+Kucko, Kavan_5897||5897||Jul2025-Jun2026||2026.01.29 - KPI Kavan Kucko.pdf;
+Hansoti, Nish_5895||5895||Jul2025-Jun2026||Teamwork Matrix - Nish Hansoti.pdf;Nish Hansoti KPI - January 2026.pdf;
+Krivoshia, Patr_4453||4453||Jul2025-Jun2026||
+Myatt, James_6196||6196||Jul2025-Jun2026||
+Antonie, Gabrie_5803||5803||Jul2025-Jun2026||2026.01.30 - Gabriela Antonie KPI_.docx;
+Bevan, Peter_4639||4639||Jul2025-Jun2026||
+Yuen, Ali_5528||5528||Jul2025-Jun2026||
+Poczatek, Matt_5634||5634||Jul2025-Jun2026||KPI - Poczatek.docx;
+Champion, Sara_5096||5096||Jul2025-Jun2026||
+Molter, Russ_5449||5449||Jul2025-Jun2026||DOJ-Orient_180_Lancer_Molter_R_5449_66145.pdf;DOJ-Orient_Eastman_Molter_R_5449_66146.pdf;Molter, Russ_KPI_2026.01.30.docx;
+Schick, Lindsay_5092||5092||Jul2025-Jun2026||2026 Schick KPI.docx;
+Pokorny, John_6056||6056||Jul2025-Jun2026||Pokorny KPI 2026.pdf;
+Solomon, Benjam_102032||102032||Jul2025-Jun2026||KPI_Ben Solomon as of Jan 31 2026.docx;
+Zhang, Jingwen_101337||101337||Jul2025-Jun2026||
+Langbo, Henry_101309||101309||Jul2025-Jun2026||
+Zhang, Joanna_101416||101416||||
+Shao, Sophie_101333||101333||Jul2025-Jun2026||
+Murphy, Kevin_101644||101644||Jul2025-Jun2026||GL-Racket_Charous_Murphy_K_101644_66430.pdf;GL-Racket_Self-Eval_Murphy_K_101644_67070.pdf;
+Pulley, Johnny_101899||101899||Jul2025-Jun2026||
+Vadillo, Daniel_101704||101704||Jul2025-Jun2026||
+Selvidge, Megha_101517||101517||Jul2025-Jun2026||SC-Abel_Yao_Selvidge_M_101517_66784.pdf;SC-Talk_Page_Selvidge_M_101517_66075.pdf;
+Murphy, Joanna_101205||101205||||
+Sethi, Ary_101545||101545||Jul2025-Jun2026||WC-Zito_Lord_Sethi_A_101545_66460.pdf;
+Porter, James_101701||101701||Jul2025-Jun2026||WC-Boxes_180_Scheck_Porter_J_101701_66579.pdf;WC-Boxes_180_Kamatovic_Porter_J_101701_66577.pdf;
+Barrett, Maggie_101673||101673||Jul2025-Jun2026||
+Steffensmeier, _101683||101683||Jul2025-Jun2026||
+Trost, Ryan_101651||101651||Jul2025-Jun2026||
+King, Emma_101308||101308||Jul2025-Jun2026||
+Mehrotra, Nik_101326||101326||Jul2025-Jun2026||
+Perry, Max_101536||101536||Jul2025-Jun2026||NR-Peace_Stichnoth_Perry_M_101536_66248.pdf;
+Yang, Amanda_101653||101653||||
+Adury, Vivek_101669||101669||||
+Clarke, Eliza_101737||101737||||
+Varsani, Reanna_101555||101555||Jul2025-Jun2026||
+Tillson, Leo_101918||101918||||
+Len, Sievlan_101255||101255||Jul2025-Jun2026||AOS-Loonie_Collins_Len_S_101255_66595.pdf;
+Johnson, Theo_102158||102158||Jul2025-Jun2026||
+Smith, Ella_102249||102249||Jul2025-Jun2026||
+Kane, Adam_102243||102243||Jul2025-Jun2026||
+Halverson, Will_101629||101629||Jul2025-Jun2026||
+Elsyad, Dinan_102163||102163||Jul2025-Jun2026||
+Wei, Brandon_101577||101577||Jul2025-Jun2026||
+Zhang, Vivian_101148||101148||||
+Hamilton, Jamie_101960||101960||Jul2025-Jun2026||LW-Arena_Baluja_Hamilton_J_101960_66392.pdf;GD-McMillan_Williams_Hamilton_J_101960_66617.pdf;
+Farhadi, Aava_102187||102187||Jul2025-Jun2026||SC-Talk_Langer_Farhadi_A_102187_66552.pdf;
+Li, Dongpeng_101413||101413||||
+DeGraw, Jacob_102198||102198||Jul2025-Jun2026||
+Woolley, Julia_101556||101556||Jul2025-Jun2026||
+Strizik, Sari_102195||102195||Jul2025-Jun2026||
+Feitzinger, All_101962||101962||Jul2025-Jun2026||
+Shan, Carolyn_101897||101897||Jul2025-Jun2026||SC-Talk_Langer_Shan_C_101897_66558.pdf;
+Cole, Cora_101822||101822||Jul2025-Jun2026||
+Berman, Emma_102007||102007||Jul2025-Jun2026||
+Bagepalli, Adit_101942||101942||Jul2025-Jun2026||SC-Talk_Langer_Bagepalli_A_101942_66556.pdf;
+Chang, Benson_101727||101727||||
+Van der Meer, L_102253||102253||Jul2025-Jun2026||
+Lynde, Matt_1344||1344||Jul2025-Jun2026||
+Salgado, Maria_4539||4539||Jul2025-Jun2026||
+Older Aguilar, _1519||1519||Jul2025-Jun2026||
+Zurek, Paul_4799||4799||Jul2025-Jun2026||
+Saravia, Celest_4604||4604||Jul2025-Jun2026||
+Howells, Brad_5099||5099||Jul2025-Jun2026||
+Lindh, Michael_4786||4786||Jul2025-Jun2026||Lindh KPI (2026).docx;
+Ramsey, Daniel_5320||5320||Jul2025-Jun2026||Dan Ramsey - Key Performance Indicators (KPIs) - 2026.docx;
+Shih, Tiffany_6121||6121||Jul2025-Jun2026||MW-London_180_Cui_Shih_T_6121_66202.pdf;2025 KPI_Shih.pdf;
+Kifer, Avigail_5620||5620||Jul2025-Jun2026||
+Howell, Vandy_1328||1328||||
+Connolly, Colle_1354||1354||Jul2025-Jun2026||DWT-Magnet_Self-Eval_Connolly_C_1354_66826.pdf;
+Lau, Christophe_101509||101509||Jul2025-Jun2026||KPI for Chris Lau_2025.docx;
+Shepard, Andrea_101785||101785||||
+Malam, Craig_101284||101284||||
+Cui, Mengshan_101226||101226||Jul2025-Jun2026||MW-London_Shih_Cui_M_101226_66201.pdf;
+Ilin, Elias_101508||101508||Jul2025-Jun2026||
+Fu, Ellen_101145||101145||Jul2025-Jun2026||
+Langer, Lukasz_101471||101471||||
+Nugent, Michael_5846||5846||||
+Hays, Tyler_100357||100357||||
+Sale, Laura_101423||101423||Jul2025-Jun2026||JD-Kabul_180_Bronshteyn_Sale_L_101423_66330.pdf;
+Haque, Rezwan_5566||5566||||
+Shintaku, Matth_5917||5917||Jul2025-Jun2026||
+Cui, Jingyi_6275||6275||||
+Goh, Jing Kun_101098||101098||||
+Selden, Genevie_101086||101086||||
+Nanto, Thomas_101460||101460||Jul2025-Jun2026||
+Li, Angela_101367||101367||Jul2025-Jun2026||
+McMurry, Charle_101011||101011||||
+Atta-Mensah, Ma_101106||101106||||
+Nguyen, Anthony_101359||101359||Jul2025-Jun2026||
+Govindaraju, Pr_101061||101061||Jul2025-Jun2026||
+Kim, Kaila_101009||101009||||
+Yiu, Issac_6280||6280||Jul2025-Jun2026||
+Sim, Casey_101468||101468||Jul2025-Jun2026||JD-Bloom_Shultz_Sim_C_101468_67305.pdf;WS-Bolt_Sale_Sim_C_101468_67297.pdf;LW-Track_Iyigun_Sim_C_101468_67281.pdf;
+Garcia Ramos, M_101278||101278||Jul2025-Jun2026||
+Swenson, Andrew_101014||101014||||
+Khan, Ayesha_101155||101155||||
+Chang, Jason_101032||101032||||
+Smith, Maggie_101446||101446||Jul2025-Jun2026||
+Ghosh, Soham_101060||101060||||
+Singleton, Rebe_101382||101382||Jul2025-Jun2026||
+Davis, Matt_6383||6383||Jul2025-Jun2026||
+Liu, Yanping_6340||6340||Jul2025-Jun2026||
+Piveteau, Paul_101347||101347||Jul2025-Jun2026||GD-McMillan_180_Yagnik_Piveteau_P_101347_66454.pdf;
+Chen, Yiran_6442||6442||Jul2025-Jun2026||
+Pine, Bryan_5161||5161||Jul2025-Jun2026||JD-Kabul_DeCesaris_Pine_B_5161_66482.pdf;
+Hays, Tyler_5726||5726||Jul2025-Jun2026||
+Fuenzalida, Joa_102222||102222||Jul2025-Jun2026||
+Breg, Nate_102192||102192||Jul2025-Jun2026||
+Breach, Tomas_102191||102191||Jul2025-Jun2026||
+Rondeau, Jeremi_6244||6244||||
+Marcoux, Kendra_6072||6072||Jul2025-Jun2026||
+Flamang, Nick_102295||102295||Jul2025-Jun2026||
+Jurek, Dominik_101146||101146||Jul2025-Jun2026||
+West, Joe_101082||101082||Jul2025-Jun2026||
+Zhao, Dan_101443||101443||Jul2025-Jun2026||
+Bozich, Madison_101849||101849||Jul2025-Jun2026||
+Shultz, Patrick_101948||101948||Jul2025-Jun2026||JD-Bloom_180_Sim_Shultz_P_101948_67306.pdf;
+Williams, Trevo_101725||101725||Jul2025-Jun2026||GD-McMillan_Kindsgrab_Williams_T_101725_66670.pdf;
+Garud, Keshav_101336||101336||Jul2025-Jun2026||ML-Hook_Colella_Garud_K_101336_66286.pdf;SM-Malibu_Haque_Garud_K_101336_66120.pdf;CB-Sweet_Guo_Garud_K_101336_66121.pdf;
+Decter-Frain, A_101976||101976||Jul2025-Jun2026||
+Yue, Joyce_101647||101647||Jul2025-Jun2026||
+Haryanto, Cryst_101691||101691||Jul2025-Jun2026||
+Li, Lily_101650||101650||Jul2025-Jun2026||
+Yang, Lucy Boya_101301||101301||Jul2025-Jun2026||
+Obstfeld, Zacha_101417||101417||||
+Montgomery, Mon_101277||101277||||
+Leo, Marlaina_101786||101786||Jul2025-Jun2026||
+Lee, Kevin_101520||101520||||
+Bronshteyn, Jac_101404||101404||Jul2025-Jun2026||JD-Kabul_Sale_Bronshteyn_J_101404_66329.pdf;
+Friedman, Micha_101057||101057||||
+Bender, Hannah_6270||6270||||
+Fenner, Joe_101055||101055||||
+Yeleswarapu, Ma_101236||101236||Jul2025-Jun2026||
+Vasavada, Shrey_101398||101398||Jul2025-Jun2026||
+Su, Kenneth_101381||101381||Jul2025-Jun2026||LW-Knocks_180_Huang_Su_K_101381_66516.pdf;
+Stodtmeister, D_101399||101399||Jul2025-Jun2026||
+Zhao, Vivian_101083||101083||||
+Chandran, Rishi_101283||101283||Jul2025-Jun2026||JD-Kabul_180_Huang_Chandran_R_101283_66307.pdf;JD-Kabul_180_Qin_Chandran_R_101283_66312.pdf;JD-Kabul_180_Lu_Chandran_R_101283_66308.pdf;JD-Kabul_Pons_Chandran_R_101283_66345.pdf;JD-Kabul_180_Wilke_Chandran_R_101283_66313.pdf;
+Fulweiler, Emma_101058||101058||||
+Holmdahl, Quinn_101063||101063||Jul2025-Jun2026||
+Tiglao, Ralph L_101081||101081||||
+Davis, Jacob_101185||101185||||
+Hurtado, Eduard_5308||5308||Jul2025-Jun2026||2026.01.31 - Eduardo Hurtado KPI.docx;
+Bruegge, Chris_6162||6162||Jul2025-Jun2026||M-Kay_180_Li_Bruegge_C_6162_66676.pdf;
+Norman, Neill_4909||4909||||
+Henrikson, Char_5232||5232||Jul2025-Jun2026||Charley Henrikson - January 2026.pdf;
+Allen, Mark_4969||4969||Jul2025-Jun2026||KPI_Allen_Mark - 2026.01.31.pdf;
+Tam, Eric_4911||4911||Jul2025-Jun2026||C-Miner_180_Gemayel_Tam_E_4911_66622.pdf;2026-01-31 Eric Tam KPI.docx;C-Miner_180_Strair_Tam_E_4911_66624.pdf;
+Haney, Jason_5509||5509||Jul2025-Jun2026||2026.01.31 - Haney, Jason KPI.docx;
+Fong, Ada_101865||101865||Jul2025-Jun2026||
+Hargunani, Kare_101564||101564||Jul2025-Jun2026||
+Weis, Caleb_101457||101457||||
+Holcomb, Matthe_101919||101919||Jul2025-Jun2026||
+Koehler, Dougla_101302||101302||||
+Leiman, Jacquel_101637||101637||Jul2025-Jun2026||GD-Tellicherry_Bronshteyn_Leiman_J_101637_66214.pdf;WF-Knuckle_Su_Leiman_J_101637_66743.pdf;
+Knight, James_101836||101836||Jul2025-Jun2026||WF-Knuckle_Su_Knight_J_101836_66745.pdf;
+Wolff, Camilla_101430||101430||||
+Farook, Sajid_102239||102239||Jul2025-Jun2026||
+Qin, Zhen_102004||102004||Jul2025-Jun2026||JD-Kabul_Chandran_Qin_Z_102004_66310.pdf;
+Jang, Ryan_101961||101961||Jul2025-Jun2026||
+Ota, Austin_101600||101600||Jul2025-Jun2026||
+Lin, Sharon_102213||102213||Jul2025-Jun2026||
+Murthy, Pallavi_101557||101557||Jul2025-Jun2026||
+Cheng, Shirley_102233||102233||Jul2025-Jun2026||
+Sandadi, Anuhya_101441||101441||||
+Wee, Yun Zheng_101879||101879||Jul2025-Jun2026||
+Haque, Nahian_102284||102284||Jul2025-Jun2026||
+Fu, Jackson_102159||102159||Jul2025-Jun2026||
+Tran, Reese_102214||102214||Jul2025-Jun2026||
+Suttasunthorn, _101643||101643||Jul2025-Jun2026||
+Birchall, Joshu_101477||101477||||
+Blair, Eric_101730||101730||Jul2025-Jun2026||QE-Carga_Hu_Blair_E_101730_66793.pdf;
+Wang, Yige_101615||101615||Jul2025-Jun2026||
+Lu, Jessica_101676||101676||Jul2025-Jun2026||JD-Kabul_Chandran_Lu_J_101676_66305.pdf;
+Li, Jonathan_101682||101682||Jul2025-Jun2026||
+Sreekanth, Megh_101677||101677||Jul2025-Jun2026||
+Wilke, Connor_101896||101896||Jul2025-Jun2026||JD-Kabul_Chandran_Wilke_C_101896_66311.pdf;
+Ellison, Jack_101306||101306||Jul2025-Jun2026||
+Christensen, Ke_101617||101617||Jul2025-Jun2026||
+Yang, Jennifer_101641||101641||Jul2025-Jun2026||
+Hu, Xiaoyuan_6063||6063||Jul2025-Jun2026||QE-Glass_180_Lam_Hu_X_6063_66357.pdf;QE-Carga_180_Blair_Hu_X_6063_66794.pdf;
+Zuo, Ren_6239||6239||Jul2025-Jun2026||
+Fleming, Caitly_101035||101035||Jul2025-Jun2026||
+Schertler, Jose_1047||1047||||
+Pons Benaiges, _6180||6180||Jul2025-Jun2026||JD-Kabul_180_Chandran_Pons_B_6180_66346.pdf;JD-Kabul_DeCesaris_Pons_B_6180_66343.pdf;OM-Massage_180_Swainston_Pons_B_6180_66371.pdf;
+Bronshtein, Gil_5957||5957||||
+Xue, Wenjie_101461||101461||Jul2025-Jun2026||LW-Decca_Henrikson_Xue_W_101461_66848.pdf;SC-Talk_Salitskiy_Xue_W_101461_66570.pdf;AOS-Loonie_Davis_Xue_W_101461_66591.pdf;SC-Talk_180_Silber_Xue_W_101461_66545.pdf;
+Li, Rebecca_101570||101570||Jul2025-Jun2026||
+Yi, Lu_101902||101902||Jul2025-Jun2026||
+Naumann, Rodrig_101342||101342||Jul2025-Jun2026||
+Sun, Yibo_101601||101601||Jul2025-Jun2026||
+Wang, Zeyu_6317||6317||Jul2025-Jun2026||
+Drynkin, Evgeni_6310||6310||||
+Swainston, Jona_5753||5753||Jul2025-Jun2026||OM-Massage_Pons_Swainston_J_5753_66370.pdf;
+Velasquez, Ulys_101695||101695||Jul2025-Jun2026||C-Miner_Gemayel_Velasquez_U_101695_66531.pdf;
+Kim, Sooji_101702||101702||Jul2025-Jun2026||
+Ghorbani, Sajad_101515||101515||Jul2025-Jun2026||
+Dolatabadi, Ima_101418||101418||Jul2025-Jun2026||
+He, Elena_101924||101924||Jul2025-Jun2026||
+Matoorian pour,_101767||101767||||
+Langut, Avner Y_101101||101101||||
+Chen, Jin_6384||6384||||
+Mukhopadhyay, T_101312||101312||||
+Iyigun, Erin_6191||6191||Jul2025-Jun2026||
+Boboshko, Nikol_101400||101400||Jul2025-Jun2026||
+Gong, Mary_101355||101355||Jul2025-Jun2026||
+Wang, Zhiguang_101104||101104||||
+Aganin, Sasha_1036||1036||Jul2025-Jun2026||
+Brain, Carlos_4560||4560||Jul2025-Jun2026||
+Shakotko, Anna_4600||4600||Jul2025-Jun2026||
+Lu, Lucas_101940||101940||Jul2025-Jun2026||
+Jones, Nate_101591||101591||Jul2025-Jun2026||IRS-Galway_Halahurich_Jones_N_101591_66079.pdf;
+Navarro Stanic,_101873||101873||Jul2025-Jun2026||
+McDowell, Brend_102211||102211||Jul2025-Jun2026||
+Arun, Sachait_101804||101804||Jul2025-Jun2026||GD-McMillan_Williams_Arun_S_101804_66615.pdf;
+Zhu, Lewis_102256||102256||Jul2025-Jun2026||
+Passodelis, Sam_101569||101569||Jul2025-Jun2026||
+Dastin, Aimee_101315||101315||||
+Warren, Andrew_101627||101627||||
+Monahan, Willia_101921||101921||Jul2025-Jun2026||WC-Virginia_Savage_Monahan_W_101921_66424.pdf;
+Wong, Kevin_102271||102271||Jul2025-Jun2026||
+Rateb, George_101436||101436||||
+Kubat, Hannah_101950||101950||Jul2025-Jun2026||
+Tynan, Beatrice_101922||101922||||
+Bass, Kyle_101590||101590||Jul2025-Jun2026||LW-Arena_Gilbert_Bass_K_101590_66394.pdf;
+Lin, Alexander_101679||101679||||
+Huller, Allie_102201||102201||Jul2025-Jun2026||
+Nivarthy, Kavya_102225||102225||Jul2025-Jun2026||
+Thurz, Ryan_101808||101808||Jul2025-Jun2026||
+Shaya, Estelle_102014||102014||Jul2025-Jun2026||OH-Tang_Smith_Shaya_E_102014_66906.pdf;GD-Tellicherry_Morse_Shaya_E_102014_66223.pdf;
+Hyman, Catherin_102241||102241||Jul2025-Jun2026||
+Jain, Samyak_102227||102227||Jul2025-Jun2026||
+Levin, Benjamin_102244||102244||Jul2025-Jun2026||
+Byrne, Martha_101830||101830||Jul2025-Jun2026||
+DaSilva, Alexan_101983||101983||Jul2025-Jun2026||
+Shah, Kavi_101576||101576||Jul2025-Jun2026||GD-McMillan_Williams_Shah_K_101576_66619.pdf;
+Moriarty, Fiona_101684||101684||||
+Jung, Chaelin_101690||101690||||
+Cheung, Catheri_101585||101585||Jul2025-Jun2026||
+Stapleton, Aoif_102285||102285||Jul2025-Jun2026||
+Mehta, Arhan_101871||101871||Jul2025-Jun2026||
+Kruse, Zoe_102207||102207||Jul2025-Jun2026||
+Smith, Michael_102016||102016||Jul2025-Jun2026||
+Curtin, Anna_102036||102036||Jul2025-Jun2026||
+Ruiz de Arcaute_101729||101729||||
+Daniel, Carolin_101143||101143||||
+Swindle, Natash_101864||101864||Jul2025-Jun2026||
+Oura, Shoma_101572||101572||Jul2025-Jun2026||
+Smith-Boyle, Va_101968||101968||Jul2025-Jun2026||
+HernÃ¡ndez, Jen_101295||101295||||
+Thomas, Aaron_102294||102294||Jul2025-Jun2026||
+Schoeberl, Stee_101343||101343||Jul2025-Jun2026||
+Li, Andrew_101324||101324||Jul2025-Jun2026||
+Kelley, Boston_101321||101321||Jul2025-Jun2026||
+Barabas, Jacob_101015||101015||||
+Briggs, Kenneth_102012||102012||Jul2025-Jun2026||WC-Virginia_Savage_Briggs_K_102012_66181.pdf;
+Lambert, Michae_101628||101628||Jul2025-Jun2026||
+Bose, Devan_101405||101405||||
+Gupta, Rhea_101709||101709||Jul2025-Jun2026||
+Schrammel, Mich_102043||102043||Jul2025-Jun2026||
+Yang, Ben_101654||101654||Jul2025-Jun2026||
+Donohoe, Benjam_101362||101362||||
+Wen, Callie_101680||101680||Jul2025-Jun2026||
+Byrne, Luka_101687||101687||Jul2025-Jun2026||
+Zuo, Tianjiu_101696||101696||Jul2025-Jun2026||
+Delalay, Sylvai_101384||101384||Jul2025-Jun2026||
+Shupe, Cortnie_102274||102274||Jul2025-Jun2026||
+Wittman, Coby_101402||101402||Jul2025-Jun2026||
+Sides, Alexandr_6038||6038||Jul2025-Jun2026||SR-Panther_Juergens_Sides_A_6038_66683.pdf;
+Li, Delong_101373||101373||Jul2025-Jun2026||
+Foley, Conor_101387||101387||Jul2025-Jun2026||CSM-Proteins_Bruegge_Foley_C_101387_67144.pdf;
+Martin-Buck, Fr_102218||102218||Jul2025-Jun2026||
+Page, Beau_102172||102172||Jul2025-Jun2026||SC-Talk_180_Selvidge_Page_B_102172_66197.pdf;SC-Talk_180_Kobotis_Page_B_102172_66194.pdf;
+Palinko, Gabor_101231||101231||Jul2025-Jun2026||
+Fazilet, Fatih_101925||101925||||
+Dernaoui, Zaki_101090||101090||Jul2025-Jun2026||
+Conell-Price, L_102231||102231||Jul2025-Jun2026||
+Castro, Nicolas_101510||101510||Jul2025-Jun2026||
+Reynolds, Julia_102030||102030||||
+Haynes, Trevor_5874||5874||Jul2025-Jun2026||
+Llodra Vial, Jo_101890||101890||Jul2025-Jun2026||
+Johnson, Espera_101993||101993||Jul2025-Jun2026||
+Tobin, Elliot_102223||102223||Jul2025-Jun2026||
+Wu, Cedric_101622||101622||Jul2025-Jun2026||SR-Panther_Juergens_Wu_C_101622_66689.pdf;FD-Trot_Schiff_Wu_Y_101622_66337.pdf;
+Smith, Dan_102164||102164||Jul2025-Jun2026||
+Hasan, Rehan_102304||102304||Jul2025-Jun2026||
+Aitkulova, Zau_101565||101565||Jul2025-Jun2026||WC-Zito_Feldman_Aitkulova_Z_101565_66725.pdf;WC-Zito_180_Langbo_Aitkulova_Z_101565_66730.pdf;WC-Zito_180_Dorshorst_Aitkulova_Z_101565_66728.pdf;
+Rusanov, Vasily_101434||101434||Jul2025-Jun2026||JDG-Zamindar_Petropoulos_Rusanov_V_101434_66737.pdf;
+Bednarek, Pawel_101970||101970||Jul2025-Jun2026||SR-Panther_Boyer_Bednarek_P_101970_66774.pdf;
+Kane, Andrew_101923||101923||Jul2025-Jun2026||
+Yoshida, Hiyori_101225||101225||||
+Wen, Yaxuan_101675||101675||Jul2025-Jun2026||GT-Kookaburra_180_Royce_Wen_Y_101675_66508.pdf;GT-Kookaburra_180_Lee_Wen_Y_101675_66510.pdf;GT-Kookaburra_Zou_Wen_Y_101675_66501.pdf;GT-Kookaburra_180_Kronenberg_Wen_Y_101675_66512.pdf;
+Palleja, Marian_102045||102045||Jul2025-Jun2026||
+Deibler, Daniel_102027||102027||Jul2025-Jun2026||CSM-Chip_Hipsman_Deibler_D_102027_66323.pdf;
+Ilyas, Hassan_101965||101965||Jul2025-Jun2026||JD-Herriot_180_Shevin_Ilyas_H_101965_66421.pdf;JD-Herriot_Self-Eval_Ilyas_H_101965_66479.pdf;JD-Herriot_Pandya_Ilyas_H_101965_66418.pdf;
+Chang, Jeffrey_101782||101782||||
+Weissman, Isaac_101140||101140||||
+Husted, Lucas_101652||101652||Jul2025-Jun2026||
+Jin, Fu_101291||101291||Jul2025-Jun2026||LW-Roc_180_Liu_Jin_F_101291_66231.pdf;
+Flores-Golfin, _101165||101165||Jul2025-Jun2026||CSM-Proteins_Bruegge_Flores-Golfin_F_101165_67146.pdf;
+Ng, Jing Xian_102175||102175||Jul2025-Jun2026||
+Savage, Katie_101525||101525||Jul2025-Jun2026||WC-Virginia_Hsueh_Savage_K_101525_66180.pdf;SC-Normal_Glandon_Savage_K_101525_66236.pdf;WC-Virginia_180_Damelin_Savage_K_101525_66423.pdf;WC-Virginia_180_Briggs_Savage_K_101525_66182.pdf;
+Zhang, Haoran_101292||101292||Jul2025-Jun2026||
+Wu, Chengjun_101562||101562||Jul2025-Jun2026||GT-Kookaburra_Zou_Wu_C_101562_66503.pdf;
+Heinzman, Andre_5828||5828||||
+Papich, Sarah_101588||101588||Jul2025-Jun2026||
+Boswell, James_5740||5740||Jul2025-Jun2026||
+Celmanbet, Omur_4517||4517||||
+Martynova, Mari_4830||4830||Jul2025-Jun2026||SC-Talk_180_Page_Martynova_M_4830_66199.pdf;SC-Talk_180_Chan_Martynova_M_4830_66200.pdf;
+Simmons, Laura_101783||101783||||
+Sfekas, Andrew_6148||6148||Jul2025-Jun2026||2026.01.31 Sfekas KPI.docx;
+Taveras, Carmen_102026||102026||||
+Irace, Mariano_6171||6171||Jul2025-Jun2026||
+McBride, Steve_5073||5073||Jul2025-Jun2026||McBride_KPI Document_2026_2026.01.30.docx;McBride_KPI Document_2026_2026.02.11.docx;
+Kirmani, Ahsan_5405||5405||Jul2025-Jun2026||
+Podwol, Joseph_101528||101528||Jul2025-Jun2026||2026.01.31 KPI - Joe Podwol.pdf;
+Hipsman, Nathan_5783||5783||Jul2025-Jun2026||CSM-Chip_Majure_Hipsman_N_5783_66529.pdf;
+Mola, Simona_6245||6245||Jul2025-Jun2026||RG-Bond_Schmirer_Mola_Y_6245_66426.pdf;
+Letson, Robert_5143||5143||Jul2025-Jun2026||2026 KPI Letson.pdf;
+Mathias Studart_5652||5652||Jul2025-Jun2026||01.30.2026 Marcus Studart KPI.pdf;01.30.2026 DRAFT Marcus Studart KPI.pdf;
+Hoffman, Ian_5794||5794||Jul2025-Jun2026||
+Uyar, Ali_4758||4758||||
+Teixeira de Vas_5253||5253||||
+Samuel, Laurent_5757||5757||Jul2025-Jun2026||FINAL KPI Jan 2026_Laurent Samuel.pdf;
+Osborn, Matt_5591||5591||Jul2025-Jun2026||2026.01 Osborn KPI_2026.01.29.pdf;
+Weishaar, Steph_5875||5875||Jul2025-Jun2026||2025 Weishaar KPI.pdf;
+Canal Aruoba, C_5517||5517||||
+O'Neill, Chanel_1377||1377||Jul2025-Jun2026||
+Michelozzi, Lor_5501||5501||Jul2025-Jun2026||L. Michelozzi - 2026 KPI.docx;
+Chicu, Mark_102259||102259||Jul2025-Jun2026||2026.01.31 Chicu KPI.docx;
+Anderson, Blake_6217||6217||Jul2025-Jun2026||
+Haas, Marlene_5936||5936||Jul2025-Jun2026||Marlene Haas_KPI_Jan 2026.pdf;CSM-Pick_Schmirer_Haas_M_5936_66957.pdf;SR-Panther_Paulus_Haas_M_5936_66884.pdf;
+Kelly, Laura_4963||4963||Jul2025-Jun2026||Laura Kelly KPI_2026.01.31.docx;
+Gerstle, Ari_101769||101769||Jul2025-Jun2026||2026.01.31 Gerstle KPI 2026.docx;
+Gilbert, Laurie_6190||6190||Jul2025-Jun2026||
+Qian, Chad_101076||101076||||
+Lin, Sophie_101040||101040||||
+Young, Joseph_101088||101088||||
+Schwindt, Danie_102038||102038||Jul2025-Jun2026||
+Bennett, John_101269||101269||Jul2025-Jun2026||
+Morse, Alex_101268||101268||Jul2025-Jun2026||GD-Tellicherry_180_Shaya_Morse_A_101268_66224.pdf;
+Alkon, Sarah_101211||101211||||
+Murdy, Christop_101433||101433||Jul2025-Jun2026||
+Flignor, Jacob_101152||101152||Jul2025-Jun2026||
+Eder, Emma_101019||101019||||
+Yagnik, Nikhil_101144||101144||Jul2025-Jun2026||GD-McMillan_Piveteau_Yagnik_N_101144_66452.pdf;
+Strickler, Gran_101168||101168||Jul2025-Jun2026||
+Khizgilov, Mich_101037||101037||Jul2025-Jun2026||
+Pilloff, Max_101298||101298||||
+Damelin, Leah_101386||101386||Jul2025-Jun2026||WC-Virginia_Savage_Damelin_L_101386_66422.pdf;
+Jarrett, France_6422||6422||||
+Downer, Laura_101195||101195||||
+Halahurich, Mic_101421||101421||Jul2025-Jun2026||IRS-Galway_180_Jones_Halahurich_M_101421_66080.pdf;IRS-Galway_Orane-Hutchinson_Halahurich_M_101421_66083.pdf;
+DiLenge, Madiso_6297||6297||||
+Gabriel, Daniel_101261||101261||||
+Van Kula, Lucy_101454||101454||Jul2025-Jun2026||
+Stiltner, Kyle_101192||101192||Jul2025-Jun2026||SA-Cavern_Samuel_Stiltner_K_101192_66609.pdf;
+Dombroski, Rona_101052||101052||||
+Shevin, Zachary_101392||101392||Jul2025-Jun2026||JD-Herriot_Ilyas_Shevin_Z_101392_66420.pdf;
+Hoyos Suarez, A_6330||6330||Jul2025-Jun2026||
+Lancer, Kelly_101246||101246||Jul2025-Jun2026||DOJ-Orient_Molter_Lancer_K_101246_66144.pdf;
+Pigg, Spencer_5662||5662||Jul2025-Jun2026||
+Anderson, Sheld_6217||6217||||
+Cayer, Etienne_5483||5483||Jul2025-Jun2026||
+Dickhaut, Jason_101177||101177||Jul2025-Jun2026||
+Collina, Stefan_6323||6323||Jul2025-Jun2026||
+Schiff, Avi_4876||4876||Jul2025-Jun2026||
+Askanazi, Ross_5769||5769||||
+Chini, Jakub_101934||101934||||
+Leduc, Mathieu_101971||101971||||
+Böken, Johannes_101947||101947||||
+Málek, Jan_102031||102031||||
+Vigneres, Clara_101994||101994||||
+Vignères, Clara_101994||101994||Jul2025-Jun2026||
+Sagaeva, Aisha_101798||101798||||
+Isasi Hernández_102270||102270||Jul2025-Jun2026||
+Tavares, Guilhe_102117||102117||||
+Wagner, Paul_102289||102289||Jul2025-Jun2026||

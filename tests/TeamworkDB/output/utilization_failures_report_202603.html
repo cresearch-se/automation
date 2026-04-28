@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Utilization QA — utilization_failures_report_202603</title>
+  <style>
+    body        { font-family: Arial, sans-serif; margin: 30px; color: #333; background: #f9f9f9; }
+    h1          { color: #2c3e50; margin-bottom: 5px; }
+    .summary    { background: white; border: 1px solid #ddd; border-radius: 6px;
+                   padding: 15px 20px; margin-bottom: 25px; font-size: 0.95em; }
+    .summary span { margin-right: 20px; }
+    details      { margin-bottom: 10px; border-radius: 4px; overflow: hidden; }
+    summary      { list-style: none; user-select: none; }
+    summary::-webkit-details-marker { display: none; }
+    .group-body  { padding: 15px 20px; background: white; }
+    table        { border-collapse: collapse; width: 100%; margin-bottom: 15px;
+                   font-size: 0.88em; }
+    th           { background: #2f5496; color: white; padding: 7px 12px; text-align: left; }
+    td           { padding: 6px 12px; border: 1px solid #ddd; }
+    tr:nth-child(even) td { background: #fef9f9; }
+    tr:nth-child(odd)  td { background: #fff; }
+    .sheet-label { margin: 12px 0 4px; color: #555; }
+    .all-pass    { color: #27ae60; font-weight: bold; }
+    ul           { margin: 5px 0 15px 20px; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h1>Utilization QA Report</h1>
+  <div class="summary">
+    <span><strong>Report:</strong> utilization_failures_report_202603</span>
+    <span><strong>Run Date:</strong> 2026-04-03</span>
+    <span><strong>Total Passed:</strong> 0</span>
+    <span><strong>Total Failed:</strong> 0</span>
+    <span><strong>Overall:</strong>
+      <span style="color:#27ae60;font-weight:bold">PASS</span>
+    </span>
+  </div>
+  
+        <details open>
+          <summary style="background:#eafaf1;border-left:5px solid #27ae60;
+                          padding:10px 16px;cursor:pointer;font-size:1.05em;font-weight:bold">
+            Format Validations &nbsp;&mdash;&nbsp; Passed: 0 &nbsp;|&nbsp; Failed: 0
+            &nbsp;&nbsp;<span style="background:#27ae60;color:white;padding:2px 10px;border-radius:4px;font-weight:bold;font-size:0.85em">PASS</span>
+          </summary>
+          <div class="group-body" style="border:1px solid #27ae60;border-top:none">
+            <p class="sheet-label"><strong>Format Errors</strong></p><ul><li>[MISSING TITLE] Brussels � Manager</li><li>[MISSING TITLE] Brussels � Associate-1st Yr</li><li>[WRONG ORDER] Brussels � expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']</li><li>[MISSING TITLE] Brussels � Manager</li><li>[MISSING TITLE] Brussels � Associate-1st Yr</li><li>[WRONG ORDER] Brussels � expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']</li></ul>
+          </div>
+        </details>
+        <details open>
+          <summary style="background:#eafaf1;border-left:5px solid #27ae60;
+                          padding:10px 16px;cursor:pointer;font-size:1.05em;font-weight:bold">
+            DB Location &nbsp;&mdash;&nbsp; Passed: 0 &nbsp;|&nbsp; Failed: 0
+            &nbsp;&nbsp;<span style="background:#27ae60;color:white;padding:2px 10px;border-radius:4px;font-weight:bold;font-size:0.85em">PASS</span>
+          </summary>
+          <div class="group-body" style="border:1px solid #27ae60;border-top:none">
+            <p class='all-pass'>&#10003; All checks passed.</p>
+          </div>
+        </details>
+        <details open>
+          <summary style="background:#eafaf1;border-left:5px solid #27ae60;
+                          padding:10px 16px;cursor:pointer;font-size:1.05em;font-weight:bold">
+            DB Employee Monthly &nbsp;&mdash;&nbsp; Passed: 0 &nbsp;|&nbsp; Failed: 0
+            &nbsp;&nbsp;<span style="background:#27ae60;color:white;padding:2px 10px;border-radius:4px;font-weight:bold;font-size:0.85em">PASS</span>
+          </summary>
+          <div class="group-body" style="border:1px solid #27ae60;border-top:none">
+            <p class="sheet-label"><strong>Missing Rows</strong></p><ul><li>[MISSING IN DB] EmpNo=2252   | Name=nan</li><li>[MISSING IN XLS] EmpNo=2252   | Name=nan</li><li>[MISSING IN DB] EmpNo=101899 | Name=nan</li><li>[MISSING IN DB] EmpNo=102118 | Name=nan</li><li>[MISSING IN DB] EmpNo=4709   | Name=nan</li><li>[MISSING IN XLS] EmpNo=101899 | Name=nan</li><li>[MISSING IN XLS] EmpNo=102118 | Name=nan</li><li>[MISSING IN XLS] EmpNo=4709   | Name=nan</li><li>[MISSING IN DB] EmpNo=101562 | Name=nan</li><li>[MISSING IN DB] EmpNo=101993 | Name=nan</li><li>[MISSING IN DB] EmpNo=5936   | Name=nan</li><li>[MISSING IN XLS] EmpNo=101562 | Name=nan</li><li>[MISSING IN XLS] EmpNo=101993 | Name=nan</li><li>[MISSING IN XLS] EmpNo=5936   | Name=nan</li><li>[MISSING IN DB] EmpNo=101498 | Name=nan</li><li>[MISSING IN XLS] EmpNo=101498 | Name=nan</li><li>[MISSING IN DB] EmpNo=101226 | Name=nan</li><li>[MISSING IN DB] EmpNo=101468 | Name=nan</li><li>[MISSING IN DB] EmpNo=5566   | Name=nan</li><li>[MISSING IN XLS] EmpNo=101226 | Name=nan</li><li>[MISSING IN XLS] EmpNo=101468 | Name=nan</li><li>[MISSING IN XLS] EmpNo=5566   | Name=nan</li><li>[MISSING IN DB] EmpNo=101400 | Name=nan</li><li>[MISSING IN DB] EmpNo=101515 | Name=nan</li><li>[MISSING IN DB] EmpNo=1127   | Name=nan</li><li>[MISSING IN DB] EmpNo=6063   | Name=nan</li><li>[MISSING IN XLS] EmpNo=101400 | Name=nan</li><li>[MISSING IN XLS] EmpNo=101515 | Name=nan</li><li>[MISSING IN XLS] EmpNo=1127   | Name=nan</li><li>[MISSING IN XLS] EmpNo=6063   | Name=nan</li></ul>
+          </div>
+        </details>
+        <details open>
+          <summary style="background:#eafaf1;border-left:5px solid #27ae60;
+                          padding:10px 16px;cursor:pointer;font-size:1.05em;font-weight:bold">
+            DB Employee YTD &nbsp;&mdash;&nbsp; Passed: 0 &nbsp;|&nbsp; Failed: 0
+            &nbsp;&nbsp;<span style="background:#27ae60;color:white;padding:2px 10px;border-radius:4px;font-weight:bold;font-size:0.85em">PASS</span>
+          </summary>
+          <div class="group-body" style="border:1px solid #27ae60;border-top:none">
+            <p class="sheet-label"><strong>Missing Rows</strong></p><ul><li>[MISSING IN DB] EmpNo=101788 | Name=nan</li><li>[MISSING IN DB] EmpNo=2252   | Name=nan</li><li>[MISSING IN XLS] EmpNo=101788 | Name=nan</li><li>[MISSING IN XLS] EmpNo=2252   | Name=nan</li><li>[MISSING IN DB] EmpNo=101899 | Name=nan</li><li>[MISSING IN DB] EmpNo=102118 | Name=nan</li><li>[MISSING IN DB] EmpNo=4709   | Name=nan</li><li>[MISSING IN DB] EmpNo=5445   | Name=nan</li><li>[MISSING IN XLS] EmpNo=101899 | Name=nan</li><li>[MISSING IN XLS] EmpNo=102118 | Name=nan</li><li>[MISSING IN XLS] EmpNo=4709   | Name=nan</li><li>[MISSING IN XLS] EmpNo=5445   | Name=nan</li><li>[MISSING IN DB] EmpNo=101993 | Name=nan</li><li>[MISSING IN XLS] EmpNo=101993 | Name=nan</li><li>[MISSING IN DB] EmpNo=101498 | Name=nan</li><li>[MISSING IN XLS] EmpNo=101498 | Name=nan</li><li>[MISSING IN DB] EmpNo=101226 | Name=nan</li><li>[MISSING IN XLS] EmpNo=101226 | Name=nan</li><li>[MISSING IN DB] EmpNo=1127   | Name=nan</li><li>[MISSING IN XLS] EmpNo=101400 | Name=nan</li><li>[MISSING IN XLS] EmpNo=1127   | Name=nan</li></ul>
+          </div>
+        </details>
+</body>
+</html>

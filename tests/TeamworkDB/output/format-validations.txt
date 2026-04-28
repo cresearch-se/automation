@@ -1,0 +1,150 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikarumuri\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\sowjikarumuri\Documents\Code
+configfile: pyproject.toml
+plugins: cov-6.2.1
+collecting ... collected 56 items / 22 deselected / 34 selected
+
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_Monthly] 
+[PASS] All 7 offices and all 9 titles are present as expected, and no blank or zero values found.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_Monthly] 	
+  [MISSING TITLE] Brussels — Manager
+  [MISSING TITLE] Brussels — Associate-1st Yr
+  [WRONG ORDER] Brussels — expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']
+FAILED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_Monthly] 
+[PASS] All 3 offices and all 9 titles are present as expected, and no blank or zero values found.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_YTD] 
+[PASS] All 7 offices and all 9 titles are present as expected, and no blank or zero values found.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD] 	
+  [MISSING TITLE] Brussels — Manager
+  [MISSING TITLE] Brussels — Associate-1st Yr
+  [WRONG ORDER] Brussels — expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']
+FAILED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_YTD] 
+[PASS] All 3 offices and all 9 titles are present as expected, and no blank or zero values found.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[US_Utilization_Monthly] 
+[PASS] All subtotals and grand total verified correctly for '202603_US'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[EU_Utilization_Monthly] 
+[PASS] All subtotals and grand total verified correctly for '202603_Europe'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[Total_Utilization_Monthly] 
+[PASS] All subtotals and grand total verified correctly for '202603_Total'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[US_Utilization_YTD] 
+[PASS] All subtotals and grand total verified correctly for '2026_US'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[EU_Utilization_YTD] 
+[PASS] All subtotals and grand total verified correctly for '2026_Europe'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[Total_Utilization_YTD] 
+[PASS] All subtotals and grand total verified correctly for '2026_Total'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[Boston_Monthly] 
+[PASS] All format validations passed for 'Month - CRB '.
+[PASS] All Subtotals and grand total verified for 'Month - CRB '.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[Chicago_Monthly] 
+[PASS] All format validations passed for 'Month - CRCH'.
+[PASS] All Subtotals and grand total verified for 'Month - CRCH'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[DC_Monthly] 
+[PASS] All format validations passed for 'Month - CRDC'.
+[PASS] All Subtotals and grand total verified for 'Month - CRDC'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[LA_Monthly] 
+[PASS] All format validations passed for 'Month - CRLA'.
+[PASS] All Subtotals and grand total verified for 'Month - CRLA'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[NY_Monthly] 
+[PASS] All format validations passed for 'Month - CRNY'.
+[PASS] All Subtotals and grand total verified for 'Month - CRNY'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[SF_Monthly] 
+[PASS] All format validations passed for 'Month - CRSF'.
+[PASS] All Subtotals and grand total verified for 'Month - CRSF'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[SV_Monthly] 
+[PASS] All format validations passed for 'Month - CRSV'.
+[PASS] All Subtotals and grand total verified for 'Month - CRSV'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[Brussels_Monthly] 
+[PASS] All format validations passed for 'Month - CRBE'.
+[PASS] All Subtotals and grand total verified for 'Month - CRBE'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[UK_Monthly] 
+[PASS] All format validations passed for 'Month - CRUK'.
+[PASS] All Subtotals and grand total verified for 'Month - CRUK'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[Boston_YTD] 
+[PASS] All format validations passed for 'YTD - CRB '.
+[PASS] All Subtotals and grand total verified for 'YTD - CRB '.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[Chicago_YTD] 
+[PASS] All format validations passed for 'YTD - CRCH'.
+[PASS] All Subtotals and grand total verified for 'YTD - CRCH'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[DC_YTD] 
+[PASS] All format validations passed for 'YTD - CRDC'.
+[PASS] All Subtotals and grand total verified for 'YTD - CRDC'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[LA_YTD] 
+[PASS] All format validations passed for 'YTD - CRLA'.
+[PASS] All Subtotals and grand total verified for 'YTD - CRLA'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[NY_YTD] 
+[PASS] All format validations passed for 'YTD - CRNY'.
+[PASS] All Subtotals and grand total verified for 'YTD - CRNY'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[SF_YTD] 
+[PASS] All format validations passed for 'YTD - CRSF'.
+[PASS] All Subtotals and grand total verified for 'YTD - CRSF'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[SV_YTD] 
+[PASS] All format validations passed for 'YTD - CRSV'.
+[PASS] All Subtotals and grand total verified for 'YTD - CRSV'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[Brussels_YTD] 
+[PASS] All format validations passed for 'YTD - CRBE'.
+[PASS] All Subtotals and grand total verified for 'YTD - CRBE'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[UK_YTD] 
+[PASS] All format validations passed for 'YTD - CRUK'.
+[PASS] All Subtotals and grand total verified for 'YTD - CRUK'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[DataScience_Monthly] 
+[PASS] All format validations passed for 'Month - Data Science'.
+[PASS] All Subtotals and grand total verified for 'Month - Data Science'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[AppliedResearch_Monthly] 
+[PASS] All format validations passed for 'Month - Applied Research'.
+[PASS] All Subtotals and grand total verified for 'Month - Applied Research'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[DataScience_YTD] 
+[PASS] All format validations passed for 'YTD - Data Science'.
+[PASS] All Subtotals and grand total verified for 'YTD - Data Science'.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employee[AppliedResearch_YTD] 
+[PASS] All format validations passed for 'YTD - Applied Research'.
+[PASS] All Subtotals and grand total verified for 'YTD - Applied Research'.
+PASSED
+
+================================== FAILURES ===================================
+_________ test_format_validations_by_location[EU_Utilization_Monthly] _________
+tests\TeamworkDB\test_utilization_monthly.py:562: in test_format_validations_by_location
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 3 error(s) found
+___________ test_format_validations_by_location[EU_Utilization_YTD] ___________
+tests\TeamworkDB\test_utilization_monthly.py:562: in test_format_validations_by_location
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 3 error(s) found
+=========================== short test summary info ===========================
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_Monthly]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD]
+================= 2 failed, 32 passed, 22 deselected in 8.12s =================

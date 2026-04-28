@@ -1,0 +1,51 @@
+{
+  "defaults": {
+    "key_headers": [
+      "Officer Name",
+      "Employee Name",
+      "Name"
+    ],
+    "ignore_columns": [
+      "Report Time",
+      "Change Total",
+      "Change Teamwork",
+      "LY - Total Teamwork",
+      "LY - Total Crit/Ast/Ovr (Unique)"
+    ],
+    "columns_to_be_printed": [
+      "Rank Description"
+    ]
+  },
+  "comparisons": [
+    {
+      "id": "test_twdb_analysis",
+      "name": "TWDB Analysis - Full",
+      "base_file": "tests/TeamworkDB/fixtures/TWDB Analysis.xlsx",
+      "fix_file": "tests/TeamworkDB/fixtures/TWDB Analysis - Fix 20260123.xlsx"
+    },
+    {
+      "id": "test_twdb_analysis_deflated",
+      "name": "TWDB Analysis - Deflated",
+      "base_file": "tests/TeamworkDB/fixtures/TWDB Analysis-Deflated.xlsx",
+      "fix_file": "tests/TeamworkDB/fixtures/TWDB Analysis-Deflated-fix 20260126.xlsx"
+    },
+    {
+      "id": "test_profitability",
+      "name": "Profitability analysis",
+      "base_file": "tests/TeamworkDB/fixtures/Teamwork Profitability.xlsx",
+      "fix_file": "tests/TeamworkDB/fixtures/Teamwork Profitability - fix 20260127.xlsx"
+    },
+    {
+      "id": "test_profitability_deflated",
+      "name": "Profitability Deflated analysis",
+      "base_file": "tests/TeamworkDB/fixtures/Teamwork Profitability - Deflated_2024.xlsx",
+      "fix_file": "tests/TeamworkDB/fixtures/Teamwork Profitability - Deflated - fix 20260127_2024.xlsx"
+    },
+    {
+      "id": "test_principals_analysis",
+      "name": "Principal TWDB analysis",
+      "base_file": "tests/TeamworkDB/fixtures/Principal TWDB analysis.xlsx",
+      "fix_file": "tests/TeamworkDB/fixtures/Principal TWDB analysis - fix 20260130.xlsx"
+    }
+  ]
+}

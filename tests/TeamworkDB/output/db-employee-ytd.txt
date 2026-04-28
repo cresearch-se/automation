@@ -1,0 +1,190 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikarumuri\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\sowjikarumuri\Documents\Code
+configfile: pyproject.toml
+plugins: cov-6.2.1
+collecting ... collected 56 items / 47 deselected / 9 selected
+
+tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Boston] Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: March 2026 | Sheet: YTD - CRB  (YTD) | Run: 2026-04-03
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=101788 | Name=nan
+    [MISSING IN DB] EmpNo=2252   | Name=nan
+    [MISSING IN XLS] EmpNo=101788 | Name=nan
+    [MISSING IN XLS] EmpNo=2252   | Name=nan
+FAILED
+tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Chicago] 
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: March 2026 | Sheet: YTD - CRCH (YTD) | Run: 2026-04-03
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=101899 | Name=nan
+    [MISSING IN DB] EmpNo=102118 | Name=nan
+    [MISSING IN DB] EmpNo=4709   | Name=nan
+    [MISSING IN DB] EmpNo=5445   | Name=nan
+    [MISSING IN XLS] EmpNo=101899 | Name=nan
+    [MISSING IN XLS] EmpNo=102118 | Name=nan
+    [MISSING IN XLS] EmpNo=4709   | Name=nan
+    [MISSING IN XLS] EmpNo=5445   | Name=nan
+
+  EmpNo  | Name                      | Column       | Util Report | DB         | Diff      | Diff%
+  -------+---------------------------+--------------+-------------+------------+-----------+------
+  101308 | King, Emma                | Actual_Hours | 366.60      | 386.50     | 19.90     | 5.43%
+  101403 | Gossmann Gonzalez, Andrea | Actual_Hours | 515.80      | 531.40     | 15.60     | 3.02%
+  101909 | Milad, Michael            | Actual_Hours | 249.00      | 260.40     | 11.40     | 4.58%
+  101308 | King, Emma                | Standard_Rev | 210,795.00  | 222,238.00 | 11,443.00 | 5.43%
+  101403 | Gossmann Gonzalez, Andrea | Standard_Rev | 317,217.00  | 326,811.00 | 9,594.00  | 3.02%
+  101909 | Milad, Michael            | Standard_Rev | 120,765.00  | 126,294.00 | 5,529.00  | 4.58%
+FAILED
+tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[DC] 
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: March 2026 | Sheet: YTD - CRDC (YTD) | Run: 2026-04-03
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=101993 | Name=nan
+    [MISSING IN XLS] EmpNo=101993 | Name=nan
+
+  EmpNo  | Name                | Column       | Util Report | DB         | Diff       | Diff% 
+  -------+---------------------+--------------+-------------+------------+------------+-------
+  101400 | Boboshko, Nikolai   | Target_Hours | 447.70      | 162.80     | 284.90     | 63.64%
+  101400 | Boboshko, Nikolai   | Target_Rev   | 414,122.50  | 150,590.00 | 263,532.50 | 63.64%
+  101400 | Boboshko, Nikolai   | Actual_Hours | 411.60      | 183.50     | 228.10     | 55.42%
+  101421 | Halahurich, Michael | Actual_Hours | 549.40      | 574.80     | 25.40      | 4.62% 
+  101970 | Bednarek, Pawel     | Actual_Hours | 487.90      | 506.20     | 18.30      | 3.75% 
+  5143   | Letson, Robby       | Actual_Hours | 353.20      | 367.70     | 14.50      | 4.11% 
+  5662   | Pigg, Spencer       | Actual_Hours | 1.40        | 2.20       | 0.80       | 57.14%
+  101400 | Boboshko, Nikolai   | Standard_Rev | 380,730.00  | 169,738.00 | 210,992.00 | 55.42%
+  101421 | Halahurich, Michael | Standard_Rev | 337,881.00  | 353,502.00 | 15,621.00  | 4.62% 
+  101970 | Bednarek, Pawel     | Standard_Rev | 373,243.50  | 387,243.00 | 13,999.50  | 3.75% 
+  5143   | Letson, Robby       | Standard_Rev | 400,882.00  | 417,340.00 | 16,458.00  | 4.11% 
+  5662   | Pigg, Spencer       | Standard_Rev | 1,407.00    | 2,211.00   | 804.00     | 57.14%
+FAILED
+tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[LA] 
+[PASS] 'YTD - CRLA (YTD)' matches database.
+PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY] 
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: March 2026 | Sheet: YTD - CRNY (YTD) | Run: 2026-04-03
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=101498 | Name=nan
+    [MISSING IN XLS] EmpNo=101498 | Name=nan
+
+  EmpNo  | Name                | Column       | Util Report | DB         | Diff       | Diff% 
+  -------+---------------------+--------------+-------------+------------+------------+-------
+  101655 | Garg, Naman         | Actual_Hours | 419.60      | 434.00     | 14.40      | 3.43% 
+  102219 | Shah, Shriya        | Actual_Hours | 147.80      | 166.30     | 18.50      | 12.52%
+  5066   | Shanks, Colin       | Actual_Hours | 521.80      | 590.70     | 68.90      | 13.20%
+  5263   | Kumler, Todd J.     | Actual_Hours | 269.00      | 291.30     | 22.30      | 8.29% 
+  5346   | Lew, Sean           | Actual_Hours | 286.20      | 398.10     | 111.90     | 39.10%
+  5674   | Li Bergolis, Matteo | Actual_Hours | 356.50      | 431.30     | 74.80      | 20.98%
+  6139   | Shang, Ke           | Actual_Hours | 281.90      | 334.20     | 52.30      | 18.55%
+  101655 | Garg, Naman         | Standard_Rev | 360,856.00  | 373,240.00 | 12,384.00  | 3.43% 
+  102219 | Shah, Shriya        | Standard_Rev | 64,293.00   | 72,341.00  | 8,048.00   | 12.52%
+  5066   | Shanks, Colin       | Standard_Rev | 550,499.00  | 623,189.00 | 72,690.00  | 13.20%
+  5263   | Kumler, Todd J.     | Standard_Rev | 325,490.00  | 352,473.00 | 26,983.00  | 8.29% 
+  5346   | Lew, Sean           | Standard_Rev | 337,716.00  | 469,758.00 | 132,042.00 | 39.10%
+  5674   | Li Bergolis, Matteo | Standard_Rev | 431,365.00  | 521,873.00 | 90,508.00  | 20.98%
+  6139   | Shang, Ke           | Standard_Rev | 297,404.50  | 352,581.00 | 55,176.50  | 18.55%
+FAILED
+tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF] 
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: March 2026 | Sheet: YTD - CRSF (YTD) | Run: 2026-04-03
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=101226 | Name=nan
+    [MISSING IN XLS] EmpNo=101226 | Name=nan
+
+  EmpNo  | Name               | Column       | Util Report | DB         | Diff      | Diff%
+  -------+--------------------+--------------+-------------+------------+-----------+------
+  101382 | Singleton, Rebecca | Actual_Hours | 467.90      | 487.20     | 19.30     | 4.12%
+  101382 | Singleton, Rebecca | Standard_Rev | 287,758.50  | 299,628.00 | 11,869.50 | 4.12%
+FAILED
+tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV] 
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: March 2026 | Sheet: YTD - CRSV (YTD) | Run: 2026-04-03
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=1127   | Name=nan
+    [MISSING IN XLS] EmpNo=101400 | Name=nan
+    [MISSING IN XLS] EmpNo=1127   | Name=nan
+
+  EmpNo  | Name                | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+---------------------+--------------+-------------+------------+-----------+-------
+  101398 | Vasavada, Shrey     | Actual_Hours | 329.20      | 375.00     | 45.80     | 13.91%
+  4560   | Brain, Carlos       | Actual_Hours | 189.90      | 245.90     | 56.00     | 29.49%
+  5753   | Swainston, Jonathan | Actual_Hours | 386.70      | 398.90     | 12.20     | 3.15% 
+  101398 | Vasavada, Shrey     | Standard_Rev | 202,458.00  | 230,625.00 | 28,167.00 | 13.91%
+  4560   | Brain, Carlos       | Standard_Rev | 231,678.00  | 299,998.00 | 68,320.00 | 29.49%
+  5753   | Swainston, Jonathan | Standard_Rev | 295,825.50  | 305,159.00 | 9,333.50  | 3.16% 
+FAILED
+tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-UK] 
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: March 2026 | Sheet: YTD - CRUK (YTD) | Run: 2026-04-03
+
+  EmpNo  | Name            | Column       | Util Report | DB     | Diff  | Diff%
+  -------+-----------------+--------------+-------------+--------+-------+------
+  0531   | Tilson, Hannah  | Target_Hours | 471.20      | 496.00 | 24.80 | 5.26%
+  101659 | Honnor, Kaman   | Target_Hours | 471.20      | 496.00 | 24.80 | 5.26%
+  101963 | Chakma, Tridevi | Target_Hours | 395.20      | 416.00 | 20.80 | 5.26%
+FAILED
+tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-BE] 
+[PASS] 'YTD - CRBE (YTD)' matches database.
+PASSED
+
+================================== FAILURES ===================================
+___________________ test_db_comparison_employee_ytd[Boston] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:846: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 4 error(s) found
+__________________ test_db_comparison_employee_ytd[Chicago] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:846: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 14 error(s) found
+_____________________ test_db_comparison_employee_ytd[DC] _____________________
+tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:846: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 14 error(s) found
+_____________________ test_db_comparison_employee_ytd[NY] _____________________
+tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:846: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 16 error(s) found
+_____________________ test_db_comparison_employee_ytd[SF] _____________________
+tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:846: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 4 error(s) found
+_____________________ test_db_comparison_employee_ytd[SV] _____________________
+tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:846: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 9 error(s) found
+___________________ test_db_comparison_employee_ytd[EU-UK] ____________________
+tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:846: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 3 error(s) found
+=========================== short test summary info ===========================
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Boston]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Chicago]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[DC]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-UK]
+================= 7 failed, 2 passed, 47 deselected in 17.78s =================
