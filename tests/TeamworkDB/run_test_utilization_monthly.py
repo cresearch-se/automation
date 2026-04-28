@@ -435,8 +435,8 @@ if __name__ == "__main__":
     print("  UTILIZATION QA TEST RUNNER")
     print("=" * 55)
 
-    #print("\n[1/3] Running tests...")
-    #run_tests()
+    print("\n[1/3] Running tests...")
+    run_tests()
 
     print("\n[2/3] Parsing output files...")
     results = parse_all_groups()
