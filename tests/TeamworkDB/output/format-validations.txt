@@ -3,7 +3,6 @@ platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikar
 cachedir: .pytest_cache
 rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
-plugins: cov-6.2.1
 collecting ... collected 56 items / 22 deselected / 34 selected
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_Monthly] 
@@ -137,14 +136,14 @@ PASSED
 
 ================================== FAILURES ===================================
 _________ test_format_validations_by_location[EU_Utilization_Monthly] _________
-tests\TeamworkDB\test_utilization_monthly.py:562: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:566: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 3 error(s) found
 ___________ test_format_validations_by_location[EU_Utilization_YTD] ___________
-tests\TeamworkDB\test_utilization_monthly.py:562: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:566: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 3 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_Monthly]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD]
-================= 2 failed, 32 passed, 22 deselected in 8.12s =================
+================= 2 failed, 32 passed, 22 deselected in 8.90s =================
