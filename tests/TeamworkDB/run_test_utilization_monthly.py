@@ -11,10 +11,10 @@ Usage (run from Code/ directory):
 
 import subprocess
 import sys
-import os
 import re
 from pathlib import Path
 from datetime import date
+from typing import Any
 
 # ==========================================
 # CONFIGURATION
@@ -56,11 +56,16 @@ TEST_GROUPS = [
 ]
 
 
+# Column definitions for bucketed report sections
+MISSING_COLS      = ["Type", "EmpNo", "Name"]
+FORMAT_ERROR_COLS = ["Type", "Detail"]
+
+
 # ==========================================
 # STEP 1 — RUN TESTS
 # ==========================================
 
-def run_tests():
+def run_tests() -> None:
     """Run all test groups and write output to individual .txt files."""
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     for group in TEST_GROUPS:
@@ -68,7 +73,8 @@ def run_tests():
         cmd = [
             sys.executable, "-m", "pytest", TEST_FILE,
             "-k", group["filter"],
-            "-v", "--no-cov", "-s", "--tb=short"
+            "-v", "-p", "no:cov", "-s", "--tb=short",
+            "--override-ini=addopts="
         ]
         with open(group["output_file"], "w", encoding="utf-8") as f:
             result = subprocess.run(cmd, stdout=f, stderr=subprocess.STDOUT, text=True)
@@ -80,36 +86,67 @@ def run_tests():
 # STEP 2 — PARSE OUTPUT FILES
 # ==========================================
 
-def parse_output_file(filepath):
+def parse_output_file(filepath: Path | str) -> dict[str, Any]:
     """
     Parse a pytest output .txt file and return structured results:
     {
         "passed":       [test_name, ...],
         "failed":       [test_name, ...],
         "mismatches":   [{"sheet": str, "columns": [...], "rows": [{col: val}]}, ...],
-        "missing":      [line, ...],
-        "other_errors": [line, ...]
+        "missing":      [{"sheet": str, "rows": [{"Type": str, "EmpNo": str, "Name": str}]}, ...],
+        "other_errors": [{"sheet": str, "rows": [{"Type": str, "Detail": str}]}, ...]
     }
     """
     content = Path(filepath).read_text(encoding="utf-8", errors="replace")
     lines   = content.splitlines()
 
-    passed       = []
-    failed       = []
-    mismatches   = []
-    missing_rows = []
-    other_errors = []
+    passed         = []
+    failed         = []
+    mismatches     = []
+    missing_tables = []   # [{"sheet": str, "rows": [{"Type", "EmpNo", "Name"}]}]
+    other_errors   = []   # [{"sheet": str, "rows": [{"Type", "Detail"}]}]
 
-    # Extract pass/fail per test
+    def _missing_sheet_bucket(sheet):
+        """Return existing bucket for sheet or create a new one."""
+        for b in missing_tables:
+            if b["sheet"] == sheet:
+                return b
+        bucket = {"sheet": sheet, "rows": []}
+        missing_tables.append(bucket)
+        return bucket
+
+    def _parse_missing_line(line, sheet):
+        """Parse '[MISSING IN DB] EmpNo=X | Name=Y' into a structured row."""
+        m_type = re.match(r'\[(MISSING IN [^\]]+)\]', line)
+        row_type = m_type.group(1) if m_type else "MISSING"
+        empno = re.search(r'EmpNo=(\S+)', line)
+        name  = re.search(r'Name=(.+?)(\s*\|.*)?$', line)
+        _missing_sheet_bucket(sheet)["rows"].append({
+            "Type":  row_type,
+            "EmpNo": empno.group(1) if empno else "",
+            "Name":  name.group(1).strip() if name else "",
+        })
+
+    # Extract pass/fail per test (test name and PASSED/FAILED are on separate lines)
+    last_test = None
     for line in lines:
-        m = re.search(r'::(test_\S+)\s+(PASSED|FAILED)', line)
+        m = re.search(r'::(test_\S+)', line)
         if m:
-            (passed if m.group(2) == "PASSED" else failed).append(m.group(1))
+            last_test = m.group(1)
+        elif line.strip() in ("PASSED", "FAILED") and last_test:
+            (passed if line.strip() == "PASSED" else failed).append(last_test)
+            last_test = None
 
     # Extract mismatch tables, missing rows, format errors
     i = 0
+    current_sheet = ""
     while i < len(lines):
         line = lines[i].strip()
+
+        # Track current test/sheet name from parametrized test lines e.g. [EU_Utilization_Monthly]
+        m_sheet = re.search(r'\[([A-Za-z0-9_]+)\]\s*$', lines[i])
+        if m_sheet and '::test_' in lines[i]:
+            current_sheet = m_sheet.group(1)
 
         # VALUE MISMATCH table block
         if "UTILIZATION QA" in line and "VALUE MISMATCHES" in line:
@@ -119,10 +156,15 @@ def parse_output_file(filepath):
                 if m:
                     sheet = m.group(1).strip()
 
-            # Find header row (has 'Column', 'Excel', 'DB')
+            # Find header row; also collect missing rows that appear before the table
             header_idx = None
-            for j in range(i + 1, min(i + 10, len(lines))):
-                if "Column" in lines[j] and "Excel" in lines[j] and "DB" in lines[j]:
+            for j in range(i + 1, len(lines)):
+                jline = lines[j].strip()
+                if jline in ("PASSED", "FAILED") or "::test_" in lines[j]:
+                    break  # reached next test, no table found
+                if jline.startswith("[MISSING IN DB]") or jline.startswith("[MISSING IN XLS]"):
+                    _parse_missing_line(jline, sheet)
+                if "Column" in lines[j] and "DB" in lines[j] and "Diff" in lines[j]:
                     header_idx = j
                     break
 
@@ -152,9 +194,9 @@ def parse_output_file(filepath):
             i = data_start + len(table_rows)
             continue
 
-        # Missing rows
+        # Missing rows (outside UTILIZATION QA block — use current_sheet context)
         if line.startswith("[MISSING IN DB]") or line.startswith("[MISSING IN XLS]"):
-            missing_rows.append(line)
+            _parse_missing_line(line, current_sheet)
 
         # Format validation errors
         if any(line.startswith(tag) for tag in [
@@ -162,7 +204,15 @@ def parse_output_file(filepath):
             "[DUPLICATE", "[WRONG ORDER]", "[ZERO VALUE]", "[MISSING SUBTOTAL",
             "[MISSING GRAND TOTAL"
         ]):
-            other_errors.append(line)
+            m_type = re.match(r'\[([^\]]+)\]\s*(.*)', line)
+            err_type   = m_type.group(1) if m_type else ""
+            err_detail = m_type.group(2).strip() if m_type else line
+            sheet_key  = current_sheet or ""
+            bucket = next((b for b in other_errors if b["sheet"] == sheet_key), None)
+            if bucket is None:
+                bucket = {"sheet": sheet_key, "rows": []}
+                other_errors.append(bucket)
+            bucket["rows"].append({"Type": err_type, "Detail": err_detail})
 
         i += 1
 
@@ -170,12 +220,12 @@ def parse_output_file(filepath):
         "passed":       passed,
         "failed":       failed,
         "mismatches":   mismatches,
-        "missing":      missing_rows,
+        "missing":      missing_tables,
         "other_errors": other_errors
     }
 
 
-def parse_all_groups():
+def parse_all_groups() -> list[dict[str, Any]]:
     """Parse all output files and attach group name to each result."""
     results = []
     for group in TEST_GROUPS:
@@ -190,7 +240,7 @@ def parse_all_groups():
     return results
 
 
-def get_report_name():
+def get_report_name() -> str:
     """Read FIXTURE_FILE from the test file and derive the report name."""
     try:
         with open(TEST_FILE, encoding="utf-8") as f:
@@ -208,8 +258,8 @@ def get_report_name():
 # STEP 3A — EXCEL REPORT
 # ==========================================
 
-def generate_excel_report(results, report_name):
-    """Generate an Excel report with a Summary sheet and one sheet per test group."""
+def generate_excel_report(results: list[dict[str, Any]], report_name: str) -> None:
+    """Generate an Excel report with one sheet per test group."""
     try:
         from openpyxl import Workbook
         from openpyxl.styles import PatternFill, Font, Border, Side
@@ -222,7 +272,6 @@ def generate_excel_report(results, report_name):
     wb.remove(wb.active)
 
     # Styles
-    green_fill  = PatternFill("solid", fgColor="C6EFCE")
     red_fill    = PatternFill("solid", fgColor="FFC7CE")
     header_fill = PatternFill("solid", fgColor="2F5496")
     header_font = Font(color="FFFFFF", bold=True)
@@ -245,28 +294,22 @@ def generate_excel_report(results, report_name):
             max_len = max((len(str(cell.value or "")) for cell in col), default=10)
             ws.column_dimensions[get_column_letter(col[0].column)].width = min(max_len + 3, 55)
 
-    # ---- Summary sheet ----
-    ws_sum = wb.create_sheet("Summary")
-    ws_sum.append(["UTILIZATION QA REPORT"])
-    ws_sum["A1"].font = title_font
-    ws_sum.append([f"Report: {report_name}   |   Run Date: {date.today().strftime('%Y-%m-%d')}"])
-    ws_sum.append([])
-    set_header_row(ws_sum, ["Group", "Passed", "Failed", "Mismatches", "Missing", "Status"])
-
-    for r in results:
-        passed   = len(r.get("passed", []))
-        failed   = len(r.get("failed", []))
-        mismatch = sum(len(m["rows"]) for m in r.get("mismatches", []))
-        missing  = len(r.get("missing", []))
-        status   = "PASS" if failed == 0 else "FAIL"
-        ws_sum.append([r["name"], passed, failed, mismatch, missing, status])
-        row_num = ws_sum.max_row
-        fill = green_fill if status == "PASS" else red_fill
-        for col in range(1, 7):
-            ws_sum.cell(row_num, col).fill   = fill
-            ws_sum.cell(row_num, col).border = border
-
-    auto_width(ws_sum)
+    def write_bucket_section(ws, title, buckets, cols):
+        """Write a titled section of bucketed rows as red-highlighted tables, one per sheet."""
+        ws.append([title])
+        ws.cell(ws.max_row, 1).font = bold_font
+        ws.append([])
+        for bucket in buckets:
+            ws.append([f"Sheet: {bucket['sheet']}"])
+            ws.cell(ws.max_row, 1).font = bold_font
+            set_header_row(ws, cols)
+            for row_data in bucket["rows"]:
+                ws.append([row_data.get(c, "") for c in cols])
+                row_num = ws.max_row
+                for col_idx in range(1, len(cols) + 1):
+                    ws.cell(row_num, col_idx).fill   = red_fill
+                    ws.cell(row_num, col_idx).border = border
+            ws.append([])
 
     # ---- One sheet per group ----
     for r in results:
@@ -293,20 +336,11 @@ def generate_excel_report(results, report_name):
                     ws.cell(row_num, col_idx).border = border
             ws.append([])
 
-        # Missing rows
         if r.get("missing"):
-            ws.append(["MISSING ROWS"])
-            ws.cell(ws.max_row, 1).font = bold_font
-            for line in r["missing"]:
-                ws.append([line])
-            ws.append([])
+            write_bucket_section(ws, "MISSING ROWS", r["missing"], MISSING_COLS)
 
-        # Format/other errors
         if r.get("other_errors"):
-            ws.append(["FORMAT ERRORS"])
-            ws.cell(ws.max_row, 1).font = bold_font
-            for line in r["other_errors"]:
-                ws.append([line])
+            write_bucket_section(ws, "FORMAT ERRORS", r["other_errors"], FORMAT_ERROR_COLS)
 
         auto_width(ws)
 
@@ -319,7 +353,7 @@ def generate_excel_report(results, report_name):
 # STEP 3B — HTML REPORT
 # ==========================================
 
-def generate_html_report(results, report_name):
+def generate_html_report(results: list[dict[str, Any]], report_name: str) -> None:
     """Generate a self-contained, collapsible HTML report."""
     run_date      = date.today().strftime("%Y-%m-%d")
     total_passed  = sum(len(r.get("passed", [])) for r in results)
@@ -331,6 +365,21 @@ def generate_html_report(results, report_name):
         color = "#27ae60" if status == "PASS" else "#e74c3c"
         return (f'<span style="background:{color};color:white;padding:2px 10px;'
                 f'border-radius:4px;font-weight:bold;font-size:0.85em">{status}</span>')
+
+    def bucket_section_html(title, buckets, cols, count_label):
+        html = f'<p class="sheet-label"><strong>{title}</strong></p>'
+        for bucket in buckets:
+            headers = "".join(f"<th>{c}</th>" for c in cols)
+            body    = "".join(
+                "<tr>" + "".join(f"<td>{row.get(c, '')}</td>" for c in cols) + "</tr>"
+                for row in bucket["rows"]
+            )
+            html += (
+                f'<p class="sheet-label">Sheet: <strong>{bucket["sheet"]}</strong>'
+                f'&nbsp;({len(bucket["rows"])} {count_label})</p>'
+                f"<table><thead><tr>{headers}</tr></thead><tbody>{body}</tbody></table>"
+            )
+        return html
 
     def mismatch_table_html(block):
         cols    = block["columns"]
@@ -358,12 +407,10 @@ def generate_html_report(results, report_name):
             body_html += mismatch_table_html(block)
 
         if r.get("missing"):
-            items = "".join(f"<li>{line}</li>" for line in r["missing"])
-            body_html += f'<p class="sheet-label"><strong>Missing Rows</strong></p><ul>{items}</ul>'
+            body_html += bucket_section_html("Missing Rows", r["missing"], MISSING_COLS, "missing")
 
         if r.get("other_errors"):
-            items = "".join(f"<li>{line}</li>" for line in r["other_errors"])
-            body_html += f'<p class="sheet-label"><strong>Format Errors</strong></p><ul>{items}</ul>'
+            body_html += bucket_section_html("Format Errors", r["other_errors"], FORMAT_ERROR_COLS, "error(s)")
 
         if not body_html:
             body_html = "<p class='all-pass'>&#10003; All checks passed.</p>"
@@ -403,7 +450,6 @@ def generate_html_report(results, report_name):
     tr:nth-child(odd)  td {{ background: #fff; }}
     .sheet-label {{ margin: 12px 0 4px; color: #555; }}
     .all-pass    {{ color: #27ae60; font-weight: bold; }}
-    ul           {{ margin: 5px 0 15px 20px; font-size: 0.9em; }}
   </style>
 </head>
 <body>

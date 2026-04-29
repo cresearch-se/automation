@@ -3,6 +3,10 @@ import datetime
 import pandas as pd
 import pytest
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from config/db.env
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '..', 'config', 'db.env'))
 
 from cornerstone_automation.utils.pandas_utilis import read_excel_file, get_excel_sheet_names, find_column_by_keywords, check_totals_match, compare_db_to_excel, safe_to_numeric
 from cornerstone_automation.utils.db_utils import get_db_connection_from_env, call_stored_procedure
@@ -691,6 +695,7 @@ def test_format_validations_by_employee(comp):
 
 def fetch_summary_from_db(start_date, end_date):
     """Call SP_Utilization_Validation with Type='Summary' and return the first result set as a DataFrame."""
+    print(f"\nFetching summary data from DB for {DB_SERVER} to {DB_DATABASE}...")
     conn = get_db_connection_from_env(DB_SERVER, DB_DATABASE, trusted_connection=True)
     result_sets = call_stored_procedure(
         conn, SP_NAME,
