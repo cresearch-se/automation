@@ -14,7 +14,7 @@ from cornerstone_automation.utils.db_utils import get_db_connection_from_env, ca
 # ==========================================
 # CHANGE ONLY THIS LINE EACH MONTH
 # ==========================================
-FIXTURE_FILE  = "tests/TeamworkDB/fixtures/Utilization_202603.xlsx"
+FIXTURE_FILE  = "tests/TeamworkDB/fixtures/Utilization_202604.xlsx"
 
 # Derived automatically from the filename — no other changes needed
 REPORT_MONTH  = os.path.basename(FIXTURE_FILE).replace("Utilization_", "").replace(".xlsx", "")  # e.g. "202602"

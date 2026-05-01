@@ -10,79 +10,128 @@ Fetching summary data from DB for SQLT1COFIN to ReportDevl...
 Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: March 2026 | Sheet: 202603_US | Run: 2026-04-29
+  Report: April 2026 | Sheet: 202604_US | Run: 2026-05-01
 
-  Office | Title     | Column       | Util Report  | DB           | Diff       | Diff% 
-  -------+-----------+--------------+--------------+--------------+------------+-------
-  CRCH   | Principal | Target_Hours | 1,864.13     | 1,987.80     | 123.66     | 6.63% 
-  CRLA   | Principal | Target_Hours | 1,204.88     | 1,081.20     | 123.67     | 10.26%
-  CRSV   | Associate | Target_Hours | 1,346.40     | 1,217.20     | 129.20     | 9.60% 
-  CRCH   | Principal | Target_Rev   | 2,110,974.58 | 2,251,346.00 | 140,371.42 | 6.65% 
-  CRLA   | Principal | Target_Rev   | 1,364,881.12 | 1,224,510.00 | 140,371.12 | 10.28%
-  CRSV   | Associate | Target_Rev   | 1,056,074.00 | 944,962.00   | 111,112.00 | 10.52%
-  CRCH   | Officer   | Actual_Hours | 803.10       | 930.40       | 127.30     | 15.85%
-  CRCH   | Principal | Actual_Hours | 1,911.80     | 2,007.40     | 95.60      | 5.00% 
-  CRDC   | Officer   | Actual_Hours | 1,141.90     | 1,207.40     | 65.50      | 5.74% 
-  CRLA   | Principal | Actual_Hours | 1,065.90     | 967.90       | 98.00      | 9.19% 
-  CRNY   | Manager   | Actual_Hours | 3,881.70     | 4,037.20     | 155.50     | 4.01% 
-  CRNY   | Officer   | Actual_Hours | 1,182.40     | 1,281.70     | 99.30      | 8.40% 
-  CRNY   | Principal | Actual_Hours | 1,817.20     | 1,943.20     | 126.00     | 6.93% 
-  CRSV   | Officer   | Actual_Hours | 228.70       | 331.70       | 103.00     | 45.04%
-  CRCH   | Officer   | Standard_Rev | 1,019,817.50 | 1,199,705.00 | 179,887.50 | 17.64%
-  CRCH   | Principal | Standard_Rev | 2,164,387.00 | 2,272,953.00 | 108,566.00 | 5.02% 
-  CRDC   | Officer   | Standard_Rev | 1,465,774.00 | 1,550,697.00 | 84,923.00  | 5.79% 
-  CRLA   | Principal | Standard_Rev | 1,206,557.00 | 1,094,258.00 | 112,299.00 | 9.31% 
-  CRNY   | Manager   | Standard_Rev | 3,784,482.00 | 3,944,076.00 | 159,594.00 | 4.22% 
-  CRNY   | Officer   | Standard_Rev | 1,566,723.00 | 1,687,636.00 | 120,913.00 | 7.72% 
-  CRNY   | Principal | Standard_Rev | 2,041,306.00 | 2,189,001.00 | 147,695.00 | 7.24% 
-  CRSV   | Officer   | Standard_Rev | 296,284.00   | 430,404.00   | 134,120.00 | 45.27%
+  Office | Title     | Column       | Util Report  | DB           | Diff       | Diff%
+  -------+-----------+--------------+--------------+--------------+------------+------
+  CRB    | Analyst   | Target_Hours | 8,061.60     | 8,469.60     | 408.00     | 5.06%
+  CRB    | Associate | Target_Hours | 2,622.40     | 2,748.00     | 125.60     | 4.79%
+  CRB    | Manager   | Target_Hours | 2,145.03     | 2,252.30     | 107.27     | 5.00%
+  CRB    | Officer   | Target_Hours | 963.86       | 1,013.70     | 49.84      | 5.17%
+  CRB    | Principal | Target_Hours | 1,051.03     | 1,105.40     | 54.38      | 5.17%
+  CRCH   | Analyst   | Target_Hours | 10,580.20    | 11,108.20    | 528.00     | 4.99%
+  CRCH   | Associate | Target_Hours | 4,663.69     | 4,889.80     | 226.11     | 4.85%
+  CRCH   | Manager   | Target_Hours | 3,683.07     | 3,862.70     | 179.63     | 4.88%
+  CRCH   | Officer   | Target_Hours | 901.59       | 946.90       | 45.31      | 5.03%
+  CRCH   | Principal | Target_Hours | 1,925.25     | 2,021.80     | 96.55      | 5.01%
+  CRDC   | Analyst   | Target_Hours | 8,065.40     | 8,465.40     | 400.00     | 4.96%
+  CRDC   | Associate | Target_Hours | 2,822.80     | 2,957.20     | 134.40     | 4.76%
+  CRDC   | Manager   | Target_Hours | 4,026.52     | 4,212.20     | 185.68     | 4.61%
+  CRDC   | Officer   | Target_Hours | 1,389.07     | 1,458.20     | 69.13      | 4.98%
+  CRDC   | Principal | Target_Hours | 1,826.39     | 1,917.90     | 91.51      | 5.01%
+  CRLA   | Analyst   | Target_Hours | 4,296.00     | 4,504.00     | 208.00     | 4.84%
+  CRLA   | Associate | Target_Hours | 1,941.60     | 2,028.80     | 87.20      | 4.49%
+  CRLA   | Manager   | Target_Hours | 1,434.06     | 1,504.50     | 70.44      | 4.91%
+  CRLA   | Officer   | Target_Hours | 619.82       | 652.20       | 32.38      | 5.22%
+  CRLA   | Principal | Target_Hours | 1,172.58     | 1,230.40     | 57.83      | 4.93%
+  CRNY   | Analyst   | Target_Hours | 11,355.00    | 11,907.00    | 552.00     | 4.86%
+  CRNY   | Associate | Target_Hours | 5,302.40     | 5,561.20     | 258.80     | 4.88%
+  CRNY   | Manager   | Target_Hours | 3,548.37     | 3,712.50     | 164.13     | 4.63%
+  CRNY   | Officer   | Target_Hours | 1,227.42     | 1,290.80     | 63.38      | 5.16%
+  CRNY   | Principal | Target_Hours | 2,056.07     | 2,157.70     | 101.63     | 4.94%
+  CRSF   | Analyst   | Target_Hours | 4,975.00     | 5,215.00     | 240.00     | 4.82%
+  CRSF   | Associate | Target_Hours | 1,739.60     | 1,826.80     | 87.20      | 5.01%
+  CRSF   | Manager   | Target_Hours | 1,571.57     | 1,655.60     | 84.03      | 5.35%
+  CRSF   | Officer   | Target_Hours | 579.43       | 609.20       | 29.77      | 5.14%
+  CRSF   | Principal | Target_Hours | 427.72       | 450.80       | 23.08      | 5.40%
+  CRSV   | Analyst   | Target_Hours | 5,092.00     | 5,348.00     | 256.00     | 5.03%
+  CRSV   | Associate | Target_Hours | 1,032.00     | 1,081.80     | 49.80      | 4.83%
+  CRSV   | Manager   | Target_Hours | 910.96       | 958.90       | 47.94      | 5.26%
+  CRSV   | Officer   | Target_Hours | 313.29       | 328.90       | 15.61      | 4.98%
+  CRSV   | Principal | Target_Hours | 774.52       | 811.90       | 37.38      | 4.83%
+  CRB    | Analyst   | Target_Rev   | 3,986,299.00 | 4,189,219.00 | 202,920.00 | 5.09%
+  CRB    | Associate | Target_Rev   | 1,989,824.00 | 2,085,200.00 | 95,376.00  | 4.79%
+  CRB    | Manager   | Target_Rev   | 2,052,813.78 | 2,155,497.00 | 102,683.22 | 5.00%
+  CRB    | Officer   | Target_Rev   | 1,208,848.01 | 1,271,464.00 | 62,615.99  | 5.18%
+  CRB    | Principal | Target_Rev   | 1,187,212.00 | 1,248,684.00 | 61,472.00  | 5.18%
+  CRCH   | Analyst   | Target_Rev   | 5,453,565.00 | 5,726,045.00 | 272,480.00 | 5.00%
+  CRCH   | Associate | Target_Rev   | 3,465,429.10 | 3,633,127.00 | 167,697.90 | 4.84%
+  CRCH   | Manager   | Target_Rev   | 3,563,190.09 | 3,737,028.00 | 173,837.91 | 4.88%
+  CRCH   | Officer   | Target_Rev   | 1,142,518.71 | 1,199,886.00 | 57,367.29  | 5.02%
+  CRCH   | Principal | Target_Rev   | 2,180,544.95 | 2,289,889.00 | 109,344.05 | 5.01%
+  CRDC   | Analyst   | Target_Rev   | 4,195,029.00 | 4,403,549.00 | 208,520.00 | 4.97%
+  CRDC   | Associate | Target_Rev   | 2,111,368.00 | 2,212,032.00 | 100,664.00 | 4.77%
+  CRDC   | Manager   | Target_Rev   | 3,948,658.09 | 4,131,139.00 | 182,480.91 | 4.62%
+  CRDC   | Officer   | Target_Rev   | 1,804,271.85 | 1,893,933.00 | 89,661.15  | 4.97%
+  CRDC   | Principal | Target_Rev   | 2,067,952.68 | 2,171,444.00 | 103,491.32 | 5.00%
+  CRLA   | Analyst   | Target_Rev   | 2,218,880.00 | 2,326,440.00 | 107,560.00 | 4.85%
+  CRLA   | Associate | Target_Rev   | 1,440,266.00 | 1,504,098.00 | 63,832.00  | 4.43%
+  CRLA   | Manager   | Target_Rev   | 1,382,461.86 | 1,450,595.00 | 68,133.14  | 4.93%
+  CRLA   | Officer   | Target_Rev   | 764,411.09   | 804,265.00   | 39,853.91  | 5.21%
+  CRLA   | Principal | Target_Rev   | 1,329,525.38 | 1,395,077.00 | 65,551.62  | 4.93%
+  CRNY   | Analyst   | Target_Rev   | 5,857,865.00 | 6,141,705.00 | 283,840.00 | 4.85%
+  CRNY   | Associate | Target_Rev   | 4,052,544.00 | 4,250,552.00 | 198,008.00 | 4.89%
+  CRNY   | Manager   | Target_Rev   | 3,432,927.58 | 3,591,179.00 | 158,251.42 | 4.61%
+  CRNY   | Officer   | Target_Rev   | 1,598,516.38 | 1,681,460.00 | 82,943.62  | 5.19%
+  CRNY   | Principal | Target_Rev   | 2,309,688.42 | 2,423,866.00 | 114,177.58 | 4.94%
+  CRSF   | Analyst   | Target_Rev   | 2,573,465.00 | 2,697,185.00 | 123,720.00 | 4.81%
+  CRSF   | Associate | Target_Rev   | 1,278,298.00 | 1,342,850.00 | 64,552.00  | 5.05%
+  CRSF   | Manager   | Target_Rev   | 1,526,981.10 | 1,608,380.00 | 81,398.90  | 5.33%
+  CRSF   | Officer   | Target_Rev   | 734,325.65   | 772,056.00   | 37,730.35  | 5.14%
+  CRSF   | Principal | Target_Rev   | 486,789.90   | 513,058.00   | 26,268.10  | 5.40%
+  CRSV   | Analyst   | Target_Rev   | 2,645,100.00 | 2,778,220.00 | 133,120.00 | 5.03%
+  CRSV   | Associate | Target_Rev   | 803,010.00   | 841,833.00   | 38,823.00  | 4.83%
+  CRSV   | Manager   | Target_Rev   | 880,883.30   | 927,156.00   | 46,272.70  | 5.25%
+  CRSV   | Officer   | Target_Rev   | 400,041.84   | 419,882.00   | 19,840.16  | 4.96%
+  CRSV   | Principal | Target_Rev   | 874,673.80   | 916,905.00   | 42,231.20  | 4.83%
+  CRCH   | Officer   | Actual_Hours | 659.80       | 717.60       | 57.80      | 8.76%
+  CRLA   | Officer   | Actual_Hours | 536.10       | 558.90       | 22.80      | 4.25%
+  CRSV   | Officer   | Actual_Hours | 236.80       | 250.20       | 13.40      | 5.66%
+  CRCH   | Officer   | Standard_Rev | 848,594.00   | 932,404.00   | 83,810.00  | 9.88%
+  CRLA   | Officer   | Standard_Rev | 668,584.50   | 696,173.00   | 27,588.50  | 4.13%
+  CRSV   | Officer   | Standard_Rev | 310,827.00   | 329,587.00   | 18,760.00  | 6.04%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_europe_monthly 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: March 2026 | Sheet: 202603_Total (Europe) | Run: 2026-04-29
+  Report: April 2026 | Sheet: 202604_Total (Europe) | Run: 2026-05-01
 
-  Office | Title     | Column       | Util Report  | DB           | Diff      | Diff%
-  -------+-----------+--------------+--------------+--------------+-----------+------
-  Europe | Manager   | Actual_Hours | 1,825.80     | 1,899.40     | 73.60     | 4.03%
-  Europe | Principal | Actual_Hours | 745.90       | 774.50       | 28.60     | 3.83%
-  Europe | Manager   | Standard_Rev | 1,676,724.90 | 1,744,058.00 | 67,333.10 | 4.02%
-  Europe | Officer   | Standard_Rev | 488,007.97   | 502,657.00   | 14,649.03 | 3.00%
-  Europe | Principal | Standard_Rev | 847,778.12   | 879,191.00   | 31,412.88 | 3.71%
+  Office | Title     | Column       | Util Report  | DB           | Diff       | Diff%
+  -------+-----------+--------------+--------------+--------------+------------+------
+  Europe | Analyst   | Target_Hours | 5,413.10     | 5,701.10     | 288.00     | 5.32%
+  Europe | Associate | Target_Hours | 2,324.30     | 2,473.50     | 149.20     | 6.42%
+  Europe | Manager   | Target_Hours | 1,541.75     | 1,622.80     | 81.05      | 5.26%
+  Europe | Officer   | Target_Hours | 429.45       | 453.50       | 24.05      | 5.60%
+  Europe | Principal | Target_Hours | 924.46       | 970.70       | 46.24      | 5.00%
+  Europe | Analyst   | Target_Rev   | 2,634,356.71 | 2,774,648.00 | 140,291.29 | 5.33%
+  Europe | Associate | Target_Rev   | 1,637,261.87 | 1,726,252.00 | 88,990.13  | 5.44%
+  Europe | Manager   | Target_Rev   | 1,396,252.01 | 1,469,715.00 | 73,462.99  | 5.26%
+  Europe | Officer   | Target_Rev   | 550,414.46   | 581,148.00   | 30,733.54  | 5.58%
+  Europe | Principal | Target_Rev   | 1,031,513.08 | 1,083,110.00 | 51,596.92  | 5.00%
+  Europe | Officer   | Actual_Hours | 258.40       | 266.40       | 8.00       | 3.10%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_us_ytd 
 Fetching summary data from DB for SQLT1COFIN to ReportDevl...
 Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: March 2026 | Sheet: 2026_US (YTD) | Run: 2026-04-29
+  Report: April 2026 | Sheet: 2026_US (YTD) | Run: 2026-05-01
 
   Office | Title     | Column       | Util Report  | DB           | Diff       | Diff% 
   -------+-----------+--------------+--------------+--------------+------------+-------
-  CRCH   | Principal | Target_Hours | 5,173.52     | 5,541.60     | 368.08     | 7.11% 
-  CRDC   | Associate | Target_Hours | 7,658.93     | 7,378.50     | 280.43     | 3.66% 
-  CRLA   | Analyst   | Target_Hours | 12,237.90    | 11,620.40    | 617.50     | 5.05% 
-  CRLA   | Principal | Target_Hours | 3,567.96     | 3,199.90     | 368.06     | 10.32%
-  CRSV   | Analyst   | Target_Hours | 15,566.10    | 14,862.10    | 704.00     | 4.52% 
-  CRSV   | Associate | Target_Hours | 3,854.40     | 3,451.60     | 402.80     | 10.45%
-  CRSV   | Manager   | Target_Hours | 3,005.80     | 3,286.30     | 280.50     | 9.33% 
-  CRCH   | Principal | Target_Rev   | 5,860,038.97 | 6,277,776.00 | 417,737.03 | 7.13% 
-  CRDC   | Associate | Target_Rev   | 5,730,246.80 | 5,521,503.00 | 208,743.80 | 3.64% 
-  CRLA   | Analyst   | Target_Rev   | 6,377,171.00 | 6,012,756.00 | 364,415.00 | 5.71% 
-  CRLA   | Principal | Target_Rev   | 4,046,799.00 | 3,629,062.00 | 417,737.00 | 10.32%
-  CRSV   | Analyst   | Target_Rev   | 8,125,871.50 | 7,720,432.00 | 405,439.50 | 4.99% 
-  CRSV   | Associate | Target_Rev   | 3,029,543.50 | 2,683,136.00 | 346,407.50 | 11.43%
-  CRSV   | Manager   | Target_Rev   | 2,906,736.12 | 3,165,629.00 | 258,892.88 | 8.91% 
-  CRCH   | Officer   | Actual_Hours | 1,934.30     | 2,167.40     | 233.10     | 12.05%
-  CRCH   | Principal | Actual_Hours | 4,452.40     | 4,774.00     | 321.60     | 7.22% 
-  CRLA   | Principal | Actual_Hours | 3,127.20     | 2,803.20     | 324.00     | 10.36%
-  CRNY   | Officer   | Actual_Hours | 3,303.50     | 3,402.80     | 99.30      | 3.01% 
-  CRSV   | Manager   | Actual_Hours | 2,931.80     | 3,155.30     | 223.50     | 7.62% 
-  CRSV   | Officer   | Actual_Hours | 627.20       | 828.80       | 201.60     | 32.14%
-  CRCH   | Officer   | Standard_Rev | 2,475,497.00 | 2,808,794.00 | 333,297.00 | 13.46%
-  CRCH   | Principal | Standard_Rev | 5,036,854.50 | 5,401,931.00 | 365,076.50 | 7.25% 
-  CRLA   | Principal | Standard_Rev | 3,555,848.50 | 3,187,039.00 | 368,809.50 | 10.37%
-  CRSV   | Manager   | Standard_Rev | 2,821,566.50 | 3,028,304.00 | 206,737.50 | 7.33% 
-  CRSV   | Officer   | Standard_Rev | 806,963.00   | 1,079,123.00 | 272,160.00 | 33.73%
+  CRSV   | Manager   | Target_Hours | 3,912.36     | 4,245.20     | 332.84     | 8.51% 
+  CRSV   | Manager   | Target_Rev   | 3,782,979.52 | 4,092,784.00 | 309,804.48 | 8.19% 
+  CRCH   | Officer   | Actual_Hours | 2,625.30     | 2,885.00     | 259.70     | 9.89% 
+  CRSF   | Analyst   | Actual_Hours | 14,990.10    | 15,576.20    | 586.10     | 3.91% 
+  CRSV   | Analyst   | Actual_Hours | 15,501.80    | 15,972.70    | 470.90     | 3.04% 
+  CRSV   | Associate | Actual_Hours | 3,333.20     | 3,510.60     | 177.40     | 5.32% 
+  CRSV   | Manager   | Actual_Hours | 3,814.80     | 4,045.50     | 230.70     | 6.05% 
+  CRSV   | Officer   | Actual_Hours | 920.00       | 1,079.00     | 159.00     | 17.28%
+  CRCH   | Officer   | Standard_Rev | 3,364,633.00 | 3,741,198.00 | 376,565.00 | 11.19%
+  CRSF   | Analyst   | Standard_Rev | 7,780,164.00 | 8,116,383.00 | 336,219.00 | 4.32% 
+  CRSV   | Analyst   | Standard_Rev | 8,138,632.50 | 8,409,400.00 | 270,767.50 | 3.33% 
+  CRSV   | Associate | Standard_Rev | 2,627,488.50 | 2,780,053.00 | 152,564.50 | 5.81% 
+  CRSV   | Manager   | Standard_Rev | 3,676,075.50 | 3,889,473.00 | 213,397.50 | 5.81% 
+  CRSV   | Officer   | Standard_Rev | 1,186,110.00 | 1,408,710.00 | 222,600.00 | 18.77%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_europe_ytd 
 [PASS] '2026_Total (Europe YTD)' matches database.
@@ -94,21 +143,21 @@ tests\TeamworkDB\test_utilization_monthly.py:892: in test_db_comparison_us_month
     run_location_comparison(df_excel, df_db, f"{REPORT_MONTH}_US", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:830: in run_location_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 22 error(s) found
+E   Failed: 76 error(s) found
 ______________________ test_db_comparison_europe_monthly ______________________
 tests\TeamworkDB\test_utilization_monthly.py:905: in test_db_comparison_europe_monthly
     run_location_comparison(df_excel, df_db, f"{REPORT_MONTH}_Total (Europe)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:830: in run_location_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 5 error(s) found
+E   Failed: 11 error(s) found
 __________________________ test_db_comparison_us_ytd __________________________
 tests\TeamworkDB\test_utilization_monthly.py:915: in test_db_comparison_us_ytd
     run_location_comparison(df_excel, df_db, f"{REPORT_YEAR}_US (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:830: in run_location_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 25 error(s) found
+E   Failed: 14 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_us_monthly
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_europe_monthly
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_us_ytd
-================= 3 failed, 1 passed, 52 deselected in 27.03s =================
+================= 3 failed, 1 passed, 52 deselected in 31.45s =================
