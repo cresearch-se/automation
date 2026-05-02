@@ -12,6 +12,7 @@ Usage (run from Code/ directory):
 import subprocess
 import sys
 import re
+import calendar
 from pathlib import Path
 from datetime import date
 from typing import Any
@@ -273,12 +274,32 @@ def generate_excel_report(results: list[dict[str, Any]], report_name: str) -> No
 
     # Styles
     red_fill    = PatternFill("solid", fgColor="FFC7CE")
+    diag_fill   = PatternFill("solid", fgColor="FFF9C4")  # light yellow for diagnostic rows
     header_fill = PatternFill("solid", fgColor="2F5496")
     header_font = Font(color="FFFFFF", bold=True)
     bold_font   = Font(bold=True)
     title_font  = Font(bold=True, size=13)
     thin        = Side(style="thin")
     border      = Border(left=thin, right=thin, top=thin, bottom=thin)
+
+    # Diagnostic query setup — derive date range from report name (e.g. utilization_failures_report_202603)
+    diag_conn    = None
+    start_date   = None
+    end_date     = None
+    period_yyyymm = None
+    m_date = re.search(r'(\d{4})(\d{2})$', report_name)
+    if m_date:
+        year, month   = int(m_date.group(1)), int(m_date.group(2))
+        last_day      = calendar.monthrange(year, month)[1]
+        start_date    = f"{year}-{month:02d}-01"
+        end_date      = f"{year}-{month:02d}-{last_day}"
+        period_yyyymm = int(f"{year}{month:02d}")
+    try:
+        from cornerstone_automation.utils.db_utils import get_db_connection_from_env, select_query as db_select
+        from cornerstone_automation.sqls.loader import load_query
+        diag_conn = get_db_connection_from_env("SQLT1COFIN", "ReportDevl", trusted_connection=True)
+    except Exception as e:
+        print(f"  [WARN] Diagnostic DB connection unavailable: {e}")
 
     def set_header_row(ws, values):
         ws.append(values)
@@ -294,7 +315,49 @@ def generate_excel_report(results: list[dict[str, Any]], report_name: str) -> No
             max_len = max((len(str(cell.value or "")) for cell in col), default=10)
             ws.column_dimensions[get_column_letter(col[0].column)].width = min(max_len + 3, 55)
 
-    def write_bucket_section(ws, title, buckets, cols):
+    def _write_inline_diagnostic(ws, df, row_num, start_col, header_row_num):
+        """Append diagnostic results inline as 'ColumnName: value' cells on the same row."""
+        if df is None or df.empty:
+            return
+        for col_offset, (col_name, value) in enumerate(zip(df.columns, df.iloc[0])):
+            cell = ws.cell(row_num, start_col + 1 + col_offset)
+            cell.value = f"{col_name}: {value}"
+            cell.fill  = diag_fill
+
+    def write_diagnostic(ws, row_data, row_num, num_cols, header_row_num):
+        """Run a diagnostic query and append results inline on the same row."""
+        if not diag_conn:
+            return
+        empno = row_data.get("EmpNo", "").strip()
+        if not empno:
+            return
+        row_type = row_data.get("Type", "")
+        try:
+            # Resolve Empl_uno from employee code first
+            sql_uno = load_query("employee_details", "get_empl_uno_by_employee_code")
+            sql_uno = sql_uno.replace(":employee_code", "?")
+            rows    = db_select(diag_conn, sql_uno, params=(empno,))
+            if not rows:
+                print(f"  [WARN] No Empl_uno found for EmpNo={empno}, skipping diagnostic")
+                return
+            empl_uno = rows[0][0]
+
+            if row_type == "MISSING IN DB" and start_date:
+                sql = load_query("ardent_queries", "employee_billable_hours_by_office")
+                sql = sql.replace(":start_date", "?").replace(":end_date", "?").replace(":empno", "?")
+                df  = db_select(diag_conn, sql, params=(start_date, end_date, empl_uno), as_dataframe=True)
+                _write_inline_diagnostic(ws, df, row_num, num_cols, header_row_num)
+
+            elif row_type == "MISSING IN XLS" and period_yyyymm:
+                sql = load_query("target_daily_queries", "employee_target_vs_actual_hours")
+                sql = sql.replace(":empno", "?").replace(":period_start", "?").replace(":period_end", "?")
+                df  = db_select(diag_conn, sql, params=(empl_uno, period_yyyymm, period_yyyymm), as_dataframe=True)
+                _write_inline_diagnostic(ws, df, row_num, num_cols, header_row_num)
+
+        except Exception as e:
+            print(f"  [WARN] Diagnostic failed for EmpNo={empno}: {e}")
+
+    def write_bucket_section(ws, title, buckets, cols, row_callback=None):
         """Write a titled section of bucketed rows as red-highlighted tables, one per sheet."""
         ws.append([title])
         ws.cell(ws.max_row, 1).font = bold_font
@@ -303,12 +366,15 @@ def generate_excel_report(results: list[dict[str, Any]], report_name: str) -> No
             ws.append([f"Sheet: {bucket['sheet']}"])
             ws.cell(ws.max_row, 1).font = bold_font
             set_header_row(ws, cols)
+            header_row_num = ws.max_row
             for row_data in bucket["rows"]:
                 ws.append([row_data.get(c, "") for c in cols])
                 row_num = ws.max_row
                 for col_idx in range(1, len(cols) + 1):
                     ws.cell(row_num, col_idx).fill   = red_fill
                     ws.cell(row_num, col_idx).border = border
+                if row_callback:
+                    row_callback(ws, row_data, row_num, len(cols), header_row_num)
             ws.append([])
 
     # ---- One sheet per group ----
@@ -320,7 +386,6 @@ def generate_excel_report(results: list[dict[str, Any]], report_name: str) -> No
 
         ws.append([r["name"]])
         ws["A1"].font = title_font
-        ws.append([f"Run: {date.today().strftime('%Y-%m-%d')}   |   Passed: {passed}   |   Failed: {failed}"])
         ws.append([])
 
         # Value mismatch tables
@@ -337,12 +402,15 @@ def generate_excel_report(results: list[dict[str, Any]], report_name: str) -> No
             ws.append([])
 
         if r.get("missing"):
-            write_bucket_section(ws, "MISSING ROWS", r["missing"], MISSING_COLS)
+            write_bucket_section(ws, "MISSING ROWS", r["missing"], MISSING_COLS, row_callback=write_diagnostic)
 
         if r.get("other_errors"):
             write_bucket_section(ws, "FORMAT ERRORS", r["other_errors"], FORMAT_ERROR_COLS)
 
         auto_width(ws)
+
+    if diag_conn:
+        diag_conn.close()
 
     out_path = OUTPUT_DIR / f"{report_name}.xlsx"
     wb.save(out_path)
@@ -481,8 +549,8 @@ if __name__ == "__main__":
     print("  UTILIZATION QA TEST RUNNER")
     print("=" * 55)
 
-    print("\n[1/3] Running tests...")
-    run_tests()
+    #print("\n[1/3] Running tests...")
+    #run_tests()
 
     print("\n[2/3] Parsing output files...")
     results = parse_all_groups()
