@@ -8,7 +8,7 @@ collecting ... collected 56 items / 47 deselected / 9 selected
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Boston] Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: April 2026 | Sheet: YTD - CRB  (YTD) | Run: 2026-05-01
+  Report: April 2026 | Sheet: YTD - CRB  (YTD) | Run: 2026-05-04
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101626 | Name=nan
@@ -25,7 +25,7 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Bo
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Chicago] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: April 2026 | Sheet: YTD - CRCH (YTD) | Run: 2026-05-01
+  Report: April 2026 | Sheet: YTD - CRCH (YTD) | Run: 2026-05-04
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101656 | Name=nan
@@ -44,7 +44,7 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Ch
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[DC] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: April 2026 | Sheet: YTD - CRDC (YTD) | Run: 2026-05-01
+  Report: April 2026 | Sheet: YTD - CRDC (YTD) | Run: 2026-05-04
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101168 | Name=nan
@@ -65,12 +65,12 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[DC
   -------+-------------------+--------------+-------------+------------+------------+-------
   101400 | Boboshko, Nikolai | Target_Hours | 610.50      | 325.60     | 284.90     | 46.67%
   101400 | Boboshko, Nikolai | Target_Rev   | 564,712.50  | 301,180.00 | 263,532.50 | 46.67%
-  101400 | Boboshko, Nikolai | Actual_Hours | 581.10      | 353.00     | 228.10     | 39.25%
-  101400 | Boboshko, Nikolai | Standard_Rev | 537,517.50  | 326,525.00 | 210,992.50 | 39.25%
+  101400 | Boboshko, Nikolai | Actual_Hours | 592.70      | 364.60     | 228.10     | 38.48%
+  101400 | Boboshko, Nikolai | Standard_Rev | 548,247.50  | 337,255.00 | 210,992.50 | 38.48%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[LA] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: April 2026 | Sheet: YTD - CRLA (YTD) | Run: 2026-05-01
+  Report: April 2026 | Sheet: YTD - CRLA (YTD) | Run: 2026-05-04
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101210 | Name=nan
@@ -80,33 +80,35 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[LA
   -------+---------------+--------------+-------------+------------+------------+-------
   101597 | Ling, Anthony | Target_Hours | 543.00      | 319.00     | 224.00     | 41.25%
   101597 | Ling, Anthony | Target_Rev   | 263,355.00  | 154,715.00 | 108,640.00 | 41.25%
-  101597 | Ling, Anthony | Actual_Hours | 651.60      | 384.90     | 266.70     | 40.93%
-  101597 | Ling, Anthony | Standard_Rev | 316,026.00  | 186,677.00 | 129,349.00 | 40.93%
+  101597 | Ling, Anthony | Actual_Hours | 652.20      | 385.50     | 266.70     | 40.89%
+  101597 | Ling, Anthony | Standard_Rev | 316,317.00  | 186,968.00 | 129,349.00 | 40.89%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: April 2026 | Sheet: YTD - CRNY (YTD) | Run: 2026-05-01
+  Report: April 2026 | Sheet: YTD - CRNY (YTD) | Run: 2026-05-04
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101046 | Name=nan
+    [MISSING IN DB] EmpNo=101327 | Name=nan
     [MISSING IN DB] EmpNo=101559 | Name=nan
     [MISSING IN DB] EmpNo=101620 | Name=nan
+    [MISSING IN DB] EmpNo=6390   | Name=nan
     [MISSING IN XLS] EmpNo=101046 | Name=nan
+    [MISSING IN XLS] EmpNo=101327 | Name=nan
     [MISSING IN XLS] EmpNo=101559 | Name=nan
     [MISSING IN XLS] EmpNo=101620 | Name=nan
+    [MISSING IN XLS] EmpNo=6390   | Name=nan
 
-  EmpNo  | Name                 | Column       | Util Report | DB         | Diff      | Diff% 
-  -------+----------------------+--------------+-------------+------------+-----------+-------
-  101788 | Rocafort, Roland     | Target_Hours | 604.00      | 458.00     | 146.00    | 24.17%
-  101788 | Rocafort, Roland     | Target_Rev   | 347,300.00  | 263,350.00 | 83,950.00 | 24.17%
-  101697 | Lehrer, Nimrod David | Actual_Hours | 459.20      | 473.30     | 14.10     | 3.07% 
-  101788 | Rocafort, Roland     | Actual_Hours | 555.20      | 402.10     | 153.10    | 27.58%
-  101697 | Lehrer, Nimrod David | Standard_Rev | 394,912.00  | 407,038.00 | 12,126.00 | 3.07% 
-  101788 | Rocafort, Roland     | Standard_Rev | 319,240.00  | 231,208.00 | 88,032.00 | 27.58%
+  EmpNo  | Name             | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+------------------+--------------+-------------+------------+-----------+-------
+  101788 | Rocafort, Roland | Target_Hours | 604.00      | 458.00     | 146.00    | 24.17%
+  101788 | Rocafort, Roland | Target_Rev   | 347,300.00  | 263,350.00 | 83,950.00 | 24.17%
+  101788 | Rocafort, Roland | Actual_Hours | 571.50      | 418.40     | 153.10    | 26.79%
+  101788 | Rocafort, Roland | Standard_Rev | 328,612.50  | 240,580.00 | 88,032.50 | 26.79%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: April 2026 | Sheet: YTD - CRSF (YTD) | Run: 2026-05-01
+  Report: April 2026 | Sheet: YTD - CRSF (YTD) | Run: 2026-05-04
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101226 | Name=nan
@@ -122,7 +124,7 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: April 2026 | Sheet: YTD - CRSV (YTD) | Run: 2026-05-01
+  Report: April 2026 | Sheet: YTD - CRSV (YTD) | Run: 2026-05-04
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101461 | Name=nan
@@ -137,7 +139,7 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-UK] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: April 2026 | Sheet: YTD - CRUK (YTD) | Run: 2026-05-01
+  Report: April 2026 | Sheet: YTD - CRUK (YTD) | Run: 2026-05-04
 
   EmpNo  | Name            | Column       | Util Report | DB     | Diff  | Diff%
   -------+-----------------+--------------+-------------+--------+-------+------
@@ -179,7 +181,7 @@ tests\TeamworkDB\test_utilization_monthly.py:964: in test_db_comparison_employee
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:851: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 12 error(s) found
+E   Failed: 14 error(s) found
 _____________________ test_db_comparison_employee_ytd[SF] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:964: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
@@ -207,4 +209,4 @@ FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-UK]
-================= 8 failed, 1 passed, 47 deselected in 17.94s =================
+================= 8 failed, 1 passed, 47 deselected in 18.63s =================
