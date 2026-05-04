@@ -12,12 +12,14 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
   UTILIZATION QA — VALUE MISMATCHES
   Report: April 2026 | Sheet: 202604_US | Run: 2026-05-04
 
-  Office | Title   | Column       | Util Report  | DB           | Diff      | Diff%
-  -------+---------+--------------+--------------+--------------+-----------+------
-  CRCH   | Officer | Actual_Hours | 794.30       | 857.20       | 62.90     | 7.92%
-  CRSV   | Officer | Actual_Hours | 363.80       | 380.50       | 16.70     | 4.59%
-  CRCH   | Officer | Standard_Rev | 1,018,075.00 | 1,109,280.00 | 91,205.00 | 8.96%
-  CRSV   | Officer | Standard_Rev | 470,070.00   | 493,450.00   | 23,380.00 | 4.97%
+  Office | Title   | Column       | Util Report  | DB           | Diff       | Diff% 
+  -------+---------+--------------+--------------+--------------+------------+-------
+  CRCH   | Officer | Actual_Hours | 794.30       | 857.20       | 62.90      | 7.92% 
+  CRNY   | Officer | Actual_Hours | 1,006.60     | 1,137.80     | 131.20     | 13.03%
+  CRSV   | Officer | Actual_Hours | 363.80       | 380.50       | 16.70      | 4.59% 
+  CRCH   | Officer | Standard_Rev | 1,018,075.00 | 1,109,280.00 | 91,205.00  | 8.96% 
+  CRNY   | Officer | Standard_Rev | 1,299,292.00 | 1,458,044.00 | 158,752.00 | 12.22%
+  CRSV   | Officer | Standard_Rev | 470,070.00   | 493,450.00   | 23,380.00  | 4.97% 
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_europe_monthly 
 [PASS] '202604_Total (Europe)' matches database.
@@ -39,7 +41,7 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
   CRSV   | Manager   | Actual_Hours | 3,949.90      | 4,178.00      | 228.10     | 5.77% 
   CRSV   | Officer   | Actual_Hours | 1,047.00      | 1,209.30      | 162.30     | 15.50%
   CRCH   | Officer   | Standard_Rev | 3,534,114.00  | 3,918,074.00  | 383,960.00 | 10.86%
-  CRNY   | Analyst   | Standard_Rev | 19,625,725.50 | 20,294,651.00 | 668,925.50 | 3.41% 
+  CRNY   | Analyst   | Standard_Rev | 19,625,725.50 | 20,312,111.00 | 686,385.50 | 3.50% 
   CRSF   | Analyst   | Standard_Rev | 8,284,580.50  | 8,606,795.00  | 322,214.50 | 3.89% 
   CRSV   | Analyst   | Standard_Rev | 8,788,926.00  | 9,059,694.00  | 270,768.00 | 3.08% 
   CRSV   | Associate | Standard_Rev | 2,746,005.00  | 2,898,569.00  | 152,564.00 | 5.56% 
@@ -56,7 +58,7 @@ tests\TeamworkDB\test_utilization_monthly.py:892: in test_db_comparison_us_month
     run_location_comparison(df_excel, df_db, f"{REPORT_MONTH}_US", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:830: in run_location_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 4 error(s) found
+E   Failed: 6 error(s) found
 __________________________ test_db_comparison_us_ytd __________________________
 tests\TeamworkDB\test_utilization_monthly.py:915: in test_db_comparison_us_ytd
     run_location_comparison(df_excel, df_db, f"{REPORT_YEAR}_US (YTD)", tolerance=3.0)
@@ -66,4 +68,4 @@ E   Failed: 14 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_us_monthly
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_us_ytd
-================= 2 failed, 2 passed, 52 deselected in 28.66s =================
+================= 2 failed, 2 passed, 52 deselected in 29.72s =================
