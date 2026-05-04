@@ -56,6 +56,13 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthl
     [MISSING IN XLS] EmpNo=101334 | Name=nan
     [MISSING IN XLS] EmpNo=101692 | Name=nan
     [MISSING IN XLS] EmpNo=6390   | Name=nan
+
+  EmpNo  | Name                | Column       | Util Report | DB         | Diff       | Diff%   
+  -------+---------------------+--------------+-------------+------------+------------+---------
+  101322 | Khanna, Aryan       | Actual_Hours | 129.00      | 165.00     | 36.00      | 27.91%  
+  5674   | Li Bergolis, Matteo | Actual_Hours | 8.50        | 139.70     | 131.20     | 1543.53%
+  101322 | Khanna, Aryan       | Standard_Rev | 62,565.00   | 80,025.00  | 17,460.00  | 27.91%  
+  5674   | Li Bergolis, Matteo | Standard_Rev | 10,285.00   | 169,037.00 | 158,752.00 | 1543.53%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SF] 
   UTILIZATION QA — VALUE MISMATCHES
@@ -87,11 +94,10 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthl
   UTILIZATION QA — VALUE MISMATCHES
   Report: April 2026 | Sheet: Month - CRUK (Monthly) | Run: 2026-05-04
 
-  EmpNo  | Name            | Column       | Util Report | DB     | Diff | Diff%
-  -------+-----------------+--------------+-------------+--------+------+------
-  0531   | Tilson, Hannah  | Target_Hours | 159.60      | 168.00 | 8.40 | 5.26%
-  101659 | Honnor, Kaman   | Target_Hours | 114.00      | 120.00 | 6.00 | 5.26%
-  101963 | Chakma, Tridevi | Target_Hours | 152.00      | 160.00 | 8.00 | 5.26%
+  EmpNo | Name        | Column       | Util Report | DB         | Diff      | Diff% 
+  ------+-------------+--------------+-------------+------------+-----------+-------
+  5570  | Ayhan, Alex | Actual_Hours | 140.10      | 175.80     | 35.70     | 25.48%
+  5570  | Ayhan, Alex | Standard_Rev | 124,157.88  | 155,796.00 | 31,638.12 | 25.48%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[EU-BE] 
 [PASS] 'Month - CRBE (Monthly)' matches database.
@@ -121,7 +127,7 @@ tests\TeamworkDB\test_utilization_monthly.py:945: in test_db_comparison_employee
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:851: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 8 error(s) found
+E   Failed: 12 error(s) found
 ___________________ test_db_comparison_employee_monthly[SF] ___________________
 tests\TeamworkDB\test_utilization_monthly.py:945: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
@@ -139,7 +145,7 @@ tests\TeamworkDB\test_utilization_monthly.py:945: in test_db_comparison_employee
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:851: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 3 error(s) found
+E   Failed: 2 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Boston]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Chicago]
@@ -148,4 +154,4 @@ FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SF]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SV]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[EU-UK]
-================= 7 failed, 2 passed, 47 deselected in 16.43s =================
+================= 7 failed, 2 passed, 47 deselected in 17.54s =================
