@@ -831,19 +831,34 @@ def run_location_comparison(df_excel, df_db, label, tolerance=0.1):
     else:
         print(f"\n[PASS] '{label}' matches database.")
 
-
 def run_employee_comparison(df_excel, df_db, label, tolerance=0.1):
     """Rename DB columns, normalize data types, outer-merge with Excel employee data, and assert no mismatches."""
     df_db = df_db.rename(columns=COLUMN_MAP_BY_EMPLOYEE)
     # Normalize DB data: convert numeric columns from strings to float, EmpNo to string
     df_db = normalize_db_data_by_employee(df_db, NUMERIC_COLS)
 
-    # Both EmpNo columns are now str — no conversion needed here
+    # Ensure EmpNo is clean str on both sides before merge — prevents same EmpNo
+    # appearing in both MISSING IN DB and MISSING IN XLS due to whitespace mismatch
+    df_excel = df_excel.copy()
+    df_excel['EmpNo'] = df_excel['EmpNo'].astype(str).str.strip()
+    df_db['EmpNo']    = df_db['EmpNo'].astype(str).str.strip()
+
+    # Exclude DB rows with NULL Target_Hours — compare_db_to_excel uses Target_Hours_DB
+    # as the presence indicator, so NULL Target_Hours fires false MISSING IN DB for every
+    # employee absent from Excel, producing duplicate MISSING IN DB + MISSING IN XLS.
+    df_db = df_db[df_db[NUMERIC_COLS[0]].notna()].copy()
+
     merged = pd.merge(
         df_excel, df_db[JOIN_KEYS_BY_EMPLOYEE + NUMERIC_COLS],
         on=JOIN_KEYS_BY_EMPLOYEE, how='outer', suffixes=('_XLS', '_DB')
     )
-    #print(f"\n[DEBUG] Merged DataFrame for '{label}':\n{merged.to_string()}")
+
+    # DEBUG — print full merged table so we can see why EmpNos appear in both MISSING categories
+    # pd.set_option('display.max_rows', 500)
+    # pd.set_option('display.max_columns', 20)
+    # pd.set_option('display.width', 300)
+    # print(f"\n[DEBUG MERGED — {label}]")
+    # print(merged.to_string(index=False))
 
     errors = compare_db_to_excel(merged, ["EmpNo", "Name"], NUMERIC_COLS, tolerance)
     if errors:
@@ -851,7 +866,6 @@ def run_employee_comparison(df_excel, df_db, label, tolerance=0.1):
         pytest.fail(f"{len(errors)} error(s) found")
     else:
         print(f"\n[PASS] '{label}' matches database.")
-
 
 # ==========================================
 # SESSION-SCOPED DB FIXTURES
