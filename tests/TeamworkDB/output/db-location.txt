@@ -14,10 +14,18 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
   Office | Title   | Column       | Util Report  | DB           | Diff       | Diff% 
   -------+---------+--------------+--------------+--------------+------------+-------
+  CRDC   | Manager | Target_Hours | 3,718.32     | 3,579.10     | 139.22     | 3.74% 
+  CRNY   | Manager | Target_Hours | 3,231.69     | 3,371.00     | 139.31     | 4.31% 
+  CRDC   | Manager | Target_Rev   | 3,651,311.81 | 3,522,487.00 | 128,824.81 | 3.53% 
+  CRNY   | Manager | Target_Rev   | 3,119,621.41 | 3,248,446.00 | 128,824.59 | 4.13% 
   CRCH   | Officer | Actual_Hours | 578.70       | 622.90       | 44.20      | 7.64% 
+  CRDC   | Manager | Actual_Hours | 3,801.00     | 3,662.40     | 138.60     | 3.65% 
+  CRNY   | Manager | Actual_Hours | 3,279.90     | 3,418.50     | 138.60     | 4.23% 
   CRNY   | Officer | Actual_Hours | 971.30       | 1,083.80     | 112.50     | 11.58%
   CRSV   | Officer | Actual_Hours | 339.20       | 367.50       | 28.30      | 8.34% 
   CRCH   | Officer | Standard_Rev | 736,416.00   | 800,506.00   | 64,090.00  | 8.70% 
+  CRDC   | Manager | Standard_Rev | 3,707,951.00 | 3,579,746.00 | 128,205.00 | 3.46% 
+  CRNY   | Manager | Standard_Rev | 3,201,489.50 | 3,329,695.00 | 128,205.50 | 4.00% 
   CRNY   | Officer | Standard_Rev | 1,248,464.50 | 1,384,590.00 | 136,125.50 | 10.90%
   CRSV   | Officer | Standard_Rev | 431,386.00   | 471,006.00   | 39,620.00  | 9.18% 
 FAILED
@@ -31,16 +39,20 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
   UTILIZATION QA — VALUE MISMATCHES
   Report: May 2026 | Sheet: 2026_US (YTD) | Run: 2026-06-02
 
-  Office | Title   | Column       | Util Report  | DB           | Diff       | Diff% 
-  -------+---------+--------------+--------------+--------------+------------+-------
-  CRSV   | Manager | Target_Hours | 4,801.56     | 5,086.50     | 284.94     | 5.93% 
-  CRSV   | Manager | Target_Rev   | 4,629,898.40 | 4,893,431.00 | 263,532.60 | 5.69% 
-  CRCH   | Officer | Actual_Hours | 3,335.50     | 3,644.50     | 309.00     | 9.26% 
-  CRSV   | Manager | Actual_Hours | 5,033.90     | 5,301.90     | 268.00     | 5.32% 
-  CRSV   | Officer | Actual_Hours | 1,385.10     | 1,575.70     | 190.60     | 13.76%
-  CRCH   | Officer | Standard_Rev | 4,266,630.00 | 4,714,680.00 | 448,050.00 | 10.50%
-  CRSV   | Manager | Standard_Rev | 4,844,190.00 | 5,097,277.00 | 253,087.00 | 5.22% 
-  CRSV   | Officer | Standard_Rev | 1,775,144.00 | 2,041,984.00 | 266,840.00 | 15.03%
+  Office | Title   | Column       | Util Report   | DB            | Diff       | Diff% 
+  -------+---------+--------------+---------------+---------------+------------+-------
+  CRDC   | Manager | Target_Hours | 18,937.86     | 18,182.90     | 754.96     | 3.99% 
+  CRNY   | Manager | Target_Hours | 16,762.83     | 17,517.80     | 754.97     | 4.50% 
+  CRDC   | Manager | Target_Rev   | 18,587,971.28 | 17,889,606.00 | 698,365.28 | 3.76% 
+  CRNY   | Manager | Target_Rev   | 16,197,153.70 | 16,895,519.00 | 698,365.30 | 4.31% 
+  CRCH   | Officer | Actual_Hours | 3,335.50      | 3,644.50      | 309.00     | 9.26% 
+  CRDC   | Manager | Actual_Hours | 19,126.10     | 18,449.00     | 677.10     | 3.54% 
+  CRNY   | Manager | Actual_Hours | 16,738.00     | 17,415.10     | 677.10     | 4.05% 
+  CRSV   | Officer | Actual_Hours | 1,385.10      | 1,575.70      | 190.60     | 13.76%
+  CRCH   | Officer | Standard_Rev | 4,266,630.00  | 4,714,680.00  | 448,050.00 | 10.50%
+  CRDC   | Manager | Standard_Rev | 18,677,073.00 | 18,050,756.00 | 626,317.00 | 3.35% 
+  CRNY   | Manager | Standard_Rev | 16,388,163.50 | 17,014,481.00 | 626,317.50 | 3.82% 
+  CRSV   | Officer | Standard_Rev | 1,775,144.00  | 2,041,984.00  | 266,840.00 | 15.03%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_europe_ytd 
 [PASS] '2026_Total (Europe YTD)' matches database.
@@ -52,14 +64,14 @@ tests\TeamworkDB\test_utilization_monthly.py:906: in test_db_comparison_us_month
     run_location_comparison(df_excel, df_db, f"{REPORT_MONTH}_US", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:830: in run_location_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 6 error(s) found
+E   Failed: 14 error(s) found
 __________________________ test_db_comparison_us_ytd __________________________
 tests\TeamworkDB\test_utilization_monthly.py:929: in test_db_comparison_us_ytd
     run_location_comparison(df_excel, df_db, f"{REPORT_YEAR}_US (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:830: in run_location_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 8 error(s) found
+E   Failed: 12 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_us_monthly
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_us_ytd
-================= 2 failed, 2 passed, 52 deselected in 30.21s =================
+================= 2 failed, 2 passed, 52 deselected in 31.53s =================
