@@ -10,25 +10,14 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Bo
 [PASS] 'YTD - CRB  (YTD)' matches database.
 PASSED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Chicago] 
-  UTILIZATION QA — VALUE MISMATCHES
-  Report: May 2026 | Sheet: YTD - CRCH (YTD) | Run: 2026-06-02
-
-  MISSING ROWS:
-    [MISSING IN XLS] EmpNo=101437 | Name=nan
-FAILED
+[PASS] 'YTD - CRCH (YTD)' matches database.
+PASSED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[DC] 
   UTILIZATION QA — VALUE MISMATCHES
   Report: May 2026 | Sheet: YTD - CRDC (YTD) | Run: 2026-06-02
 
   MISSING ROWS:
-    [MISSING IN XLS] EmpNo=6038 | Name=nan
-
-  EmpNo  | Name              | Column       | Util Report | DB         | Diff       | Diff% 
-  -------+-------------------+--------------+-------------+------------+------------+-------
-  101400 | Boboshko, Nikolai | Target_Hours | 743.70      | 458.80     | 284.90     | 38.31%
-  101400 | Boboshko, Nikolai | Target_Rev   | 687,922.50  | 424,390.00 | 263,532.50 | 38.31%
-  101400 | Boboshko, Nikolai | Actual_Hours | 717.50      | 489.40     | 228.10     | 31.79%
-  101400 | Boboshko, Nikolai | Standard_Rev | 663,687.50  | 452,695.00 | 210,992.50 | 31.79%
+    [MISSING IN DB] EmpNo=102231 | Name=Conell-Price, Lynn
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[LA] 
 [PASS] 'YTD - CRLA (YTD)' matches database.
@@ -37,14 +26,13 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY
   UTILIZATION QA — VALUE MISMATCHES
   Report: May 2026 | Sheet: YTD - CRNY (YTD) | Run: 2026-06-02
 
-  EmpNo  | Name                | Column       | Util Report | DB         | Diff       | Diff% 
-  -------+---------------------+--------------+-------------+------------+------------+-------
-  101437 | Wu, Ashley          | Target_Hours | 772.00      | 160.00     | 612.00     | 79.27%
-  101437 | Wu, Ashley          | Target_Rev   | 474,780.00  | 98,400.00  | 376,380.00 | 79.27%
-  101437 | Wu, Ashley          | Actual_Hours | 784.30      | 111.60     | 672.70     | 85.77%
-  5674   | Li Bergolis, Matteo | Actual_Hours | 582.80      | 695.30     | 112.50     | 19.30%
-  101437 | Wu, Ashley          | Standard_Rev | 482,344.50  | 68,634.00  | 413,710.50 | 85.77%
-  5674   | Li Bergolis, Matteo | Standard_Rev | 705,188.00  | 841,313.00 | 136,125.00 | 19.30%
+  MISSING ROWS:
+    [MISSING IN XLS] EmpNo=102231 | Name=nan
+
+  EmpNo | Name                | Column       | Util Report | DB         | Diff       | Diff% 
+  ------+---------------------+--------------+-------------+------------+------------+-------
+  5674  | Li Bergolis, Matteo | Actual_Hours | 582.80      | 695.30     | 112.50     | 19.30%
+  5674  | Li Bergolis, Matteo | Standard_Rev | 705,188.00  | 841,313.00 | 136,125.00 | 19.30%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF] 
   UTILIZATION QA — VALUE MISMATCHES
@@ -55,12 +43,8 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF
   101650 | Li, Lily | Actual_Hours | 165.70      | 170.70 | 5.00 | 3.02%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV] 
-  UTILIZATION QA — VALUE MISMATCHES
-  Report: May 2026 | Sheet: YTD - CRSV (YTD) | Run: 2026-06-02
-
-  MISSING ROWS:
-    [MISSING IN XLS] EmpNo=101400 | Name=nan
-FAILED
+[PASS] 'YTD - CRSV (YTD)' matches database.
+PASSED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-UK] 
 [PASS] 'YTD - CRUK (YTD)' matches database.
 PASSED
@@ -69,40 +53,26 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU
 PASSED
 
 ================================== FAILURES ===================================
-__________________ test_db_comparison_employee_ytd[Chicago] ___________________
-tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
-    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
-    pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 1 error(s) found
 _____________________ test_db_comparison_employee_ytd[DC] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 5 error(s) found
+E   Failed: 1 error(s) found
 _____________________ test_db_comparison_employee_ytd[NY] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 6 error(s) found
+E   Failed: 3 error(s) found
 _____________________ test_db_comparison_employee_ytd[SF] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 1 error(s) found
-_____________________ test_db_comparison_employee_ytd[SV] _____________________
-tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
-    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
-    pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 1 error(s) found
 =========================== short test summary info ===========================
-FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Chicago]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[DC]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF]
-FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV]
-================= 5 failed, 4 passed, 47 deselected in 19.76s =================
+================= 3 failed, 6 passed, 47 deselected in 19.67s =================

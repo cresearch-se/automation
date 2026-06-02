@@ -18,14 +18,21 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthl
   102135 | Roycroft, Claire | Actual_Hours | 175.10      | 180.60 | 5.50 | 3.14%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[DC] 
-[PASS] 'Month - CRDC (Monthly)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: May 2026 | Sheet: Month - CRDC (Monthly) | Run: 2026-06-02
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=102231 | Name=Conell-Price, Lynn
+FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[LA] 
 [PASS] 'Month - CRLA (Monthly)' matches database.
 PASSED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[NY] 
   UTILIZATION QA — VALUE MISMATCHES
   Report: May 2026 | Sheet: Month - CRNY (Monthly) | Run: 2026-06-02
+
+  MISSING ROWS:
+    [MISSING IN XLS] EmpNo=102231 | Name=nan
 
   EmpNo | Name                | Column       | Util Report | DB         | Diff       | Diff%  
   ------+---------------------+--------------+-------------+------------+------------+--------
@@ -52,13 +59,20 @@ tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 1 error(s) found
+___________________ test_db_comparison_employee_monthly[DC] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_monthly
+    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 1 error(s) found
 ___________________ test_db_comparison_employee_monthly[NY] ___________________
 tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 2 error(s) found
+E   Failed: 3 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Chicago]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[DC]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[NY]
-================= 2 failed, 7 passed, 47 deselected in 16.09s =================
+================= 3 failed, 6 passed, 47 deselected in 15.51s =================
