@@ -28,11 +28,6 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY
 
   MISSING ROWS:
     [MISSING IN XLS] EmpNo=102231 | Name=nan
-
-  EmpNo | Name                | Column       | Util Report | DB         | Diff       | Diff% 
-  ------+---------------------+--------------+-------------+------------+------------+-------
-  5674  | Li Bergolis, Matteo | Actual_Hours | 582.80      | 695.30     | 112.50     | 19.30%
-  5674  | Li Bergolis, Matteo | Standard_Rev | 705,188.00  | 841,313.00 | 136,125.00 | 19.30%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF] 
   UTILIZATION QA — VALUE MISMATCHES
@@ -64,7 +59,7 @@ tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 3 error(s) found
+E   Failed: 1 error(s) found
 _____________________ test_db_comparison_employee_ytd[SF] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
@@ -75,4 +70,4 @@ E   Failed: 1 error(s) found
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[DC]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF]
-================= 3 failed, 6 passed, 47 deselected in 19.67s =================
+================= 3 failed, 6 passed, 47 deselected in 21.12s =================

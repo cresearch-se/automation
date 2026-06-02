@@ -34,10 +34,10 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthl
   MISSING ROWS:
     [MISSING IN XLS] EmpNo=102231 | Name=nan
 
-  EmpNo | Name                | Column       | Util Report | DB         | Diff       | Diff%  
-  ------+---------------------+--------------+-------------+------------+------------+--------
-  5674  | Li Bergolis, Matteo | Actual_Hours | 11.80       | 124.30     | 112.50     | 953.39%
-  5674  | Li Bergolis, Matteo | Standard_Rev | 14,278.00   | 150,403.00 | 136,125.00 | 953.39%
+  EmpNo | Name           | Column       | Util Report | DB        | Diff     | Diff%
+  ------+----------------+--------------+-------------+-----------+----------+------
+  1379  | Bickford, Eric | Actual_Hours | 28.40       | 29.60     | 1.20     | 4.23%
+  1379  | Bickford, Eric | Standard_Rev | 35,926.00   | 37,444.00 | 1,518.00 | 4.23%
 FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SF] 
 [PASS] 'Month - CRSF (Monthly)' matches database.
@@ -75,4 +75,4 @@ E   Failed: 3 error(s) found
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Chicago]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[DC]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[NY]
-================= 3 failed, 6 passed, 47 deselected in 15.51s =================
+================= 3 failed, 6 passed, 47 deselected in 17.34s =================
