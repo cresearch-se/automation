@@ -1,9 +1,9 @@
 ---
-name: update-utilization
-description: Refresh the monthly TeamworkDB utilization fixture from Power BI and run the validation tests. Use when the user wants to do the monthly utilization run, refresh the utilization fixture, export the utilization report, or run the utilization tests for a new month.
+name: validate-monthly-utilization
+description: Refresh the monthly TeamworkDB utilization fixture from Power BI and run the validation tests. Use when the user wants to do the monthly utilization run, validate monthly utilization, refresh the utilization fixture, export the utilization report, or run the utilization tests for a new month.
 ---
 
-# Update Utilization (monthly)
+# Validate Monthly Utilization
 
 Automates the monthly TeamworkDB utilization workflow end to end: export the
 Power BI paginated report, save it as the fixture, repoint the test at it, and
