@@ -7,14 +7,18 @@ client-credentials flow. No browser or UI automation needed.
 Credentials are read from ``config/creds/powerbi.env`` (gitignored). A template
 with the required keys lives at ``config/powerbi.env.example``.
 
-Required env keys:
-    PBI_TENANT_ID, PBI_CLIENT_ID, PBI_CLIENT_SECRET, PBI_WORKSPACE_ID, PBI_REPORT_ID
+Required env keys (auth only):
+    PBI_TENANT_ID, PBI_CLIENT_ID, PBI_CLIENT_SECRET
+
+The report to export is identified by its Power BI URL (passed in by the caller),
+not by env vars -- so this module is reusable for any workspace report.
 
 Only ``requests`` is needed (already a project dependency) -- the
 client-credentials token is a plain OAuth POST, so ``msal`` is not required.
 """
 
 import os
+import re
 import time
 
 import requests
@@ -43,6 +47,26 @@ def _require(name):
     return value
 
 
+def parse_report_url(url):
+    """Extract ``(workspace_id, report_id)`` from a Power BI workspace report URL.
+
+    Expects the workspace form::
+
+        https://app.powerbi.com/groups/<workspace-id>/rdlreports/<report-id>?...
+
+    Raises ValueError for app-style URLs (``groups/me/apps/...``) or anything
+    that doesn't match, so unsupported links fail loudly instead of silently.
+    """
+    m = re.search(r"/groups/([0-9a-fA-F-]{36})/(?:rdl)?reports/([0-9a-fA-F-]{36})", url)
+    if not m:
+        raise ValueError(
+            "Unsupported Power BI report URL. Expected a workspace report URL like "
+            "'https://app.powerbi.com/groups/<workspace-id>/rdlreports/<report-id>'. "
+            f"Got: {url!r}"
+        )
+    return m.group(1), m.group(2)
+
+
 def get_access_token():
     """Acquire an Azure AD access token for the Power BI API (service principal)."""
     tenant = _require("PBI_TENANT_ID")
@@ -64,6 +88,7 @@ def get_access_token():
 
 
 def export_report_to_file(
+    report_url,
     out_path,
     fmt="XLSX",
     parameter_values=None,
@@ -71,9 +96,11 @@ def export_report_to_file(
     timeout=600,
     token=None,
 ):
-    """Export the configured paginated report and write the bytes to ``out_path``.
+    """Export a paginated report (by its Power BI URL) and write bytes to ``out_path``.
 
     Args:
+        report_url: the Power BI workspace report URL (workspace + report IDs
+            are parsed from it).
         out_path: where to save the exported file.
         fmt: export format ("XLSX", "PDF", "CSV", ...). Default "XLSX".
         parameter_values: optional list of ``{"name": ..., "value": ...}`` dicts.
@@ -88,8 +115,7 @@ def export_report_to_file(
         ``out_path`` on success.
     """
     token = token or get_access_token()
-    workspace = _require("PBI_WORKSPACE_ID")
-    report = _require("PBI_REPORT_ID")
+    workspace, report = parse_report_url(report_url)
     headers = {"Authorization": f"Bearer {token}"}
     base = f"{_PBI_API}/groups/{workspace}/reports/{report}"
 
@@ -133,7 +159,7 @@ def export_report_to_file(
     return out_path
 
 
-def check_access():
+def check_access(report_url):
     """Verify the credentials work: acquire a token and reach the report.
 
     Prints a short report and returns the token. Raises with a clear message if
@@ -143,8 +169,7 @@ def check_access():
     token = get_access_token()
     print("  [OK] Acquired access token.")
 
-    workspace = _require("PBI_WORKSPACE_ID")
-    report = _require("PBI_REPORT_ID")
+    workspace, report = parse_report_url(report_url)
     r = requests.get(
         f"{_PBI_API}/groups/{workspace}/reports/{report}",
         headers={"Authorization": f"Bearer {token}"},
@@ -161,4 +186,8 @@ def check_access():
 
 
 if __name__ == "__main__":
-    check_access()
+    import sys
+
+    if len(sys.argv) < 2:
+        sys.exit("Usage: python powerbi_utils.py <power-bi-report-url>")
+    check_access(sys.argv[1])

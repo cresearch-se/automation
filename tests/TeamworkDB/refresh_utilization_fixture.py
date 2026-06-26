@@ -32,6 +32,10 @@ TEST_FILE = os.path.join(ROOT, "tests", "TeamworkDB", "test_utilization_monthly.
 FIXTURES_DIR = os.path.join(ROOT, "tests", "TeamworkDB", "fixtures")
 RUNNER = os.path.join(ROOT, "tests", "TeamworkDB", "run_test_utilization_monthly.py")
 
+# The monthly utilization paginated report (workspace + report IDs are parsed
+# from this URL). Not a secret; lives here so it's easy to find/change.
+REPORT_URL = "https://app.powerbi.com/groups/ab8a7a10-48b2-4f07-a84e-7b64dc56f60a/rdlreports/bc02fbd6-248c-4c7e-9979-9bc8afa73c6e"
+
 
 def previous_month_yyyymm(today=None):
     """Return the previous calendar month as 'YYYYMM' (e.g. run in June -> '202505')."""
@@ -75,7 +79,7 @@ def main():
     args = ap.parse_args()
 
     if args.check:
-        powerbi_utils.check_access()
+        powerbi_utils.check_access(REPORT_URL)
         return
 
     yyyymm = args.yyyymm or previous_month_yyyymm()
@@ -98,7 +102,7 @@ def main():
               f"Pass --period-param <name> to force a specific month.")
 
     print(f"Exporting Power BI report -> {out_path}")
-    powerbi_utils.export_report_to_file(out_path, fmt="XLSX", parameter_values=parameter_values)
+    powerbi_utils.export_report_to_file(REPORT_URL, out_path, fmt="XLSX", parameter_values=parameter_values)
     print(f"  Saved fixture ({os.path.getsize(out_path):,} bytes)")
 
     patch_fixture_file(TEST_FILE, fixture_relpath)
