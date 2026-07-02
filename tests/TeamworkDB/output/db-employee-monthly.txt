@@ -11,14 +11,8 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthl
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Chicago] 
-  UTILIZATION QA — VALUE MISMATCHES
-  Report: June 2026 | Sheet: Month - CRCH (Monthly) | Run: 2026-07-02
-
-  EmpNo  | Name            | Column       | Util Report | DB         | Diff      | Diff% 
-  -------+-----------------+--------------+-------------+------------+-----------+-------
-  101379 | Mahajan, Mansha | Actual_Hours | 132.50      | 161.90     | 29.40     | 22.19%
-  101379 | Mahajan, Mansha | Standard_Rev | 86,125.00   | 105,235.00 | 19,110.00 | 22.19%
-FAILED
+[PASS] 'Month - CRCH (Monthly)' matches database.
+PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[DC] 
 [PASS] 'Month - CRDC (Monthly)' matches database.
@@ -49,13 +43,4 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthl
 PASSED
 
 
-================================== FAILURES ===================================
-________________ test_db_comparison_employee_monthly[Chicago] _________________
-tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_monthly
-    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
-    pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 2 error(s) found
-=========================== short test summary info ===========================
-FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Chicago]
-================= 1 failed, 8 passed, 47 deselected in 18.18s =================
+====================== 9 passed, 47 deselected in 17.76s ======================
