@@ -27,8 +27,13 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF] 
-[PASS] 'YTD - CRSF (YTD)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: June 2026 | Sheet: YTD - CRSF (YTD) | Run: 2026-07-02
+
+  EmpNo  | Name     | Column       | Util Report | DB     | Diff | Diff%
+  -------+----------+--------------+-------------+--------+------+------
+  101650 | Li, Lily | Actual_Hours | 165.70      | 170.70 | 5.00 | 3.02%
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV] 
 [PASS] 'YTD - CRSV (YTD)' matches database.
@@ -43,4 +48,13 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU
 PASSED
 
 
-====================== 9 passed, 47 deselected in 26.13s ======================
+================================== FAILURES ===================================
+_____________________ test_db_comparison_employee_ytd[SF] _____________________
+tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 1 error(s) found
+=========================== short test summary info ===========================
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF]
+================= 1 failed, 8 passed, 47 deselected in 27.14s =================
