@@ -34,15 +34,15 @@ tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_locatio
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[US_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202605_US'.
+[PASS] All subtotals and grand total verified correctly for '202606_US'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[EU_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202605_Europe'.
+[PASS] All subtotals and grand total verified correctly for '202606_Europe'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[Total_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202605_Total'.
+[PASS] All subtotals and grand total verified correctly for '202606_Total'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[US_Utilization_YTD] 
@@ -180,4 +180,4 @@ E   Failed: 3 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_Monthly]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD]
-================ 2 failed, 32 passed, 22 deselected in 11.58s =================
+================= 2 failed, 32 passed, 22 deselected in 9.46s =================

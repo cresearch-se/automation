@@ -14,7 +14,7 @@ from cornerstone_automation.utils.db_utils import get_db_connection_from_env, ca
 # ==========================================
 # CHANGE ONLY THIS LINE EACH MONTH
 # ==========================================
-FIXTURE_FILE  = "tests/TeamworkDB/fixtures/Utilization_202605.xlsx"
+FIXTURE_FILE  = "tests/TeamworkDB/fixtures/Utilization_202606.xlsx"
 
 # Derived automatically from the filename — no other changes needed
 REPORT_MONTH  = os.path.basename(FIXTURE_FILE).replace("Utilization_", "").replace(".xlsx", "")  # e.g. "202602"
@@ -512,7 +512,7 @@ def test_format_validations_by_location(comp):
     Parametrized test that runs a fresh comparison for every entry in CONFIG_LOCATION.
     """
     #print(f"\nRunning Comparison: {comp['sheet_name']}")
-    
+
     # 1. Check file existence
     assert os.path.exists(FIXTURE_FILE), f"File not found: {FIXTURE_FILE}"
 
@@ -736,23 +736,23 @@ def normalize_db_data_by_employee(df_db, numeric_cols):
     for col in numeric_cols:
         if col in df.columns:
             df[col] = safe_to_numeric(df[col], remove_commas=True)
-    
+
     return df
 
 
 def normalize_db_data_by_location(df_db, numeric_cols):
     """
     Normalize DB data for location-level comparisons.
-    
+
     Converts:
       - Numeric columns: comma-formatted strings → float
     """
     df = df_db.copy()
-    
+
     for col in numeric_cols:
         if col in df.columns:
             df[col] = safe_to_numeric(df[col], remove_commas=True)
-    
+
     return df
 
 
@@ -819,7 +819,7 @@ def run_location_comparison(df_excel, df_db, label, tolerance=0.1):
     df_db = df_db.rename(columns=COLUMN_MAP_BY_LOCATION)
     # Normalize DB data: convert numeric columns from strings to float
     df_db = normalize_db_data_by_location(df_db, NUMERIC_COLS)
-    
+
     merged = pd.merge(
         df_excel, df_db[JOIN_KEYS_BY_LOCATION + NUMERIC_COLS],
         on=JOIN_KEYS_BY_LOCATION, how='outer', suffixes=('_XLS', '_DB')
@@ -973,7 +973,7 @@ def test_db_comparison_employee_ytd(loc, db_detail_ytd):
 
     if loc.get("filter_by_excel_empnos"):
         df_db = df_db[df_db['EMPLOYEE_CODE'].isin(df_excel['EmpNo'])].copy()
-   
+
     #print(f"[DEBUG] df_db:\n{df_db.to_string()}")
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 
