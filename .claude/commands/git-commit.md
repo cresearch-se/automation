@@ -30,6 +30,7 @@ Apply this logic and ask the user ONE clear question:
 
 **If on `main` or `master`:**
 → Never commit directly. Tell the user and ask: "What should the new branch be called?"
+→ Before creating the branch, always run `git pull` on main first so the new branch starts from the latest state.
 
 **If on a feature branch AND branch is in sync with origin (all changes pushed):**
 → Default suggestion is a NEW branch (likely new work).
@@ -64,6 +65,16 @@ Write a clear, concise commit message based on what changed. Format:
 Ask: "Push to origin now?"
 - If yes → `git push -u origin <branch>`
 - If no → stop here, leave it as a local commit
+
+## Creating a New Branch
+Always follow this exact sequence:
+```
+git checkout main
+git pull                             # get latest main first
+git checkout -b new-branch-name      # branch starts from fresh main
+git push -u origin new-branch-name   # set upstream immediately
+```
+Never create a branch without pulling main first — otherwise the branch misses recent merges.
 
 ## Rules
 - Never use `git add .` or `git add -A` — always add files explicitly by name
