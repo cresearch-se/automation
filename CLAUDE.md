@@ -193,3 +193,22 @@ git push -u origin branch-name
 3. **Run from `Code/` directory** — relative paths in test files assume this as the working directory
 4. **Use `-k` flag** for parametrized tests, not `::function_name`
 5. **SSH remote** — `git@github.com:cresearch-se/automation.git` (HTTPS fails on this server without a PAT)
+
+---
+
+## Context Files (Claude must maintain these)
+
+Live notes are stored in `.claude/context/`. **At the start of every session, read all three files before doing any work.** Update them whenever something changes — don't wait to be asked.
+
+| File | Update when |
+|---|---|
+| [`teamworkdb.md`](.claude/context/teamworkdb.md) | SP behavior changes, new fixture quirks, new test groups, bug root causes found |
+| [`decisions.md`](.claude/context/decisions.md) | A non-obvious architectural or coding decision is made and the reason should be remembered |
+| [`todo.md`](.claude/context/todo.md) | An issue is opened or closed, a task is started or finished, a new recurring step is discovered |
+
+**Rules:**
+- Update context files silently as work progresses — never wait to be asked
+- Create new topic files as needed if a new area grows complex enough to deserve its own file
+- Mark items in `todo.md` as done (or remove them) as soon as they are resolved — never leave stale entries
+- Add to `decisions.md` any time a "why did we do it this way?" question comes up and gets answered
+- Keep `teamworkdb.md` as the single source of truth for utilization test mechanics — if CLAUDE.md and `teamworkdb.md` conflict, `teamworkdb.md` wins (it is more detailed)
