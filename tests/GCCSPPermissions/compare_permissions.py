@@ -242,10 +242,27 @@ def diagnose_matching(cz_rows, gcc_rows):
     print(f"Modern unique WebUrls                    : {len(gcc_sites)}")
     print(f"Matched sites                            : {len(matched)}")
     print(f"Unmatched Classic sites (no Modern pair) : {len(unmatched)}")
+
     if unmatched:
-        print("  Unmatched (first 20 — add to CLASSIC_TO_MODERN if needed):")
-        for u in sorted(unmatched)[:20]:
-            print(f"    {u}")
+        print("\n--- SUGGESTED MAPPINGS (unmatched Classic → likely GCC equivalent) ---")
+        gcc_list = sorted(gcc_sites)
+        for cz_norm in sorted(unmatched):
+            # Extract the meaningful name tokens from the normalized path
+            # e.g. /sites/BIPortal → ["biportal"],  /sites/corp_hr_ben → ["corp","hr","ben"]
+            tokens = cz_norm.replace("/sites/", "").lower().split("_")
+            candidates = [
+                g for g in gcc_list
+                if all(t in g.lower() for t in tokens)
+            ]
+            if not candidates:
+                # Fallback: match on just the last token
+                candidates = [g for g in gcc_list if tokens[-1] in g.lower()]
+            if candidates:
+                print(f"  {cz_norm}")
+                for c in candidates[:3]:
+                    print(f"    → {c}")
+            else:
+                print(f"  {cz_norm}  →  [NO CANDIDATE FOUND IN GCC]")
 
 
 if __name__ == "__main__":
