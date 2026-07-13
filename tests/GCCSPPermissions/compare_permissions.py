@@ -120,19 +120,23 @@ def compare(cz_rows, gcc_rows):
     cz_keys  = set(make_key_classic(r) for r in cz_rows)
 
     missing_in_gcc = []
+    matched = []
     for row in cz_rows:
         k = make_key_classic(row)
+        entry = {
+            "NormalizedWebUrl"   : k[0],
+            "PrincipalName"      : k[1],
+            "PermissionLevel"    : k[2],
+            "OriginalWebUrl"     : row.get("WebUrl", ""),
+            "WebTitle"           : row.get("WebTitle", ""),
+            "ObjectType"         : row.get("ObjectType", ""),
+            "PrincipalType"      : row.get("PrincipalType", ""),
+            "PermissionCategory" : row.get("PermissionCategory", ""),
+        }
         if k not in gcc_keys:
-            missing_in_gcc.append({
-                "NormalizedWebUrl"   : k[0],
-                "PrincipalName"      : k[1],
-                "PermissionLevel"    : k[2],
-                "OriginalWebUrl"     : row.get("WebUrl", ""),
-                "WebTitle"           : row.get("WebTitle", ""),
-                "ObjectType"         : row.get("ObjectType", ""),
-                "PrincipalType"      : row.get("PrincipalType", ""),
-                "PermissionCategory" : row.get("PermissionCategory", ""),
-            })
+            missing_in_gcc.append(entry)
+        else:
+            matched.append(entry)
 
     extra_in_gcc = []
     for row in gcc_rows:
@@ -149,7 +153,7 @@ def compare(cz_rows, gcc_rows):
                 "PermissionCategory" : row.get("PermissionCategory", ""),
             })
 
-    return missing_in_gcc, extra_in_gcc
+    return missing_in_gcc, extra_in_gcc, matched
 
 
 def print_summary(missing, extra):
@@ -252,10 +256,12 @@ if __name__ == "__main__":
 
     diagnose_matching(cz_rows, gcc_rows)
 
-    missing, extra = compare(cz_rows, gcc_rows)
+    missing, extra, matched = compare(cz_rows, gcc_rows)
 
     print_summary(missing, extra)
+    print(f"  MATCHED (found in both)        : {len(matched)}")
     print_missing(missing)
 
     write_csv(missing, "missing_in_gcc.csv", "Missing in GCC")
     write_csv(extra,   "extra_in_gcc.csv",   "Extra in GCC")
+    write_csv(matched, "matched.csv",         "Matched permissions")
