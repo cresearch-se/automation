@@ -1,36 +1,61 @@
 # GCC SharePoint Permissions Validation
 
 ## Background
-Migration from classic SharePoint (CornerZone) to modern SharePoint (GCC). Goal is to validate that sites migrated from the classic permission model have correct permissions in their corresponding modern sites.
+Migration from classic SharePoint (CornerZone / cresearch1.sharepoint.com) to modern SharePoint
+(GCC / cresearch3.sharepoint.com). Goal: validate that permissions were correctly transferred.
 
 ## Objective
-Compare site permissions between source (CornerZone) and target (GCC) environments.
+Compare site permissions between source (CornerZone) and target (GCC).
+- **MISSING IN GCC** — in CornerZone but not in GCC → real issue, must be fixed
+- **EXTRA IN GCC** — in GCC but not in CornerZone → migration additions, not a problem, kept separate
 
-## What to Check
-- **Source → Target match:** All source (CornerZone) permissions must exist in target (GCC) — this is the primary check
-- **Missing permissions:** Permissions present in source but absent in target
-- **Additional permissions:** Permissions in GCC not in CornerZone — these can be safely ignored (not a failure)
-- **Permission mismatches/exceptions:** Same site/user but different permission level
+## Data Files
+- `tests/GCCSPPermissions/fixtures/Cornerzone_SP_PermissionMatrix_20260708_170344.csv` — 8139 rows
+- `tests/GCCSPPermissions/fixtures/GG_SP_PermissionMatrix.xlsx` — 4855 rows
 
-## Key Rule
-Extra permissions in GCC are acceptable — only missing permissions (from source) are failures.
+## Script
+`tests/GCCSPPermissions/compare_permissions.py` — run with:
+```
+py tests/GCCSPPermissions/compare_permissions.py
+```
 
-## Data
-- `tests/GCCSPPermissions/fixtures/GCC_Security_Matrix.xlsx` — target (modern GCC sites)
-- `tests/GCCSPPermissions/fixtures/CornerZone_Security_Matrix.xlsx` — source (classic CornerZone sites)
+## Output Files
+- `tests/GCCSPPermissions/output/comparison_report.csv` — every CZ row with Status (MATCHED / MISSING IN GCC),
+  showing CZ_WebUrl, GCC_WebUrl side by side, PrincipalName, PermissionLevel
+- `tests/GCCSPPermissions/output/extra_in_gcc.csv` — GCC-only permissions (informational)
 
-## Files
-- `tests/GCCSPPermissions/` — test folder
-- `tests/GCCSPPermissions/fixtures/` — input Excel files
-- `tests/GCCSPPermissions/output/` — generated reports
+## Match Key
+`normalized WebUrl + PrincipalName + PermissionLevel`
+- Dropped SiteCollectionTitle (unreliable across environments — confirmed by Shridhar)
+- Dropped ObjectUrl (sub-path structure also changes between environments)
 
-## Context
-- This is likely a one-time activity (migration validation)
-- Team lead asked for a quick feasibility check (~1 hour) before committing to full automation
-- If too complex, manual validation continues; automation would help for detailed library/folder validation starting early next week
+## URL Normalization
+Classic sub-sites become flat `/sites/` collections in Modern. Standard rule:
+`/corp/hr/advisors` → `/sites/corp_hr_advisors` (join segments with `_`, prepend `/sites/`)
+
+Known exceptions handled in `CLASSIC_TO_MODERN` lookup table:
+- `corp/it` → `corpIT` (special token, no underscore)
+- `corp/it/Projects/X` → `corpIT_X` (intermediate segments dropped)
+- `corp/facilities/X` → `corp_X` ("facilities" segment dropped)
+- `CRIKIT/InformationResources/DataSources/X` → `CRIKIT_X` (deep nesting dropped)
+- `/corp/hr/ben` → `corp_hr_benefits` (renamed)
+- `/consulting/util/WhereInLAN` → `consulting_WhereInLan` (renamed)
+
+## System Permission Filter
+`PermissionCategory = "System"` rows are filtered out from BOTH files before comparison.
+Reason: SharePoint auto-generates "Limited Access / System" for individual users when they have
+permissions on sub-items. Classic exposes these explicitly; Modern handles them internally.
+They are not admin-assigned and should not be compared. This removed a large amount of false
+MISSING IN GCC noise (Individual User + Limited Access + System rows).
+
+## Key Decisions
+- Extra GCC permissions are NOT printed to screen — only written to extra_in_gcc.csv
+- Screen output shows: diagnostic URL normalization, summary counts, MISSING IN GCC details only
+- Shridhar (team lead) confirmed: no universal join key exists; URL-based mapping is the approach
 
 ## Status
-- [ ] Excel files received and structure understood
-- [ ] Comparison logic designed
-- [ ] Tests written
-- [ ] Report output generated
+- [x] Script written and pushed to gcc-sp-permission branch
+- [x] URL normalization implemented with lookup table for exceptions
+- [x] System permission filter added
+- [ ] Verify: run on local, check how many matched vs unmatched after System filter
+- [ ] If unmatched sites remain, add them to CLASSIC_TO_MODERN lookup table

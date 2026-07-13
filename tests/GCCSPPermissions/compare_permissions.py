@@ -252,6 +252,14 @@ if __name__ == "__main__":
     cz_rows  = load_cornerzone()
     gcc_rows = load_gcc()
 
+    # Filter out system-generated permissions (e.g. Limited Access auto-granted by SharePoint).
+    # These are not explicitly assigned by admins and don't appear consistently in Modern SP.
+    cz_before  = len(cz_rows)
+    gcc_before = len(gcc_rows)
+    cz_rows  = [r for r in cz_rows  if (r.get("PermissionCategory") or "").strip() != "System"]
+    gcc_rows = [r for r in gcc_rows if (r.get("PermissionCategory") or "").strip() != "System"]
+    print(f"System rows filtered out — CZ: {cz_before - len(cz_rows)}, GCC: {gcc_before - len(gcc_rows)}")
+
     diagnose_matching(cz_rows, gcc_rows)
 
     comparison, extra = compare(cz_rows, gcc_rows)
