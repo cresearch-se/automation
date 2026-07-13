@@ -127,7 +127,7 @@ def build_url_mapping(cz_rows, gcc_rows):
     if fuzzy_used:
         print("\n  Fuzzy-matched sites (review these):")
         for orig, resolved in fuzzy_used:
-            print(f"    {orig:50s} → {resolved}")
+            print(f"    {orig:50s} -> {resolved}")
 
     if unresolved:
         print("\n  Unresolved sites (will appear as MISSING IN GCC):")
