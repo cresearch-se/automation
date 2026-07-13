@@ -3,16 +3,15 @@ SP Permission Matrix Comparison
 Source: CornerZone (cresearch1.sharepoint.com) — classic environment
 Target: GCC (cresearch3.sharepoint.com) — modern environment
 
-Match key: normalized WebUrl (Classic → Modern path transform) + PrincipalName + PermissionLevel
+URL resolution order for each Classic site:
+  1. CLASSIC_TO_MODERN lookup table (explicit overrides for known exceptions)
+  2. Standard rule: /corp/hr/advisors → /sites/corp_hr_advisors
+  3. Fuzzy fallback: token search across GCC URLs (auto, no manual table needed)
 
 Output files:
-  comparison_report.csv — every CornerZone row with Status MATCHED or MISSING IN GCC,
-                          showing both CZ and GCC URLs side by side
-  extra_in_gcc.csv      — permissions in GCC not in CornerZone (migration additions, informational)
-
-URL transform (classic sub-sites become flat /sites/ collections in modern):
-  Standard rule : /corp/hr/advisors  →  /sites/corp_hr_advisors
-  Exceptions    : see CLASSIC_TO_MODERN lookup table below
+  comparison_report.csv — every CZ row: Status (MATCHED/MISSING IN GCC),
+                          CZ_WebUrl, GCC_WebUrl, PrincipalName, PermissionLevel
+  extra_in_gcc.csv      — permissions in GCC not in CornerZone (informational)
 """
 
 import csv
@@ -24,7 +23,8 @@ CORNERZONE_CSV = "tests/GCCSPPermissions/fixtures/Cornerzone_SP_PermissionMatrix
 GCC_XLSX       = "tests/GCCSPPermissions/fixtures/GG_SP_PermissionMatrix.xlsx"
 OUTPUT_DIR     = "tests/GCCSPPermissions/output"
 
-# Explicit overrides for URLs that don't follow the standard slash→underscore rule.
+# Explicit overrides for the handful of sites that need special handling.
+# Only needed when standard rule AND fuzzy fallback would both give wrong results.
 # Key: Classic path (no domain, no trailing slash)
 # Value: Modern path (no domain, no trailing slash)
 CLASSIC_TO_MODERN = {
@@ -52,6 +52,9 @@ CLASSIC_TO_MODERN = {
 _CZ_DOMAIN  = "https://cresearch1.sharepoint.com"
 _GCC_DOMAIN = "https://cresearch3.sharepoint.com"
 
+# Built at runtime in build_url_mapping() — Classic path → resolved GCC path
+_URL_MAP = {}
+
 
 def strip_domain(url):
     url = (url or "").strip()
@@ -61,22 +64,86 @@ def strip_domain(url):
     return url.rstrip("/") or "/"
 
 
-def normalize_classic_url(url):
-    """Transform a Classic SharePoint WebUrl path to its expected Modern GCC path."""
-    path = strip_domain(url)
-    if path in CLASSIC_TO_MODERN:
-        return CLASSIC_TO_MODERN[path]
+def _standard_normalize(path):
+    """Apply the standard slash→underscore rule (no lookup table, no fuzzy)."""
     if path.startswith("/sites/"):
-        return path  # Already modern-style, leave untouched
+        return path
     segments = [s for s in path.split("/") if s]
-    if not segments:
-        return "/"
-    return "/sites/" + "_".join(segments)
+    return ("/sites/" + "_".join(segments)) if segments else "/"
+
+
+def build_url_mapping(cz_rows, gcc_rows):
+    """
+    Pre-compute Classic path → GCC path for every unique Classic WebUrl.
+    Resolution order: lookup table → standard rule → fuzzy token fallback.
+    Populates the module-level _URL_MAP used by make_key_classic().
+    """
+    global _URL_MAP
+    gcc_sites = sorted(set(strip_domain((r.get("WebUrl") or "").strip()) for r in gcc_rows))
+    gcc_set   = set(gcc_sites)
+
+    fuzzy_used    = []
+    unresolved    = []
+
+    classic_paths = sorted(set(strip_domain((r.get("WebUrl") or "").strip()) for r in cz_rows))
+
+    for path in classic_paths:
+        # 1. Explicit lookup table
+        if path in CLASSIC_TO_MODERN:
+            _URL_MAP[path] = CLASSIC_TO_MODERN[path]
+            continue
+
+        # 2. Standard rule
+        normalized = _standard_normalize(path)
+        if normalized in gcc_set:
+            _URL_MAP[path] = normalized
+            continue
+
+        # 3. Fuzzy token fallback — search GCC URLs for ones containing all tokens
+        tokens = normalized.replace("/sites/", "").lower().split("_")
+        candidates = [g for g in gcc_sites if all(t in g.lower() for t in tokens)]
+        if not candidates:
+            # Relax: match on just the last (most specific) token
+            candidates = [g for g in gcc_sites if tokens[-1] in g.lower()]
+
+        if len(candidates) == 1:
+            _URL_MAP[path] = candidates[0]
+            fuzzy_used.append((path, candidates[0]))
+        elif len(candidates) > 1:
+            # Multiple candidates — pick shortest (closest structural match)
+            best = min(candidates, key=len)
+            _URL_MAP[path] = best
+            fuzzy_used.append((path, best + f"  [picked from {len(candidates)} candidates]"))
+        else:
+            _URL_MAP[path] = normalized  # leave as-is, will show as MISSING IN GCC
+            unresolved.append(path)
+
+    print(f"\nURL mapping built: {len(_URL_MAP)} Classic sites")
+    print(f"  Resolved via lookup table  : {sum(1 for p in classic_paths if p in CLASSIC_TO_MODERN)}")
+    print(f"  Resolved via standard rule : {len(classic_paths) - sum(1 for p in classic_paths if p in CLASSIC_TO_MODERN) - len(fuzzy_used) - len(unresolved)}")
+    print(f"  Resolved via fuzzy match   : {len(fuzzy_used)}")
+    print(f"  Unresolved (no GCC match)  : {len(unresolved)}")
+
+    if fuzzy_used:
+        print("\n  Fuzzy-matched sites (review these):")
+        for orig, resolved in fuzzy_used:
+            print(f"    {orig:50s} → {resolved}")
+
+    if unresolved:
+        print("\n  Unresolved sites (will appear as MISSING IN GCC):")
+        for u in unresolved:
+            print(f"    {u}")
+
+
+def resolve_classic_url(url):
+    """Return the GCC path for a Classic WebUrl using the pre-built mapping."""
+    path = strip_domain(url)
+    return _URL_MAP.get(path, _standard_normalize(path))
 
 
 def make_key_classic(row):
     return (
-        normalize_classic_url((row.get("WebUrl") or "").strip()),
+        resolve_classic_url((row.get("WebUrl") or "").strip()),
         (row.get("PrincipalName") or "").strip(),
         (row.get("PermissionLevel") or "").strip(),
     )
@@ -117,7 +184,6 @@ def load_gcc():
 
 
 def compare(cz_rows, gcc_rows):
-    # Build lookup: key -> GCC row so we can pull the actual GCC URL for matched rows
     gcc_key_to_row = {}
     for row in gcc_rows:
         k = make_key_modern(row)
@@ -135,7 +201,7 @@ def compare(cz_rows, gcc_rows):
             "Status"             : "MATCHED" if gcc_match else "MISSING IN GCC",
             "CZ_WebUrl"          : cz_url,
             "GCC_WebUrl"         : gcc_match.get("WebUrl", "") if gcc_match else "",
-            "CZ_NormalizedUrl"   : normalize_classic_url(cz_url),
+            "CZ_NormalizedUrl"   : resolve_classic_url(cz_url),
             "PrincipalName"      : k[1],
             "PermissionLevel"    : k[2],
             "WebTitle_CZ"        : row.get("WebTitle", ""),
@@ -210,61 +276,6 @@ def write_csv(rows, filename, label):
     print(f"{label} saved to: {path}")
 
 
-def diagnose_matching(cz_rows, gcc_rows):
-    """Show how Classic URLs normalize and how many match Modern sites."""
-    print("\n--- DIAGNOSTIC: URL normalization (Classic → Modern) ---")
-    seen_cz = set()
-    for r in cz_rows:
-        orig = (r.get("WebUrl") or "").strip()
-        if orig in seen_cz:
-            continue
-        seen_cz.add(orig)
-        print(f"  {strip_domain(orig):50s}  →  {normalize_classic_url(orig)}")
-        if len(seen_cz) >= 15:
-            break
-
-    print("\n--- DIAGNOSTIC: Modern WebUrls (sample) ---")
-    seen_gcc = set()
-    for r in gcc_rows:
-        url = strip_domain((r.get("WebUrl") or "").strip())
-        if url not in seen_gcc:
-            seen_gcc.add(url)
-            print(f"  {url}")
-        if len(seen_gcc) >= 15:
-            break
-
-    gcc_sites     = set(strip_domain((r.get("WebUrl") or "").strip()) for r in gcc_rows)
-    cz_normalized = set(normalize_classic_url((r.get("WebUrl") or "").strip()) for r in cz_rows)
-    matched       = cz_normalized & gcc_sites
-    unmatched     = cz_normalized - gcc_sites
-
-    print(f"\nClassic unique WebUrls (after normalize) : {len(cz_normalized)}")
-    print(f"Modern unique WebUrls                    : {len(gcc_sites)}")
-    print(f"Matched sites                            : {len(matched)}")
-    print(f"Unmatched Classic sites (no Modern pair) : {len(unmatched)}")
-
-    if unmatched:
-        print("\n--- SUGGESTED MAPPINGS (unmatched Classic → likely GCC equivalent) ---")
-        gcc_list = sorted(gcc_sites)
-        for cz_norm in sorted(unmatched):
-            # Extract the meaningful name tokens from the normalized path
-            # e.g. /sites/BIPortal → ["biportal"],  /sites/corp_hr_ben → ["corp","hr","ben"]
-            tokens = cz_norm.replace("/sites/", "").lower().split("_")
-            candidates = [
-                g for g in gcc_list
-                if all(t in g.lower() for t in tokens)
-            ]
-            if not candidates:
-                # Fallback: match on just the last token
-                candidates = [g for g in gcc_list if tokens[-1] in g.lower()]
-            if candidates:
-                print(f"  {cz_norm}")
-                for c in candidates[:3]:
-                    print(f"    → {c}")
-            else:
-                print(f"  {cz_norm}  →  [NO CANDIDATE FOUND IN GCC]")
-
-
 if __name__ == "__main__":
     cz_rows  = load_cornerzone()
     gcc_rows = load_gcc()
@@ -277,7 +288,8 @@ if __name__ == "__main__":
     gcc_rows = [r for r in gcc_rows if (r.get("PermissionCategory") or "").strip() != "System"]
     print(f"System rows filtered out — CZ: {cz_before - len(cz_rows)}, GCC: {gcc_before - len(gcc_rows)}")
 
-    diagnose_matching(cz_rows, gcc_rows)
+    # Build URL mapping (lookup table → standard rule → fuzzy fallback)
+    build_url_mapping(cz_rows, gcc_rows)
 
     comparison, extra = compare(cz_rows, gcc_rows)
 
