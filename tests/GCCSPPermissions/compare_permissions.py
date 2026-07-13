@@ -5,9 +5,10 @@ Target: GCC (cresearch3.sharepoint.com) — modern environment
 
 Match key: normalized WebUrl (Classic → Modern path transform) + PrincipalName + PermissionLevel
 
-Rules:
-  - MISSING IN GCC : permission exists in CornerZone but not in GCC  (failure)
-  - EXTRA IN GCC   : permission exists in GCC but not in CornerZone   (informational)
+Output files:
+  comparison_report.csv — every CornerZone row with Status MATCHED or MISSING IN GCC,
+                          showing both CZ and GCC URLs side by side
+  extra_in_gcc.csv      — permissions in GCC not in CornerZone (migration additions, informational)
 
 URL transform (classic sub-sites become flat /sites/ collections in modern):
   Standard rule : /corp/hr/advisors  →  /sites/corp_hr_advisors
@@ -116,87 +117,84 @@ def load_gcc():
 
 
 def compare(cz_rows, gcc_rows):
-    gcc_keys = set(make_key_modern(r) for r in gcc_rows)
-    cz_keys  = set(make_key_classic(r) for r in cz_rows)
+    # Build lookup: key -> GCC row so we can pull the actual GCC URL for matched rows
+    gcc_key_to_row = {}
+    for row in gcc_rows:
+        k = make_key_modern(row)
+        gcc_key_to_row[k] = row
 
-    missing_in_gcc = []
-    matched = []
+    cz_keys = set(make_key_classic(r) for r in cz_rows)
+
+    comparison = []
     for row in cz_rows:
         k = make_key_classic(row)
-        entry = {
-            "NormalizedWebUrl"   : k[0],
+        cz_url    = row.get("WebUrl", "")
+        gcc_match = gcc_key_to_row.get(k)
+
+        comparison.append({
+            "Status"             : "MATCHED" if gcc_match else "MISSING IN GCC",
+            "CZ_WebUrl"          : cz_url,
+            "GCC_WebUrl"         : gcc_match.get("WebUrl", "") if gcc_match else "",
+            "CZ_NormalizedUrl"   : normalize_classic_url(cz_url),
             "PrincipalName"      : k[1],
             "PermissionLevel"    : k[2],
-            "OriginalWebUrl"     : row.get("WebUrl", ""),
-            "WebTitle"           : row.get("WebTitle", ""),
+            "WebTitle_CZ"        : row.get("WebTitle", ""),
+            "WebTitle_GCC"       : gcc_match.get("WebTitle", "") if gcc_match else "",
             "ObjectType"         : row.get("ObjectType", ""),
             "PrincipalType"      : row.get("PrincipalType", ""),
             "PermissionCategory" : row.get("PermissionCategory", ""),
-        }
-        if k not in gcc_keys:
-            missing_in_gcc.append(entry)
-        else:
-            matched.append(entry)
+        })
 
     extra_in_gcc = []
     for row in gcc_rows:
         k = make_key_modern(row)
         if k not in cz_keys:
             extra_in_gcc.append({
-                "NormalizedWebUrl"   : k[0],
+                "GCC_WebUrl"         : row.get("WebUrl", ""),
                 "PrincipalName"      : k[1],
                 "PermissionLevel"    : k[2],
-                "OriginalWebUrl"     : row.get("WebUrl", ""),
                 "WebTitle"           : row.get("WebTitle", ""),
                 "ObjectType"         : row.get("ObjectType", ""),
                 "PrincipalType"      : row.get("PrincipalType", ""),
                 "PermissionCategory" : row.get("PermissionCategory", ""),
             })
 
-    return missing_in_gcc, extra_in_gcc, matched
+    return comparison, extra_in_gcc
 
 
-def print_summary(missing, extra):
+def print_summary(comparison, extra):
+    matched = sum(1 for r in comparison if r["Status"] == "MATCHED")
+    missing = sum(1 for r in comparison if r["Status"] == "MISSING IN GCC")
     print("\n" + "=" * 70)
     print("PERMISSION COMPARISON SUMMARY")
     print("=" * 70)
-    print(f"  MISSING IN GCC (failures)      : {len(missing)}")
+    print(f"  Total CornerZone rows          : {len(comparison)}")
+    print(f"  MATCHED (found in GCC)         : {matched}")
+    print(f"  MISSING IN GCC (not found)     : {missing}")
     print(f"  EXTRA IN GCC   (informational) : {len(extra)}")
     print("=" * 70)
 
 
-def print_missing(missing):
+def print_missing(comparison):
+    missing = [r for r in comparison if r["Status"] == "MISSING IN GCC"]
+    if not missing:
+        print("\nNo missing permissions found.")
+        return
+
     print(f"\n--- MISSING IN GCC ({len(missing)} total) ---")
     by_site = defaultdict(list)
     for r in missing:
-        by_site[r["NormalizedWebUrl"]].append(r)
+        by_site[r["CZ_NormalizedUrl"]].append(r)
 
     print(f"  Affected sites: {len(by_site)}")
     for site, rows in sorted(by_site.items()):
         print(f"\n  Site: {site or '(blank)'} — {len(rows)} missing permissions")
         for r in rows[:10]:
-            print(f"    [{r['ObjectType']}] {r['WebTitle']}")
+            print(f"    [{r['ObjectType']}] {r['WebTitle_CZ']}")
             print(f"      Principal : {r['PrincipalName']} ({r['PrincipalType']})")
             print(f"      Permission: {r['PermissionLevel']} / {r['PermissionCategory']}")
         if len(rows) > 10:
-            print(f"    ... and {len(rows) - 10} more (see CSV)")
-
-
-def print_extra(extra):
-    print(f"\n--- EXTRA IN GCC ({len(extra)} total) [informational] ---")
-    by_site = defaultdict(list)
-    for r in extra:
-        by_site[r["NormalizedWebUrl"]].append(r)
-
-    print(f"  Affected sites: {len(by_site)}")
-    for site, rows in sorted(by_site.items()):
-        print(f"\n  Site: {site or '(blank)'} — {len(rows)} extra permissions")
-        for r in rows[:5]:
-            print(f"    [{r['ObjectType']}] {r['WebTitle']}")
-            print(f"      Principal : {r['PrincipalName']} ({r['PrincipalType']})")
-            print(f"      Permission: {r['PermissionLevel']} / {r['PermissionCategory']}")
-        if len(rows) > 5:
-            print(f"    ... and {len(rows) - 5} more (see CSV)")
+            print(f"    ... and {len(rows) - 10} more (see comparison_report.csv)")
 
 
 def write_csv(rows, filename, label):
@@ -209,7 +207,7 @@ def write_csv(rows, filename, label):
         writer = csv.DictWriter(f, fieldnames=rows[0].keys())
         writer.writeheader()
         writer.writerows(rows)
-    print(f"\n{label} saved to: {path}")
+    print(f"{label} saved to: {path}")
 
 
 def diagnose_matching(cz_rows, gcc_rows):
@@ -235,10 +233,10 @@ def diagnose_matching(cz_rows, gcc_rows):
         if len(seen_gcc) >= 15:
             break
 
-    gcc_sites = set(strip_domain((r.get("WebUrl") or "").strip()) for r in gcc_rows)
+    gcc_sites     = set(strip_domain((r.get("WebUrl") or "").strip()) for r in gcc_rows)
     cz_normalized = set(normalize_classic_url((r.get("WebUrl") or "").strip()) for r in cz_rows)
-    matched   = cz_normalized & gcc_sites
-    unmatched = cz_normalized - gcc_sites
+    matched       = cz_normalized & gcc_sites
+    unmatched     = cz_normalized - gcc_sites
 
     print(f"\nClassic unique WebUrls (after normalize) : {len(cz_normalized)}")
     print(f"Modern unique WebUrls                    : {len(gcc_sites)}")
@@ -256,12 +254,11 @@ if __name__ == "__main__":
 
     diagnose_matching(cz_rows, gcc_rows)
 
-    missing, extra, matched = compare(cz_rows, gcc_rows)
+    comparison, extra = compare(cz_rows, gcc_rows)
 
-    print_summary(missing, extra)
-    print(f"  MATCHED (found in both)        : {len(matched)}")
-    print_missing(missing)
+    print_summary(comparison, extra)
+    print_missing(comparison)
 
-    write_csv(missing, "missing_in_gcc.csv", "Missing in GCC")
-    write_csv(extra,   "extra_in_gcc.csv",   "Extra in GCC")
-    write_csv(matched, "matched.csv",         "Matched permissions")
+    print()
+    write_csv(comparison, "comparison_report.csv", "Comparison report")
+    write_csv(extra,      "extra_in_gcc.csv",      "Extra in GCC     ")
