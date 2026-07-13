@@ -256,7 +256,6 @@ if __name__ == "__main__":
 
     print_summary(missing, extra)
     print_missing(missing)
-    print_extra(extra)
 
     write_csv(missing, "missing_in_gcc.csv", "Missing in GCC")
     write_csv(extra,   "extra_in_gcc.csv",   "Extra in GCC")
