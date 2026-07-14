@@ -52,6 +52,35 @@ CLASSIC_TO_MODERN = {
 _CZ_DOMAIN  = "https://cresearch1.sharepoint.com"
 _GCC_DOMAIN = "https://cresearch3.sharepoint.com"
 
+# URL fragments that identify Nintex/workflow app sites — never migrated to GCC
+NINTEX_URL_KEYWORDS = [
+    "nintexworkflow",
+    "formsapp",
+    "nintex",
+]
+
+# Classic site paths that were intentionally NOT migrated (test sites, decommissioned)
+EXCLUDED_CLASSIC_PATHS = {
+    "/PMSTest",
+    "/SPTest",
+    "/sites/BI-Test",
+    "/sites/TestAR",
+    "/sites/pwa",
+    "/sites/apps",
+    "/corp/pawg/TestEP",
+    "/AzureAISearch",
+}
+
+
+def _is_nintex_url(url):
+    url_lower = (url or "").lower()
+    return any(k in url_lower for k in NINTEX_URL_KEYWORDS)
+
+
+def _is_excluded_path(url):
+    path = strip_domain(url)
+    return path in EXCLUDED_CLASSIC_PATHS
+
 # Built at runtime in build_url_mapping() — Classic path → resolved GCC path
 _URL_MAP = {}
 
@@ -286,7 +315,17 @@ if __name__ == "__main__":
     gcc_before = len(gcc_rows)
     cz_rows  = [r for r in cz_rows  if (r.get("PermissionCategory") or "").strip() != "System"]
     gcc_rows = [r for r in gcc_rows if (r.get("PermissionCategory") or "").strip() != "System"]
-    print(f"System rows filtered out — CZ: {cz_before - len(cz_rows)}, GCC: {gcc_before - len(gcc_rows)}")
+    print(f"System rows filtered out       -- CZ: {cz_before - len(cz_rows)}, GCC: {gcc_before - len(gcc_rows)}")
+
+    # Filter out Nintex/workflow app sites (different subdomain, never migrated to GCC)
+    n = len(cz_rows)
+    cz_rows = [r for r in cz_rows if not _is_nintex_url(r.get("WebUrl", ""))]
+    print(f"Nintex/workflow rows filtered  -- CZ: {n - len(cz_rows)}")
+
+    # Filter out intentionally excluded (test/decommissioned) classic sites
+    n = len(cz_rows)
+    cz_rows = [r for r in cz_rows if not _is_excluded_path(r.get("WebUrl", ""))]
+    print(f"Excluded test sites filtered   -- CZ: {n - len(cz_rows)}")
 
     # Build URL mapping (lookup table → standard rule → fuzzy fallback)
     build_url_mapping(cz_rows, gcc_rows)
