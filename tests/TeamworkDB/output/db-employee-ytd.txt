@@ -7,28 +7,110 @@ collecting ... collected 56 items / 47 deselected / 9 selected
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Boston] Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
-[PASS] 'YTD - CRB  (YTD)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: July 2026 | Sheet: YTD - CRB  (YTD) | Run: 2026-08-03
+
+  MISSING ROWS:
+    [MISSING IN XLS] EmpNo=101292 | Name=nan
+    [MISSING IN XLS] EmpNo=4830 | Name=nan
+
+  EmpNo  | Name               | Column       | Util Report | DB         | Diff      | Diff%
+  -------+--------------------+--------------+-------------+------------+-----------+------
+  101670 | DeMartin, Luke     | Actual_Hours | 1,090.80    | 1,128.90   | 38.10     | 3.49%
+  101819 | Anthony, Jake      | Actual_Hours | 808.20      | 847.10     | 38.90     | 4.81%
+  101946 | Mishol, David      | Actual_Hours | 724.20      | 753.10     | 28.90     | 3.99%
+  6284   | Juergens, Jennifer | Actual_Hours | 564.60      | 600.50     | 35.90     | 6.36%
+  101670 | DeMartin, Luke     | Standard_Rev | 627,210.00  | 649,118.00 | 21,908.00 | 3.49%
+  101819 | Anthony, Jake      | Standard_Rev | 351,567.00  | 368,489.00 | 16,922.00 | 4.81%
+  101946 | Mishol, David      | Standard_Rev | 727,821.00  | 756,866.00 | 29,045.00 | 3.99%
+  6284   | Juergens, Jennifer | Standard_Rev | 632,352.00  | 672,560.00 | 40,208.00 | 6.36%
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Chicago] 
-[PASS] 'YTD - CRCH (YTD)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: July 2026 | Sheet: YTD - CRCH (YTD) | Run: 2026-08-03
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=101955 | Name=Kellenberg, Matthew
+    [MISSING IN XLS] EmpNo=102044 | Name=nan
+
+  EmpNo  | Name                | Column       | Util Report | DB         | Diff      | Diff%
+  -------+---------------------+--------------+-------------+------------+-----------+------
+  102247 | Rajan, Tanya        | Actual_Hours | 1,111.20    | 1,157.00   | 45.80     | 4.12%
+  102311 | Singh, Aaryan       | Actual_Hours | 773.80      | 820.10     | 46.30     | 5.98%
+  4698   | Hatzitaskos, Kostis | Actual_Hours | 618.30      | 638.60     | 20.30     | 3.28%
+  5344   | Kruskol, Sean       | Actual_Hours | 730.50      | 765.60     | 35.10     | 4.80%
+  102247 | Rajan, Tanya        | Standard_Rev | 750,060.00  | 780,975.00 | 30,915.00 | 4.12%
+  102311 | Singh, Aaryan       | Standard_Rev | 336,603.00  | 356,744.00 | 20,141.00 | 5.98%
+  4698   | Hatzitaskos, Kostis | Standard_Rev | 896,535.00  | 925,970.00 | 29,435.00 | 3.28%
+  5344   | Kruskol, Sean       | Standard_Rev | 883,905.00  | 926,376.00 | 42,471.00 | 4.80%
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[DC] 
-[PASS] 'YTD - CRDC (YTD)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: July 2026 | Sheet: YTD - CRDC (YTD) | Run: 2026-08-03
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=101292 | Name=Zhang, Haoran
+    [MISSING IN DB] EmpNo=4830 | Name=Martynova, Marina
+
+  EmpNo  | Name              | Column       | Util Report | DB         | Diff      | Diff%  
+  -------+-------------------+--------------+-------------+------------+-----------+--------
+  102098 | Whitehouse, Sarah | Actual_Hours | 0.00        | 14.30      | 14.30     | inf%   
+  102152 | Das Varma, Gopal  | Actual_Hours | 286.90      | 346.30     | 59.40     | 20.70% 
+  102207 | Kruse, Zoe        | Actual_Hours | 1,164.20    | 1,204.70   | 40.50     | 3.48%  
+  102223 | Tobin, Elliot     | Actual_Hours | 810.80      | 843.50     | 32.70     | 4.03%  
+  102271 | Wong, Kevin       | Actual_Hours | 675.20      | 712.50     | 37.30     | 5.52%  
+  5936   | Haas, Marlene     | Actual_Hours | 287.60      | 310.00     | 22.40     | 7.79%  
+  6173   | Han, Yuxin        | Actual_Hours | 14.60       | 60.70      | 46.10     | 315.75%
+  102098 | Whitehouse, Sarah | Standard_Rev | 0.00        | 6,221.00   | 6,221.00  | inf%   
+  102152 | Das Varma, Gopal  | Standard_Rev | 375,839.00  | 453,653.00 | 77,814.00 | 20.70% 
+  102207 | Kruse, Zoe        | Standard_Rev | 564,637.00  | 584,280.00 | 19,643.00 | 3.48%  
+  102223 | Tobin, Elliot     | Standard_Rev | 547,290.00  | 569,363.00 | 22,073.00 | 4.03%  
+  102271 | Wong, Kevin       | Standard_Rev | 327,472.00  | 345,563.00 | 18,091.00 | 5.52%  
+  5936   | Haas, Marlene     | Standard_Rev | 322,112.00  | 347,200.00 | 25,088.00 | 7.79%  
+  6173   | Han, Yuxin        | Standard_Rev | 11,169.00   | 46,436.00  | 35,267.00 | 315.76%
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[LA] 
-[PASS] 'YTD - CRLA (YTD)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: July 2026 | Sheet: YTD - CRLA (YTD) | Run: 2026-08-03
+
+  EmpNo  | Name            | Column       | Util Report | DB         | Diff      | Diff%
+  -------+-----------------+--------------+-------------+------------+-----------+------
+  101470 | Freyd, Benjamin | Actual_Hours | 941.40      | 981.00     | 39.60     | 4.21%
+  101470 | Freyd, Benjamin | Standard_Rev | 870,795.00  | 907,425.00 | 36,630.00 | 4.21%
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY] 
-[PASS] 'YTD - CRNY (YTD)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: July 2026 | Sheet: YTD - CRNY (YTD) | Run: 2026-08-03
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=102044 | Name=Jones, Collin
+    [MISSING IN XLS] EmpNo=101468 | Name=nan
+    [MISSING IN XLS] EmpNo=101955 | Name=nan
+
+  EmpNo  | Name                 | Column       | Util Report  | DB           | Diff      | Diff%
+  -------+----------------------+--------------+--------------+--------------+-----------+------
+  101815 | Krothapalli, Sahithi | Actual_Hours | 1,120.00     | 1,178.90     | 58.90     | 5.26%
+  101915 | Kottou, Rafaela      | Actual_Hours | 1,282.60     | 1,326.80     | 44.20     | 3.45%
+  102439 | Narayanan, Ananya    | Actual_Hours | 0.00         | 10.00        | 10.00     | inf% 
+  102461 | Kurczynski, Konrad   | Actual_Hours | 0.00         | 10.50        | 10.50     | inf% 
+  6342   | Haltenhof, Samuel    | Actual_Hours | 1,398.70     | 1,453.90     | 55.20     | 3.95%
+  101815 | Krothapalli, Sahithi | Standard_Rev | 487,200.00   | 512,822.00   | 25,622.00 | 5.26%
+  101915 | Kottou, Rafaela      | Standard_Rev | 622,061.00   | 643,498.00   | 21,437.00 | 3.45%
+  102439 | Narayanan, Ananya    | Standard_Rev | 0.00         | 4,350.00     | 4,350.00  | inf% 
+  102461 | Kurczynski, Konrad   | Standard_Rev | 0.00         | 4,568.00     | 4,568.00  | inf% 
+  6342   | Haltenhof, Samuel    | Standard_Rev | 1,475,628.50 | 1,533,865.00 | 58,236.50 | 3.95%
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: June 2026 | Sheet: YTD - CRSF (YTD) | Run: 2026-07-02
+  Report: July 2026 | Sheet: YTD - CRSF (YTD) | Run: 2026-08-03
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=101468 | Name=Sim, Casey
 
   EmpNo  | Name     | Column       | Util Report | DB     | Diff | Diff%
   -------+----------+--------------+-------------+--------+------+------
@@ -36,12 +118,28 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV] 
-[PASS] 'YTD - CRSV (YTD)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: July 2026 | Sheet: YTD - CRSV (YTD) | Run: 2026-08-03
+
+  EmpNo  | Name       | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+------------+--------------+-------------+------------+-----------+-------
+  101924 | He, Elena  | Actual_Hours | 558.30      | 588.90     | 30.60     | 5.48% 
+  4911   | Tam, Eric  | Actual_Hours | 438.30      | 477.80     | 39.50     | 9.01% 
+  6317   | Wang, Zeyu | Actual_Hours | 897.60      | 993.00     | 95.40     | 10.63%
+  101924 | He, Elena  | Standard_Rev | 376,852.50  | 397,508.00 | 20,655.50 | 5.48% 
+  4911   | Tam, Eric  | Standard_Rev | 519,385.50  | 566,193.00 | 46,807.50 | 9.01% 
+  6317   | Wang, Zeyu | Standard_Rev | 852,720.00  | 943,350.00 | 90,630.00 | 10.63%
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-UK] 
-[PASS] 'YTD - CRUK (YTD)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: July 2026 | Sheet: YTD - CRUK (YTD) | Run: 2026-08-03
+
+  EmpNo  | Name           | Column       | Util Report | DB         | Diff      | Diff%
+  -------+----------------+--------------+-------------+------------+-----------+------
+  101798 | Sagaeva, Aisha | Target_Rev   | 600,132.64  | 657,800.00 | 57,667.36 | 9.61%
+  101798 | Sagaeva, Aisha | Standard_Rev | 408,742.94  | 446,890.00 | 38,147.06 | 9.33%
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-BE] 
 [PASS] 'YTD - CRBE (YTD)' matches database.
@@ -49,12 +147,61 @@ PASSED
 
 
 ================================== FAILURES ===================================
+___________________ test_db_comparison_employee_ytd[Boston] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 10 error(s) found
+__________________ test_db_comparison_employee_ytd[Chicago] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 10 error(s) found
+_____________________ test_db_comparison_employee_ytd[DC] _____________________
+tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 16 error(s) found
+_____________________ test_db_comparison_employee_ytd[LA] _____________________
+tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 2 error(s) found
+_____________________ test_db_comparison_employee_ytd[NY] _____________________
+tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 13 error(s) found
 _____________________ test_db_comparison_employee_ytd[SF] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 1 error(s) found
+E   Failed: 2 error(s) found
+_____________________ test_db_comparison_employee_ytd[SV] _____________________
+tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 6 error(s) found
+___________________ test_db_comparison_employee_ytd[EU-UK] ____________________
+tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 2 error(s) found
 =========================== short test summary info ===========================
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Boston]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Chicago]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[DC]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[LA]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF]
-================= 1 failed, 8 passed, 47 deselected in 27.14s =================
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-UK]
+================= 8 failed, 1 passed, 47 deselected in 28.69s =================
