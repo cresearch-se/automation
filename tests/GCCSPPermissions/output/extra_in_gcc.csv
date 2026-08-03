@@ -1,0 +1,143 @@
+GCC_WebUrl,PrincipalName,PermissionLevel,WebTitle,ObjectType,PrincipalType,PermissionCategory
+https://cresearch3.sharepoint.com/sites/consulting_ARC,#Finance,Full Control,Applied Research Center,Site Collection,AAD Security Group,Full Control
+https://cresearch3.sharepoint.com/sites/consulting_ARC,Limited Access System Group For Web e3fc03b7-a7c0-461d-9d1c-16126e7b7302,Web-Only Limited Access,Applied Research Center,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/consulting_ARC,Limited Access System Group For Web b0580ce5-9c2a-4716-9e90-77d5a71a277d,Web-Only Limited Access,Applied Research Center,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/consulting_ARC,Limited Access System Group For Web e0f703cb-0f88-451d-b55a-15288fc86d6a,Web-Only Limited Access,Applied Research Center,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/consulting_ARC,Finance Administrator Group,Design,Applied Research Center,Site Collection,SharePoint Group,High
+https://cresearch3.sharepoint.com/sites/consulting_ARC,Legal Administrators,Design,Applied Research Center,Site Collection,SharePoint Group,High
+https://cresearch3.sharepoint.com/sites/consulting_ARC,Corp Visitors,Read,Applied Research Center,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/consulting_ARC,Learning,Design,Applied Research Center,Site Collection,AAD Security Group,High
+https://cresearch3.sharepoint.com/sites/consulting_careerdev,Associate-Sr. Mgr Career Development Owners,Full Control,Associate-Sr. Mgr Career Development,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/consulting_careerdev,Associate-Sr. Mgr Career Development Visitors,Read,Associate-Sr. Mgr Career Development,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/consulting_careerdev,Associate-Sr. Mgr Career Development Members,Contribute,Associate-Sr. Mgr Career Development,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/consulting_op,Officer and Principal Owners,Full Control,Officer and Principal,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/corp_BIPortal,BIPortal Owners,Full Control,BIPortal,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/corp_BIPortal,BIPortal Visitors,Read,BIPortal,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/corp_CRBEOffice,"Saeed, Sarim",Read,CRBE Office,Site Collection,Individual User,Read Only
+https://cresearch3.sharepoint.com/sites/corp_CRBOffice,"Saeed, Sarim",Read,CRBOffice,Site Collection,Individual User,Read Only
+https://cresearch3.sharepoint.com/sites/corp_CRCHOffice,"Saeed, Sarim",Read,CRCHOffice,Site Collection,Individual User,Read Only
+https://cresearch3.sharepoint.com/sites/corp_CRDCOffice,"Saeed, Sarim",Read,CRDCOffice,Site Collection,Individual User,Read Only
+https://cresearch3.sharepoint.com/sites/corp_CRLAOffice,"Saeed, Sarim",Read,CRLAOffice,Site Collection,Individual User,Read Only
+https://cresearch3.sharepoint.com/sites/corp_CRNYOffice,"Saeed, Sarim",Read,CRNYOffice,Site Collection,Individual User,Read Only
+https://cresearch3.sharepoint.com/sites/corp_CRSVOffice,"Saeed, Sarim",Read,CRSVOffice,Site Collection,Individual User,Read Only
+https://cresearch3.sharepoint.com/sites/corp_CRUKOffice,"Saeed, Sarim",Read,CRUKOffice,Site Collection,Individual User,Read Only
+https://cresearch3.sharepoint.com/sites/corp_finance_private,Finance Staff Only Members,Contribute,Finance Staff Only,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/corp_firmfoundations,Hub Visitors,Read,Firm Foundations,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/corp_marketing_MktCornerstone,Marketing Cornerstone Visitors,Read,Marketing Cornerstone,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/corp_SPApps,SPApps Owners,Full Control,SPApps,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/corp_SPApps,SPApps Owners,Web-Only Limited Access,SPApps,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/corpIT_migration,Apps Dev SV Server Migration Owners,Full Control,Apps Dev SV Server Migration,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/corpIT_migration,Apps Dev SV Server Migration Visitors,Read,Apps Dev SV Server Migration,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/corpIT_migration,Apps Dev SV Server Migration Members,Contribute,Apps Dev SV Server Migration,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/corpIT_ProjectManagement,"Medeiros, Doug",Contribute,Project Management,Site Collection,Individual User,Medium
+https://cresearch3.sharepoint.com/sites/corpIT_ProjectManagement,Limited Access System Group For Web d098f937-ac70-43e9-ab8a-2f36ff0ac585,Web-Only Limited Access,Project Management,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/corpIT_ProjectManagement,Records Center Web Service Submitters for Desktop (1),Records Center Web Service Submitters,Project Management,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/corpIT_ProjectManagement,Records Center Web Service Submitters for SV-Migration (1),Records Center Web Service Submitters,Project Management,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/corpIT_ProjectManagement,Records Center Web Service Submitters for Pipeline (1),Records Center Web Service Submitters,Project Management,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/corpIT_ProjectManagement,Records Center Web Service Submitters for sv-server-shrink (1),Records Center Web Service Submitters,Project Management,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/CRIKIT_AcademicLiterature,Expert Visitors,Read,Academic Literature,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_CaseSummaries,Case Summaries Owners,Full Control,Case Summaries,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/CRIKIT_CaseSummaries,Case Summaries Visitors,Read,Case Summaries,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_CaseSummaries,Case Summaries Members,Contribute,Case Summaries,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/CRIKIT_CMathematicalandQuantitativeMethods,C - Mathematical and Quantitative Methods Visitors,Read,C - Mathematical and Quantitative Methods,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSources,Data Sources Visitors,Read,Data Sources,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesA,A Visitors,Read,A,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesB,B Visitors,Read,B,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesByPractice,Data Sources by Practice Visitors,Read,Data Sources by Practice,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesBySubject,Data Sources by Subject Visitors,Read,Data Sources by Subject,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesByType,Data Sources by Type Visitors,Read,Data Sources by Type,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesC,C Visitors,Read,C,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesD,D Visitors,Read,D,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesE,E Visitors,Read,E,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesF,F Visitors,Read,F,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesG,G Visitors,Read,G,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesH,H Visitors,Read,H,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesI,I Visitors,Read,I,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesJ,J Visitors,Read,J,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesK,K Visitors,Read,K,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesL,L Visitors,Read,L,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesM,M Visitors,Read,M,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesN,N Visitors,Read,N,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesO,O Visitors,Read,O,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesP,P Visitors,Read,P,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesQ,Q Visitors,Read,Q,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesR,R Visitors,Read,R,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesS,S Visitors,Read,S,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesT,T Visitors,Read,T,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesU,U Visitors,Read,U,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesV,V Visitors,Read,V,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesW,W Visitors,Read,W,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DataSourcesXYZ,XYZ Visitors,Read,XYZ,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_DMicroeconomics,D - Microeconomics Visitors,Read,D - Microeconomics,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_Expert,Expert Owners,Full Control,Expert,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/CRIKIT_Expert,Expert Visitors,Read,Expert,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_Expert,Expert Members,Edit,Expert,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/CRIKIT_ExternalWriteups,External Writeups Owners,Full Control,External Writeups,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/CRIKIT_ExternalWriteups,External Writeups Visitors,Read,External Writeups,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_ExternalWriteups,External Writeups Members,Contribute,External Writeups,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/CRIKIT_FInternationalEconomics,F - International Economics Visitors,Read,F - International Economics,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_GFinancialEconomics,G - Financial Economics Visitors,Read,G - Financial Economics,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_IHealthEducationandWelfare,I - Health_ Education_ and Welfare Visitors,Read,"I - Health, Education, and Welfare",Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_IIResearchTeams,Institutional Investor Research Teams Visitors,Read,Institutional Investor Research Teams,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_IndexOfCaseSummaries,Index of Case Summaries Owners,Full Control,Index of Case Summaries,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/CRIKIT_IndexOfCaseSummaries,Index of Case Summaries Visitors,Read,Index of Case Summaries,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_IndexOfCaseSummaries,Index of Case Summaries Members,Contribute,Index of Case Summaries,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/CRIKIT_InformationResources,Information Resources Visitors,Read,Information Resources,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_KLawandEconomics,K - Law and Economics Visitors,Read,K - Law and Economics,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_LIndustrialOrganization,L - Industrial Organization Visitors,Read,L - Industrial Organization,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_MBusinessAdministrationandBusinessEconomicsMarketingAccounting,M - Business Administration and Business Economics_ Marketing_ Accounting Visitors,Read,M - Business Administration and Business Economics; Marketing; Accounting,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_NEconomicHistory,N - Economic History Visitors,Read,N - Economic History,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_ResourcePagesBySubject,Resource Pages by Subject Visitors,Read,Resource Pages by Subject,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_Resources,Accounting Practice Area Owners,Full Control,Resources,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/CRIKIT_Resources,Accounting Practice Area Members,Contribute,Resources,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/CRIKIT_Resources,Records Center Web Service Submitters for Resources,Records Center Web Service Submitters,Resources,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/CRIKIT_Resources,Accounting Practice Area Visitors,Read,Resources,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CRIKIT_Resources,Records Center Web Service Submitters for AccountingPracticeArea,Records Center Web Service Submitters,Resources,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/CustPeopleSearch,CustomPeopleSearch Owners,Full Control,CustPeopleSearch,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/CustPeopleSearch,CustomPeopleSearch Visitors,Read,CustPeopleSearch,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/CustPeopleSearch,CustomPeopleSearch Members,Contribute,CustPeopleSearch,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/pawg_Accounting,Accounting Owners,Full Control,Accounting,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/pawg_Accounting,Accounting Visitors,Read,Accounting,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_Accounting,Accounting Members,Contribute,Accounting,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/pawg_Antitrust_Competition,Antitrust and Competition Owners,Full Control,Antitrust and Competition,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/pawg_CFPLPortal,Consumer Fraud and Product Liability Owners,Full Control,Consumer Fraud and Product Liability,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/pawg_CFPLPortal,Consumer Fraud and Product Liability Visitors,Read,Consumer Fraud and Product Liability,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_CFPLPortal,Consumer Fraud and Product Liability Members,Contribute,Consumer Fraud and Product Liability,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/pawg_EconPracticeAreas,Econ Practice Areas Owners,Full Control,Econ Practice Areas,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/pawg_EconPracticeAreas,Econ Practice Areas Visitors,Read,Econ Practice Areas,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_EconPracticeAreas,Econ Practice Areas Members,Contribute,Econ Practice Areas,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/pawg_FFICaseLaw,FFI Practice Case Law Owners,Full Control,FFI Practice Case Law,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/pawg_FFICaseLaw,FFI Practice Case Law Visitors,Read,FFI Practice Case Law,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_FFICaseLaw,FFI Practice Case Law Members,Contribute,FFI Practice Case Law,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/pawg_FI_Finance,Finance Practice Area Owners,Full Control,Finance Practice Area,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/pawg_FI_Finance,Finance Practice Area Owners,Web-Only Limited Access,Finance Practice Area,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/pawg_FI_Finance,Finance Practice Area Visitors,Read,Finance Practice Area,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_FI_Finance,Finance Practice Area Visitors,Web-Only Limited Access,Finance Practice Area,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/pawg_FI_Finance,Finance Practice Area Members,Contribute,Finance Practice Area,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/pawg_FI_Finance,Finance Practice Area Members,Web-Only Limited Access,Finance Practice Area,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Healthcare and Life Sciences Owners,Full Control,Healthcare and Life Sciences,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Healthcare and Life Sciences Visitors,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Healthcare and Life Sciences Members,Contribute,Healthcare and Life Sciences,Site Collection,SharePoint Group,Medium
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Excel Services Viewers,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,#Cornerstone Research,Read,Healthcare and Life Sciences,Site Collection,AAD Security Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,#Labor Leaders,Read,Healthcare and Life Sciences,Site Collection,AAD Security Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,CFPL Administrator,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,CornerZone Moderators,Moderate,Healthcare and Life Sciences,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Style Resource Readers,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,ImmigrationPortal,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,HCLS Administrator,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Restricted Readers,Restricted Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Expert Attribution Read Group,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Designers,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Records Center Web Service Submitters for CustPeopleSearch,Records Center Web Service Submitters,Healthcare and Life Sciences,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Hierarchy Managers,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Officer Advisors Security Group,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Manage Legal Ethical Wall group,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,FI and Finance Owners,Read,Healthcare and Life Sciences,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Limited Access System Group For Web daab4109-f5e7-4a15-a97d-e02a12f165d5,Web-Only Limited Access,Healthcare and Life Sciences,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Limited Access System Group For Web 2e196480-2767-40e4-aac4-afa47e99c633,Web-Only Limited Access,Healthcare and Life Sciences,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/pawg_HealthcareandLifeSciences,Translation Managers,Restricted Interfaces for Translation,Healthcare and Life Sciences,Site Collection,SharePoint Group,Custom
+https://cresearch3.sharepoint.com/sites/pawg_Labor_and_Discrimination,Labor and Discrimination Visitors,Read,Labor and Discrimination,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_Tech_Strategy,Tech Strategy Owners,Full Control,Tech Strategy,Site Collection,SharePoint Group,Full Control
+https://cresearch3.sharepoint.com/sites/pawg_Tech_Strategy,Tech Strategy Visitors,Read,Tech Strategy,Site Collection,SharePoint Group,Read Only
+https://cresearch3.sharepoint.com/sites/pawg_Tech_Strategy,Tech Strategy Members,Contribute,Tech Strategy,Site Collection,SharePoint Group,Medium
