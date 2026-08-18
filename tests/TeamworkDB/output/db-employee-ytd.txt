@@ -8,142 +8,1441 @@ collecting ... collected 56 items / 47 deselected / 9 selected
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Boston] Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: July 2026 | Sheet: YTD - CRB  (YTD) | Run: 2026-08-03
+  Report: July 2026 | Sheet: YTD - CRB  (YTD) | Run: 2026-08-11
 
   MISSING ROWS:
+    [MISSING IN DB] EmpNo=102071 | Name=Hsu, Caroline
     [MISSING IN XLS] EmpNo=101292 | Name=nan
     [MISSING IN XLS] EmpNo=4830 | Name=nan
 
-  EmpNo  | Name               | Column       | Util Report | DB         | Diff      | Diff%
-  -------+--------------------+--------------+-------------+------------+-----------+------
-  101670 | DeMartin, Luke     | Actual_Hours | 1,090.80    | 1,128.90   | 38.10     | 3.49%
-  101819 | Anthony, Jake      | Actual_Hours | 808.20      | 847.10     | 38.90     | 4.81%
-  101946 | Mishol, David      | Actual_Hours | 724.20      | 753.10     | 28.90     | 3.99%
-  6284   | Juergens, Jennifer | Actual_Hours | 564.60      | 600.50     | 35.90     | 6.36%
-  101670 | DeMartin, Luke     | Standard_Rev | 627,210.00  | 649,118.00 | 21,908.00 | 3.49%
-  101819 | Anthony, Jake      | Standard_Rev | 351,567.00  | 368,489.00 | 16,922.00 | 4.81%
-  101946 | Mishol, David      | Standard_Rev | 727,821.00  | 756,866.00 | 29,045.00 | 3.99%
-  6284   | Juergens, Jennifer | Standard_Rev | 632,352.00  | 672,560.00 | 40,208.00 | 6.36%
+  EmpNo  | Name                    | Column       | Util Report  | DB         | Diff       | Diff% 
+  -------+-------------------------+--------------+--------------+------------+------------+-------
+  101290 | Liu, Jiahua             | Target_Hours | 1,050.10     | 162.80     | 887.30     | 84.50%
+  101290 | Liu, Jiahua             | Target_Hours | 1,050.10     | 887.30     | 162.80     | 15.50%
+  101325 | Lohrs, Matt             | Target_Hours | 1,152.00     | 176.00     | 976.00     | 84.72%
+  101325 | Lohrs, Matt             | Target_Hours | 1,152.00     | 976.00     | 176.00     | 15.28%
+  101332 | Duarte Mascarenhas, Rui | Target_Hours | 1,000.00     | 118.40     | 881.60     | 88.16%
+  101332 | Duarte Mascarenhas, Rui | Target_Hours | 1,000.00     | 881.60     | 118.40     | 11.84%
+  101335 | Cui, Jenny              | Target_Hours | 1,097.80     | 155.40     | 942.40     | 85.84%
+  101335 | Cui, Jenny              | Target_Hours | 1,097.80     | 942.40     | 155.40     | 14.16%
+  101360 | Uribe, JP               | Target_Hours | 794.80       | 118.40     | 676.40     | 85.10%
+  101360 | Uribe, JP               | Target_Hours | 794.80       | 676.40     | 118.40     | 14.90%
+  101596 | Goyal, Devansh          | Target_Hours | 1,064.00     | 176.00     | 888.00     | 83.46%
+  101596 | Goyal, Devansh          | Target_Hours | 1,064.00     | 888.00     | 176.00     | 16.54%
+  101632 | Brady, Mackenzie        | Target_Hours | 1,096.00     | 176.00     | 920.00     | 83.94%
+  101632 | Brady, Mackenzie        | Target_Hours | 1,096.00     | 920.00     | 176.00     | 16.06%
+  101642 | O'Loughlin, Michael     | Target_Hours | 1,063.30     | 136.00     | 927.30     | 87.21%
+  101642 | O'Loughlin, Michael     | Target_Hours | 1,063.30     | 927.30     | 136.00     | 12.79%
+  101670 | DeMartin, Luke          | Target_Hours | 1,144.00     | 160.00     | 984.00     | 86.01%
+  101670 | DeMartin, Luke          | Target_Hours | 1,144.00     | 984.00     | 160.00     | 13.99%
+  101705 | Coan, Rachel            | Target_Hours | 831.80       | 104.00     | 727.80     | 87.50%
+  101705 | Coan, Rachel            | Target_Hours | 831.80       | 727.80     | 104.00     | 12.50%
+  101895 | Shankar, Shreyush       | Target_Hours | 1,073.50     | 176.00     | 897.50     | 83.61%
+  101895 | Shankar, Shreyush       | Target_Hours | 1,073.50     | 897.50     | 176.00     | 16.39%
+  101903 | Auster, Zach            | Target_Hours | 1,160.00     | 168.00     | 992.00     | 85.52%
+  101903 | Auster, Zach            | Target_Hours | 1,160.00     | 992.00     | 168.00     | 14.48%
+  101920 | Huang, Mackenzie        | Target_Hours | 1,096.00     | 176.00     | 920.00     | 83.94%
+  101920 | Huang, Mackenzie        | Target_Hours | 1,096.00     | 920.00     | 176.00     | 16.06%
+  101933 | Baert, Edith            | Target_Hours | 1,072.00     | 112.00     | 960.00     | 89.55%
+  101933 | Baert, Edith            | Target_Hours | 1,072.00     | 960.00     | 112.00     | 10.45%
+  101949 | Kotrebai, Daniel        | Target_Hours | 1,144.00     | 176.00     | 968.00     | 84.62%
+  101949 | Kotrebai, Daniel        | Target_Hours | 1,144.00     | 968.00     | 176.00     | 15.38%
+  101959 | Tanenbaum, Hannah       | Target_Hours | 1,144.00     | 152.00     | 992.00     | 86.71%
+  101959 | Tanenbaum, Hannah       | Target_Hours | 1,144.00     | 992.00     | 152.00     | 13.29%
+  101972 | Lyons, Delaney          | Target_Hours | 1,088.00     | 176.00     | 912.00     | 83.82%
+  101972 | Lyons, Delaney          | Target_Hours | 1,088.00     | 912.00     | 176.00     | 16.18%
+  101973 | Sorger, Nick            | Target_Hours | 1,112.00     | 176.00     | 936.00     | 84.17%
+  101973 | Sorger, Nick            | Target_Hours | 1,112.00     | 936.00     | 176.00     | 15.83%
+  102034 | Flagg, David            | Target_Hours | 1,128.00     | 136.00     | 992.00     | 87.94%
+  102034 | Flagg, David            | Target_Hours | 1,128.00     | 992.00     | 136.00     | 12.06%
+  5100   | Boyer, Chuck            | Target_Hours | 727.03       | 114.20     | 612.83     | 84.29%
+  5100   | Boyer, Chuck            | Target_Hours | 727.03       | 612.80     | 114.23     | 15.71%
+  5564   | Doles, Robert           | Target_Hours | 1,023.54     | 161.30     | 862.24     | 84.24%
+  5564   | Doles, Robert           | Target_Hours | 1,023.54     | 862.30     | 161.25     | 15.75%
+  5624   | Hingorani, Prithvi      | Target_Hours | 1,035.49     | 145.40     | 890.09     | 85.96%
+  5624   | Hingorani, Prithvi      | Target_Hours | 1,035.49     | 890.10     | 145.39     | 14.04%
+  6415   | Gemayel, Chady          | Target_Hours | 1,037.61     | 142.80     | 894.81     | 86.24%
+  6415   | Gemayel, Chady          | Target_Hours | 1,037.61     | 894.80     | 142.81     | 13.76%
+  101290 | Liu, Jiahua             | Target_Rev   | 903,086.00   | 140,008.00 | 763,078.00 | 84.50%
+  101290 | Liu, Jiahua             | Target_Rev   | 903,086.00   | 763,078.00 | 140,008.00 | 15.50%
+  101325 | Lohrs, Matt             | Target_Rev   | 662,400.00   | 101,200.00 | 561,200.00 | 84.72%
+  101325 | Lohrs, Matt             | Target_Rev   | 662,400.00   | 561,200.00 | 101,200.00 | 15.28%
+  101332 | Duarte Mascarenhas, Rui | Target_Rev   | 860,000.00   | 101,824.00 | 758,176.00 | 88.16%
+  101332 | Duarte Mascarenhas, Rui | Target_Rev   | 860,000.00   | 758,176.00 | 101,824.00 | 11.84%
+  101335 | Cui, Jenny              | Target_Rev   | 944,108.00   | 133,644.00 | 810,464.00 | 85.84%
+  101335 | Cui, Jenny              | Target_Rev   | 944,108.00   | 810,464.00 | 133,644.00 | 14.16%
+  101360 | Uribe, JP               | Target_Rev   | 683,528.00   | 101,824.00 | 581,704.00 | 85.10%
+  101360 | Uribe, JP               | Target_Rev   | 683,528.00   | 581,704.00 | 101,824.00 | 14.90%
+  101596 | Goyal, Devansh          | Target_Rev   | 516,040.00   | 85,360.00  | 430,680.00 | 83.46%
+  101596 | Goyal, Devansh          | Target_Rev   | 516,040.00   | 430,680.00 | 85,360.00  | 16.54%
+  101632 | Brady, Mackenzie        | Target_Rev   | 531,560.00   | 85,360.00  | 446,200.00 | 83.94%
+  101632 | Brady, Mackenzie        | Target_Rev   | 531,560.00   | 446,200.00 | 85,360.00  | 16.06%
+  101642 | O'Loughlin, Michael     | Target_Rev   | 611,397.50   | 78,200.00  | 533,197.50 | 87.21%
+  101642 | O'Loughlin, Michael     | Target_Rev   | 611,397.50   | 533,198.00 | 78,199.50  | 12.79%
+  101670 | DeMartin, Luke          | Target_Rev   | 657,800.00   | 92,000.00  | 565,800.00 | 86.01%
+  101670 | DeMartin, Luke          | Target_Rev   | 657,800.00   | 565,800.00 | 92,000.00  | 13.99%
+  101705 | Coan, Rachel            | Target_Rev   | 478,285.00   | 59,800.00  | 418,485.00 | 87.50%
+  101705 | Coan, Rachel            | Target_Rev   | 478,285.00   | 418,485.00 | 59,800.00  | 12.50%
+  101895 | Shankar, Shreyush       | Target_Rev   | 520,647.50   | 85,360.00  | 435,287.50 | 83.61%
+  101895 | Shankar, Shreyush       | Target_Rev   | 520,647.50   | 435,288.00 | 85,359.50  | 16.39%
+  101903 | Auster, Zach            | Target_Rev   | 562,600.00   | 81,480.00  | 481,120.00 | 85.52%
+  101903 | Auster, Zach            | Target_Rev   | 562,600.00   | 481,120.00 | 81,480.00  | 14.48%
+  101920 | Huang, Mackenzie        | Target_Rev   | 531,560.00   | 85,360.00  | 446,200.00 | 83.94%
+  101920 | Huang, Mackenzie        | Target_Rev   | 531,560.00   | 446,200.00 | 85,360.00  | 16.06%
+  101933 | Baert, Edith            | Target_Rev   | 519,920.00   | 54,320.00  | 465,600.00 | 89.55%
+  101933 | Baert, Edith            | Target_Rev   | 519,920.00   | 465,600.00 | 54,320.00  | 10.45%
+  101949 | Kotrebai, Daniel        | Target_Rev   | 554,840.00   | 85,360.00  | 469,480.00 | 84.62%
+  101949 | Kotrebai, Daniel        | Target_Rev   | 554,840.00   | 469,480.00 | 85,360.00  | 15.38%
+  101959 | Tanenbaum, Hannah       | Target_Rev   | 554,840.00   | 73,720.00  | 481,120.00 | 86.71%
+  101959 | Tanenbaum, Hannah       | Target_Rev   | 554,840.00   | 481,120.00 | 73,720.00  | 13.29%
+  101972 | Lyons, Delaney          | Target_Rev   | 527,680.00   | 85,360.00  | 442,320.00 | 83.82%
+  101972 | Lyons, Delaney          | Target_Rev   | 527,680.00   | 442,320.00 | 85,360.00  | 16.18%
+  101973 | Sorger, Nick            | Target_Rev   | 539,320.00   | 85,360.00  | 453,960.00 | 84.17%
+  101973 | Sorger, Nick            | Target_Rev   | 539,320.00   | 453,960.00 | 85,360.00  | 15.83%
+  102034 | Flagg, David            | Target_Rev   | 547,080.00   | 65,960.00  | 481,120.00 | 87.94%
+  102034 | Flagg, David            | Target_Rev   | 547,080.00   | 481,120.00 | 65,960.00  | 12.06%
+  5100   | Boyer, Chuck            | Target_Rev   | 767,014.54   | 120,523.00 | 646,491.54 | 84.29%
+  5100   | Boyer, Chuck            | Target_Rev   | 767,014.54   | 646,491.00 | 120,523.54 | 15.71%
+  5564   | Doles, Robert           | Target_Rev   | 972,367.75   | 153,197.00 | 819,170.75 | 84.24%
+  5564   | Doles, Robert           | Target_Rev   | 972,367.75   | 819,171.00 | 153,196.75 | 15.76%
+  5624   | Hingorani, Prithvi      | Target_Rev   | 1,092,438.65 | 153,344.00 | 939,094.65 | 85.96%
+  5624   | Hingorani, Prithvi      | Target_Rev   | 1,092,438.65 | 939,094.00 | 153,344.65 | 14.04%
+  6415   | Gemayel, Chady          | Target_Rev   | 1,094,678.29 | 150,654.00 | 944,024.29 | 86.24%
+  6415   | Gemayel, Chady          | Target_Rev   | 1,094,678.29 | 944,024.00 | 150,654.29 | 13.76%
+  101290 | Liu, Jiahua             | Actual_Hours | 1,265.10     | 255.10     | 1,010.00   | 79.84%
+  101290 | Liu, Jiahua             | Actual_Hours | 1,265.10     | 1,010.00   | 255.10     | 20.16%
+  101325 | Lohrs, Matt             | Actual_Hours | 1,491.70     | 301.30     | 1,190.40   | 79.80%
+  101325 | Lohrs, Matt             | Actual_Hours | 1,491.70     | 1,190.40   | 301.30     | 20.20%
+  101332 | Duarte Mascarenhas, Rui | Actual_Hours | 845.80       | 210.10     | 635.70     | 75.16%
+  101332 | Duarte Mascarenhas, Rui | Actual_Hours | 845.80       | 635.70     | 210.10     | 24.84%
+  101335 | Cui, Jenny              | Actual_Hours | 1,256.20     | 208.70     | 1,047.50   | 83.39%
+  101335 | Cui, Jenny              | Actual_Hours | 1,256.20     | 1,047.50   | 208.70     | 16.61%
+  101360 | Uribe, JP               | Actual_Hours | 679.10       | 130.70     | 548.40     | 80.75%
+  101360 | Uribe, JP               | Actual_Hours | 679.10       | 548.40     | 130.70     | 19.25%
+  101596 | Goyal, Devansh          | Actual_Hours | 787.90       | 144.00     | 643.90     | 81.72%
+  101596 | Goyal, Devansh          | Actual_Hours | 787.90       | 643.90     | 144.00     | 18.28%
+  101632 | Brady, Mackenzie        | Actual_Hours | 1,246.50     | 186.10     | 1,060.40   | 85.07%
+  101632 | Brady, Mackenzie        | Actual_Hours | 1,246.50     | 1,060.40   | 186.10     | 14.93%
+  101642 | O'Loughlin, Michael     | Actual_Hours | 952.30       | 88.70      | 863.60     | 90.69%
+  101642 | O'Loughlin, Michael     | Actual_Hours | 952.30       | 863.60     | 88.70      | 9.31% 
+  101670 | DeMartin, Luke          | Actual_Hours | 1,128.90     | 152.60     | 976.30     | 86.48%
+  101670 | DeMartin, Luke          | Actual_Hours | 1,128.90     | 976.30     | 152.60     | 13.52%
+  101705 | Coan, Rachel            | Actual_Hours | 535.40       | 114.80     | 420.60     | 78.56%
+  101705 | Coan, Rachel            | Actual_Hours | 535.40       | 420.60     | 114.80     | 21.44%
+  101895 | Shankar, Shreyush       | Actual_Hours | 1,031.70     | 164.90     | 866.80     | 84.02%
+  101895 | Shankar, Shreyush       | Actual_Hours | 1,031.70     | 866.80     | 164.90     | 15.98%
+  101903 | Auster, Zach            | Actual_Hours | 1,050.80     | 192.10     | 858.70     | 81.72%
+  101903 | Auster, Zach            | Actual_Hours | 1,050.80     | 858.70     | 192.10     | 18.28%
+  101920 | Huang, Mackenzie        | Actual_Hours | 678.90       | 142.70     | 536.20     | 78.98%
+  101920 | Huang, Mackenzie        | Actual_Hours | 678.90       | 536.20     | 142.70     | 21.02%
+  101933 | Baert, Edith            | Actual_Hours | 944.60       | 61.50      | 883.10     | 93.49%
+  101933 | Baert, Edith            | Actual_Hours | 944.60       | 883.10     | 61.50      | 6.51% 
+  101949 | Kotrebai, Daniel        | Actual_Hours | 834.88       | 105.40     | 729.48     | 87.38%
+  101949 | Kotrebai, Daniel        | Actual_Hours | 834.88       | 729.50     | 105.38     | 12.62%
+  101959 | Tanenbaum, Hannah       | Actual_Hours | 986.80       | 112.80     | 874.00     | 88.57%
+  101959 | Tanenbaum, Hannah       | Actual_Hours | 986.80       | 874.00     | 112.80     | 11.43%
+  101972 | Lyons, Delaney          | Actual_Hours | 734.40       | 151.90     | 582.50     | 79.32%
+  101972 | Lyons, Delaney          | Actual_Hours | 734.40       | 582.50     | 151.90     | 20.68%
+  101973 | Sorger, Nick            | Actual_Hours | 1,057.20     | 186.20     | 871.00     | 82.39%
+  101973 | Sorger, Nick            | Actual_Hours | 1,057.20     | 871.00     | 186.20     | 17.61%
+  102034 | Flagg, David            | Actual_Hours | 925.00       | 129.90     | 795.10     | 85.96%
+  102034 | Flagg, David            | Actual_Hours | 925.00       | 795.10     | 129.90     | 14.04%
+  5100   | Boyer, Chuck            | Actual_Hours | 597.20       | 124.40     | 472.80     | 79.17%
+  5100   | Boyer, Chuck            | Actual_Hours | 597.20       | 472.80     | 124.40     | 20.83%
+  5564   | Doles, Robert           | Actual_Hours | 1,109.60     | 176.40     | 933.20     | 84.10%
+  5564   | Doles, Robert           | Actual_Hours | 1,109.60     | 933.20     | 176.40     | 15.90%
+  5624   | Hingorani, Prithvi      | Actual_Hours | 982.80       | 151.20     | 831.60     | 84.62%
+  5624   | Hingorani, Prithvi      | Actual_Hours | 982.80       | 831.60     | 151.20     | 15.38%
+  6415   | Gemayel, Chady          | Actual_Hours | 1,066.60     | 121.10     | 945.50     | 88.65%
+  6415   | Gemayel, Chady          | Actual_Hours | 1,066.60     | 945.50     | 121.10     | 11.35%
+  101290 | Liu, Jiahua             | Standard_Rev | 1,087,986.00 | 219,386.00 | 868,600.00 | 79.84%
+  101290 | Liu, Jiahua             | Standard_Rev | 1,087,986.00 | 868,600.00 | 219,386.00 | 20.16%
+  101325 | Lohrs, Matt             | Standard_Rev | 857,727.50   | 173,248.00 | 684,479.50 | 79.80%
+  101325 | Lohrs, Matt             | Standard_Rev | 857,727.50   | 684,480.00 | 173,247.50 | 20.20%
+  101332 | Duarte Mascarenhas, Rui | Standard_Rev | 727,388.00   | 180,686.00 | 546,702.00 | 75.16%
+  101332 | Duarte Mascarenhas, Rui | Standard_Rev | 727,388.00   | 546,702.00 | 180,686.00 | 24.84%
+  101335 | Cui, Jenny              | Standard_Rev | 1,080,332.00 | 179,482.00 | 900,850.00 | 83.39%
+  101335 | Cui, Jenny              | Standard_Rev | 1,080,332.00 | 900,850.00 | 179,482.00 | 16.61%
+  101360 | Uribe, JP               | Standard_Rev | 584,026.00   | 112,402.00 | 471,624.00 | 80.75%
+  101360 | Uribe, JP               | Standard_Rev | 584,026.00   | 471,624.00 | 112,402.00 | 19.25%
+  101596 | Goyal, Devansh          | Standard_Rev | 382,131.50   | 69,840.00  | 312,291.50 | 81.72%
+  101596 | Goyal, Devansh          | Standard_Rev | 382,131.50   | 312,292.00 | 69,839.50  | 18.28%
+  101632 | Brady, Mackenzie        | Standard_Rev | 604,552.50   | 90,259.00  | 514,293.50 | 85.07%
+  101632 | Brady, Mackenzie        | Standard_Rev | 604,552.50   | 514,294.00 | 90,258.50  | 14.93%
+  101642 | O'Loughlin, Michael     | Standard_Rev | 547,572.50   | 51,003.00  | 496,569.50 | 90.69%
+  101642 | O'Loughlin, Michael     | Standard_Rev | 547,572.50   | 496,570.00 | 51,002.50  | 9.31% 
+  101670 | DeMartin, Luke          | Standard_Rev | 649,117.50   | 87,745.00  | 561,372.50 | 86.48%
+  101670 | DeMartin, Luke          | Standard_Rev | 649,117.50   | 561,373.00 | 87,744.50  | 13.52%
+  101705 | Coan, Rachel            | Standard_Rev | 307,855.00   | 66,010.00  | 241,845.00 | 78.56%
+  101705 | Coan, Rachel            | Standard_Rev | 307,855.00   | 241,845.00 | 66,010.00  | 21.44%
+  101895 | Shankar, Shreyush       | Standard_Rev | 500,374.50   | 79,977.00  | 420,397.50 | 84.02%
+  101895 | Shankar, Shreyush       | Standard_Rev | 500,374.50   | 420,398.00 | 79,976.50  | 15.98%
+  101903 | Auster, Zach            | Standard_Rev | 509,638.00   | 93,169.00  | 416,469.00 | 81.72%
+  101903 | Auster, Zach            | Standard_Rev | 509,638.00   | 416,470.00 | 93,168.00  | 18.28%
+  101920 | Huang, Mackenzie        | Standard_Rev | 329,266.50   | 69,210.00  | 260,056.50 | 78.98%
+  101920 | Huang, Mackenzie        | Standard_Rev | 329,266.50   | 260,057.00 | 69,209.50  | 21.02%
+  101933 | Baert, Edith            | Standard_Rev | 458,131.00   | 29,828.00  | 428,303.00 | 93.49%
+  101933 | Baert, Edith            | Standard_Rev | 458,131.00   | 428,304.00 | 29,827.00  | 6.51% 
+  101949 | Kotrebai, Daniel        | Standard_Rev | 404,916.80   | 51,119.00  | 353,797.80 | 87.38%
+  101949 | Kotrebai, Daniel        | Standard_Rev | 404,916.80   | 353,798.00 | 51,118.80  | 12.62%
+  101959 | Tanenbaum, Hannah       | Standard_Rev | 478,598.00   | 54,708.00  | 423,890.00 | 88.57%
+  101959 | Tanenbaum, Hannah       | Standard_Rev | 478,598.00   | 423,890.00 | 54,708.00  | 11.43%
+  101972 | Lyons, Delaney          | Standard_Rev | 356,184.00   | 73,672.00  | 282,512.00 | 79.32%
+  101972 | Lyons, Delaney          | Standard_Rev | 356,184.00   | 282,513.00 | 73,671.00  | 20.68%
+  101973 | Sorger, Nick            | Standard_Rev | 512,742.00   | 90,307.00  | 422,435.00 | 82.39%
+  101973 | Sorger, Nick            | Standard_Rev | 512,742.00   | 422,435.00 | 90,307.00  | 17.61%
+  102034 | Flagg, David            | Standard_Rev | 448,625.00   | 63,002.00  | 385,623.00 | 85.96%
+  102034 | Flagg, David            | Standard_Rev | 448,625.00   | 385,624.00 | 63,001.00  | 14.04%
+  5100   | Boyer, Chuck            | Standard_Rev | 630,046.00   | 131,242.00 | 498,804.00 | 79.17%
+  5100   | Boyer, Chuck            | Standard_Rev | 630,046.00   | 498,804.00 | 131,242.00 | 20.83%
+  5564   | Doles, Robert           | Standard_Rev | 1,054,120.00 | 167,580.00 | 886,540.00 | 84.10%
+  5564   | Doles, Robert           | Standard_Rev | 1,054,120.00 | 886,540.00 | 167,580.00 | 15.90%
+  5624   | Hingorani, Prithvi      | Standard_Rev | 1,036,854.00 | 159,516.00 | 877,338.00 | 84.62%
+  5624   | Hingorani, Prithvi      | Standard_Rev | 1,036,854.00 | 877,338.00 | 159,516.00 | 15.38%
+  6415   | Gemayel, Chady          | Standard_Rev | 1,125,263.00 | 127,761.00 | 997,502.00 | 88.65%
+  6415   | Gemayel, Chady          | Standard_Rev | 1,125,263.00 | 997,503.00 | 127,760.00 | 11.35%
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Chicago] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: July 2026 | Sheet: YTD - CRCH (YTD) | Run: 2026-08-03
+  Report: July 2026 | Sheet: YTD - CRCH (YTD) | Run: 2026-08-11
 
   MISSING ROWS:
+    [MISSING IN DB] EmpNo=101537 | Name=Shah, Aman
     [MISSING IN DB] EmpNo=101955 | Name=Kellenberg, Matthew
+    [MISSING IN XLS] EmpNo=101102 | Name=nan
     [MISSING IN XLS] EmpNo=102044 | Name=nan
 
-  EmpNo  | Name                | Column       | Util Report | DB         | Diff      | Diff%
-  -------+---------------------+--------------+-------------+------------+-----------+------
-  102247 | Rajan, Tanya        | Actual_Hours | 1,111.20    | 1,157.00   | 45.80     | 4.12%
-  102311 | Singh, Aaryan       | Actual_Hours | 773.80      | 820.10     | 46.30     | 5.98%
-  4698   | Hatzitaskos, Kostis | Actual_Hours | 618.30      | 638.60     | 20.30     | 3.28%
-  5344   | Kruskol, Sean       | Actual_Hours | 730.50      | 765.60     | 35.10     | 4.80%
-  102247 | Rajan, Tanya        | Standard_Rev | 750,060.00  | 780,975.00 | 30,915.00 | 4.12%
-  102311 | Singh, Aaryan       | Standard_Rev | 336,603.00  | 356,744.00 | 20,141.00 | 5.98%
-  4698   | Hatzitaskos, Kostis | Standard_Rev | 896,535.00  | 925,970.00 | 29,435.00 | 3.28%
-  5344   | Kruskol, Sean       | Standard_Rev | 883,905.00  | 926,376.00 | 42,471.00 | 4.80%
+  EmpNo  | Name                     | Column       | Util Report  | DB           | Diff         | Diff% 
+  -------+--------------------------+--------------+--------------+--------------+--------------+-------
+  101215 | Morales-Mosquera, Miguel | Target_Hours | 990.13       | 153.90       | 836.23       | 84.46%
+  101215 | Morales-Mosquera, Miguel | Target_Hours | 990.13       | 836.20       | 153.93       | 15.55%
+  101256 | Teeple, Michael          | Target_Hours | 1,101.59     | 159.20       | 942.39       | 85.55%
+  101256 | Teeple, Michael          | Target_Hours | 1,101.59     | 942.40       | 159.19       | 14.45%
+  101308 | King, Emma               | Target_Hours | 1,080.00     | 144.00       | 936.00       | 86.67%
+  101308 | King, Emma               | Target_Hours | 1,080.00     | 936.00       | 144.00       | 13.33%
+  101326 | Mehrotra, Nik            | Target_Hours | 1,101.00     | 160.00       | 941.00       | 85.47%
+  101326 | Mehrotra, Nik            | Target_Hours | 1,101.00     | 941.00       | 160.00       | 14.53%
+  101333 | Shao, Sophie             | Target_Hours | 1,051.00     | 104.00       | 947.00       | 90.10%
+  101333 | Shao, Sophie             | Target_Hours | 1,051.00     | 947.00       | 104.00       | 9.90% 
+  101539 | Hall, Layton             | Target_Hours | 1,122.70     | 173.00       | 949.70       | 84.59%
+  101539 | Hall, Layton             | Target_Hours | 1,122.70     | 949.70       | 173.00       | 15.41%
+  101540 | Mohy El Din, Karl        | Target_Hours | 1,160.00     | 176.00       | 984.00       | 84.83%
+  101540 | Mohy El Din, Karl        | Target_Hours | 1,160.00     | 984.00       | 176.00       | 15.17%
+  101543 | Fraizer, Michael         | Target_Hours | 1,136.00     | 168.00       | 968.00       | 85.21%
+  101543 | Fraizer, Michael         | Target_Hours | 1,136.00     | 968.00       | 168.00       | 14.79%
+  101579 | Gupta, Sakshi            | Target_Hours | 662.60       | 88.80        | 573.80       | 86.60%
+  101579 | Gupta, Sakshi            | Target_Hours | 662.60       | 573.80       | 88.80        | 13.40%
+  101638 | Zalke, Kenneth           | Target_Hours | 844.64       | 100.60       | 744.04       | 88.09%
+  101638 | Zalke, Kenneth           | Target_Hours | 844.64       | 744.00       | 100.64       | 11.92%
+  101644 | Murphy, Kevin            | Target_Hours | 1,115.00     | 168.00       | 947.00       | 84.93%
+  101644 | Murphy, Kevin            | Target_Hours | 1,115.00     | 947.00       | 168.00       | 15.07%
+  101651 | Trost, Ryan              | Target_Hours | 1,112.00     | 176.00       | 936.00       | 84.17%
+  101651 | Trost, Ryan              | Target_Hours | 1,112.00     | 936.00       | 176.00       | 15.83%
+  101673 | Barrett, Maggie          | Target_Hours | 1,088.00     | 176.00       | 912.00       | 83.82%
+  101673 | Barrett, Maggie          | Target_Hours | 1,088.00     | 912.00       | 176.00       | 16.18%
+  101701 | Porter, James            | Target_Hours | 1,080.00     | 128.00       | 952.00       | 88.15%
+  101701 | Porter, James            | Target_Hours | 1,080.00     | 952.00       | 128.00       | 11.85%
+  101752 | Petropoulos, Wendy       | Target_Hours | 1,016.54     | 100.80       | 915.74       | 90.08%
+  101752 | Petropoulos, Wendy       | Target_Hours | 1,016.54     | 915.70       | 100.84       | 9.92% 
+  101900 | Jacobs, Jason            | Target_Hours | 1,071.00     | 176.00       | 895.00       | 83.57%
+  101900 | Jacobs, Jason            | Target_Hours | 1,071.00     | 895.00       | 176.00       | 16.43%
+  101911 | Bailey, Beatrice         | Target_Hours | 1,088.00     | 120.00       | 968.00       | 88.97%
+  101911 | Bailey, Beatrice         | Target_Hours | 1,088.00     | 968.00       | 120.00       | 11.03%
+  101913 | Hemond, Quinn            | Target_Hours | 1,104.00     | 176.00       | 928.00       | 84.06%
+  101913 | Hemond, Quinn            | Target_Hours | 1,104.00     | 928.00       | 176.00       | 15.94%
+  101914 | Stacey, Carina           | Target_Hours | 1,064.00     | 176.00       | 888.00       | 83.46%
+  101914 | Stacey, Carina           | Target_Hours | 1,064.00     | 888.00       | 176.00       | 16.54%
+  101916 | Wong, Christopher        | Target_Hours | 1,176.00     | 176.00       | 1,000.00     | 85.03%
+  101916 | Wong, Christopher        | Target_Hours | 1,176.00     | 1,000.00     | 176.00       | 14.97%
+  101956 | Li, Gary                 | Target_Hours | 1,104.30     | 168.00       | 936.30       | 84.79%
+  101956 | Li, Gary                 | Target_Hours | 1,104.30     | 936.30       | 168.00       | 15.21%
+  102194 | Dueholm, Mick            | Target_Hours | 1,099.80     | 176.00       | 923.80       | 84.00%
+  102194 | Dueholm, Mick            | Target_Hours | 1,099.80     | 923.80       | 176.00       | 16.00%
+  5432   | Fox, Katie               | Target_Hours | 843.57       | 123.80       | 719.77       | 85.32%
+  5432   | Fox, Katie               | Target_Hours | 843.57       | 719.80       | 123.77       | 14.67%
+  5802   | Evans, Burke             | Target_Hours | 974.64       | 44.40        | 930.24       | 95.44%
+  5802   | Evans, Burke             | Target_Hours | 974.64       | 930.20       | 44.44        | 4.56% 
+  5915   | Lord, Matt               | Target_Hours | 1,053.52     | 161.30       | 892.22       | 84.69%
+  5915   | Lord, Matt               | Target_Hours | 1,053.52     | 892.30       | 161.22       | 15.30%
+  5964   | Bruno, JP                | Target_Hours | 1,064.13     | 153.90       | 910.23       | 85.54%
+  5964   | Bruno, JP                | Target_Hours | 1,064.13     | 910.20       | 153.93       | 14.47%
+  5967   | Vernon, Spencer          | Target_Hours | 901.86       | 111.60       | 790.26       | 87.63%
+  5967   | Vernon, Spencer          | Target_Hours | 901.86       | 790.30       | 111.56       | 12.37%
+  6024   | Charous, Jason           | Target_Hours | 901.01       | 51.30        | 849.72       | 94.31%
+  6024   | Charous, Jason           | Target_Hours | 901.01       | 849.70       | 51.31        | 5.70% 
+  6122   | Hilfiker, Michael        | Target_Hours | 795.78       | 119.70       | 676.08       | 84.96%
+  6122   | Hilfiker, Michael        | Target_Hours | 795.78       | 676.10       | 119.68       | 15.04%
+  6333   | Russell, Julia           | Target_Hours | 1,085.45     | 155.40       | 930.05       | 85.68%
+  6333   | Russell, Julia           | Target_Hours | 1,085.45     | 930.10       | 155.35       | 14.31%
+  6337   | Murphy, Ben              | Target_Hours | 1,090.09     | 159.50       | 930.59       | 85.37%
+  6337   | Murphy, Ben              | Target_Hours | 1,090.09     | 930.60       | 159.49       | 14.63%
+  6410   | Glandon, Molly           | Target_Hours | 1,007.29     | 148.60       | 858.69       | 85.25%
+  6410   | Glandon, Molly           | Target_Hours | 1,007.29     | 858.70       | 148.59       | 14.75%
+  101215 | Morales-Mosquera, Miguel | Target_Rev   | 940,623.50   | 146,234.00   | 794,389.50   | 84.45%
+  101215 | Morales-Mosquera, Miguel | Target_Rev   | 940,623.50   | 794,390.00   | 146,233.50   | 15.55%
+  101256 | Teeple, Michael          | Target_Rev   | 947,369.55   | 136,906.00   | 810,463.55   | 85.55%
+  101256 | Teeple, Michael          | Target_Rev   | 947,369.55   | 810,464.00   | 136,905.55   | 14.45%
+  101308 | King, Emma               | Target_Rev   | 621,000.00   | 82,800.00    | 538,200.00   | 86.67%
+  101308 | King, Emma               | Target_Rev   | 621,000.00   | 538,200.00   | 82,800.00    | 13.33%
+  101326 | Mehrotra, Nik            | Target_Rev   | 633,075.00   | 92,000.00    | 541,075.00   | 85.47%
+  101326 | Mehrotra, Nik            | Target_Rev   | 633,075.00   | 541,075.00   | 92,000.00    | 14.53%
+  101333 | Shao, Sophie             | Target_Rev   | 604,325.00   | 59,800.00    | 544,525.00   | 90.10%
+  101333 | Shao, Sophie             | Target_Rev   | 604,325.00   | 544,525.00   | 59,800.00    | 9.90% 
+  101539 | Hall, Layton             | Target_Rev   | 544,509.50   | 83,905.00    | 460,604.50   | 84.59%
+  101539 | Hall, Layton             | Target_Rev   | 544,509.50   | 460,605.00   | 83,904.50    | 15.41%
+  101540 | Mohy El Din, Karl        | Target_Rev   | 562,600.00   | 85,360.00    | 477,240.00   | 84.83%
+  101540 | Mohy El Din, Karl        | Target_Rev   | 562,600.00   | 477,240.00   | 85,360.00    | 15.17%
+  101543 | Fraizer, Michael         | Target_Rev   | 550,960.00   | 81,480.00    | 469,480.00   | 85.21%
+  101543 | Fraizer, Michael         | Target_Rev   | 550,960.00   | 469,480.00   | 81,480.00    | 14.79%
+  101579 | Gupta, Sakshi            | Target_Rev   | 569,836.00   | 76,368.00    | 493,468.00   | 86.60%
+  101579 | Gupta, Sakshi            | Target_Rev   | 569,836.00   | 493,468.00   | 76,368.00    | 13.40%
+  101638 | Zalke, Kenneth           | Target_Rev   | 726,390.40   | 86,550.00    | 639,840.40   | 88.08%
+  101638 | Zalke, Kenneth           | Target_Rev   | 726,390.40   | 639,840.00   | 86,550.40    | 11.92%
+  101644 | Murphy, Kevin            | Target_Rev   | 641,125.00   | 96,600.00    | 544,525.00   | 84.93%
+  101644 | Murphy, Kevin            | Target_Rev   | 641,125.00   | 544,525.00   | 96,600.00    | 15.07%
+  101651 | Trost, Ryan              | Target_Rev   | 639,400.00   | 101,200.00   | 538,200.00   | 84.17%
+  101651 | Trost, Ryan              | Target_Rev   | 639,400.00   | 538,200.00   | 101,200.00   | 15.83%
+  101673 | Barrett, Maggie          | Target_Rev   | 625,600.00   | 101,200.00   | 524,400.00   | 83.82%
+  101673 | Barrett, Maggie          | Target_Rev   | 625,600.00   | 524,400.00   | 101,200.00   | 16.18%
+  101701 | Porter, James            | Target_Rev   | 621,000.00   | 73,600.00    | 547,400.00   | 88.15%
+  101701 | Porter, James            | Target_Rev   | 621,000.00   | 547,400.00   | 73,600.00    | 11.85%
+  101752 | Petropoulos, Wendy       | Target_Rev   | 965,710.62   | 95,748.00    | 869,962.62   | 90.09%
+  101752 | Petropoulos, Wendy       | Target_Rev   | 965,710.62   | 869,963.00   | 95,747.62    | 9.91% 
+  101900 | Jacobs, Jason            | Target_Rev   | 519,435.00   | 85,360.00    | 434,075.00   | 83.57%
+  101900 | Jacobs, Jason            | Target_Rev   | 519,435.00   | 434,075.00   | 85,360.00    | 16.43%
+  101911 | Bailey, Beatrice         | Target_Rev   | 527,680.00   | 58,200.00    | 469,480.00   | 88.97%
+  101911 | Bailey, Beatrice         | Target_Rev   | 527,680.00   | 469,480.00   | 58,200.00    | 11.03%
+  101913 | Hemond, Quinn            | Target_Rev   | 535,440.00   | 85,360.00    | 450,080.00   | 84.06%
+  101913 | Hemond, Quinn            | Target_Rev   | 535,440.00   | 450,080.00   | 85,360.00    | 15.94%
+  101914 | Stacey, Carina           | Target_Rev   | 516,040.00   | 85,360.00    | 430,680.00   | 83.46%
+  101914 | Stacey, Carina           | Target_Rev   | 516,040.00   | 430,680.00   | 85,360.00    | 16.54%
+  101916 | Wong, Christopher        | Target_Rev   | 570,360.00   | 85,360.00    | 485,000.00   | 85.03%
+  101916 | Wong, Christopher        | Target_Rev   | 570,360.00   | 485,000.00   | 85,360.00    | 14.97%
+  101956 | Li, Gary                 | Target_Rev   | 535,585.50   | 81,480.00    | 454,105.50   | 84.79%
+  101956 | Li, Gary                 | Target_Rev   | 535,585.50   | 454,106.00   | 81,479.50    | 15.21%
+  102194 | Dueholm, Mick            | Target_Rev   | 533,403.00   | 85,360.00    | 448,043.00   | 84.00%
+  102194 | Dueholm, Mick            | Target_Rev   | 533,403.00   | 448,043.00   | 85,360.00    | 16.00%
+  5432   | Fox, Katie               | Target_Rev   | 889,962.13   | 130,567.00   | 759,395.13   | 85.33%
+  5432   | Fox, Katie               | Target_Rev   | 889,962.13   | 759,395.00   | 130,567.13   | 14.67%
+  5802   | Evans, Burke             | Target_Rev   | 838,190.40   | 38,184.00    | 800,006.40   | 95.44%
+  5802   | Evans, Burke             | Target_Rev   | 838,190.40   | 800,006.00   | 38,184.40    | 4.56% 
+  5915   | Lord, Matt               | Target_Rev   | 1,000,839.25 | 153,197.00   | 847,642.25   | 84.69%
+  5915   | Lord, Matt               | Target_Rev   | 1,000,839.25 | 847,642.00   | 153,197.25   | 15.31%
+  5964   | Bruno, JP                | Target_Rev   | 984,320.25   | 142,385.00   | 841,935.25   | 85.53%
+  5964   | Bruno, JP                | Target_Rev   | 984,320.25   | 841,935.00   | 142,385.25   | 14.47%
+  5967   | Vernon, Spencer          | Target_Rev   | 775,599.60   | 95,937.00    | 679,662.60   | 87.63%
+  5967   | Vernon, Spencer          | Target_Rev   | 775,599.60   | 679,662.00   | 95,937.60    | 12.37%
+  6024   | Charous, Jason           | Target_Rev   | 855,964.25   | 48,745.00    | 807,219.25   | 94.31%
+  6024   | Charous, Jason           | Target_Rev   | 855,964.25   | 807,220.00   | 48,744.25    | 5.69% 
+  6122   | Hilfiker, Michael        | Target_Rev   | 839,548.82   | 126,262.00   | 713,286.82   | 84.96%
+  6122   | Hilfiker, Michael        | Target_Rev   | 839,548.82   | 713,286.00   | 126,262.82   | 15.04%
+  6333   | Russell, Julia           | Target_Rev   | 933,487.00   | 133,644.00   | 799,843.00   | 85.68%
+  6333   | Russell, Julia           | Target_Rev   | 933,487.00   | 799,843.00   | 133,644.00   | 14.32%
+  6337   | Murphy, Ben              | Target_Rev   | 937,477.40   | 137,144.00   | 800,333.40   | 85.37%
+  6337   | Murphy, Ben              | Target_Rev   | 937,477.40   | 800,333.00   | 137,144.40   | 14.63%
+  6410   | Glandon, Molly           | Target_Rev   | 1,062,690.42 | 156,752.00   | 905,938.42   | 85.25%
+  6410   | Glandon, Molly           | Target_Rev   | 1,062,690.42 | 905,939.00   | 156,751.42   | 14.75%
+  101215 | Morales-Mosquera, Miguel | Actual_Hours | 1,253.10     | 152.90       | 1,100.20     | 87.80%
+  101215 | Morales-Mosquera, Miguel | Actual_Hours | 1,253.10     | 1,100.20     | 152.90       | 12.20%
+  101256 | Teeple, Michael          | Actual_Hours | 1,189.60     | 149.50       | 1,040.10     | 87.43%
+  101256 | Teeple, Michael          | Actual_Hours | 1,189.60     | 1,040.10     | 149.50       | 12.57%
+  101308 | King, Emma               | Actual_Hours | 1,110.20     | 143.10       | 967.10       | 87.11%
+  101308 | King, Emma               | Actual_Hours | 1,110.20     | 967.10       | 143.10       | 12.89%
+  101326 | Mehrotra, Nik            | Actual_Hours | 1,122.50     | 183.90       | 938.60       | 83.62%
+  101326 | Mehrotra, Nik            | Actual_Hours | 1,122.50     | 938.60       | 183.90       | 16.38%
+  101333 | Shao, Sophie             | Actual_Hours | 1,054.00     | 73.20        | 980.80       | 93.06%
+  101333 | Shao, Sophie             | Actual_Hours | 1,054.00     | 980.80       | 73.20        | 6.94% 
+  101539 | Hall, Layton             | Actual_Hours | 1,130.50     | 197.70       | 932.80       | 82.51%
+  101539 | Hall, Layton             | Actual_Hours | 1,130.50     | 932.80       | 197.70       | 17.49%
+  101540 | Mohy El Din, Karl        | Actual_Hours | 1,196.00     | 179.60       | 1,016.40     | 84.98%
+  101540 | Mohy El Din, Karl        | Actual_Hours | 1,196.00     | 1,016.40     | 179.60       | 15.02%
+  101543 | Fraizer, Michael         | Actual_Hours | 1,156.80     | 187.00       | 969.80       | 83.83%
+  101543 | Fraizer, Michael         | Actual_Hours | 1,156.80     | 969.80       | 187.00       | 16.17%
+  101579 | Gupta, Sakshi            | Actual_Hours | 562.80       | 88.90        | 473.90       | 84.20%
+  101579 | Gupta, Sakshi            | Actual_Hours | 562.80       | 473.90       | 88.90        | 15.80%
+  101638 | Zalke, Kenneth           | Actual_Hours | 837.20       | 175.30       | 661.90       | 79.06%
+  101638 | Zalke, Kenneth           | Actual_Hours | 837.20       | 661.90       | 175.30       | 20.94%
+  101644 | Murphy, Kevin            | Actual_Hours | 1,166.90     | 216.20       | 950.70       | 81.47%
+  101644 | Murphy, Kevin            | Actual_Hours | 1,166.90     | 950.70       | 216.20       | 18.53%
+  101651 | Trost, Ryan              | Actual_Hours | 1,350.60     | 174.90       | 1,175.70     | 87.05%
+  101651 | Trost, Ryan              | Actual_Hours | 1,350.60     | 1,175.70     | 174.90       | 12.95%
+  101673 | Barrett, Maggie          | Actual_Hours | 809.50       | 173.50       | 636.00       | 78.57%
+  101673 | Barrett, Maggie          | Actual_Hours | 809.50       | 636.00       | 173.50       | 21.43%
+  101701 | Porter, James            | Actual_Hours | 1,418.15     | 119.30       | 1,298.85     | 91.59%
+  101701 | Porter, James            | Actual_Hours | 1,418.15     | 1,298.90     | 119.25       | 8.41% 
+  101752 | Petropoulos, Wendy       | Actual_Hours | 858.90       | 89.60        | 769.30       | 89.57%
+  101752 | Petropoulos, Wendy       | Actual_Hours | 858.90       | 769.30       | 89.60        | 10.43%
+  101900 | Jacobs, Jason            | Actual_Hours | 1,090.20     | 181.00       | 909.20       | 83.40%
+  101900 | Jacobs, Jason            | Actual_Hours | 1,090.20     | 909.20       | 181.00       | 16.60%
+  101911 | Bailey, Beatrice         | Actual_Hours | 966.50       | 50.80        | 915.70       | 94.74%
+  101911 | Bailey, Beatrice         | Actual_Hours | 966.50       | 915.70       | 50.80        | 5.26% 
+  101913 | Hemond, Quinn            | Actual_Hours | 1,106.10     | 157.30       | 948.80       | 85.78%
+  101913 | Hemond, Quinn            | Actual_Hours | 1,106.10     | 948.80       | 157.30       | 14.22%
+  101914 | Stacey, Carina           | Actual_Hours | 883.10       | 93.30        | 789.80       | 89.43%
+  101914 | Stacey, Carina           | Actual_Hours | 883.10       | 789.80       | 93.30        | 10.57%
+  101916 | Wong, Christopher        | Actual_Hours | 871.30       | 122.20       | 749.10       | 85.97%
+  101916 | Wong, Christopher        | Actual_Hours | 871.30       | 749.10       | 122.20       | 14.03%
+  101956 | Li, Gary                 | Actual_Hours | 937.60       | 56.90        | 880.70       | 93.93%
+  101956 | Li, Gary                 | Actual_Hours | 937.60       | 880.70       | 56.90        | 6.07% 
+  102194 | Dueholm, Mick            | Actual_Hours | 1,142.30     | 217.80       | 924.50       | 80.93%
+  102194 | Dueholm, Mick            | Actual_Hours | 1,142.30     | 924.50       | 217.80       | 19.07%
+  5432   | Fox, Katie               | Actual_Hours | 954.30       | 162.40       | 791.90       | 82.98%
+  5432   | Fox, Katie               | Actual_Hours | 954.30       | 791.90       | 162.40       | 17.02%
+  5802   | Evans, Burke             | Actual_Hours | 1,208.40     | 73.00        | 1,135.40     | 93.96%
+  5802   | Evans, Burke             | Actual_Hours | 1,208.40     | 1,135.40     | 73.00        | 6.04% 
+  5915   | Lord, Matt               | Actual_Hours | 1,530.10     | 227.90       | 1,302.20     | 85.11%
+  5915   | Lord, Matt               | Actual_Hours | 1,530.10     | 1,302.20     | 227.90       | 14.89%
+  5964   | Bruno, JP                | Actual_Hours | 1,744.30     | 280.70       | 1,463.60     | 83.91%
+  5964   | Bruno, JP                | Actual_Hours | 1,744.30     | 1,463.60     | 280.70       | 16.09%
+  5967   | Vernon, Spencer          | Actual_Hours | 662.20       | 83.20        | 579.00       | 87.44%
+  5967   | Vernon, Spencer          | Actual_Hours | 662.20       | 579.00       | 83.20        | 12.56%
+  6024   | Charous, Jason           | Actual_Hours | 910.00       | 48.90        | 861.10       | 94.63%
+  6024   | Charous, Jason           | Actual_Hours | 910.00       | 861.10       | 48.90        | 5.37% 
+  6122   | Hilfiker, Michael        | Actual_Hours | 637.80       | 92.00        | 545.80       | 85.58%
+  6122   | Hilfiker, Michael        | Actual_Hours | 637.80       | 545.80       | 92.00        | 14.42%
+  6333   | Russell, Julia           | Actual_Hours | 1,035.00     | 174.40       | 860.60       | 83.15%
+  6333   | Russell, Julia           | Actual_Hours | 1,035.00     | 860.60       | 174.40       | 16.85%
+  6337   | Murphy, Ben              | Actual_Hours | 1,480.70     | 175.60       | 1,305.10     | 88.14%
+  6337   | Murphy, Ben              | Actual_Hours | 1,480.70     | 1,305.10     | 175.60       | 11.86%
+  6410   | Glandon, Molly           | Actual_Hours | 891.50       | 143.60       | 747.90       | 83.89%
+  6410   | Glandon, Molly           | Actual_Hours | 891.50       | 747.90       | 143.60       | 16.11%
+  101215 | Morales-Mosquera, Miguel | Standard_Rev | 1,190,445.00 | 145,255.00   | 1,045,190.00 | 87.80%
+  101215 | Morales-Mosquera, Miguel | Standard_Rev | 1,190,445.00 | 1,045,190.00 | 145,255.00   | 12.20%
+  101256 | Teeple, Michael          | Standard_Rev | 1,023,056.00 | 128,570.00   | 894,486.00   | 87.43%
+  101256 | Teeple, Michael          | Standard_Rev | 1,023,056.00 | 894,486.00   | 128,570.00   | 12.57%
+  101308 | King, Emma               | Standard_Rev | 638,365.00   | 82,283.00    | 556,082.00   | 87.11%
+  101308 | King, Emma               | Standard_Rev | 638,365.00   | 556,083.00   | 82,282.00    | 12.89%
+  101326 | Mehrotra, Nik            | Standard_Rev | 645,437.50   | 105,743.00   | 539,694.50   | 83.62%
+  101326 | Mehrotra, Nik            | Standard_Rev | 645,437.50   | 539,695.00   | 105,742.50   | 16.38%
+  101333 | Shao, Sophie             | Standard_Rev | 606,050.00   | 42,090.00    | 563,960.00   | 93.06%
+  101333 | Shao, Sophie             | Standard_Rev | 606,050.00   | 563,960.00   | 42,090.00    | 6.94% 
+  101539 | Hall, Layton             | Standard_Rev | 548,292.50   | 95,885.00    | 452,407.50   | 82.51%
+  101539 | Hall, Layton             | Standard_Rev | 548,292.50   | 452,408.00   | 95,884.50    | 17.49%
+  101540 | Mohy El Din, Karl        | Standard_Rev | 580,060.00   | 87,106.00    | 492,954.00   | 84.98%
+  101540 | Mohy El Din, Karl        | Standard_Rev | 580,060.00   | 492,954.00   | 87,106.00    | 15.02%
+  101543 | Fraizer, Michael         | Standard_Rev | 561,048.00   | 90,695.00    | 470,353.00   | 83.83%
+  101543 | Fraizer, Michael         | Standard_Rev | 561,048.00   | 470,353.00   | 90,695.00    | 16.17%
+  101579 | Gupta, Sakshi            | Standard_Rev | 484,008.00   | 76,454.00    | 407,554.00   | 84.20%
+  101579 | Gupta, Sakshi            | Standard_Rev | 484,008.00   | 407,554.00   | 76,454.00    | 15.80%
+  101638 | Zalke, Kenneth           | Standard_Rev | 719,992.00   | 150,758.00   | 569,234.00   | 79.06%
+  101638 | Zalke, Kenneth           | Standard_Rev | 719,992.00   | 569,234.00   | 150,758.00   | 20.94%
+  101644 | Murphy, Kevin            | Standard_Rev | 670,967.50   | 124,315.00   | 546,652.50   | 81.47%
+  101644 | Murphy, Kevin            | Standard_Rev | 670,967.50   | 546,653.00   | 124,314.50   | 18.53%
+  101651 | Trost, Ryan              | Standard_Rev | 776,595.00   | 100,568.00   | 676,027.00   | 87.05%
+  101651 | Trost, Ryan              | Standard_Rev | 776,595.00   | 676,028.00   | 100,567.00   | 12.95%
+  101673 | Barrett, Maggie          | Standard_Rev | 465,462.50   | 99,763.00    | 365,699.50   | 78.57%
+  101673 | Barrett, Maggie          | Standard_Rev | 465,462.50   | 365,700.00   | 99,762.50    | 21.43%
+  101701 | Porter, James            | Standard_Rev | 815,436.25   | 68,598.00    | 746,838.25   | 91.59%
+  101701 | Porter, James            | Standard_Rev | 815,436.25   | 746,839.00   | 68,597.25    | 8.41% 
+  101752 | Petropoulos, Wendy       | Standard_Rev | 815,955.00   | 85,120.00    | 730,835.00   | 89.57%
+  101752 | Petropoulos, Wendy       | Standard_Rev | 815,955.00   | 730,835.00   | 85,120.00    | 10.43%
+  101900 | Jacobs, Jason            | Standard_Rev | 528,747.00   | 87,785.00    | 440,962.00   | 83.40%
+  101900 | Jacobs, Jason            | Standard_Rev | 528,747.00   | 440,962.00   | 87,785.00    | 16.60%
+  101911 | Bailey, Beatrice         | Standard_Rev | 468,752.50   | 24,638.00    | 444,114.50   | 94.74%
+  101911 | Bailey, Beatrice         | Standard_Rev | 468,752.50   | 444,115.00   | 24,637.50    | 5.26% 
+  101913 | Hemond, Quinn            | Standard_Rev | 536,458.50   | 76,291.00    | 460,167.50   | 85.78%
+  101913 | Hemond, Quinn            | Standard_Rev | 536,458.50   | 460,168.00   | 76,290.50    | 14.22%
+  101914 | Stacey, Carina           | Standard_Rev | 428,303.50   | 45,251.00    | 383,052.50   | 89.43%
+  101914 | Stacey, Carina           | Standard_Rev | 428,303.50   | 383,053.00   | 45,250.50    | 10.57%
+  101916 | Wong, Christopher        | Standard_Rev | 422,580.50   | 59,267.00    | 363,313.50   | 85.97%
+  101916 | Wong, Christopher        | Standard_Rev | 422,580.50   | 363,314.00   | 59,266.50    | 14.02%
+  101956 | Li, Gary                 | Standard_Rev | 454,736.00   | 27,597.00    | 427,139.00   | 93.93%
+  101956 | Li, Gary                 | Standard_Rev | 454,736.00   | 427,140.00   | 27,596.00    | 6.07% 
+  102194 | Dueholm, Mick            | Standard_Rev | 554,015.50   | 105,633.00   | 448,382.50   | 80.93%
+  102194 | Dueholm, Mick            | Standard_Rev | 554,015.50   | 448,383.00   | 105,632.50   | 19.07%
+  5432   | Fox, Katie               | Standard_Rev | 1,006,786.50 | 171,332.00   | 835,454.50   | 82.98%
+  5432   | Fox, Katie               | Standard_Rev | 1,006,786.50 | 835,455.00   | 171,331.50   | 17.02%
+  5802   | Evans, Burke             | Standard_Rev | 1,039,224.00 | 62,780.00    | 976,444.00   | 93.96%
+  5802   | Evans, Burke             | Standard_Rev | 1,039,224.00 | 976,444.00   | 62,780.00    | 6.04% 
+  5915   | Lord, Matt               | Standard_Rev | 1,453,595.00 | 216,505.00   | 1,237,090.00 | 85.11%
+  5915   | Lord, Matt               | Standard_Rev | 1,453,595.00 | 1,237,090.00 | 216,505.00   | 14.89%
+  5964   | Bruno, JP                | Standard_Rev | 1,613,477.50 | 259,648.00   | 1,353,829.50 | 83.91%
+  5964   | Bruno, JP                | Standard_Rev | 1,613,477.50 | 1,353,830.00 | 259,647.50   | 16.09%
+  5967   | Vernon, Spencer          | Standard_Rev | 569,492.00   | 71,552.00    | 497,940.00   | 87.44%
+  5967   | Vernon, Spencer          | Standard_Rev | 569,492.00   | 497,940.00   | 71,552.00    | 12.56%
+  6024   | Charous, Jason           | Standard_Rev | 864,500.00   | 46,455.00    | 818,045.00   | 94.63%
+  6024   | Charous, Jason           | Standard_Rev | 864,500.00   | 818,045.00   | 46,455.00    | 5.37% 
+  6122   | Hilfiker, Michael        | Standard_Rev | 672,879.00   | 97,060.00    | 575,819.00   | 85.58%
+  6122   | Hilfiker, Michael        | Standard_Rev | 672,879.00   | 575,819.00   | 97,060.00    | 14.42%
+  6333   | Russell, Julia           | Standard_Rev | 890,100.00   | 149,984.00   | 740,116.00   | 83.15%
+  6333   | Russell, Julia           | Standard_Rev | 890,100.00   | 740,116.00   | 149,984.00   | 16.85%
+  6337   | Murphy, Ben              | Standard_Rev | 1,273,402.00 | 151,016.00   | 1,122,386.00 | 88.14%
+  6337   | Murphy, Ben              | Standard_Rev | 1,273,402.00 | 1,122,386.00 | 151,016.00   | 11.86%
+  6410   | Glandon, Molly           | Standard_Rev | 940,532.50   | 151,498.00   | 789,034.50   | 83.89%
+  6410   | Glandon, Molly           | Standard_Rev | 940,532.50   | 789,035.00   | 151,497.50   | 16.11%
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[DC] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: July 2026 | Sheet: YTD - CRDC (YTD) | Run: 2026-08-03
+  Report: July 2026 | Sheet: YTD - CRDC (YTD) | Run: 2026-08-11
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101292 | Name=Zhang, Haoran
+    [MISSING IN DB] EmpNo=102077 | Name=Hagerty, Matthew
     [MISSING IN DB] EmpNo=4830 | Name=Martynova, Marina
 
-  EmpNo  | Name              | Column       | Util Report | DB         | Diff      | Diff%  
-  -------+-------------------+--------------+-------------+------------+-----------+--------
-  102098 | Whitehouse, Sarah | Actual_Hours | 0.00        | 14.30      | 14.30     | inf%   
-  102152 | Das Varma, Gopal  | Actual_Hours | 286.90      | 346.30     | 59.40     | 20.70% 
-  102207 | Kruse, Zoe        | Actual_Hours | 1,164.20    | 1,204.70   | 40.50     | 3.48%  
-  102223 | Tobin, Elliot     | Actual_Hours | 810.80      | 843.50     | 32.70     | 4.03%  
-  102271 | Wong, Kevin       | Actual_Hours | 675.20      | 712.50     | 37.30     | 5.52%  
-  5936   | Haas, Marlene     | Actual_Hours | 287.60      | 310.00     | 22.40     | 7.79%  
-  6173   | Han, Yuxin        | Actual_Hours | 14.60       | 60.70      | 46.10     | 315.75%
-  102098 | Whitehouse, Sarah | Standard_Rev | 0.00        | 6,221.00   | 6,221.00  | inf%   
-  102152 | Das Varma, Gopal  | Standard_Rev | 375,839.00  | 453,653.00 | 77,814.00 | 20.70% 
-  102207 | Kruse, Zoe        | Standard_Rev | 564,637.00  | 584,280.00 | 19,643.00 | 3.48%  
-  102223 | Tobin, Elliot     | Standard_Rev | 547,290.00  | 569,363.00 | 22,073.00 | 4.03%  
-  102271 | Wong, Kevin       | Standard_Rev | 327,472.00  | 345,563.00 | 18,091.00 | 5.52%  
-  5936   | Haas, Marlene     | Standard_Rev | 322,112.00  | 347,200.00 | 25,088.00 | 7.79%  
-  6173   | Han, Yuxin        | Standard_Rev | 11,169.00   | 46,436.00  | 35,267.00 | 315.76%
+  EmpNo  | Name                    | Column       | Util Report  | DB           | Diff         | Diff% 
+  -------+-------------------------+--------------+--------------+--------------+--------------+-------
+  101090 | Dernaoui, Zaki          | Target_Hours | 1,093.59     | 168.60       | 924.99       | 84.58%
+  101090 | Dernaoui, Zaki          | Target_Hours | 1,093.59     | 925.00       | 168.59       | 15.42%
+  101231 | Palinko, Gabor          | Target_Hours | 810.20       | 88.00        | 722.20       | 89.14%
+  101231 | Palinko, Gabor          | Target_Hours | 810.20       | 722.20       | 88.00        | 10.86%
+  101321 | Kelley, Boston          | Target_Hours | 962.20       | 16.00        | 946.20       | 98.34%
+  101324 | Li, Andrew              | Target_Hours | 1,160.00     | 176.00       | 984.00       | 84.83%
+  101324 | Li, Andrew              | Target_Hours | 1,160.00     | 984.00       | 176.00       | 15.17%
+  101343 | Schoeberl, Steele       | Target_Hours | 1,088.00     | 120.00       | 968.00       | 88.97%
+  101343 | Schoeberl, Steele       | Target_Hours | 1,088.00     | 968.00       | 120.00       | 11.03%
+  101384 | Delalay, Sylvain        | Target_Hours | 1,009.23     | 139.30       | 869.93       | 86.20%
+  101384 | Delalay, Sylvain        | Target_Hours | 1,009.23     | 870.00       | 139.23       | 13.80%
+  101569 | Passodelis, Sam         | Target_Hours | 1,094.00     | 176.00       | 918.00       | 83.91%
+  101569 | Passodelis, Sam         | Target_Hours | 1,094.00     | 918.00       | 176.00       | 16.09%
+  101572 | Oura, Shoma             | Target_Hours | 1,096.00     | 176.00       | 920.00       | 83.94%
+  101572 | Oura, Shoma             | Target_Hours | 1,096.00     | 920.00       | 176.00       | 16.06%
+  101576 | Shah, Kavi              | Target_Hours | 1,136.00     | 152.00       | 984.00       | 86.62%
+  101576 | Shah, Kavi              | Target_Hours | 1,136.00     | 984.00       | 152.00       | 13.38%
+  101585 | Cheung, Catherine       | Target_Hours | 1,056.00     | 168.00       | 888.00       | 84.09%
+  101585 | Cheung, Catherine       | Target_Hours | 1,056.00     | 888.00       | 168.00       | 15.91%
+  101590 | Bass, Kyle              | Target_Hours | 1,084.90     | 112.00       | 972.90       | 89.68%
+  101590 | Bass, Kyle              | Target_Hours | 1,084.90     | 972.90       | 112.00       | 10.32%
+  101591 | Jones, Nate             | Target_Hours | 1,056.00     | 176.00       | 880.00       | 83.33%
+  101591 | Jones, Nate             | Target_Hours | 1,056.00     | 880.00       | 176.00       | 16.67%
+  101652 | Husted, Lucas           | Target_Hours | 766.20       | 51.80        | 714.40       | 93.24%
+  101652 | Husted, Lucas           | Target_Hours | 766.20       | 714.40       | 51.80        | 6.76% 
+  101675 | Wen, Yaxuan             | Target_Hours | 1,039.30     | 140.60       | 898.70       | 86.47%
+  101675 | Wen, Yaxuan             | Target_Hours | 1,039.30     | 898.70       | 140.60       | 13.53%
+  101680 | Wen, Callie             | Target_Hours | 996.30       | 176.00       | 820.30       | 82.33%
+  101680 | Wen, Callie             | Target_Hours | 996.30       | 820.30       | 176.00       | 17.67%
+  101687 | Byrne, Luka             | Target_Hours | 1,016.00     | 176.00       | 840.00       | 82.68%
+  101687 | Byrne, Luka             | Target_Hours | 1,016.00     | 840.00       | 176.00       | 17.32%
+  101940 | Lu, Lucas               | Target_Hours | 984.00       | 152.00       | 832.00       | 84.55%
+  101940 | Lu, Lucas               | Target_Hours | 984.00       | 832.00       | 152.00       | 15.45%
+  101950 | Kubat, Hannah           | Target_Hours | 1,128.00     | 176.00       | 952.00       | 84.40%
+  101950 | Kubat, Hannah           | Target_Hours | 1,128.00     | 952.00       | 176.00       | 15.60%
+  101968 | Smith-Boyle, Vanessa    | Target_Hours | 1,088.00     | 176.00       | 912.00       | 83.82%
+  101968 | Smith-Boyle, Vanessa    | Target_Hours | 1,088.00     | 912.00       | 176.00       | 16.18%
+  101983 | DaSilva, Alexandre      | Target_Hours | 1,160.00     | 176.00       | 984.00       | 84.83%
+  101983 | DaSilva, Alexandre      | Target_Hours | 1,160.00     | 984.00       | 176.00       | 15.17%
+  102012 | Briggs, Kenneth         | Target_Hours | 1,145.00     | 157.00       | 988.00       | 86.29%
+  102012 | Briggs, Kenneth         | Target_Hours | 1,145.00     | 988.00       | 157.00       | 13.71%
+  102036 | Curtin, Anna            | Target_Hours | 1,089.40     | 176.00       | 913.40       | 83.84%
+  102036 | Curtin, Anna            | Target_Hours | 1,089.40     | 913.40       | 176.00       | 16.16%
+  102043 | Schrammel, Michael      | Target_Hours | 1,134.00     | 168.00       | 966.00       | 85.19%
+  102043 | Schrammel, Michael      | Target_Hours | 1,134.00     | 966.00       | 168.00       | 14.81%
+  102207 | Kruse, Zoe              | Target_Hours | 1,160.00     | 168.00       | 992.00       | 85.52%
+  102207 | Kruse, Zoe              | Target_Hours | 1,160.00     | 992.00       | 168.00       | 14.48%
+  4876   | Schiff, Avi             | Target_Hours | 1,024.22     | 144.10       | 880.12       | 85.93%
+  4876   | Schiff, Avi             | Target_Hours | 1,024.22     | 880.10       | 144.12       | 14.07%
+  5483   | Cayer, Etienne          | Target_Hours | 991.57       | 144.50       | 847.07       | 85.43%
+  5483   | Cayer, Etienne          | Target_Hours | 991.57       | 847.10       | 144.47       | 14.57%
+  6330   | Hoyos Suarez, Alejandro | Target_Hours | 1,035.23     | 142.80       | 892.43       | 86.21%
+  6330   | Hoyos Suarez, Alejandro | Target_Hours | 1,035.23     | 892.40       | 142.83       | 13.80%
+  101090 | Dernaoui, Zaki          | Target_Rev   | 1,038,910.50 | 160,161.00   | 878,749.50   | 84.58%
+  101090 | Dernaoui, Zaki          | Target_Rev   | 1,038,910.50 | 878,750.00   | 160,160.50   | 15.42%
+  101231 | Palinko, Gabor          | Target_Rev   | 769,690.00   | 83,562.00    | 686,128.00   | 89.14%
+  101231 | Palinko, Gabor          | Target_Rev   | 769,690.00   | 686,128.00   | 83,562.00    | 10.86%
+  101321 | Kelley, Boston          | Target_Rev   | 553,265.00   | 9,200.00     | 544,065.00   | 98.34%
+  101324 | Li, Andrew              | Target_Rev   | 667,000.00   | 101,200.00   | 565,800.00   | 84.83%
+  101324 | Li, Andrew              | Target_Rev   | 667,000.00   | 565,800.00   | 101,200.00   | 15.17%
+  101343 | Schoeberl, Steele       | Target_Rev   | 625,600.00   | 69,000.00    | 556,600.00   | 88.97%
+  101343 | Schoeberl, Steele       | Target_Rev   | 625,600.00   | 556,600.00   | 69,000.00    | 11.03%
+  101384 | Delalay, Sylvain        | Target_Rev   | 958,770.88   | 132,307.00   | 826,463.88   | 86.20%
+  101384 | Delalay, Sylvain        | Target_Rev   | 958,770.88   | 826,464.00   | 132,306.88   | 13.80%
+  101569 | Passodelis, Sam         | Target_Rev   | 530,590.00   | 85,360.00    | 445,230.00   | 83.91%
+  101569 | Passodelis, Sam         | Target_Rev   | 530,590.00   | 445,230.00   | 85,360.00    | 16.09%
+  101572 | Oura, Shoma             | Target_Rev   | 531,560.00   | 85,360.00    | 446,200.00   | 83.94%
+  101572 | Oura, Shoma             | Target_Rev   | 531,560.00   | 446,200.00   | 85,360.00    | 16.06%
+  101576 | Shah, Kavi              | Target_Rev   | 550,960.00   | 73,720.00    | 477,240.00   | 86.62%
+  101576 | Shah, Kavi              | Target_Rev   | 550,960.00   | 477,240.00   | 73,720.00    | 13.38%
+  101585 | Cheung, Catherine       | Target_Rev   | 512,160.00   | 81,480.00    | 430,680.00   | 84.09%
+  101585 | Cheung, Catherine       | Target_Rev   | 512,160.00   | 430,680.00   | 81,480.00    | 15.91%
+  101590 | Bass, Kyle              | Target_Rev   | 526,176.50   | 54,320.00    | 471,856.50   | 89.68%
+  101590 | Bass, Kyle              | Target_Rev   | 526,176.50   | 471,857.00   | 54,319.50    | 10.32%
+  101591 | Jones, Nate             | Target_Rev   | 512,160.00   | 85,360.00    | 426,800.00   | 83.33%
+  101591 | Jones, Nate             | Target_Rev   | 512,160.00   | 426,800.00   | 85,360.00    | 16.67%
+  101652 | Husted, Lucas           | Target_Rev   | 658,932.00   | 44,548.00    | 614,384.00   | 93.24%
+  101652 | Husted, Lucas           | Target_Rev   | 658,932.00   | 614,384.00   | 44,548.00    | 6.76% 
+  101675 | Wen, Yaxuan             | Target_Rev   | 893,798.00   | 120,916.00   | 772,882.00   | 86.47%
+  101675 | Wen, Yaxuan             | Target_Rev   | 893,798.00   | 772,882.00   | 120,916.00   | 13.53%
+  101680 | Wen, Callie             | Target_Rev   | 572,872.50   | 101,200.00   | 471,672.50   | 82.33%
+  101680 | Wen, Callie             | Target_Rev   | 572,872.50   | 471,673.00   | 101,199.50   | 17.67%
+  101687 | Byrne, Luka             | Target_Rev   | 584,200.00   | 101,200.00   | 483,000.00   | 82.68%
+  101687 | Byrne, Luka             | Target_Rev   | 584,200.00   | 483,000.00   | 101,200.00   | 17.32%
+  101940 | Lu, Lucas               | Target_Rev   | 477,240.00   | 73,720.00    | 403,520.00   | 84.55%
+  101940 | Lu, Lucas               | Target_Rev   | 477,240.00   | 403,520.00   | 73,720.00    | 15.45%
+  101950 | Kubat, Hannah           | Target_Rev   | 547,080.00   | 85,360.00    | 461,720.00   | 84.40%
+  101950 | Kubat, Hannah           | Target_Rev   | 547,080.00   | 461,720.00   | 85,360.00    | 15.60%
+  101968 | Smith-Boyle, Vanessa    | Target_Rev   | 527,680.00   | 85,360.00    | 442,320.00   | 83.82%
+  101968 | Smith-Boyle, Vanessa    | Target_Rev   | 527,680.00   | 442,320.00   | 85,360.00    | 16.18%
+  101983 | DaSilva, Alexandre      | Target_Rev   | 562,600.00   | 85,360.00    | 477,240.00   | 84.83%
+  101983 | DaSilva, Alexandre      | Target_Rev   | 562,600.00   | 477,240.00   | 85,360.00    | 15.17%
+  102012 | Briggs, Kenneth         | Target_Rev   | 658,375.00   | 90,275.00    | 568,100.00   | 86.29%
+  102012 | Briggs, Kenneth         | Target_Rev   | 658,375.00   | 568,100.00   | 90,275.00    | 13.71%
+  102036 | Curtin, Anna            | Target_Rev   | 528,359.00   | 85,360.00    | 442,999.00   | 83.84%
+  102036 | Curtin, Anna            | Target_Rev   | 528,359.00   | 442,999.00   | 85,360.00    | 16.16%
+  102043 | Schrammel, Michael      | Target_Rev   | 652,050.00   | 96,600.00    | 555,450.00   | 85.19%
+  102043 | Schrammel, Michael      | Target_Rev   | 652,050.00   | 555,450.00   | 96,600.00    | 14.81%
+  102207 | Kruse, Zoe              | Target_Rev   | 562,600.00   | 81,480.00    | 481,120.00   | 85.52%
+  102207 | Kruse, Zoe              | Target_Rev   | 562,600.00   | 481,120.00   | 81,480.00    | 14.48%
+  4876   | Schiff, Avi             | Target_Rev   | 1,080,557.11 | 151,999.00   | 928,558.11   | 85.93%
+  4876   | Schiff, Avi             | Target_Rev   | 1,080,557.11 | 928,558.00   | 151,999.11   | 14.07%
+  5483   | Cayer, Etienne          | Target_Rev   | 1,046,109.65 | 152,448.00   | 893,661.65   | 85.43%
+  5483   | Cayer, Etienne          | Target_Rev   | 1,046,109.65 | 893,662.00   | 152,447.65   | 14.57%
+  6330   | Hoyos Suarez, Alejandro | Target_Rev   | 1,092,165.01 | 150,654.00   | 941,511.01   | 86.21%
+  6330   | Hoyos Suarez, Alejandro | Target_Rev   | 1,092,165.01 | 941,511.00   | 150,654.01   | 13.79%
+  101090 | Dernaoui, Zaki          | Actual_Hours | 1,303.20     | 232.70       | 1,070.50     | 82.14%
+  101090 | Dernaoui, Zaki          | Actual_Hours | 1,303.20     | 1,070.50     | 232.70       | 17.86%
+  101231 | Palinko, Gabor          | Actual_Hours | 1,147.40     | 135.70       | 1,011.70     | 88.17%
+  101231 | Palinko, Gabor          | Actual_Hours | 1,147.40     | 1,011.70     | 135.70       | 11.83%
+  101324 | Li, Andrew              | Actual_Hours | 1,225.60     | 210.60       | 1,015.00     | 82.82%
+  101324 | Li, Andrew              | Actual_Hours | 1,225.60     | 1,015.00     | 210.60       | 17.18%
+  101343 | Schoeberl, Steele       | Actual_Hours | 1,052.50     | 135.90       | 916.60       | 87.09%
+  101343 | Schoeberl, Steele       | Actual_Hours | 1,052.50     | 916.60       | 135.90       | 12.91%
+  101384 | Delalay, Sylvain        | Actual_Hours | 1,204.00     | 178.30       | 1,025.70     | 85.19%
+  101384 | Delalay, Sylvain        | Actual_Hours | 1,204.00     | 1,025.70     | 178.30       | 14.81%
+  101569 | Passodelis, Sam         | Actual_Hours | 1,119.50     | 177.30       | 942.20       | 84.16%
+  101569 | Passodelis, Sam         | Actual_Hours | 1,119.50     | 942.20       | 177.30       | 15.84%
+  101572 | Oura, Shoma             | Actual_Hours | 1,096.80     | 171.50       | 925.30       | 84.36%
+  101572 | Oura, Shoma             | Actual_Hours | 1,096.80     | 925.30       | 171.50       | 15.64%
+  101576 | Shah, Kavi              | Actual_Hours | 1,244.80     | 145.30       | 1,099.50     | 88.33%
+  101576 | Shah, Kavi              | Actual_Hours | 1,244.80     | 1,099.50     | 145.30       | 11.67%
+  101585 | Cheung, Catherine       | Actual_Hours | 1,183.90     | 181.90       | 1,002.00     | 84.64%
+  101585 | Cheung, Catherine       | Actual_Hours | 1,183.90     | 1,002.00     | 181.90       | 15.36%
+  101590 | Bass, Kyle              | Actual_Hours | 1,044.50     | 96.10        | 948.40       | 90.80%
+  101590 | Bass, Kyle              | Actual_Hours | 1,044.50     | 948.40       | 96.10        | 9.20% 
+  101591 | Jones, Nate             | Actual_Hours | 903.65       | 203.50       | 700.15       | 77.48%
+  101591 | Jones, Nate             | Actual_Hours | 903.65       | 700.20       | 203.45       | 22.51%
+  101652 | Husted, Lucas           | Actual_Hours | 821.20       | 59.00        | 762.20       | 92.82%
+  101652 | Husted, Lucas           | Actual_Hours | 821.20       | 762.20       | 59.00        | 7.18% 
+  101675 | Wen, Yaxuan             | Actual_Hours | 1,017.00     | 119.60       | 897.40       | 88.24%
+  101675 | Wen, Yaxuan             | Actual_Hours | 1,017.00     | 897.40       | 119.60       | 11.76%
+  101680 | Wen, Callie             | Actual_Hours | 1,140.60     | 194.40       | 946.20       | 82.96%
+  101680 | Wen, Callie             | Actual_Hours | 1,140.60     | 946.20       | 194.40       | 17.04%
+  101687 | Byrne, Luka             | Actual_Hours | 984.80       | 225.90       | 758.90       | 77.06%
+  101687 | Byrne, Luka             | Actual_Hours | 984.80       | 758.90       | 225.90       | 22.94%
+  101940 | Lu, Lucas               | Actual_Hours | 1,060.60     | 140.10       | 920.50       | 86.79%
+  101940 | Lu, Lucas               | Actual_Hours | 1,060.60     | 920.50       | 140.10       | 13.21%
+  101950 | Kubat, Hannah           | Actual_Hours | 996.30       | 128.10       | 868.20       | 87.14%
+  101950 | Kubat, Hannah           | Actual_Hours | 996.30       | 868.20       | 128.10       | 12.86%
+  101968 | Smith-Boyle, Vanessa    | Actual_Hours | 1,012.00     | 202.00       | 810.00       | 80.04%
+  101968 | Smith-Boyle, Vanessa    | Actual_Hours | 1,012.00     | 810.00       | 202.00       | 19.96%
+  101983 | DaSilva, Alexandre      | Actual_Hours | 1,225.50     | 193.10       | 1,032.40     | 84.24%
+  101983 | DaSilva, Alexandre      | Actual_Hours | 1,225.50     | 1,032.40     | 193.10       | 15.76%
+  102012 | Briggs, Kenneth         | Actual_Hours | 962.70       | 162.20       | 800.50       | 83.15%
+  102012 | Briggs, Kenneth         | Actual_Hours | 962.70       | 800.50       | 162.20       | 16.85%
+  102036 | Curtin, Anna            | Actual_Hours | 1,119.10     | 154.50       | 964.60       | 86.19%
+  102036 | Curtin, Anna            | Actual_Hours | 1,119.10     | 964.60       | 154.50       | 13.81%
+  102043 | Schrammel, Michael      | Actual_Hours | 1,264.20     | 167.10       | 1,097.10     | 86.78%
+  102043 | Schrammel, Michael      | Actual_Hours | 1,264.20     | 1,097.10     | 167.10       | 13.22%
+  102207 | Kruse, Zoe              | Actual_Hours | 1,204.70     | 144.80       | 1,059.90     | 87.98%
+  102207 | Kruse, Zoe              | Actual_Hours | 1,204.70     | 1,059.90     | 144.80       | 12.02%
+  4876   | Schiff, Avi             | Actual_Hours | 1,109.60     | 181.60       | 928.00       | 83.63%
+  4876   | Schiff, Avi             | Actual_Hours | 1,109.60     | 928.00       | 181.60       | 16.37%
+  5483   | Cayer, Etienne          | Actual_Hours | 1,203.60     | 197.00       | 1,006.60     | 83.63%
+  5483   | Cayer, Etienne          | Actual_Hours | 1,203.60     | 1,006.60     | 197.00       | 16.37%
+  6330   | Hoyos Suarez, Alejandro | Actual_Hours | 1,051.90     | 134.40       | 917.50       | 87.22%
+  6330   | Hoyos Suarez, Alejandro | Actual_Hours | 1,051.90     | 917.50       | 134.40       | 12.78%
+  101090 | Dernaoui, Zaki          | Standard_Rev | 1,238,040.00 | 221,065.00   | 1,016,975.00 | 82.14%
+  101090 | Dernaoui, Zaki          | Standard_Rev | 1,238,040.00 | 1,016,975.00 | 221,065.00   | 17.86%
+  101231 | Palinko, Gabor          | Standard_Rev | 1,090,030.00 | 128,915.00   | 961,115.00   | 88.17%
+  101231 | Palinko, Gabor          | Standard_Rev | 1,090,030.00 | 961,115.00   | 128,915.00   | 11.83%
+  101324 | Li, Andrew              | Standard_Rev | 704,720.00   | 121,095.00   | 583,625.00   | 82.82%
+  101324 | Li, Andrew              | Standard_Rev | 704,720.00   | 583,625.00   | 121,095.00   | 17.18%
+  101343 | Schoeberl, Steele       | Standard_Rev | 605,187.50   | 78,143.00    | 527,044.50   | 87.09%
+  101343 | Schoeberl, Steele       | Standard_Rev | 605,187.50   | 527,045.00   | 78,142.50    | 12.91%
+  101384 | Delalay, Sylvain        | Standard_Rev | 1,143,800.00 | 169,385.00   | 974,415.00   | 85.19%
+  101384 | Delalay, Sylvain        | Standard_Rev | 1,143,800.00 | 974,415.00   | 169,385.00   | 14.81%
+  101569 | Passodelis, Sam         | Standard_Rev | 542,957.50   | 85,991.00    | 456,966.50   | 84.16%
+  101569 | Passodelis, Sam         | Standard_Rev | 542,957.50   | 456,967.00   | 85,990.50    | 15.84%
+  101572 | Oura, Shoma             | Standard_Rev | 531,948.00   | 83,178.00    | 448,770.00   | 84.36%
+  101572 | Oura, Shoma             | Standard_Rev | 531,948.00   | 448,771.00   | 83,177.00    | 15.64%
+  101576 | Shah, Kavi              | Standard_Rev | 603,728.00   | 70,471.00    | 533,257.00   | 88.33%
+  101576 | Shah, Kavi              | Standard_Rev | 603,728.00   | 533,258.00   | 70,470.00    | 11.67%
+  101585 | Cheung, Catherine       | Standard_Rev | 574,191.50   | 88,222.00    | 485,969.50   | 84.64%
+  101585 | Cheung, Catherine       | Standard_Rev | 574,191.50   | 485,970.00   | 88,221.50    | 15.36%
+  101590 | Bass, Kyle              | Standard_Rev | 506,582.50   | 46,609.00    | 459,973.50   | 90.80%
+  101590 | Bass, Kyle              | Standard_Rev | 506,582.50   | 459,974.00   | 46,608.50    | 9.20% 
+  101591 | Jones, Nate             | Standard_Rev | 438,270.25   | 98,698.00    | 339,572.25   | 77.48%
+  101591 | Jones, Nate             | Standard_Rev | 438,270.25   | 339,573.00   | 98,697.25    | 22.52%
+  101652 | Husted, Lucas           | Standard_Rev | 706,232.00   | 50,740.00    | 655,492.00   | 92.82%
+  101652 | Husted, Lucas           | Standard_Rev | 706,232.00   | 655,492.00   | 50,740.00    | 7.18% 
+  101675 | Wen, Yaxuan             | Standard_Rev | 874,620.00   | 102,856.00   | 771,764.00   | 88.24%
+  101675 | Wen, Yaxuan             | Standard_Rev | 874,620.00   | 771,764.00   | 102,856.00   | 11.76%
+  101680 | Wen, Callie             | Standard_Rev | 655,845.00   | 111,780.00   | 544,065.00   | 82.96%
+  101680 | Wen, Callie             | Standard_Rev | 655,845.00   | 544,065.00   | 111,780.00   | 17.04%
+  101687 | Byrne, Luka             | Standard_Rev | 566,260.00   | 129,893.00   | 436,367.00   | 77.06%
+  101687 | Byrne, Luka             | Standard_Rev | 566,260.00   | 436,368.00   | 129,892.00   | 22.94%
+  101940 | Lu, Lucas               | Standard_Rev | 514,391.00   | 67,949.00    | 446,442.00   | 86.79%
+  101940 | Lu, Lucas               | Standard_Rev | 514,391.00   | 446,443.00   | 67,948.00    | 13.21%
+  101950 | Kubat, Hannah           | Standard_Rev | 483,205.50   | 62,129.00    | 421,076.50   | 87.14%
+  101950 | Kubat, Hannah           | Standard_Rev | 483,205.50   | 421,077.00   | 62,128.50    | 12.86%
+  101968 | Smith-Boyle, Vanessa    | Standard_Rev | 490,820.00   | 97,970.00    | 392,850.00   | 80.04%
+  101968 | Smith-Boyle, Vanessa    | Standard_Rev | 490,820.00   | 392,850.00   | 97,970.00    | 19.96%
+  101983 | DaSilva, Alexandre      | Standard_Rev | 594,367.50   | 93,654.00    | 500,713.50   | 84.24%
+  101983 | DaSilva, Alexandre      | Standard_Rev | 594,367.50   | 500,714.00   | 93,653.50    | 15.76%
+  102012 | Briggs, Kenneth         | Standard_Rev | 553,552.50   | 93,265.00    | 460,287.50   | 83.15%
+  102012 | Briggs, Kenneth         | Standard_Rev | 553,552.50   | 460,288.00   | 93,264.50    | 16.85%
+  102036 | Curtin, Anna            | Standard_Rev | 542,763.50   | 74,933.00    | 467,830.50   | 86.19%
+  102036 | Curtin, Anna            | Standard_Rev | 542,763.50   | 467,831.00   | 74,932.50    | 13.81%
+  102043 | Schrammel, Michael      | Standard_Rev | 726,915.00   | 96,083.00    | 630,832.00   | 86.78%
+  102043 | Schrammel, Michael      | Standard_Rev | 726,915.00   | 630,833.00   | 96,082.00    | 13.22%
+  102207 | Kruse, Zoe              | Standard_Rev | 584,279.50   | 70,228.00    | 514,051.50   | 87.98%
+  102207 | Kruse, Zoe              | Standard_Rev | 584,279.50   | 514,052.00   | 70,227.50    | 12.02%
+  4876   | Schiff, Avi             | Standard_Rev | 1,170,628.00 | 191,588.00   | 979,040.00   | 83.63%
+  4876   | Schiff, Avi             | Standard_Rev | 1,170,628.00 | 979,040.00   | 191,588.00   | 16.37%
+  5483   | Cayer, Etienne          | Standard_Rev | 1,269,798.00 | 207,835.00   | 1,061,963.00 | 83.63%
+  5483   | Cayer, Etienne          | Standard_Rev | 1,269,798.00 | 1,061,963.00 | 207,835.00   | 16.37%
+  6330   | Hoyos Suarez, Alejandro | Standard_Rev | 1,109,754.50 | 141,792.00   | 967,962.50   | 87.22%
+  6330   | Hoyos Suarez, Alejandro | Standard_Rev | 1,109,754.50 | 967,963.00   | 141,791.50   | 12.78%
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[LA] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: July 2026 | Sheet: YTD - CRLA (YTD) | Run: 2026-08-03
+  Report: July 2026 | Sheet: YTD - CRLA (YTD) | Run: 2026-08-11
 
-  EmpNo  | Name            | Column       | Util Report | DB         | Diff      | Diff%
-  -------+-----------------+--------------+-------------+------------+-----------+------
-  101470 | Freyd, Benjamin | Actual_Hours | 941.40      | 981.00     | 39.60     | 4.21%
-  101470 | Freyd, Benjamin | Standard_Rev | 870,795.00  | 907,425.00 | 36,630.00 | 4.21%
+  MISSING ROWS:
+    [MISSING IN XLS] EmpNo=101537 | Name=nan
+
+  EmpNo  | Name                      | Column       | Util Report  | DB         | Diff       | Diff% 
+  -------+---------------------------+--------------+--------------+------------+------------+-------
+  100991 | Harley, Danny             | Target_Hours | 753.68       | 117.30     | 636.38     | 84.44%
+  100991 | Harley, Danny             | Target_Hours | 753.68       | 636.40     | 117.28     | 15.56%
+  101316 | Srikanth, Sid             | Target_Hours | 1,112.00     | 176.00     | 936.00     | 84.17%
+  101316 | Srikanth, Sid             | Target_Hours | 1,112.00     | 936.00     | 176.00     | 15.83%
+  101318 | Bin Abd Aziz, Arif        | Target_Hours | 1,114.80     | 176.00     | 938.80     | 84.21%
+  101318 | Bin Abd Aziz, Arif        | Target_Hours | 1,114.80     | 938.80     | 176.00     | 15.79%
+  101366 | Cuevas Rodriguez, Gabriel | Target_Hours | 1,090.40     | 148.00     | 942.40     | 86.43%
+  101366 | Cuevas Rodriguez, Gabriel | Target_Hours | 1,090.40     | 942.40     | 148.00     | 13.57%
+  101553 | Linden, Neville           | Target_Hours | 1,024.00     | 128.00     | 896.00     | 87.50%
+  101553 | Linden, Neville           | Target_Hours | 1,024.00     | 896.00     | 128.00     | 12.50%
+  101597 | Ling, Anthony             | Target_Hours | 1,047.00     | 168.00     | 879.00     | 83.95%
+  101597 | Ling, Anthony             | Target_Hours | 1,047.00     | 879.00     | 168.00     | 16.05%
+  101710 | Diller, Kaylee            | Target_Hours | 1,132.00     | 168.00     | 964.00     | 85.16%
+  101710 | Diller, Kaylee            | Target_Hours | 1,132.00     | 964.00     | 168.00     | 14.84%
+  101711 | Wang, Belinda             | Target_Hours | 1,048.00     | 160.00     | 888.00     | 84.73%
+  101711 | Wang, Belinda             | Target_Hours | 1,048.00     | 888.00     | 160.00     | 15.27%
+  101712 | Stevens, Cameron          | Target_Hours | 1,058.00     | 126.00     | 932.00     | 88.09%
+  101712 | Stevens, Cameron          | Target_Hours | 1,058.00     | 932.00     | 126.00     | 11.91%
+  101713 | Chung, Jiwon              | Target_Hours | 1,112.00     | 160.00     | 952.00     | 85.61%
+  101713 | Chung, Jiwon              | Target_Hours | 1,112.00     | 952.00     | 160.00     | 14.39%
+  101928 | Chabra, David             | Target_Hours | 1,120.00     | 176.00     | 944.00     | 84.29%
+  101928 | Chabra, David             | Target_Hours | 1,120.00     | 944.00     | 176.00     | 15.71%
+  101930 | Zeng, Baron               | Target_Hours | 1,152.00     | 176.00     | 976.00     | 84.72%
+  101930 | Zeng, Baron               | Target_Hours | 1,152.00     | 976.00     | 176.00     | 15.28%
+  101991 | Yuan, Isaac               | Target_Hours | 1,096.00     | 176.00     | 920.00     | 83.94%
+  101991 | Yuan, Isaac               | Target_Hours | 1,096.00     | 920.00     | 176.00     | 16.06%
+  101992 | Pallace, Trey             | Target_Hours | 1,144.00     | 168.00     | 976.00     | 85.31%
+  101992 | Pallace, Trey             | Target_Hours | 1,144.00     | 976.00     | 168.00     | 14.69%
+  5369   | Tandon, Vijeta            | Target_Hours | 962.99       | 129.20     | 833.79     | 86.58%
+  5369   | Tandon, Vijeta            | Target_Hours | 962.99       | 833.80     | 129.19     | 13.42%
+  100991 | Harley, Danny             | Target_Rev   | 715,996.00   | 111,416.00 | 604,580.00 | 84.44%
+  100991 | Harley, Danny             | Target_Rev   | 715,996.00   | 604,580.00 | 111,416.00 | 15.56%
+  101316 | Srikanth, Sid             | Target_Rev   | 639,400.00   | 101,200.00 | 538,200.00 | 84.17%
+  101316 | Srikanth, Sid             | Target_Rev   | 639,400.00   | 538,200.00 | 101,200.00 | 15.83%
+  101318 | Bin Abd Aziz, Arif        | Target_Rev   | 641,010.00   | 101,200.00 | 539,810.00 | 84.21%
+  101318 | Bin Abd Aziz, Arif        | Target_Rev   | 641,010.00   | 539,810.00 | 101,200.00 | 15.79%
+  101366 | Cuevas Rodriguez, Gabriel | Target_Rev   | 937,744.00   | 127,280.00 | 810,464.00 | 86.43%
+  101366 | Cuevas Rodriguez, Gabriel | Target_Rev   | 937,744.00   | 810,464.00 | 127,280.00 | 13.57%
+  101553 | Linden, Neville           | Target_Rev   | 496,640.00   | 62,080.00  | 434,560.00 | 87.50%
+  101553 | Linden, Neville           | Target_Rev   | 496,640.00   | 434,560.00 | 62,080.00  | 12.50%
+  101597 | Ling, Anthony             | Target_Rev   | 507,795.00   | 81,480.00  | 426,315.00 | 83.95%
+  101597 | Ling, Anthony             | Target_Rev   | 507,795.00   | 426,315.00 | 81,480.00  | 16.05%
+  101710 | Diller, Kaylee            | Target_Rev   | 650,900.00   | 96,600.00  | 554,300.00 | 85.16%
+  101710 | Diller, Kaylee            | Target_Rev   | 650,900.00   | 554,300.00 | 96,600.00  | 14.84%
+  101711 | Wang, Belinda             | Target_Rev   | 602,600.00   | 92,000.00  | 510,600.00 | 84.73%
+  101711 | Wang, Belinda             | Target_Rev   | 602,600.00   | 510,600.00 | 92,000.00  | 15.27%
+  101712 | Stevens, Cameron          | Target_Rev   | 608,350.00   | 72,450.00  | 535,900.00 | 88.09%
+  101712 | Stevens, Cameron          | Target_Rev   | 608,350.00   | 535,900.00 | 72,450.00  | 11.91%
+  101713 | Chung, Jiwon              | Target_Rev   | 639,400.00   | 92,000.00  | 547,400.00 | 85.61%
+  101713 | Chung, Jiwon              | Target_Rev   | 639,400.00   | 547,400.00 | 92,000.00  | 14.39%
+  101928 | Chabra, David             | Target_Rev   | 543,200.00   | 85,360.00  | 457,840.00 | 84.29%
+  101928 | Chabra, David             | Target_Rev   | 543,200.00   | 457,840.00 | 85,360.00  | 15.71%
+  101930 | Zeng, Baron               | Target_Rev   | 558,720.00   | 85,360.00  | 473,360.00 | 84.72%
+  101930 | Zeng, Baron               | Target_Rev   | 558,720.00   | 473,360.00 | 85,360.00  | 15.28%
+  101991 | Yuan, Isaac               | Target_Rev   | 531,560.00   | 85,360.00  | 446,200.00 | 83.94%
+  101991 | Yuan, Isaac               | Target_Rev   | 531,560.00   | 446,200.00 | 85,360.00  | 16.06%
+  101992 | Pallace, Trey             | Target_Rev   | 554,840.00   | 81,480.00  | 473,360.00 | 85.31%
+  101992 | Pallace, Trey             | Target_Rev   | 554,840.00   | 473,360.00 | 81,480.00  | 14.69%
+  5369   | Tandon, Vijeta            | Target_Rev   | 1,015,951.81 | 136,306.00 | 879,645.81 | 86.58%
+  5369   | Tandon, Vijeta            | Target_Rev   | 1,015,951.81 | 879,646.00 | 136,305.81 | 13.42%
+  100991 | Harley, Danny             | Actual_Hours | 904.10       | 125.90     | 778.20     | 86.07%
+  100991 | Harley, Danny             | Actual_Hours | 904.10       | 778.20     | 125.90     | 13.93%
+  101316 | Srikanth, Sid             | Actual_Hours | 992.30       | 180.40     | 811.90     | 81.82%
+  101316 | Srikanth, Sid             | Actual_Hours | 992.30       | 811.90     | 180.40     | 18.18%
+  101318 | Bin Abd Aziz, Arif        | Actual_Hours | 1,218.40     | 182.50     | 1,035.90   | 85.02%
+  101318 | Bin Abd Aziz, Arif        | Actual_Hours | 1,218.40     | 1,035.90   | 182.50     | 14.98%
+  101366 | Cuevas Rodriguez, Gabriel | Actual_Hours | 1,055.80     | 130.40     | 925.40     | 87.65%
+  101366 | Cuevas Rodriguez, Gabriel | Actual_Hours | 1,055.80     | 925.40     | 130.40     | 12.35%
+  101553 | Linden, Neville           | Actual_Hours | 861.30       | 74.70      | 786.60     | 91.33%
+  101553 | Linden, Neville           | Actual_Hours | 861.30       | 786.60     | 74.70      | 8.67% 
+  101597 | Ling, Anthony             | Actual_Hours | 1,113.40     | 111.20     | 1,002.20   | 90.01%
+  101597 | Ling, Anthony             | Actual_Hours | 1,113.40     | 1,002.20   | 111.20     | 9.99% 
+  101710 | Diller, Kaylee            | Actual_Hours | 1,320.50     | 227.10     | 1,093.40   | 82.80%
+  101710 | Diller, Kaylee            | Actual_Hours | 1,320.50     | 1,093.40   | 227.10     | 17.20%
+  101711 | Wang, Belinda             | Actual_Hours | 785.50       | 125.20     | 660.30     | 84.06%
+  101711 | Wang, Belinda             | Actual_Hours | 785.50       | 660.30     | 125.20     | 15.94%
+  101712 | Stevens, Cameron          | Actual_Hours | 933.60       | 102.80     | 830.80     | 88.99%
+  101712 | Stevens, Cameron          | Actual_Hours | 933.60       | 830.80     | 102.80     | 11.01%
+  101713 | Chung, Jiwon              | Actual_Hours | 1,108.10     | 194.10     | 914.00     | 82.48%
+  101713 | Chung, Jiwon              | Actual_Hours | 1,108.10     | 914.00     | 194.10     | 17.52%
+  101928 | Chabra, David             | Actual_Hours | 1,381.60     | 277.90     | 1,103.70   | 79.89%
+  101928 | Chabra, David             | Actual_Hours | 1,381.60     | 1,103.70   | 277.90     | 20.11%
+  101930 | Zeng, Baron               | Actual_Hours | 1,176.00     | 174.70     | 1,001.30   | 85.14%
+  101930 | Zeng, Baron               | Actual_Hours | 1,176.00     | 1,001.30   | 174.70     | 14.86%
+  101991 | Yuan, Isaac               | Actual_Hours | 1,173.60     | 223.10     | 950.50     | 80.99%
+  101991 | Yuan, Isaac               | Actual_Hours | 1,173.60     | 950.50     | 223.10     | 19.01%
+  101992 | Pallace, Trey             | Actual_Hours | 1,027.70     | 220.20     | 807.50     | 78.57%
+  101992 | Pallace, Trey             | Actual_Hours | 1,027.70     | 807.50     | 220.20     | 21.43%
+  5369   | Tandon, Vijeta            | Actual_Hours | 1,004.50     | 68.50      | 936.00     | 93.18%
+  5369   | Tandon, Vijeta            | Actual_Hours | 1,004.50     | 936.00     | 68.50      | 6.82% 
+  100991 | Harley, Danny             | Standard_Rev | 858,895.00   | 119,605.00 | 739,290.00 | 86.07%
+  100991 | Harley, Danny             | Standard_Rev | 858,895.00   | 739,290.00 | 119,605.00 | 13.93%
+  101316 | Srikanth, Sid             | Standard_Rev | 570,572.50   | 103,730.00 | 466,842.50 | 81.82%
+  101316 | Srikanth, Sid             | Standard_Rev | 570,572.50   | 466,843.00 | 103,729.50 | 18.18%
+  101318 | Bin Abd Aziz, Arif        | Standard_Rev | 700,580.00   | 104,938.00 | 595,642.00 | 85.02%
+  101318 | Bin Abd Aziz, Arif        | Standard_Rev | 700,580.00   | 595,643.00 | 104,937.00 | 14.98%
+  101366 | Cuevas Rodriguez, Gabriel | Standard_Rev | 907,988.00   | 112,144.00 | 795,844.00 | 87.65%
+  101366 | Cuevas Rodriguez, Gabriel | Standard_Rev | 907,988.00   | 795,844.00 | 112,144.00 | 12.35%
+  101553 | Linden, Neville           | Standard_Rev | 417,730.50   | 36,230.00  | 381,500.50 | 91.33%
+  101553 | Linden, Neville           | Standard_Rev | 417,730.50   | 381,501.00 | 36,229.50  | 8.67% 
+  101597 | Ling, Anthony             | Standard_Rev | 539,999.00   | 53,932.00  | 486,067.00 | 90.01%
+  101597 | Ling, Anthony             | Standard_Rev | 539,999.00   | 486,067.00 | 53,932.00  | 9.99% 
+  101710 | Diller, Kaylee            | Standard_Rev | 759,287.50   | 130,583.00 | 628,704.50 | 82.80%
+  101710 | Diller, Kaylee            | Standard_Rev | 759,287.50   | 628,705.00 | 130,582.50 | 17.20%
+  101711 | Wang, Belinda             | Standard_Rev | 451,662.50   | 71,990.00  | 379,672.50 | 84.06%
+  101711 | Wang, Belinda             | Standard_Rev | 451,662.50   | 379,673.00 | 71,989.50  | 15.94%
+  101712 | Stevens, Cameron          | Standard_Rev | 536,820.00   | 59,110.00  | 477,710.00 | 88.99%
+  101712 | Stevens, Cameron          | Standard_Rev | 536,820.00   | 477,710.00 | 59,110.00  | 11.01%
+  101713 | Chung, Jiwon              | Standard_Rev | 637,157.50   | 111,608.00 | 525,549.50 | 82.48%
+  101713 | Chung, Jiwon              | Standard_Rev | 637,157.50   | 525,550.00 | 111,607.50 | 17.52%
+  101928 | Chabra, David             | Standard_Rev | 670,076.00   | 134,782.00 | 535,294.00 | 79.89%
+  101928 | Chabra, David             | Standard_Rev | 670,076.00   | 535,295.00 | 134,781.00 | 20.11%
+  101930 | Zeng, Baron               | Standard_Rev | 570,360.00   | 84,730.00  | 485,630.00 | 85.14%
+  101930 | Zeng, Baron               | Standard_Rev | 570,360.00   | 485,631.00 | 84,729.00  | 14.86%
+  101991 | Yuan, Isaac               | Standard_Rev | 569,196.00   | 108,204.00 | 460,992.00 | 80.99%
+  101991 | Yuan, Isaac               | Standard_Rev | 569,196.00   | 460,993.00 | 108,203.00 | 19.01%
+  101992 | Pallace, Trey             | Standard_Rev | 498,434.50   | 106,797.00 | 391,637.50 | 78.57%
+  101992 | Pallace, Trey             | Standard_Rev | 498,434.50   | 391,638.00 | 106,796.50 | 21.43%
+  5369   | Tandon, Vijeta            | Standard_Rev | 1,059,747.50 | 72,268.00  | 987,479.50 | 93.18%
+  5369   | Tandon, Vijeta            | Standard_Rev | 1,059,747.50 | 987,480.00 | 72,267.50  | 6.82% 
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: July 2026 | Sheet: YTD - CRNY (YTD) | Run: 2026-08-03
+  Report: July 2026 | Sheet: YTD - CRNY (YTD) | Run: 2026-08-11
 
   MISSING ROWS:
+    [MISSING IN DB] EmpNo=101102 | Name=Nandwani, Gehna Rai
     [MISSING IN DB] EmpNo=102044 | Name=Jones, Collin
     [MISSING IN XLS] EmpNo=101468 | Name=nan
     [MISSING IN XLS] EmpNo=101955 | Name=nan
+    [MISSING IN XLS] EmpNo=101955 | Name=nan
+    [MISSING IN XLS] EmpNo=102071 | Name=nan
+    [MISSING IN XLS] EmpNo=102077 | Name=nan
 
-  EmpNo  | Name                 | Column       | Util Report  | DB           | Diff      | Diff%
-  -------+----------------------+--------------+--------------+--------------+-----------+------
-  101815 | Krothapalli, Sahithi | Actual_Hours | 1,120.00     | 1,178.90     | 58.90     | 5.26%
-  101915 | Kottou, Rafaela      | Actual_Hours | 1,282.60     | 1,326.80     | 44.20     | 3.45%
-  102439 | Narayanan, Ananya    | Actual_Hours | 0.00         | 10.00        | 10.00     | inf% 
-  102461 | Kurczynski, Konrad   | Actual_Hours | 0.00         | 10.50        | 10.50     | inf% 
-  6342   | Haltenhof, Samuel    | Actual_Hours | 1,398.70     | 1,453.90     | 55.20     | 3.95%
-  101815 | Krothapalli, Sahithi | Standard_Rev | 487,200.00   | 512,822.00   | 25,622.00 | 5.26%
-  101915 | Kottou, Rafaela      | Standard_Rev | 622,061.00   | 643,498.00   | 21,437.00 | 3.45%
-  102439 | Narayanan, Ananya    | Standard_Rev | 0.00         | 4,350.00     | 4,350.00  | inf% 
-  102461 | Kurczynski, Konrad   | Standard_Rev | 0.00         | 4,568.00     | 4,568.00  | inf% 
-  6342   | Haltenhof, Samuel    | Standard_Rev | 1,475,628.50 | 1,533,865.00 | 58,236.50 | 3.95%
+  EmpNo  | Name                  | Column       | Util Report  | DB           | Diff         | Diff% 
+  -------+-----------------------+--------------+--------------+--------------+--------------+-------
+  101096 | Alfaro Serrano, David | Target_Hours | 833.49       | 129.00       | 704.49       | 84.52%
+  101096 | Alfaro Serrano, David | Target_Hours | 833.49       | 704.50       | 128.99       | 15.48%
+  101334 | Anyosa, Antony        | Target_Hours | 938.00       | 162.80       | 775.20       | 82.64%
+  101334 | Anyosa, Antony        | Target_Hours | 938.00       | 775.20       | 162.80       | 17.36%
+  101534 | Yan, Emma             | Target_Hours | 1,087.00     | 176.00       | 911.00       | 83.81%
+  101534 | Yan, Emma             | Target_Hours | 1,087.00     | 911.00       | 176.00       | 16.19%
+  101544 | McAndie, James        | Target_Hours | 1,128.00     | 168.00       | 960.00       | 85.11%
+  101544 | McAndie, James        | Target_Hours | 1,128.00     | 960.00       | 168.00       | 14.89%
+  101546 | Kauffmann, Amelia     | Target_Hours | 1,153.50     | 176.00       | 977.50       | 84.74%
+  101546 | Kauffmann, Amelia     | Target_Hours | 1,153.50     | 977.50       | 176.00       | 15.26%
+  101578 | Perry, Charlie        | Target_Hours | 1,123.00     | 176.00       | 947.00       | 84.33%
+  101578 | Perry, Charlie        | Target_Hours | 1,123.00     | 947.00       | 176.00       | 15.67%
+  101614 | Gavirneni, Meghana    | Target_Hours | 1,124.50     | 136.00       | 988.50       | 87.91%
+  101614 | Gavirneni, Meghana    | Target_Hours | 1,124.50     | 988.50       | 136.00       | 12.09%
+  101621 | Ebert, Annalise       | Target_Hours | 1,071.00     | 168.00       | 903.00       | 84.31%
+  101621 | Ebert, Annalise       | Target_Hours | 1,071.00     | 903.00       | 168.00       | 15.69%
+  101622 | Wu, Cedric            | Target_Hours | 1,010.50     | 151.70       | 858.80       | 84.99%
+  101622 | Wu, Cedric            | Target_Hours | 1,010.50     | 858.80       | 151.70       | 15.01%
+  101623 | Choudhary, Saksham    | Target_Hours | 1,096.00     | 176.00       | 920.00       | 83.94%
+  101623 | Choudhary, Saksham    | Target_Hours | 1,096.00     | 920.00       | 176.00       | 16.06%
+  101624 | Dietrich, Liam        | Target_Hours | 1,128.00     | 170.00       | 958.00       | 84.93%
+  101624 | Dietrich, Liam        | Target_Hours | 1,128.00     | 958.00       | 170.00       | 15.07%
+  101631 | Amster, Isabelle      | Target_Hours | 1,120.00     | 176.00       | 944.00       | 84.29%
+  101631 | Amster, Isabelle      | Target_Hours | 1,120.00     | 944.00       | 176.00       | 15.71%
+  101634 | Kronenberg, Lucy      | Target_Hours | 1,136.00     | 160.00       | 976.00       | 85.92%
+  101634 | Kronenberg, Lucy      | Target_Hours | 1,136.00     | 976.00       | 160.00       | 14.08%
+  101646 | Zhou, Katelin         | Target_Hours | 1,088.00     | 168.00       | 920.00       | 84.56%
+  101646 | Zhou, Katelin         | Target_Hours | 1,088.00     | 920.00       | 168.00       | 15.44%
+  101674 | Perna, Liz            | Target_Hours | 1,073.70     | 128.00       | 945.70       | 88.08%
+  101674 | Perna, Liz            | Target_Hours | 1,073.70     | 945.70       | 128.00       | 11.92%
+  101686 | Cleaveland, Lola      | Target_Hours | 1,125.00     | 125.00       | 1,000.00     | 88.89%
+  101686 | Cleaveland, Lola      | Target_Hours | 1,125.00     | 1,000.00     | 125.00       | 11.11%
+  101697 | Lehrer, Andy          | Target_Hours | 1,044.60     | 155.40       | 889.20       | 85.12%
+  101697 | Lehrer, Andy          | Target_Hours | 1,044.60     | 889.20       | 155.40       | 14.88%
+  101698 | Ten Hagen, Rebekah    | Target_Hours | 1,106.00     | 130.00       | 976.00       | 88.25%
+  101698 | Ten Hagen, Rebekah    | Target_Hours | 1,106.00     | 976.00       | 130.00       | 11.75%
+  101699 | Li, Duoxi             | Target_Hours | 1,067.20     | 162.80       | 904.40       | 84.75%
+  101699 | Li, Duoxi             | Target_Hours | 1,067.20     | 904.40       | 162.80       | 15.25%
+  101700 | Moreno, Valentina     | Target_Hours | 1,124.00     | 148.00       | 976.00       | 86.83%
+  101700 | Moreno, Valentina     | Target_Hours | 1,124.00     | 976.00       | 148.00       | 13.17%
+  101708 | Lakkis, Emil          | Target_Hours | 1,006.40     | 162.80       | 843.60       | 83.82%
+  101708 | Lakkis, Emil          | Target_Hours | 1,006.40     | 843.60       | 162.80       | 16.18%
+  101714 | Sharpe, Colin         | Target_Hours | 1,010.20     | 162.80       | 847.40       | 83.88%
+  101714 | Sharpe, Colin         | Target_Hours | 1,010.20     | 847.40       | 162.80       | 16.12%
+  101723 | Yao, Iris             | Target_Hours | 1,030.80     | 103.60       | 927.20       | 89.95%
+  101723 | Yao, Iris             | Target_Hours | 1,030.80     | 927.20       | 103.60       | 10.05%
+  101788 | Rocafort, Roland      | Target_Hours | 1,044.00     | 160.00       | 884.00       | 84.67%
+  101788 | Rocafort, Roland      | Target_Hours | 1,044.00     | 884.00       | 160.00       | 15.33%
+  101915 | Kottou, Rafaela       | Target_Hours | 1,135.00     | 176.00       | 959.00       | 84.49%
+  101915 | Kottou, Rafaela       | Target_Hours | 1,135.00     | 959.00       | 176.00       | 15.51%
+  101957 | Califano, Nicholas    | Target_Hours | 1,119.00     | 176.00       | 943.00       | 84.27%
+  101957 | Califano, Nicholas    | Target_Hours | 1,119.00     | 943.00       | 176.00       | 15.73%
+  5766   | Schwed, Austin        | Target_Hours | 1,071.00     | 162.80       | 908.20       | 84.80%
+  5766   | Schwed, Austin        | Target_Hours | 1,071.00     | 908.20       | 162.80       | 15.20%
+  6221   | Strair, Katherine     | Target_Hours | 1,019.76     | 150.70       | 869.06       | 85.22%
+  6221   | Strair, Katherine     | Target_Hours | 1,019.76     | 869.00       | 150.76       | 14.78%
+  6342   | Haltenhof, Samuel     | Target_Hours | 1,020.67     | 114.40       | 906.27       | 88.79%
+  6342   | Haltenhof, Samuel     | Target_Hours | 1,020.67     | 906.30       | 114.37       | 11.21%
+  6354   | Corea-Smith, Arthur   | Target_Hours | 812.78       | 97.90        | 714.88       | 87.95%
+  6354   | Corea-Smith, Arthur   | Target_Hours | 812.78       | 714.90       | 97.88        | 12.04%
+  101096 | Alfaro Serrano, David | Target_Rev   | 791,813.60   | 122,558.00   | 669,255.60   | 84.52%
+  101096 | Alfaro Serrano, David | Target_Rev   | 791,813.60   | 669,256.00   | 122,557.60   | 15.48%
+  101334 | Anyosa, Antony        | Target_Rev   | 806,680.00   | 140,008.00   | 666,672.00   | 82.64%
+  101334 | Anyosa, Antony        | Target_Rev   | 806,680.00   | 666,672.00   | 140,008.00   | 17.36%
+  101534 | Yan, Emma             | Target_Rev   | 527,195.00   | 85,360.00    | 441,835.00   | 83.81%
+  101534 | Yan, Emma             | Target_Rev   | 527,195.00   | 441,835.00   | 85,360.00    | 16.19%
+  101544 | McAndie, James        | Target_Rev   | 547,080.00   | 81,480.00    | 465,600.00   | 85.11%
+  101544 | McAndie, James        | Target_Rev   | 547,080.00   | 465,600.00   | 81,480.00    | 14.89%
+  101546 | Kauffmann, Amelia     | Target_Rev   | 559,447.50   | 85,360.00    | 474,087.50   | 84.74%
+  101546 | Kauffmann, Amelia     | Target_Rev   | 559,447.50   | 474,088.00   | 85,359.50    | 15.26%
+  101578 | Perry, Charlie        | Target_Rev   | 645,725.00   | 101,200.00   | 544,525.00   | 84.33%
+  101578 | Perry, Charlie        | Target_Rev   | 645,725.00   | 544,525.00   | 101,200.00   | 15.67%
+  101614 | Gavirneni, Meghana    | Target_Rev   | 646,587.50   | 78,200.00    | 568,387.50   | 87.91%
+  101614 | Gavirneni, Meghana    | Target_Rev   | 646,587.50   | 568,388.00   | 78,199.50    | 12.09%
+  101621 | Ebert, Annalise       | Target_Rev   | 615,825.00   | 96,600.00    | 519,225.00   | 84.31%
+  101621 | Ebert, Annalise       | Target_Rev   | 615,825.00   | 519,225.00   | 96,600.00    | 15.69%
+  101622 | Wu, Cedric            | Target_Rev   | 869,030.00   | 130,462.00   | 738,568.00   | 84.99%
+  101622 | Wu, Cedric            | Target_Rev   | 869,030.00   | 738,568.00   | 130,462.00   | 15.01%
+  101623 | Choudhary, Saksham    | Target_Rev   | 630,200.00   | 101,200.00   | 529,000.00   | 83.94%
+  101623 | Choudhary, Saksham    | Target_Rev   | 630,200.00   | 529,000.00   | 101,200.00   | 16.06%
+  101624 | Dietrich, Liam        | Target_Rev   | 648,600.00   | 97,750.00    | 550,850.00   | 84.93%
+  101624 | Dietrich, Liam        | Target_Rev   | 648,600.00   | 550,850.00   | 97,750.00    | 15.07%
+  101631 | Amster, Isabelle      | Target_Rev   | 543,200.00   | 85,360.00    | 457,840.00   | 84.29%
+  101631 | Amster, Isabelle      | Target_Rev   | 543,200.00   | 457,840.00   | 85,360.00    | 15.71%
+  101634 | Kronenberg, Lucy      | Target_Rev   | 550,960.00   | 77,600.00    | 473,360.00   | 85.92%
+  101634 | Kronenberg, Lucy      | Target_Rev   | 550,960.00   | 473,360.00   | 77,600.00    | 14.08%
+  101646 | Zhou, Katelin         | Target_Rev   | 527,680.00   | 81,480.00    | 446,200.00   | 84.56%
+  101646 | Zhou, Katelin         | Target_Rev   | 527,680.00   | 446,200.00   | 81,480.00    | 15.44%
+  101674 | Perna, Liz            | Target_Rev   | 617,377.50   | 73,600.00    | 543,777.50   | 88.08%
+  101674 | Perna, Liz            | Target_Rev   | 617,377.50   | 543,778.00   | 73,599.50    | 11.92%
+  101686 | Cleaveland, Lola      | Target_Rev   | 646,875.00   | 71,875.00    | 575,000.00   | 88.89%
+  101686 | Cleaveland, Lola      | Target_Rev   | 646,875.00   | 575,000.00   | 71,875.00    | 11.11%
+  101697 | Lehrer, Andy          | Target_Rev   | 898,356.00   | 133,644.00   | 764,712.00   | 85.12%
+  101697 | Lehrer, Andy          | Target_Rev   | 898,356.00   | 764,712.00   | 133,644.00   | 14.88%
+  101698 | Ten Hagen, Rebekah    | Target_Rev   | 635,950.00   | 74,750.00    | 561,200.00   | 88.25%
+  101698 | Ten Hagen, Rebekah    | Target_Rev   | 635,950.00   | 561,200.00   | 74,750.00    | 11.75%
+  101699 | Li, Duoxi             | Target_Rev   | 917,792.00   | 140,008.00   | 777,784.00   | 84.75%
+  101699 | Li, Duoxi             | Target_Rev   | 917,792.00   | 777,784.00   | 140,008.00   | 15.25%
+  101700 | Moreno, Valentina     | Target_Rev   | 646,300.00   | 85,100.00    | 561,200.00   | 86.83%
+  101700 | Moreno, Valentina     | Target_Rev   | 646,300.00   | 561,200.00   | 85,100.00    | 13.17%
+  101708 | Lakkis, Emil          | Target_Rev   | 865,504.00   | 140,008.00   | 725,496.00   | 83.82%
+  101708 | Lakkis, Emil          | Target_Rev   | 865,504.00   | 725,496.00   | 140,008.00   | 16.18%
+  101714 | Sharpe, Colin         | Target_Rev   | 868,772.00   | 140,008.00   | 728,764.00   | 83.88%
+  101714 | Sharpe, Colin         | Target_Rev   | 868,772.00   | 728,764.00   | 140,008.00   | 16.12%
+  101723 | Yao, Iris             | Target_Rev   | 886,488.00   | 89,096.00    | 797,392.00   | 89.95%
+  101723 | Yao, Iris             | Target_Rev   | 886,488.00   | 797,392.00   | 89,096.00    | 10.05%
+  101788 | Rocafort, Roland      | Target_Rev   | 600,300.00   | 92,000.00    | 508,300.00   | 84.67%
+  101788 | Rocafort, Roland      | Target_Rev   | 600,300.00   | 508,300.00   | 92,000.00    | 15.33%
+  101915 | Kottou, Rafaela       | Target_Rev   | 550,475.00   | 85,360.00    | 465,115.00   | 84.49%
+  101915 | Kottou, Rafaela       | Target_Rev   | 550,475.00   | 465,115.00   | 85,360.00    | 15.51%
+  101957 | Califano, Nicholas    | Target_Rev   | 542,715.00   | 85,360.00    | 457,355.00   | 84.27%
+  101957 | Califano, Nicholas    | Target_Rev   | 542,715.00   | 457,355.00   | 85,360.00    | 15.73%
+  5766   | Schwed, Austin        | Target_Rev   | 921,060.00   | 140,008.00   | 781,052.00   | 84.80%
+  5766   | Schwed, Austin        | Target_Rev   | 921,060.00   | 781,052.00   | 140,008.00   | 15.20%
+  6221   | Strair, Katherine     | Target_Rev   | 968,772.59   | 143,187.00   | 825,585.59   | 85.22%
+  6221   | Strair, Katherine     | Target_Rev   | 968,772.59   | 825,586.00   | 143,186.59   | 14.78%
+  6342   | Haltenhof, Samuel     | Target_Rev   | 1,076,809.88 | 120,703.00   | 956,106.88   | 88.79%
+  6342   | Haltenhof, Samuel     | Target_Rev   | 1,076,809.88 | 956,107.00   | 120,702.88   | 11.21%
+  6354   | Corea-Smith, Arthur   | Target_Rev   | 857,481.05   | 103,306.00   | 754,175.05   | 87.95%
+  6354   | Corea-Smith, Arthur   | Target_Rev   | 857,481.05   | 754,175.00   | 103,306.05   | 12.05%
+  101096 | Alfaro Serrano, David | Actual_Hours | 846.70       | 132.00       | 714.70       | 84.41%
+  101096 | Alfaro Serrano, David | Actual_Hours | 846.70       | 714.70       | 132.00       | 15.59%
+  101334 | Anyosa, Antony        | Actual_Hours | 1,371.00     | 250.50       | 1,120.50     | 81.73%
+  101334 | Anyosa, Antony        | Actual_Hours | 1,371.00     | 1,120.50     | 250.50       | 18.27%
+  101534 | Yan, Emma             | Actual_Hours | 1,005.70     | 198.00       | 807.70       | 80.31%
+  101534 | Yan, Emma             | Actual_Hours | 1,005.70     | 807.70       | 198.00       | 19.69%
+  101544 | McAndie, James        | Actual_Hours | 1,146.60     | 218.70       | 927.90       | 80.93%
+  101544 | McAndie, James        | Actual_Hours | 1,146.60     | 927.90       | 218.70       | 19.07%
+  101546 | Kauffmann, Amelia     | Actual_Hours | 1,155.70     | 253.00       | 902.70       | 78.11%
+  101546 | Kauffmann, Amelia     | Actual_Hours | 1,155.70     | 902.70       | 253.00       | 21.89%
+  101578 | Perry, Charlie        | Actual_Hours | 925.80       | 155.90       | 769.90       | 83.16%
+  101578 | Perry, Charlie        | Actual_Hours | 925.80       | 769.90       | 155.90       | 16.84%
+  101614 | Gavirneni, Meghana    | Actual_Hours | 844.90       | 94.00        | 750.90       | 88.87%
+  101614 | Gavirneni, Meghana    | Actual_Hours | 844.90       | 750.90       | 94.00        | 11.13%
+  101621 | Ebert, Annalise       | Actual_Hours | 1,232.40     | 266.00       | 966.40       | 78.42%
+  101621 | Ebert, Annalise       | Actual_Hours | 1,232.40     | 966.40       | 266.00       | 21.58%
+  101622 | Wu, Cedric            | Actual_Hours | 1,437.20     | 311.70       | 1,125.50     | 78.31%
+  101622 | Wu, Cedric            | Actual_Hours | 1,437.20     | 1,125.50     | 311.70       | 21.69%
+  101623 | Choudhary, Saksham    | Actual_Hours | 947.40       | 168.00       | 779.40       | 82.27%
+  101623 | Choudhary, Saksham    | Actual_Hours | 947.40       | 779.40       | 168.00       | 17.73%
+  101624 | Dietrich, Liam        | Actual_Hours | 972.40       | 183.30       | 789.10       | 81.15%
+  101624 | Dietrich, Liam        | Actual_Hours | 972.40       | 789.10       | 183.30       | 18.85%
+  101631 | Amster, Isabelle      | Actual_Hours | 908.20       | 171.40       | 736.80       | 81.13%
+  101631 | Amster, Isabelle      | Actual_Hours | 908.20       | 736.80       | 171.40       | 18.87%
+  101634 | Kronenberg, Lucy      | Actual_Hours | 869.30       | 164.80       | 704.50       | 81.04%
+  101634 | Kronenberg, Lucy      | Actual_Hours | 869.30       | 704.50       | 164.80       | 18.96%
+  101646 | Zhou, Katelin         | Actual_Hours | 1,166.20     | 211.00       | 955.20       | 81.91%
+  101646 | Zhou, Katelin         | Actual_Hours | 1,166.20     | 955.20       | 211.00       | 18.09%
+  101674 | Perna, Liz            | Actual_Hours | 1,095.50     | 178.70       | 916.80       | 83.69%
+  101674 | Perna, Liz            | Actual_Hours | 1,095.50     | 920.00       | 175.50       | 16.02%
+  101686 | Cleaveland, Lola      | Actual_Hours | 1,156.70     | 118.70       | 1,038.00     | 89.74%
+  101686 | Cleaveland, Lola      | Actual_Hours | 1,156.70     | 1,038.00     | 118.70       | 10.26%
+  101697 | Lehrer, Andy          | Actual_Hours | 973.80       | 282.90       | 690.90       | 70.95%
+  101697 | Lehrer, Andy          | Actual_Hours | 973.80       | 690.90       | 282.90       | 29.05%
+  101698 | Ten Hagen, Rebekah    | Actual_Hours | 1,103.00     | 161.60       | 941.40       | 85.35%
+  101698 | Ten Hagen, Rebekah    | Actual_Hours | 1,103.00     | 941.40       | 161.60       | 14.65%
+  101699 | Li, Duoxi             | Actual_Hours | 993.40       | 214.90       | 778.50       | 78.37%
+  101699 | Li, Duoxi             | Actual_Hours | 993.40       | 778.50       | 214.90       | 21.63%
+  101700 | Moreno, Valentina     | Actual_Hours | 715.10       | 142.80       | 572.30       | 80.03%
+  101700 | Moreno, Valentina     | Actual_Hours | 715.10       | 572.30       | 142.80       | 19.97%
+  101708 | Lakkis, Emil          | Actual_Hours | 944.90       | 145.20       | 799.70       | 84.63%
+  101708 | Lakkis, Emil          | Actual_Hours | 944.90       | 799.70       | 145.20       | 15.37%
+  101714 | Sharpe, Colin         | Actual_Hours | 1,307.40     | 206.10       | 1,101.30     | 84.24%
+  101714 | Sharpe, Colin         | Actual_Hours | 1,307.40     | 1,101.30     | 206.10       | 15.76%
+  101723 | Yao, Iris             | Actual_Hours | 1,038.70     | 94.60        | 944.10       | 90.89%
+  101723 | Yao, Iris             | Actual_Hours | 1,038.70     | 944.10       | 94.60        | 9.11% 
+  101788 | Rocafort, Roland      | Actual_Hours | 987.40       | 149.30       | 838.10       | 84.88%
+  101788 | Rocafort, Roland      | Actual_Hours | 987.40       | 838.10       | 149.30       | 15.12%
+  101915 | Kottou, Rafaela       | Actual_Hours | 1,326.80     | 161.20       | 1,165.60     | 87.85%
+  101915 | Kottou, Rafaela       | Actual_Hours | 1,326.80     | 1,165.60     | 161.20       | 12.15%
+  101957 | Califano, Nicholas    | Actual_Hours | 1,142.90     | 288.90       | 854.00       | 74.72%
+  101957 | Califano, Nicholas    | Actual_Hours | 1,142.90     | 854.00       | 288.90       | 25.28%
+  5766   | Schwed, Austin        | Actual_Hours | 1,156.60     | 234.50       | 922.10       | 79.73%
+  5766   | Schwed, Austin        | Actual_Hours | 1,156.60     | 922.10       | 234.50       | 20.27%
+  6221   | Strair, Katherine     | Actual_Hours | 1,029.20     | 149.30       | 879.90       | 85.49%
+  6221   | Strair, Katherine     | Actual_Hours | 1,029.20     | 879.90       | 149.30       | 14.51%
+  6342   | Haltenhof, Samuel     | Actual_Hours | 1,453.90     | 209.10       | 1,244.80     | 85.62%
+  6342   | Haltenhof, Samuel     | Actual_Hours | 1,453.90     | 1,244.80     | 209.10       | 14.38%
+  6354   | Corea-Smith, Arthur   | Actual_Hours | 929.00       | 163.50       | 765.50       | 82.40%
+  6354   | Corea-Smith, Arthur   | Actual_Hours | 929.00       | 765.50       | 163.50       | 17.60%
+  101096 | Alfaro Serrano, David | Standard_Rev | 804,365.00   | 125,400.00   | 678,965.00   | 84.41%
+  101096 | Alfaro Serrano, David | Standard_Rev | 804,365.00   | 678,965.00   | 125,400.00   | 15.59%
+  101334 | Anyosa, Antony        | Standard_Rev | 1,179,060.00 | 215,430.00   | 963,630.00   | 81.73%
+  101334 | Anyosa, Antony        | Standard_Rev | 1,179,060.00 | 963,630.00   | 215,430.00   | 18.27%
+  101534 | Yan, Emma             | Standard_Rev | 487,764.50   | 96,030.00    | 391,734.50   | 80.31%
+  101534 | Yan, Emma             | Standard_Rev | 487,764.50   | 391,735.00   | 96,029.50    | 19.69%
+  101544 | McAndie, James        | Standard_Rev | 556,101.00   | 106,070.00   | 450,031.00   | 80.93%
+  101544 | McAndie, James        | Standard_Rev | 556,101.00   | 450,032.00   | 106,069.00   | 19.07%
+  101546 | Kauffmann, Amelia     | Standard_Rev | 560,514.50   | 122,705.00   | 437,809.50   | 78.11%
+  101546 | Kauffmann, Amelia     | Standard_Rev | 560,514.50   | 437,810.00   | 122,704.50   | 21.89%
+  101578 | Perry, Charlie        | Standard_Rev | 532,335.00   | 89,643.00    | 442,692.00   | 83.16%
+  101578 | Perry, Charlie        | Standard_Rev | 532,335.00   | 442,693.00   | 89,642.00    | 16.84%
+  101614 | Gavirneni, Meghana    | Standard_Rev | 485,817.50   | 54,050.00    | 431,767.50   | 88.87%
+  101614 | Gavirneni, Meghana    | Standard_Rev | 485,817.50   | 431,768.00   | 54,049.50    | 11.13%
+  101621 | Ebert, Annalise       | Standard_Rev | 708,630.00   | 152,950.00   | 555,680.00   | 78.42%
+  101621 | Ebert, Annalise       | Standard_Rev | 708,630.00   | 555,680.00   | 152,950.00   | 21.58%
+  101622 | Wu, Cedric            | Standard_Rev | 1,235,992.00 | 268,062.00   | 967,930.00   | 78.31%
+  101622 | Wu, Cedric            | Standard_Rev | 1,235,992.00 | 967,930.00   | 268,062.00   | 21.69%
+  101623 | Choudhary, Saksham    | Standard_Rev | 544,755.00   | 96,600.00    | 448,155.00   | 82.27%
+  101623 | Choudhary, Saksham    | Standard_Rev | 544,755.00   | 448,155.00   | 96,600.00    | 17.73%
+  101624 | Dietrich, Liam        | Standard_Rev | 559,130.00   | 105,398.00   | 453,732.00   | 81.15%
+  101624 | Dietrich, Liam        | Standard_Rev | 559,130.00   | 453,733.00   | 105,397.00   | 18.85%
+  101631 | Amster, Isabelle      | Standard_Rev | 440,477.00   | 83,129.00    | 357,348.00   | 81.13%
+  101631 | Amster, Isabelle      | Standard_Rev | 440,477.00   | 357,348.00   | 83,129.00    | 18.87%
+  101634 | Kronenberg, Lucy      | Standard_Rev | 421,610.50   | 79,928.00    | 341,682.50   | 81.04%
+  101634 | Kronenberg, Lucy      | Standard_Rev | 421,610.50   | 341,683.00   | 79,927.50    | 18.96%
+  101646 | Zhou, Katelin         | Standard_Rev | 565,607.00   | 102,335.00   | 463,272.00   | 81.91%
+  101646 | Zhou, Katelin         | Standard_Rev | 565,607.00   | 463,272.00   | 102,335.00   | 18.09%
+  101674 | Perna, Liz            | Standard_Rev | 629,912.50   | 102,753.00   | 527,159.50   | 83.69%
+  101674 | Perna, Liz            | Standard_Rev | 629,912.50   | 529,000.00   | 100,912.50   | 16.02%
+  101686 | Cleaveland, Lola      | Standard_Rev | 665,102.50   | 68,253.00    | 596,849.50   | 89.74%
+  101686 | Cleaveland, Lola      | Standard_Rev | 665,102.50   | 596,850.00   | 68,252.50    | 10.26%
+  101697 | Lehrer, Andy          | Standard_Rev | 837,468.00   | 243,294.00   | 594,174.00   | 70.95%
+  101697 | Lehrer, Andy          | Standard_Rev | 837,468.00   | 594,174.00   | 243,294.00   | 29.05%
+  101698 | Ten Hagen, Rebekah    | Standard_Rev | 634,225.00   | 92,920.00    | 541,305.00   | 85.35%
+  101698 | Ten Hagen, Rebekah    | Standard_Rev | 634,225.00   | 541,305.00   | 92,920.00    | 14.65%
+  101699 | Li, Duoxi             | Standard_Rev | 854,324.00   | 184,814.00   | 669,510.00   | 78.37%
+  101699 | Li, Duoxi             | Standard_Rev | 854,324.00   | 669,510.00   | 184,814.00   | 21.63%
+  101700 | Moreno, Valentina     | Standard_Rev | 411,182.50   | 82,110.00    | 329,072.50   | 80.03%
+  101700 | Moreno, Valentina     | Standard_Rev | 411,182.50   | 329,073.00   | 82,109.50    | 19.97%
+  101708 | Lakkis, Emil          | Standard_Rev | 812,614.00   | 124,872.00   | 687,742.00   | 84.63%
+  101708 | Lakkis, Emil          | Standard_Rev | 812,614.00   | 687,742.00   | 124,872.00   | 15.37%
+  101714 | Sharpe, Colin         | Standard_Rev | 1,124,364.00 | 177,246.00   | 947,118.00   | 84.24%
+  101714 | Sharpe, Colin         | Standard_Rev | 1,124,364.00 | 947,118.00   | 177,246.00   | 15.76%
+  101723 | Yao, Iris             | Standard_Rev | 893,282.00   | 81,356.00    | 811,926.00   | 90.89%
+  101723 | Yao, Iris             | Standard_Rev | 893,282.00   | 811,926.00   | 81,356.00    | 9.11% 
+  101788 | Rocafort, Roland      | Standard_Rev | 567,755.00   | 85,848.00    | 481,907.00   | 84.88%
+  101788 | Rocafort, Roland      | Standard_Rev | 567,755.00   | 481,908.00   | 85,847.00    | 15.12%
+  101915 | Kottou, Rafaela       | Standard_Rev | 643,498.00   | 78,182.00    | 565,316.00   | 87.85%
+  101915 | Kottou, Rafaela       | Standard_Rev | 643,498.00   | 565,316.00   | 78,182.00    | 12.15%
+  101957 | Califano, Nicholas    | Standard_Rev | 554,306.50   | 140,117.00   | 414,189.50   | 74.72%
+  101957 | Califano, Nicholas    | Standard_Rev | 554,306.50   | 414,190.00   | 140,116.50   | 25.28%
+  5766   | Schwed, Austin        | Standard_Rev | 994,676.00   | 201,670.00   | 793,006.00   | 79.73%
+  5766   | Schwed, Austin        | Standard_Rev | 994,676.00   | 793,006.00   | 201,670.00   | 20.27%
+  6221   | Strair, Katherine     | Standard_Rev | 977,740.00   | 141,835.00   | 835,905.00   | 85.49%
+  6221   | Strair, Katherine     | Standard_Rev | 977,740.00   | 835,905.00   | 141,835.00   | 14.51%
+  6342   | Haltenhof, Samuel     | Standard_Rev | 1,533,864.50 | 220,601.00   | 1,313,263.50 | 85.62%
+  6342   | Haltenhof, Samuel     | Standard_Rev | 1,533,864.50 | 1,313,264.00 | 220,600.50   | 14.38%
+  6354   | Corea-Smith, Arthur   | Standard_Rev | 980,095.00   | 172,493.00   | 807,602.00   | 82.40%
+  6354   | Corea-Smith, Arthur   | Standard_Rev | 980,095.00   | 807,603.00   | 172,492.00   | 17.60%
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: July 2026 | Sheet: YTD - CRSF (YTD) | Run: 2026-08-03
+  Report: July 2026 | Sheet: YTD - CRSF (YTD) | Run: 2026-08-11
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101468 | Name=Sim, Casey
 
-  EmpNo  | Name     | Column       | Util Report | DB     | Diff | Diff%
-  -------+----------+--------------+-------------+--------+------+------
-  101650 | Li, Lily | Actual_Hours | 165.70      | 170.70 | 5.00 | 3.02%
+  EmpNo  | Name               | Column       | Util Report  | DB           | Diff         | Diff% 
+  -------+--------------------+--------------+--------------+--------------+--------------+-------
+  101146 | Jurek, Dominik     | Target_Hours | 1,082.80     | 148.00       | 934.80       | 86.33%
+  101146 | Jurek, Dominik     | Target_Hours | 1,082.80     | 934.80       | 148.00       | 13.67%
+  101255 | Len, Sievlan       | Target_Hours | 1,152.00     | 176.00       | 976.00       | 84.72%
+  101255 | Len, Sievlan       | Target_Hours | 1,152.00     | 976.00       | 176.00       | 15.28%
+  101555 | Varsani, Reanna    | Target_Hours | 1,145.10     | 176.00       | 969.10       | 84.63%
+  101555 | Varsani, Reanna    | Target_Hours | 1,145.10     | 969.10       | 176.00       | 15.37%
+  101556 | Woolley, Julia     | Target_Hours | 1,096.00     | 176.00       | 920.00       | 83.94%
+  101556 | Woolley, Julia     | Target_Hours | 1,096.00     | 920.00       | 176.00       | 16.06%
+  101691 | Haryanto, Crystal  | Target_Hours | 1,120.00     | 174.00       | 946.00       | 84.46%
+  101691 | Haryanto, Crystal  | Target_Hours | 1,120.00     | 946.00       | 174.00       | 15.54%
+  101897 | Shan, Carolyn      | Target_Hours | 1,144.00     | 176.00       | 968.00       | 84.62%
+  101897 | Shan, Carolyn      | Target_Hours | 1,144.00     | 968.00       | 176.00       | 15.38%
+  101960 | Hamilton, Jamie    | Target_Hours | 1,136.00     | 176.00       | 960.00       | 84.51%
+  101960 | Hamilton, Jamie    | Target_Hours | 1,136.00     | 960.00       | 176.00       | 15.49%
+  101962 | Feitzinger, Allie  | Target_Hours | 1,105.40     | 149.40       | 956.00       | 86.48%
+  101962 | Feitzinger, Allie  | Target_Hours | 1,105.40     | 956.00       | 149.40       | 13.52%
+  102007 | Berman, Emma       | Target_Hours | 1,088.20     | 151.10       | 937.10       | 86.11%
+  102007 | Berman, Emma       | Target_Hours | 1,088.20     | 937.10       | 151.10       | 13.89%
+  102253 | Van der Meer, Luca | Target_Hours | 1,108.00     | 104.00       | 1,004.00     | 90.61%
+  102253 | Van der Meer, Luca | Target_Hours | 1,108.00     | 1,004.00     | 104.00       | 9.39% 
+  5161   | Pine, Bryan        | Target_Hours | 1,004.27     | 120.30       | 883.97       | 88.02%
+  5161   | Pine, Bryan        | Target_Hours | 1,004.27     | 884.00       | 120.27       | 11.98%
+  6383   | Davis, Matt        | Target_Hours | 974.55       | 136.00       | 838.55       | 86.04%
+  6383   | Davis, Matt        | Target_Hours | 974.55       | 838.60       | 135.95       | 13.95%
+  101146 | Jurek, Dominik     | Target_Rev   | 931,208.00   | 127,280.00   | 803,928.00   | 86.33%
+  101146 | Jurek, Dominik     | Target_Rev   | 931,208.00   | 803,928.00   | 127,280.00   | 13.67%
+  101255 | Len, Sievlan       | Target_Rev   | 558,720.00   | 85,360.00    | 473,360.00   | 84.72%
+  101255 | Len, Sievlan       | Target_Rev   | 558,720.00   | 473,360.00   | 85,360.00    | 15.28%
+  101555 | Varsani, Reanna    | Target_Rev   | 555,373.50   | 85,360.00    | 470,013.50   | 84.63%
+  101555 | Varsani, Reanna    | Target_Rev   | 555,373.50   | 470,014.00   | 85,359.50    | 15.37%
+  101556 | Woolley, Julia     | Target_Rev   | 531,560.00   | 85,360.00    | 446,200.00   | 83.94%
+  101556 | Woolley, Julia     | Target_Rev   | 531,560.00   | 446,200.00   | 85,360.00    | 16.06%
+  101691 | Haryanto, Crystal  | Target_Rev   | 644,000.00   | 100,050.00   | 543,950.00   | 84.46%
+  101691 | Haryanto, Crystal  | Target_Rev   | 644,000.00   | 543,950.00   | 100,050.00   | 15.54%
+  101897 | Shan, Carolyn      | Target_Rev   | 554,840.00   | 85,360.00    | 469,480.00   | 84.62%
+  101897 | Shan, Carolyn      | Target_Rev   | 554,840.00   | 469,480.00   | 85,360.00    | 15.38%
+  101960 | Hamilton, Jamie    | Target_Rev   | 550,960.00   | 85,360.00    | 465,600.00   | 84.51%
+  101960 | Hamilton, Jamie    | Target_Rev   | 550,960.00   | 465,600.00   | 85,360.00    | 15.49%
+  101962 | Feitzinger, Allie  | Target_Rev   | 536,119.00   | 72,459.00    | 463,660.00   | 86.48%
+  101962 | Feitzinger, Allie  | Target_Rev   | 536,119.00   | 463,660.00   | 72,459.00    | 13.52%
+  102007 | Berman, Emma       | Target_Rev   | 527,777.00   | 73,284.00    | 454,493.00   | 86.11%
+  102007 | Berman, Emma       | Target_Rev   | 527,777.00   | 454,494.00   | 73,283.00    | 13.89%
+  102253 | Van der Meer, Luca | Target_Rev   | 537,380.00   | 50,440.00    | 486,940.00   | 90.61%
+  102253 | Van der Meer, Luca | Target_Rev   | 537,380.00   | 486,940.00   | 50,440.00    | 9.39% 
+  5161   | Pine, Bryan        | Target_Rev   | 1,059,508.01 | 126,890.00   | 932,618.01   | 88.02%
+  5161   | Pine, Bryan        | Target_Rev   | 1,059,508.01 | 932,618.00   | 126,890.01   | 11.98%
+  6383   | Davis, Matt        | Target_Rev   | 1,028,152.36 | 143,480.00   | 884,672.36   | 86.04%
+  6383   | Davis, Matt        | Target_Rev   | 1,028,152.36 | 884,672.00   | 143,480.36   | 13.96%
+  101146 | Jurek, Dominik     | Actual_Hours | 1,102.00     | 156.40       | 945.60       | 85.81%
+  101146 | Jurek, Dominik     | Actual_Hours | 1,102.00     | 945.60       | 156.40       | 14.19%
+  101255 | Len, Sievlan       | Actual_Hours | 834.00       | 159.10       | 674.90       | 80.92%
+  101255 | Len, Sievlan       | Actual_Hours | 834.00       | 674.90       | 159.10       | 19.08%
+  101555 | Varsani, Reanna    | Actual_Hours | 937.50       | 104.40       | 833.10       | 88.86%
+  101555 | Varsani, Reanna    | Actual_Hours | 937.50       | 833.10       | 104.40       | 11.14%
+  101556 | Woolley, Julia     | Actual_Hours | 1,048.50     | 159.70       | 888.80       | 84.77%
+  101556 | Woolley, Julia     | Actual_Hours | 1,048.50     | 888.80       | 159.70       | 15.23%
+  101650 | Li, Lily           | Actual_Hours | 165.70       | 170.70       | 5.00         | 3.02% 
+  101691 | Haryanto, Crystal  | Actual_Hours | 855.40       | 159.90       | 695.50       | 81.31%
+  101691 | Haryanto, Crystal  | Actual_Hours | 855.40       | 695.50       | 159.90       | 18.69%
+  101897 | Shan, Carolyn      | Actual_Hours | 1,134.40     | 135.40       | 999.00       | 88.06%
+  101897 | Shan, Carolyn      | Actual_Hours | 1,134.40     | 999.00       | 135.40       | 11.94%
+  101960 | Hamilton, Jamie    | Actual_Hours | 990.50       | 137.60       | 852.90       | 86.11%
+  101960 | Hamilton, Jamie    | Actual_Hours | 990.50       | 852.90       | 137.60       | 13.89%
+  101962 | Feitzinger, Allie  | Actual_Hours | 1,138.30     | 166.50       | 971.80       | 85.37%
+  101962 | Feitzinger, Allie  | Actual_Hours | 1,138.30     | 971.80       | 166.50       | 14.63%
+  102007 | Berman, Emma       | Actual_Hours | 926.20       | 149.70       | 776.50       | 83.84%
+  102007 | Berman, Emma       | Actual_Hours | 926.20       | 776.50       | 149.70       | 16.16%
+  102253 | Van der Meer, Luca | Actual_Hours | 903.20       | 64.30        | 838.90       | 92.88%
+  102253 | Van der Meer, Luca | Actual_Hours | 903.20       | 838.90       | 64.30        | 7.12% 
+  5161   | Pine, Bryan        | Actual_Hours | 1,238.40     | 212.90       | 1,025.50     | 82.81%
+  5161   | Pine, Bryan        | Actual_Hours | 1,238.40     | 1,025.50     | 212.90       | 17.19%
+  6383   | Davis, Matt        | Actual_Hours | 999.10       | 137.60       | 861.50       | 86.23%
+  6383   | Davis, Matt        | Actual_Hours | 999.10       | 861.50       | 137.60       | 13.77%
+  101146 | Jurek, Dominik     | Standard_Rev | 947,720.00   | 134,504.00   | 813,216.00   | 85.81%
+  101146 | Jurek, Dominik     | Standard_Rev | 947,720.00   | 813,216.00   | 134,504.00   | 14.19%
+  101255 | Len, Sievlan       | Standard_Rev | 404,490.00   | 77,164.00    | 327,326.00   | 80.92%
+  101255 | Len, Sievlan       | Standard_Rev | 404,490.00   | 327,327.00   | 77,163.00    | 19.08%
+  101555 | Varsani, Reanna    | Standard_Rev | 454,687.50   | 50,634.00    | 404,053.50   | 88.86%
+  101555 | Varsani, Reanna    | Standard_Rev | 454,687.50   | 404,054.00   | 50,633.50    | 11.14%
+  101556 | Woolley, Julia     | Standard_Rev | 508,522.50   | 77,455.00    | 431,067.50   | 84.77%
+  101556 | Woolley, Julia     | Standard_Rev | 508,522.50   | 431,068.00   | 77,454.50    | 15.23%
+  101691 | Haryanto, Crystal  | Standard_Rev | 491,855.00   | 91,943.00    | 399,912.00   | 81.31%
+  101691 | Haryanto, Crystal  | Standard_Rev | 491,855.00   | 399,913.00   | 91,942.00    | 18.69%
+  101897 | Shan, Carolyn      | Standard_Rev | 550,184.00   | 65,669.00    | 484,515.00   | 88.06%
+  101897 | Shan, Carolyn      | Standard_Rev | 550,184.00   | 484,515.00   | 65,669.00    | 11.94%
+  101960 | Hamilton, Jamie    | Standard_Rev | 480,392.50   | 66,736.00    | 413,656.50   | 86.11%
+  101960 | Hamilton, Jamie    | Standard_Rev | 480,392.50   | 413,657.00   | 66,735.50    | 13.89%
+  101962 | Feitzinger, Allie  | Standard_Rev | 552,075.50   | 80,753.00    | 471,322.50   | 85.37%
+  101962 | Feitzinger, Allie  | Standard_Rev | 552,075.50   | 471,323.00   | 80,752.50    | 14.63%
+  102007 | Berman, Emma       | Standard_Rev | 449,207.00   | 72,605.00    | 376,602.00   | 83.84%
+  102007 | Berman, Emma       | Standard_Rev | 449,207.00   | 376,603.00   | 72,604.00    | 16.16%
+  102253 | Van der Meer, Luca | Standard_Rev | 438,052.00   | 31,186.00    | 406,866.00   | 92.88%
+  102253 | Van der Meer, Luca | Standard_Rev | 438,052.00   | 406,867.00   | 31,185.00    | 7.12% 
+  5161   | Pine, Bryan        | Standard_Rev | 1,306,512.00 | 224,610.00   | 1,081,902.00 | 82.81%
+  5161   | Pine, Bryan        | Standard_Rev | 1,306,512.00 | 1,081,903.00 | 224,609.00   | 17.19%
+  6383   | Davis, Matt        | Standard_Rev | 1,054,050.50 | 145,168.00   | 908,882.50   | 86.23%
+  6383   | Davis, Matt        | Standard_Rev | 1,054,050.50 | 908,883.00   | 145,167.50   | 13.77%
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: July 2026 | Sheet: YTD - CRSV (YTD) | Run: 2026-08-03
+  Report: July 2026 | Sheet: YTD - CRSV (YTD) | Run: 2026-08-11
 
-  EmpNo  | Name       | Column       | Util Report | DB         | Diff      | Diff% 
-  -------+------------+--------------+-------------+------------+-----------+-------
-  101924 | He, Elena  | Actual_Hours | 558.30      | 588.90     | 30.60     | 5.48% 
-  4911   | Tam, Eric  | Actual_Hours | 438.30      | 477.80     | 39.50     | 9.01% 
-  6317   | Wang, Zeyu | Actual_Hours | 897.60      | 993.00     | 95.40     | 10.63%
-  101924 | He, Elena  | Standard_Rev | 376,852.50  | 397,508.00 | 20,655.50 | 5.48% 
-  4911   | Tam, Eric  | Standard_Rev | 519,385.50  | 566,193.00 | 46,807.50 | 9.01% 
-  6317   | Wang, Zeyu | Standard_Rev | 852,720.00  | 943,350.00 | 90,630.00 | 10.63%
+  EmpNo  | Name                | Column       | Util Report | DB         | Diff       | Diff% 
+  -------+---------------------+--------------+-------------+------------+------------+-------
+  101306 | Ellison, Jack       | Target_Hours | 1,032.00    | 80.00      | 952.00     | 92.25%
+  101306 | Ellison, Jack       | Target_Hours | 1,032.00    | 952.00     | 80.00      | 7.75% 
+  101564 | Hargunani, Kareena  | Target_Hours | 1,144.00    | 176.00     | 968.00     | 84.62%
+  101564 | Hargunani, Kareena  | Target_Hours | 1,144.00    | 968.00     | 176.00     | 15.38%
+  101615 | Wang, Yige          | Target_Hours | 1,123.00    | 147.00     | 976.00     | 86.91%
+  101615 | Wang, Yige          | Target_Hours | 1,123.00    | 976.00     | 147.00     | 13.09%
+  101617 | Christensen, Kelsey | Target_Hours | 1,072.00    | 144.00     | 928.00     | 86.57%
+  101617 | Christensen, Kelsey | Target_Hours | 1,072.00    | 928.00     | 144.00     | 13.43%
+  101637 | Leiman, Jacqueline  | Target_Hours | 1,074.00    | 98.00      | 976.00     | 90.88%
+  101637 | Leiman, Jacqueline  | Target_Hours | 1,074.00    | 976.00     | 98.00      | 9.12% 
+  101676 | Lu, Jessica         | Target_Hours | 1,130.50    | 166.50     | 964.00     | 85.27%
+  101676 | Lu, Jessica         | Target_Hours | 1,130.50    | 964.00     | 166.50     | 14.73%
+  101695 | Velasquez, Ulysses  | Target_Hours | 1,063.68    | 162.80     | 900.88     | 84.69%
+  101695 | Velasquez, Ulysses  | Target_Hours | 1,063.68    | 900.90     | 162.78     | 15.30%
+  101702 | Kim, Sooji          | Target_Hours | 1,055.80    | 162.80     | 893.00     | 84.58%
+  101702 | Kim, Sooji          | Target_Hours | 1,055.80    | 893.00     | 162.80     | 15.42%
+  101730 | Blair, Eric         | Target_Hours | 1,094.00    | 176.00     | 918.00     | 83.91%
+  101730 | Blair, Eric         | Target_Hours | 1,094.00    | 918.00     | 176.00     | 16.09%
+  101896 | Wilke, Connor       | Target_Hours | 1,136.00    | 168.00     | 968.00     | 85.21%
+  101896 | Wilke, Connor       | Target_Hours | 1,136.00    | 968.00     | 168.00     | 14.79%
+  101919 | Holcomb, Matthew    | Target_Hours | 1,112.00    | 160.00     | 952.00     | 85.61%
+  101919 | Holcomb, Matthew    | Target_Hours | 1,112.00    | 952.00     | 160.00     | 14.39%
+  101961 | Jang, Ryan          | Target_Hours | 1,112.00    | 120.00     | 992.00     | 89.21%
+  101961 | Jang, Ryan          | Target_Hours | 1,112.00    | 992.00     | 120.00     | 10.79%
+  101306 | Ellison, Jack       | Target_Rev   | 593,400.00  | 46,000.00  | 547,400.00 | 92.25%
+  101306 | Ellison, Jack       | Target_Rev   | 593,400.00  | 547,400.00 | 46,000.00  | 7.75% 
+  101564 | Hargunani, Kareena  | Target_Rev   | 554,840.00  | 85,360.00  | 469,480.00 | 84.62%
+  101564 | Hargunani, Kareena  | Target_Rev   | 554,840.00  | 469,480.00 | 85,360.00  | 15.38%
+  101615 | Wang, Yige          | Target_Rev   | 645,725.00  | 84,525.00  | 561,200.00 | 86.91%
+  101615 | Wang, Yige          | Target_Rev   | 645,725.00  | 561,200.00 | 84,525.00  | 13.09%
+  101617 | Christensen, Kelsey | Target_Rev   | 616,400.00  | 82,800.00  | 533,600.00 | 86.57%
+  101617 | Christensen, Kelsey | Target_Rev   | 616,400.00  | 533,600.00 | 82,800.00  | 13.43%
+  101637 | Leiman, Jacqueline  | Target_Rev   | 520,890.00  | 47,530.00  | 473,360.00 | 90.88%
+  101637 | Leiman, Jacqueline  | Target_Rev   | 520,890.00  | 473,360.00 | 47,530.00  | 9.12% 
+  101676 | Lu, Jessica         | Target_Rev   | 650,037.50  | 95,738.00  | 554,299.50 | 85.27%
+  101676 | Lu, Jessica         | Target_Rev   | 650,037.50  | 554,300.00 | 95,737.50  | 14.73%
+  101695 | Velasquez, Ulysses  | Target_Rev   | 914,769.10  | 140,008.00 | 774,761.10 | 84.69%
+  101695 | Velasquez, Ulysses  | Target_Rev   | 914,769.10  | 774,761.00 | 140,008.10 | 15.31%
+  101702 | Kim, Sooji          | Target_Rev   | 907,988.00  | 140,008.00 | 767,980.00 | 84.58%
+  101702 | Kim, Sooji          | Target_Rev   | 907,988.00  | 767,980.00 | 140,008.00 | 15.42%
+  101730 | Blair, Eric         | Target_Rev   | 629,050.00  | 101,200.00 | 527,850.00 | 83.91%
+  101730 | Blair, Eric         | Target_Rev   | 629,050.00  | 527,850.00 | 101,200.00 | 16.09%
+  101896 | Wilke, Connor       | Target_Rev   | 653,200.00  | 96,600.00  | 556,600.00 | 85.21%
+  101896 | Wilke, Connor       | Target_Rev   | 653,200.00  | 556,600.00 | 96,600.00  | 14.79%
+  101919 | Holcomb, Matthew    | Target_Rev   | 539,320.00  | 77,600.00  | 461,720.00 | 85.61%
+  101919 | Holcomb, Matthew    | Target_Rev   | 539,320.00  | 461,720.00 | 77,600.00  | 14.39%
+  101961 | Jang, Ryan          | Target_Rev   | 539,320.00  | 58,200.00  | 481,120.00 | 89.21%
+  101961 | Jang, Ryan          | Target_Rev   | 539,320.00  | 481,120.00 | 58,200.00  | 10.79%
+  101306 | Ellison, Jack       | Actual_Hours | 975.90      | 48.50      | 927.40     | 95.03%
+  101306 | Ellison, Jack       | Actual_Hours | 975.90      | 927.40     | 48.50      | 4.97% 
+  101564 | Hargunani, Kareena  | Actual_Hours | 1,109.70    | 183.00     | 926.70     | 83.51%
+  101564 | Hargunani, Kareena  | Actual_Hours | 1,109.70    | 926.70     | 183.00     | 16.49%
+  101615 | Wang, Yige          | Actual_Hours | 1,129.70    | 96.20      | 1,033.50   | 91.48%
+  101615 | Wang, Yige          | Actual_Hours | 1,129.70    | 1,033.50   | 96.20      | 8.52% 
+  101617 | Christensen, Kelsey | Actual_Hours | 1,184.20    | 172.30     | 1,011.90   | 85.45%
+  101617 | Christensen, Kelsey | Actual_Hours | 1,184.20    | 1,011.90   | 172.30     | 14.55%
+  101637 | Leiman, Jacqueline  | Actual_Hours | 844.80      | 49.80      | 795.00     | 94.11%
+  101637 | Leiman, Jacqueline  | Actual_Hours | 844.80      | 795.00     | 49.80      | 5.89% 
+  101676 | Lu, Jessica         | Actual_Hours | 996.70      | 163.60     | 833.10     | 83.59%
+  101676 | Lu, Jessica         | Actual_Hours | 996.70      | 833.10     | 163.60     | 16.41%
+  101695 | Velasquez, Ulysses  | Actual_Hours | 1,027.60    | 108.80     | 918.80     | 89.41%
+  101695 | Velasquez, Ulysses  | Actual_Hours | 1,027.60    | 918.80     | 108.80     | 10.59%
+  101702 | Kim, Sooji          | Actual_Hours | 1,059.10    | 151.60     | 907.50     | 85.69%
+  101702 | Kim, Sooji          | Actual_Hours | 1,059.10    | 907.50     | 151.60     | 14.31%
+  101730 | Blair, Eric         | Actual_Hours | 1,192.00    | 189.70     | 1,002.30   | 84.09%
+  101730 | Blair, Eric         | Actual_Hours | 1,192.00    | 1,002.30   | 189.70     | 15.91%
+  101896 | Wilke, Connor       | Actual_Hours | 1,094.10    | 204.10     | 890.00     | 81.35%
+  101896 | Wilke, Connor       | Actual_Hours | 1,094.10    | 890.00     | 204.10     | 18.65%
+  101919 | Holcomb, Matthew    | Actual_Hours | 950.80      | 132.00     | 818.80     | 86.12%
+  101919 | Holcomb, Matthew    | Actual_Hours | 950.80      | 818.80     | 132.00     | 13.88%
+  101961 | Jang, Ryan          | Actual_Hours | 1,179.90    | 135.50     | 1,044.40   | 88.52%
+  101961 | Jang, Ryan          | Actual_Hours | 1,179.90    | 1,044.40   | 135.50     | 11.48%
+  101306 | Ellison, Jack       | Standard_Rev | 561,142.50  | 27,888.00  | 533,254.50 | 95.03%
+  101306 | Ellison, Jack       | Standard_Rev | 561,142.50  | 533,255.00 | 27,887.50  | 4.97% 
+  101564 | Hargunani, Kareena  | Standard_Rev | 538,204.50  | 88,755.00  | 449,449.50 | 83.51%
+  101564 | Hargunani, Kareena  | Standard_Rev | 538,204.50  | 449,450.00 | 88,754.50  | 16.49%
+  101615 | Wang, Yige          | Standard_Rev | 649,577.50  | 55,315.00  | 594,262.50 | 91.48%
+  101615 | Wang, Yige          | Standard_Rev | 649,577.50  | 594,263.00 | 55,314.50  | 8.52% 
+  101617 | Christensen, Kelsey | Standard_Rev | 680,915.00  | 99,073.00  | 581,842.00 | 85.45%
+  101617 | Christensen, Kelsey | Standard_Rev | 680,915.00  | 581,843.00 | 99,072.00  | 14.55%
+  101637 | Leiman, Jacqueline  | Standard_Rev | 409,728.00  | 24,153.00  | 385,575.00 | 94.11%
+  101637 | Leiman, Jacqueline  | Standard_Rev | 409,728.00  | 385,575.00 | 24,153.00  | 5.89% 
+  101676 | Lu, Jessica         | Standard_Rev | 573,102.50  | 94,070.00  | 479,032.50 | 83.59%
+  101676 | Lu, Jessica         | Standard_Rev | 573,102.50  | 479,033.00 | 94,069.50  | 16.41%
+  101695 | Velasquez, Ulysses  | Standard_Rev | 883,736.00  | 93,568.00  | 790,168.00 | 89.41%
+  101695 | Velasquez, Ulysses  | Standard_Rev | 883,736.00  | 790,168.00 | 93,568.00  | 10.59%
+  101702 | Kim, Sooji          | Standard_Rev | 910,826.00  | 130,376.00 | 780,450.00 | 85.69%
+  101702 | Kim, Sooji          | Standard_Rev | 910,826.00  | 780,450.00 | 130,376.00 | 14.31%
+  101730 | Blair, Eric         | Standard_Rev | 685,400.00  | 109,078.00 | 576,322.00 | 84.09%
+  101730 | Blair, Eric         | Standard_Rev | 685,400.00  | 576,323.00 | 109,077.00 | 15.91%
+  101896 | Wilke, Connor       | Standard_Rev | 629,107.50  | 117,358.00 | 511,749.50 | 81.35%
+  101896 | Wilke, Connor       | Standard_Rev | 629,107.50  | 511,750.00 | 117,357.50 | 18.65%
+  101919 | Holcomb, Matthew    | Standard_Rev | 461,138.00  | 64,020.00  | 397,118.00 | 86.12%
+  101919 | Holcomb, Matthew    | Standard_Rev | 461,138.00  | 397,118.00 | 64,020.00  | 13.88%
+  101961 | Jang, Ryan          | Standard_Rev | 572,251.50  | 65,718.00  | 506,533.50 | 88.52%
+  101961 | Jang, Ryan          | Standard_Rev | 572,251.50  | 506,534.00 | 65,717.50  | 11.48%
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-UK] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: July 2026 | Sheet: YTD - CRUK (YTD) | Run: 2026-08-03
+  Report: July 2026 | Sheet: YTD - CRUK (YTD) | Run: 2026-08-11
 
-  EmpNo  | Name           | Column       | Util Report | DB         | Diff      | Diff%
-  -------+----------------+--------------+-------------+------------+-----------+------
-  101798 | Sagaeva, Aisha | Target_Rev   | 600,132.64  | 657,800.00 | 57,667.36 | 9.61%
-  101798 | Sagaeva, Aisha | Standard_Rev | 408,742.94  | 446,890.00 | 38,147.06 | 9.33%
+  EmpNo  | Name                   | Column       | Util Report  | DB         | Diff       | Diff% 
+  -------+------------------------+--------------+--------------+------------+------------+-------
+  0543   | Bredendiek, Maximilian | Target_Hours | 1,034.38     | 136.00     | 898.38     | 86.85%
+  0543   | Bredendiek, Maximilian | Target_Hours | 1,034.38     | 898.40     | 135.98     | 13.15%
+  101181 | Tanndal, Julia         | Target_Hours | 955.84       | 161.30     | 794.54     | 83.12%
+  101181 | Tanndal, Julia         | Target_Hours | 955.84       | 794.60     | 161.24     | 16.87%
+  101607 | Harper, Ben            | Target_Hours | 1,088.00     | 160.00     | 928.00     | 85.29%
+  101607 | Harper, Ben            | Target_Hours | 1,088.00     | 928.00     | 160.00     | 14.71%
+  101662 | Wie, Tim               | Target_Hours | 1,077.50     | 157.50     | 920.00     | 85.38%
+  101662 | Wie, Tim               | Target_Hours | 1,077.50     | 920.00     | 157.50     | 14.62%
+  101685 | Cheng, Louise          | Target_Hours | 1,099.50     | 184.00     | 915.50     | 83.27%
+  101685 | Cheng, Louise          | Target_Hours | 1,099.50     | 915.50     | 184.00     | 16.73%
+  101731 | Ruck, Jan              | Target_Hours | 1,137.60     | 184.00     | 953.60     | 83.83%
+  101731 | Ruck, Jan              | Target_Hours | 1,137.60     | 953.60     | 184.00     | 16.17%
+  101732 | Agarwal, Tanushka      | Target_Hours | 991.00       | 96.00      | 895.00     | 90.31%
+  101732 | Agarwal, Tanushka      | Target_Hours | 991.00       | 895.00     | 96.00      | 9.69% 
+  101733 | Verghese, Alisha       | Target_Hours | 1,024.00     | 88.00      | 936.00     | 91.41%
+  101733 | Verghese, Alisha       | Target_Hours | 1,024.00     | 936.00     | 88.00      | 8.59% 
+  101735 | Fenner, Jack           | Target_Hours | 998.00       | 94.00      | 904.00     | 90.58%
+  101735 | Fenner, Jack           | Target_Hours | 998.00       | 904.00     | 94.00      | 9.42% 
+  101736 | Han, Brooklyn          | Target_Hours | 1,104.00     | 184.00     | 920.00     | 83.33%
+  101736 | Han, Brooklyn          | Target_Hours | 1,104.00     | 920.00     | 184.00     | 16.67%
+  101936 | Ranoszek, Stefan       | Target_Hours | 1,056.00     | 128.00     | 928.00     | 87.88%
+  101936 | Ranoszek, Stefan       | Target_Hours | 1,056.00     | 928.00     | 128.00     | 12.12%
+  101958 | Uboldi, Lorenzo        | Target_Hours | 1,144.00     | 184.00     | 960.00     | 83.92%
+  101958 | Uboldi, Lorenzo        | Target_Hours | 1,144.00     | 960.00     | 184.00     | 16.08%
+  101974 | Ene, Alexandra         | Target_Hours | 1,112.00     | 184.00     | 928.00     | 83.45%
+  101974 | Ene, Alexandra         | Target_Hours | 1,112.00     | 928.00     | 184.00     | 16.55%
+  101975 | Swarbrick, Nathan      | Target_Hours | 1,048.00     | 152.00     | 896.00     | 85.50%
+  101975 | Swarbrick, Nathan      | Target_Hours | 1,048.00     | 896.00     | 152.00     | 14.50%
+  5570   | Ayhan, Alexander       | Target_Hours | 1,039.89     | 154.30     | 885.59     | 85.16%
+  5570   | Ayhan, Alexander       | Target_Hours | 1,039.89     | 885.60     | 154.29     | 14.84%
+  0543   | Bredendiek, Maximilian | Target_Rev   | 1,086,165.35 | 140,662.00 | 945,503.35 | 87.05%
+  0543   | Bredendiek, Maximilian | Target_Rev   | 1,086,165.35 | 945,503.00 | 140,662.35 | 12.95%
+  101181 | Tanndal, Julia         | Target_Rev   | 860,797.67   | 143,267.00 | 717,530.67 | 83.36%
+  101181 | Tanndal, Julia         | Target_Rev   | 860,797.67   | 717,531.00 | 143,266.67 | 16.64%
+  101607 | Harper, Ben            | Target_Rev   | 483,056.64   | 70,013.00  | 413,043.64 | 85.51%
+  101607 | Harper, Ben            | Target_Rev   | 483,056.64   | 413,044.00 | 70,012.64  | 14.49%
+  101662 | Wie, Tim               | Target_Rev   | 565,082.93   | 81,450.00  | 483,632.93 | 85.59%
+  101662 | Wie, Tim               | Target_Rev   | 565,082.93   | 483,633.00 | 81,449.93  | 14.41%
+  101685 | Cheng, Louise          | Target_Rev   | 576,103.73   | 95,154.00  | 480,949.73 | 83.48%
+  101685 | Cheng, Louise          | Target_Rev   | 576,103.73   | 480,950.00 | 95,153.73  | 16.52%
+  101731 | Ruck, Jan              | Target_Rev   | 596,920.22   | 95,154.00  | 501,766.22 | 84.06%
+  101731 | Ruck, Jan              | Target_Rev   | 596,920.22   | 501,766.00 | 95,154.22  | 15.94%
+  101732 | Agarwal, Tanushka      | Target_Rev   | 520,241.16   | 49,645.00  | 470,596.16 | 90.46%
+  101732 | Agarwal, Tanushka      | Target_Rev   | 520,241.16   | 470,596.00 | 49,645.16  | 9.54% 
+  101733 | Verghese, Alisha       | Target_Rev   | 538,059.60   | 45,508.00  | 492,551.60 | 91.54%
+  101733 | Verghese, Alisha       | Target_Rev   | 538,059.60   | 492,551.00 | 45,508.60  | 8.46% 
+  101735 | Fenner, Jack           | Target_Rev   | 523,913.52   | 48,611.00  | 475,302.52 | 90.72%
+  101735 | Fenner, Jack           | Target_Rev   | 523,913.52   | 475,302.00 | 48,611.52  | 9.28% 
+  101736 | Han, Brooklyn          | Target_Rev   | 578,454.86   | 95,154.00  | 483,300.86 | 83.55%
+  101736 | Han, Brooklyn          | Target_Rev   | 578,454.86   | 483,301.00 | 95,153.86  | 16.45%
+  101936 | Ranoszek, Stefan       | Target_Rev   | 468,892.78   | 56,010.00  | 412,882.78 | 88.05%
+  101936 | Ranoszek, Stefan       | Target_Rev   | 468,892.78   | 412,883.00 | 56,009.78  | 11.95%
+  101958 | Uboldi, Lorenzo        | Target_Rev   | 507,948.41   | 80,515.00  | 427,433.41 | 84.15%
+  101958 | Uboldi, Lorenzo        | Target_Rev   | 507,948.41   | 427,434.00 | 80,514.41  | 15.85%
+  101974 | Ene, Alexandra         | Target_Rev   | 493,710.89   | 80,515.00  | 413,195.89 | 83.69%
+  101974 | Ene, Alexandra         | Target_Rev   | 493,710.89   | 413,196.00 | 80,514.89  | 16.31%
+  101975 | Swarbrick, Nathan      | Target_Rev   | 465,222.12   | 66,512.00  | 398,710.12 | 85.70%
+  101975 | Swarbrick, Nathan      | Target_Rev   | 465,222.12   | 398,710.00 | 66,512.12  | 14.30%
+  5570   | Ayhan, Alexander       | Target_Rev   | 937,134.40   | 137,080.00 | 800,054.40 | 85.37%
+  5570   | Ayhan, Alexander       | Target_Rev   | 937,134.40   | 800,054.00 | 137,080.40 | 14.63%
+  0543   | Bredendiek, Maximilian | Actual_Hours | 879.40       | 143.10     | 736.30     | 83.73%
+  0543   | Bredendiek, Maximilian | Actual_Hours | 879.40       | 736.30     | 143.10     | 16.27%
+  101181 | Tanndal, Julia         | Actual_Hours | 923.50       | 106.60     | 816.90     | 88.46%
+  101181 | Tanndal, Julia         | Actual_Hours | 923.50       | 816.90     | 106.60     | 11.54%
+  101607 | Harper, Ben            | Actual_Hours | 1,005.20     | 100.40     | 904.80     | 90.01%
+  101607 | Harper, Ben            | Actual_Hours | 1,005.20     | 904.80     | 100.40     | 9.99% 
+  101662 | Wie, Tim               | Actual_Hours | 714.30       | 75.90      | 638.40     | 89.37%
+  101662 | Wie, Tim               | Actual_Hours | 714.30       | 638.40     | 75.90      | 10.63%
+  101685 | Cheng, Louise          | Actual_Hours | 1,067.10     | 190.10     | 877.00     | 82.19%
+  101685 | Cheng, Louise          | Actual_Hours | 1,067.10     | 877.00     | 190.10     | 17.81%
+  101731 | Ruck, Jan              | Actual_Hours | 1,162.60     | 188.50     | 974.10     | 83.79%
+  101731 | Ruck, Jan              | Actual_Hours | 1,162.60     | 974.10     | 188.50     | 16.21%
+  101732 | Agarwal, Tanushka      | Actual_Hours | 906.10       | 80.30      | 825.80     | 91.14%
+  101732 | Agarwal, Tanushka      | Actual_Hours | 906.10       | 825.80     | 80.30      | 8.86% 
+  101733 | Verghese, Alisha       | Actual_Hours | 856.70       | 8.20       | 848.50     | 99.04%
+  101735 | Fenner, Jack           | Actual_Hours | 1,144.20     | 10.90      | 1,133.30   | 99.05%
+  101736 | Han, Brooklyn          | Actual_Hours | 986.60       | 212.40     | 774.20     | 78.47%
+  101736 | Han, Brooklyn          | Actual_Hours | 986.60       | 774.20     | 212.40     | 21.53%
+  101936 | Ranoszek, Stefan       | Actual_Hours | 1,056.80     | 67.20      | 989.60     | 93.64%
+  101936 | Ranoszek, Stefan       | Actual_Hours | 1,056.80     | 989.60     | 67.20      | 6.36% 
+  101958 | Uboldi, Lorenzo        | Actual_Hours | 944.40       | 135.00     | 809.40     | 85.71%
+  101958 | Uboldi, Lorenzo        | Actual_Hours | 944.40       | 809.40     | 135.00     | 14.29%
+  101974 | Ene, Alexandra         | Actual_Hours | 842.20       | 71.60      | 770.60     | 91.50%
+  101974 | Ene, Alexandra         | Actual_Hours | 842.20       | 770.60     | 71.60      | 8.50% 
+  101975 | Swarbrick, Nathan      | Actual_Hours | 1,042.60     | 124.60     | 918.00     | 88.05%
+  101975 | Swarbrick, Nathan      | Actual_Hours | 1,042.60     | 918.00     | 124.60     | 11.95%
+  5570   | Ayhan, Alexander       | Actual_Hours | 950.30       | 82.80      | 867.50     | 91.29%
+  5570   | Ayhan, Alexander       | Actual_Hours | 950.30       | 867.50     | 82.80      | 8.71% 
+  0543   | Bredendiek, Maximilian | Standard_Rev | 922,586.96   | 148,005.00 | 774,581.96 | 83.96%
+  0543   | Bredendiek, Maximilian | Standard_Rev | 922,586.96   | 774,581.00 | 148,005.96 | 16.04%
+  101181 | Tanndal, Julia         | Standard_Rev | 832,556.38   | 94,706.00  | 737,850.38 | 88.62%
+  101181 | Tanndal, Julia         | Standard_Rev | 832,556.38   | 737,851.00 | 94,705.38  | 11.38%
+  101607 | Harper, Ben            | Standard_Rev | 446,564.27   | 43,933.00  | 402,631.27 | 90.16%
+  101607 | Harper, Ben            | Standard_Rev | 446,564.27   | 402,631.00 | 43,933.27  | 9.84% 
+  101662 | Wie, Tim               | Standard_Rev | 374,156.63   | 39,251.00  | 334,905.63 | 89.51%
+  101662 | Wie, Tim               | Standard_Rev | 374,156.63   | 334,906.00 | 39,250.63  | 10.49%
+  101685 | Cheng, Louise          | Standard_Rev | 558,915.95   | 98,308.00  | 460,607.95 | 82.41%
+  101685 | Cheng, Louise          | Standard_Rev | 558,915.95   | 460,608.00 | 98,307.95  | 17.59%
+  101731 | Ruck, Jan              | Standard_Rev | 610,204.43   | 97,481.00  | 512,723.43 | 84.02%
+  101731 | Ruck, Jan              | Standard_Rev | 610,204.43   | 512,724.00 | 97,480.43  | 15.98%
+  101732 | Agarwal, Tanushka      | Standard_Rev | 475,780.80   | 41,526.00  | 434,254.80 | 91.27%
+  101732 | Agarwal, Tanushka      | Standard_Rev | 475,780.80   | 434,254.00 | 41,526.80  | 8.73% 
+  101733 | Verghese, Alisha       | Standard_Rev | 450,835.34   | 4,241.00   | 446,594.34 | 99.06%
+  101735 | Fenner, Jack           | Standard_Rev | 601,377.80   | 5,637.00   | 595,740.80 | 99.06%
+  101736 | Han, Brooklyn          | Standard_Rev | 516,459.06   | 109,841.00 | 406,618.06 | 78.73%
+  101736 | Han, Brooklyn          | Standard_Rev | 516,459.06   | 406,619.00 | 109,840.06 | 21.27%
+  101936 | Ranoszek, Stefan       | Standard_Rev | 469,792.12   | 29,405.00  | 440,387.12 | 93.74%
+  101936 | Ranoszek, Stefan       | Standard_Rev | 469,792.12   | 440,387.00 | 29,405.12  | 6.26% 
+  101958 | Uboldi, Lorenzo        | Standard_Rev | 419,365.69   | 59,073.00  | 360,292.69 | 85.91%
+  101958 | Uboldi, Lorenzo        | Standard_Rev | 419,365.69   | 360,292.00 | 59,073.69  | 14.09%
+  101974 | Ene, Alexandra         | Standard_Rev | 374,196.43   | 31,331.00  | 342,865.43 | 91.63%
+  101974 | Ene, Alexandra         | Standard_Rev | 374,196.43   | 342,866.00 | 31,330.43  | 8.37% 
+  101975 | Swarbrick, Nathan      | Standard_Rev | 463,235.44   | 54,522.00  | 408,713.44 | 88.23%
+  101975 | Swarbrick, Nathan      | Standard_Rev | 463,235.44   | 408,713.00 | 54,522.44  | 11.77%
+  5570   | Ayhan, Alexander       | Standard_Rev | 855,471.61   | 73,561.00  | 781,910.61 | 91.40%
+  5570   | Ayhan, Alexander       | Standard_Rev | 855,471.61   | 781,910.00 | 73,561.61  | 8.60% 
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-BE] 
-[PASS] 'YTD - CRBE (YTD)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: July 2026 | Sheet: YTD - CRBE (YTD) | Run: 2026-08-11
+
+  EmpNo  | Name            | Column       | Util Report | DB         | Diff       | Diff% 
+  -------+-----------------+--------------+-------------+------------+------------+-------
+  101934 | Chini, Jakub    | Target_Hours | 1,138.00    | 148.00     | 990.00     | 86.99%
+  101934 | Chini, Jakub    | Target_Hours | 1,138.00    | 990.00     | 148.00     | 13.01%
+  101994 | Vignères, Clara | Target_Hours | 1,090.00    | 166.00     | 924.00     | 84.77%
+  101994 | Vignères, Clara | Target_Hours | 1,090.00    | 924.00     | 166.00     | 15.23%
+  101934 | Chini, Jakub    | Target_Rev   | 978,680.00  | 127,280.00 | 851,400.00 | 86.99%
+  101934 | Chini, Jakub    | Target_Rev   | 978,680.00  | 851,400.00 | 127,280.00 | 13.01%
+  101994 | Vignères, Clara | Target_Rev   | 528,650.00  | 80,510.00  | 448,140.00 | 84.77%
+  101994 | Vignères, Clara | Target_Rev   | 528,650.00  | 448,140.00 | 80,510.00  | 15.23%
+  101934 | Chini, Jakub    | Actual_Hours | 1,113.10    | 72.70      | 1,040.40   | 93.47%
+  101934 | Chini, Jakub    | Actual_Hours | 1,113.10    | 1,040.40   | 72.70      | 6.53% 
+  101994 | Vignères, Clara | Actual_Hours | 650.10      | 70.00      | 580.10     | 89.23%
+  101994 | Vignères, Clara | Actual_Hours | 650.10      | 580.10     | 70.00      | 10.77%
+  101934 | Chini, Jakub    | Standard_Rev | 957,266.00  | 62,522.00  | 894,744.00 | 93.47%
+  101934 | Chini, Jakub    | Standard_Rev | 957,266.00  | 894,744.00 | 62,522.00  | 6.53% 
+  101994 | Vignères, Clara | Standard_Rev | 315,298.50  | 33,950.00  | 281,348.50 | 89.23%
+  101994 | Vignères, Clara | Standard_Rev | 315,298.50  | 281,349.00 | 33,949.50  | 10.77%
+FAILED
 
 
 ================================== FAILURES ===================================
@@ -152,49 +1451,55 @@ tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 10 error(s) found
+E   Failed: 187 error(s) found
 __________________ test_db_comparison_employee_ytd[Chicago] ___________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 10 error(s) found
+E   Failed: 260 error(s) found
 _____________________ test_db_comparison_employee_ytd[DC] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 16 error(s) found
+E   Failed: 213 error(s) found
 _____________________ test_db_comparison_employee_ytd[LA] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 2 error(s) found
+E   Failed: 121 error(s) found
 _____________________ test_db_comparison_employee_ytd[NY] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 13 error(s) found
+E   Failed: 247 error(s) found
 _____________________ test_db_comparison_employee_ytd[SF] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 2 error(s) found
+E   Failed: 98 error(s) found
 _____________________ test_db_comparison_employee_ytd[SV] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 6 error(s) found
+E   Failed: 96 error(s) found
 ___________________ test_db_comparison_employee_ytd[EU-UK] ____________________
 tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 2 error(s) found
+E   Failed: 116 error(s) found
+___________________ test_db_comparison_employee_ytd[EU-BE] ____________________
+tests\TeamworkDB\test_utilization_monthly.py:978: in test_db_comparison_employee_ytd
+    run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 16 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Boston]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Chicago]
@@ -204,4 +1509,5 @@ FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-UK]
-================= 8 failed, 1 passed, 47 deselected in 28.69s =================
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-BE]
+====================== 9 failed, 47 deselected in 27.99s ======================
