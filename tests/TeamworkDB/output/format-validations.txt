@@ -5,26 +5,39 @@ rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
 collecting ... collected 56 items / 22 deselected / 34 selected
 
-tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_Monthly] 
-[PASS] All 7 offices and all 9 titles are present as expected, and no blank or zero values found.
-PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_Monthly] 	
+  [MISSING TITLE] CRSV — Associate-1st Yr
+  [WRONG ORDER] CRSV — expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']
+  [ZERO VALUE] CRSF — Associate-1st Yr — Actual_Hours is zero
+  [ZERO VALUE] CRSF — Associate-1st Yr — Standard_Rev is zero
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_Monthly] 	
   [MISSING TITLE] Brussels — Associate-1st Yr
   [WRONG ORDER] Brussels — expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']
+  [ZERO VALUE] Brussels — Analyst-1st Yr — Actual_Hours is zero
+  [ZERO VALUE] Brussels — Analyst-1st Yr — Standard_Rev is zero
+  [ZERO VALUE] London — Analyst-1st Yr — Actual_Hours is zero
+  [ZERO VALUE] London — Analyst-1st Yr — Standard_Rev is zero
 FAILED
 
-tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_Monthly] 
-[PASS] All 3 offices and all 9 titles are present as expected, and no blank or zero values found.
-PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_Monthly] 	
+  [ZERO VALUE] Europe — Analyst-1st Yr — Actual_Hours is zero
+  [ZERO VALUE] Europe — Analyst-1st Yr — Standard_Rev is zero
+FAILED
 
-tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_YTD] 
-[PASS] All 7 offices and all 9 titles are present as expected, and no blank or zero values found.
-PASSED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_YTD] 	
+  [MISSING TITLE] CRSV — Associate-1st Yr
+  [WRONG ORDER] CRSV — expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']
+  [ZERO VALUE] CRSF — Associate-1st Yr — Actual_Hours is zero
+  [ZERO VALUE] CRSF — Associate-1st Yr — Standard_Rev is zero
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD] 	
   [MISSING TITLE] Brussels — Associate-1st Yr
   [WRONG ORDER] Brussels — expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']
+  [ZERO VALUE] London — Analyst-1st Yr — Actual_Hours is zero
+  [ZERO VALUE] London — Analyst-1st Yr — Standard_Rev is zero
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_YTD] 
@@ -32,15 +45,15 @@ tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_locatio
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[US_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202607_US'.
+[PASS] All subtotals and grand total verified correctly for '202608_US'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[EU_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202607_Europe'.
+[PASS] All subtotals and grand total verified correctly for '202608_Europe'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[Total_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202607_Total'.
+[PASS] All subtotals and grand total verified correctly for '202608_Total'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[US_Utilization_YTD] 
@@ -167,15 +180,30 @@ PASSED
 
 
 ================================== FAILURES ===================================
+_________ test_format_validations_by_location[US_Utilization_Monthly] _________
+tests\TeamworkDB\test_utilization_monthly.py:566: in test_format_validations_by_location
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 4 error(s) found
 _________ test_format_validations_by_location[EU_Utilization_Monthly] _________
 tests\TeamworkDB\test_utilization_monthly.py:566: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 2 error(s) found
-___________ test_format_validations_by_location[EU_Utilization_YTD] ___________
+E   Failed: 6 error(s) found
+_______ test_format_validations_by_location[Total_Utilization_Monthly] ________
 tests\TeamworkDB\test_utilization_monthly.py:566: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 2 error(s) found
+___________ test_format_validations_by_location[US_Utilization_YTD] ___________
+tests\TeamworkDB\test_utilization_monthly.py:566: in test_format_validations_by_location
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 4 error(s) found
+___________ test_format_validations_by_location[EU_Utilization_YTD] ___________
+tests\TeamworkDB\test_utilization_monthly.py:566: in test_format_validations_by_location
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 4 error(s) found
 =========================== short test summary info ===========================
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_Monthly]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_Monthly]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_Monthly]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_YTD]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD]
-================= 2 failed, 32 passed, 22 deselected in 7.58s =================
+================ 5 failed, 29 passed, 22 deselected in 10.71s =================
