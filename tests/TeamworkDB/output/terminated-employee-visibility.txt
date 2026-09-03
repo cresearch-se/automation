@@ -1,0 +1,21 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikarumuri\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\sowjikarumuri\Documents\Code
+configfile: pyproject.toml
+collecting ... collected 57 items / 56 deselected / 1 selected
+
+tests/TeamworkDB/test_utilization_monthly.py::test_terminated_employees_with_hours_appear_in_ytd_report Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+
+  Terminated employees correctly present in SP output (4):
+    [OK] EmpNo=4786 | Name=Michael Lindh | Office=CRDC | TerminationDate=2026-06-29 | YTD_Hrs=828.7
+    [OK] EmpNo=6158 | Name=Ashley Vissing | Office=CRCH | TerminationDate=2026-06-29 | YTD_Hrs=1335.3
+    [OK] EmpNo=6245 | Name=Simona Mola Yost | Office=CRDC | TerminationDate=2026-01-22 | YTD_Hrs=143.8
+    [OK] EmpNo=6390 | Name=Juliana Zhao | Office=CRNY | TerminationDate=2026-04-02 | YTD_Hrs=533.0
+
+[PASS] All 4 terminated employee(s) with YTD hours are present in the SP output.
+PASSED
+
+
+====================== 1 passed, 56 deselected in 19.82s ======================

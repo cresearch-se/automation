@@ -3,34 +3,59 @@ platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikar
 cachedir: .pytest_cache
 rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
-collecting ... collected 56 items / 47 deselected / 9 selected
+collecting ... collected 57 items / 48 deselected / 9 selected
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Boston] Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: Month - CRB  (Monthly) | Run: 2026-09-02
+  Report: August 2026 | Sheet: Month - CRB  (Monthly) | Run: 2026-09-03
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101372 | Name=Lobo, Isabelle
     [MISSING IN DB] EmpNo=102071 | Name=Hsu, Caroline
     [MISSING IN XLS] EmpNo=101409 | Name=nan
+
+  EmpNo  | Name           | Column       | Util Report | DB        | Diff     | Diff% 
+  -------+----------------+--------------+-------------+-----------+----------+-------
+  101426 | Vaughn, Orly   | Actual_Hours | 132.80      | 143.50    | 10.70    | 8.06% 
+  101612 | Alhorr, Layane | Actual_Hours | 90.10       | 101.90    | 11.80    | 13.10%
+  101426 | Vaughn, Orly   | Standard_Rev | 81,672.00   | 88,253.00 | 6,581.00 | 8.06% 
+  101612 | Alhorr, Layane | Standard_Rev | 68,926.50   | 77,954.00 | 9,027.50 | 13.10%
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Chicago] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: Month - CRCH (Monthly) | Run: 2026-09-02
+  Report: August 2026 | Sheet: Month - CRCH (Monthly) | Run: 2026-09-03
 
   MISSING ROWS:
     [MISSING IN XLS] EmpNo=101102 | Name=nan
+
+  EmpNo  | Name           | Column       | Util Report | DB         | Diff     | Diff%
+  -------+----------------+--------------+-------------+------------+----------+------
+  101644 | Murphy, Kevin  | Target_Hours | 152.00      | 144.00     | 8.00     | 5.26%
+  101644 | Murphy, Kevin  | Target_Rev   | 87,400.00   | 82,800.00  | 4,600.00 | 5.26%
+  101279 | Lee, Shinyoung | Actual_Hours | 218.10      | 233.50     | 15.40    | 7.06%
+  101644 | Murphy, Kevin  | Actual_Hours | 108.20      | 117.60     | 9.40     | 8.69%
+  101279 | Lee, Shinyoung | Standard_Rev | 134,131.50  | 143,603.00 | 9,471.50 | 7.06%
+  101644 | Murphy, Kevin  | Standard_Rev | 62,215.00   | 67,620.00  | 5,405.00 | 8.69%
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[DC] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: Month - CRDC (Monthly) | Run: 2026-09-02
+  Report: August 2026 | Sheet: Month - CRDC (Monthly) | Run: 2026-09-03
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=102067 | Name=Gould, Naomi
     [MISSING IN DB] EmpNo=102077 | Name=Hagerty, Matthew
+
+  EmpNo  | Name           | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+----------------+--------------+-------------+------------+-----------+-------
+  101387 | Foley, Conor   | Target_Hours | 155.40      | 146.30     | 9.10      | 5.86% 
+  101387 | Foley, Conor   | Target_Rev   | 143,745.00  | 135,360.00 | 8,385.00  | 5.83% 
+  101528 | Podwol, Joseph | Actual_Hours | 33.40       | 58.70      | 25.30     | 75.75%
+  101591 | Jones, Nate    | Actual_Hours | 111.80      | 117.80     | 6.00      | 5.37% 
+  101528 | Podwol, Joseph | Standard_Rev | 37,575.00   | 66,038.00  | 28,463.00 | 75.75%
+  101591 | Jones, Nate    | Standard_Rev | 54,223.00   | 57,133.00  | 2,910.00  | 5.37% 
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[LA] 
@@ -39,7 +64,7 @@ PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[NY] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: Month - CRNY (Monthly) | Run: 2026-09-02
+  Report: August 2026 | Sheet: Month - CRNY (Monthly) | Run: 2026-09-03
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101102 | Name=Nandwani, Gehna Rai
@@ -48,6 +73,13 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthl
     [MISSING IN XLS] EmpNo=102067 | Name=nan
     [MISSING IN XLS] EmpNo=102071 | Name=nan
     [MISSING IN XLS] EmpNo=102077 | Name=nan
+
+  EmpNo  | Name                | Column       | Util Report | DB        | Diff     | Diff%
+  -------+---------------------+--------------+-------------+-----------+----------+------
+  102079 | Solaeche, Guadalupe | Actual_Hours | 50.30       | 53.20     | 2.90     | 5.77%
+  102219 | Shah, Shriya        | Actual_Hours | 119.40      | 128.50    | 9.10     | 7.62%
+  102079 | Solaeche, Guadalupe | Standard_Rev | 21,880.50   | 23,142.00 | 1,261.50 | 5.77%
+  102219 | Shah, Shriya        | Standard_Rev | 51,939.00   | 55,898.00 | 3,959.00 | 7.62%
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SF] 
@@ -55,16 +87,26 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthl
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SV] 
-[PASS] 'Month - CRSV (Monthly)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: August 2026 | Sheet: Month - CRSV (Monthly) | Run: 2026-09-03
+
+  EmpNo  | Name       | Column       | Util Report | DB        | Diff     | Diff%
+  -------+------------+--------------+-------------+-----------+----------+------
+  101961 | Jang, Ryan | Actual_Hours | 114.60      | 123.00    | 8.40     | 7.33%
+  101961 | Jang, Ryan | Standard_Rev | 55,581.00   | 59,655.00 | 4,074.00 | 7.33%
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[EU-UK] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: Month - CRUK (Monthly) | Run: 2026-09-02
+  Report: August 2026 | Sheet: Month - CRUK (Monthly) | Run: 2026-09-03
 
-  EmpNo | Name                   | Column       | Util Report | DB     | Diff | Diff%
-  ------+------------------------+--------------+-------------+--------+------+------
-  0543  | Bredendiek, Maximilian | Actual_Hours | 112.90      | 118.50 | 5.60 | 4.96%
+  EmpNo  | Name                   | Column       | Util Report | DB         | Diff      | Diff%
+  -------+------------------------+--------------+-------------+------------+-----------+------
+  0543   | Bredendiek, Maximilian | Actual_Hours | 112.90      | 118.50     | 5.60      | 4.96%
+  101964 | Roketskiy, Nikita      | Actual_Hours | 90.80       | 98.00      | 7.20      | 7.93%
+  102337 | Williams, Ryan         | Actual_Hours | 147.50      | 158.50     | 11.00     | 7.46%
+  101964 | Roketskiy, Nikita      | Standard_Rev | 76,516.02   | 82,583.00  | 6,066.98  | 7.93%
+  102337 | Williams, Ryan         | Standard_Rev | 176,003.71  | 189,129.00 | 13,125.29 | 7.46%
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[EU-BE] 
@@ -74,39 +116,46 @@ PASSED
 
 ================================== FAILURES ===================================
 _________________ test_db_comparison_employee_monthly[Boston] _________________
-tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_monthly
+tests\TeamworkDB\test_utilization_monthly.py:960: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 3 error(s) found
+E   Failed: 7 error(s) found
 ________________ test_db_comparison_employee_monthly[Chicago] _________________
-tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_monthly
+tests\TeamworkDB\test_utilization_monthly.py:960: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 1 error(s) found
+E   Failed: 7 error(s) found
 ___________________ test_db_comparison_employee_monthly[DC] ___________________
-tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_monthly
+tests\TeamworkDB\test_utilization_monthly.py:960: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 8 error(s) found
+___________________ test_db_comparison_employee_monthly[NY] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:960: in test_db_comparison_employee_monthly
+    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 10 error(s) found
+___________________ test_db_comparison_employee_monthly[SV] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:960: in test_db_comparison_employee_monthly
+    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 2 error(s) found
-___________________ test_db_comparison_employee_monthly[NY] ___________________
-tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_monthly
-    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
-    pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 6 error(s) found
 _________________ test_db_comparison_employee_monthly[EU-UK] __________________
-tests\TeamworkDB\test_utilization_monthly.py:959: in test_db_comparison_employee_monthly
+tests\TeamworkDB\test_utilization_monthly.py:960: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:866: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 1 error(s) found
+E   Failed: 5 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Boston]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Chicago]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[DC]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[NY]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SV]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[EU-UK]
-================= 5 failed, 4 passed, 47 deselected in 16.50s =================
+================= 6 failed, 3 passed, 48 deselected in 16.91s =================

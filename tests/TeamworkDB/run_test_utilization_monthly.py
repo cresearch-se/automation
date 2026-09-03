@@ -53,6 +53,11 @@ TEST_GROUPS = [
         "name": "DB Employee YTD",
         "filter": "test_db_comparison_employee_ytd",
         "output_file": OUTPUT_DIR / "db-employee-ytd.txt"
+    },
+    {
+        "name": "Terminated Employee Visibility",
+        "filter": "test_terminated_employees_with_hours_appear_in_ytd_report",
+        "output_file": OUTPUT_DIR / "terminated-employee-visibility.txt"
     }
 ]
 
@@ -201,7 +206,7 @@ def parse_output_file(filepath: Path | str) -> dict[str, Any]:
 
         # Format validation errors
         if any(line.startswith(tag) for tag in [
-            "[MISSING OFFICE]", "[MISSING TITLE]", "[BLANK VALUE]",
+            "[MISSING OFFICE]", "[MISSING TITLE]", "[BLANK VALUE]", "[MISSING TERMINATED EMPLOYEE]",
             "[DUPLICATE", "[WRONG ORDER]", "[ZERO VALUE]", "[MISSING SUBTOTAL",
             "[MISSING GRAND TOTAL"
         ]):
