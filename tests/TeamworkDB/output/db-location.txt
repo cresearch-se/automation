@@ -3,14 +3,14 @@ platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikar
 cachedir: .pytest_cache
 rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
-collecting ... collected 56 items / 52 deselected / 4 selected
+collecting ... collected 57 items / 53 deselected / 4 selected
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_us_monthly 
 Fetching summary data from DB for SQLT1COFIN to ReportDevl...
 Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: 202608_US | Run: 2026-09-02
+  Report: August 2026 | Sheet: 202608_US | Run: 2026-09-03
 
   Office | Title     | Column       | Util Report  | DB           | Diff       | Diff% 
   -------+-----------+--------------+--------------+--------------+------------+-------
@@ -28,14 +28,13 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
   CRNY   | Manager   | Target_Rev   | 3,892,732.27 | 3,755,832.00 | 136,900.27 | 3.52% 
   CRB    | Manager   | Actual_Hours | 2,277.90     | 2,475.10     | 197.20     | 8.66% 
   CRCH   | Associate | Actual_Hours | 3,813.60     | 3,970.70     | 157.10     | 4.12% 
-  CRDC   | Associate | Actual_Hours | 2,540.90     | 2,440.10     | 100.80     | 3.97% 
+  CRDC   | Associate | Actual_Hours | 2,540.90     | 2,443.60     | 97.30      | 3.83% 
   CRLA   | Officer   | Actual_Hours | 406.70       | 420.70       | 14.00      | 3.44% 
   CRNY   | Manager   | Actual_Hours | 4,413.30     | 4,216.10     | 197.20     | 4.47% 
   CRSV   | Officer   | Actual_Hours | 300.00       | 327.70       | 27.70      | 9.23% 
-  CRB    | Analyst   | Standard_Rev | 3,166,054.50 | 3,067,764.00 | 98,290.50  | 3.10% 
   CRB    | Manager   | Standard_Rev | 2,065,556.50 | 2,247,967.00 | 182,410.50 | 8.83% 
   CRCH   | Associate | Standard_Rev | 2,687,565.00 | 2,807,747.00 | 120,182.00 | 4.47% 
-  CRDC   | Associate | Standard_Rev | 1,852,902.50 | 1,784,863.00 | 68,039.50  | 3.67% 
+  CRDC   | Associate | Standard_Rev | 1,852,902.50 | 1,787,540.00 | 65,362.50  | 3.53% 
   CRLA   | Officer   | Standard_Rev | 499,767.50   | 516,708.00   | 16,940.50  | 3.39% 
   CRNY   | Manager   | Standard_Rev | 4,100,441.50 | 3,918,032.00 | 182,409.50 | 4.45% 
   CRSV   | Officer   | Standard_Rev | 386,567.00   | 425,347.00   | 38,780.00  | 10.03%
@@ -50,7 +49,7 @@ Fetching summary data from DB for SQLT1COFIN to ReportDevl...
 Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: 2026_US (YTD) | Run: 2026-09-02
+  Report: August 2026 | Sheet: 2026_US (YTD) | Run: 2026-09-03
 
   Office | Title     | Column       | Util Report   | DB            | Diff         | Diff% 
   -------+-----------+--------------+---------------+---------------+--------------+-------
@@ -61,7 +60,7 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
   CRCH   | Manager   | Target_Hours | 31,304.39     | 27,717.60     | 3,586.79     | 11.46%
   CRCH   | Principal | Target_Hours | 18,034.53     | 15,779.90     | 2,254.63     | 12.50%
   CRDC   | Associate | Target_Hours | 19,280.78     | 20,613.90     | 1,333.12     | 6.91% 
-  CRDC   | Manager   | Target_Hours | 27,826.23     | 28,832.80     | 1,006.57     | 3.62% 
+  CRDC   | Manager   | Target_Hours | 27,826.23     | 28,823.70     | 997.47       | 3.58% 
   CRDC   | Principal | Target_Hours | 16,421.53     | 13,801.90     | 2,619.63     | 15.95%
   CRLA   | Associate | Target_Hours | 13,595.44     | 14,537.80     | 942.36       | 6.93% 
   CRLA   | Principal | Target_Hours | 11,045.35     | 10,211.60     | 833.75       | 7.55% 
@@ -78,7 +77,7 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
   CRCH   | Manager   | Target_Rev   | 29,217,630.62 | 26,572,634.00 | 2,644,996.62 | 9.05% 
   CRCH   | Principal | Target_Rev   | 20,195,200.40 | 17,816,580.00 | 2,378,620.40 | 11.78%
   CRDC   | Associate | Target_Rev   | 13,967,769.38 | 15,166,035.00 | 1,198,265.62 | 8.58% 
-  CRDC   | Manager   | Target_Rev   | 26,890,770.20 | 28,267,235.00 | 1,376,464.80 | 5.12% 
+  CRDC   | Manager   | Target_Rev   | 26,890,770.20 | 28,258,850.00 | 1,368,079.80 | 5.09% 
   CRDC   | Principal | Target_Rev   | 18,323,036.40 | 15,559,305.00 | 2,763,731.40 | 15.08%
   CRLA   | Associate | Target_Rev   | 9,839,393.35  | 10,649,857.00 | 810,463.65   | 8.24% 
   CRLA   | Principal | Target_Rev   | 12,424,797.16 | 11,545,151.00 | 879,646.16   | 7.08% 
@@ -89,15 +88,15 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
   CRSF   | Principal | Target_Rev   | 5,393,496.95  | 3,576,207.00  | 1,817,289.95 | 33.69%
   CRSV   | Associate | Target_Rev   | 4,470,721.00  | 6,013,462.00  | 1,542,741.00 | 34.51%
   CRSV   | Manager   | Target_Rev   | 9,895,580.73  | 8,352,840.00  | 1,542,740.73 | 15.59%
-  CRB    | Associate | Actual_Hours | 14,247.70     | 18,705.70     | 4,458.00     | 31.29%
+  CRB    | Associate | Actual_Hours | 14,247.70     | 18,720.30     | 4,472.60     | 31.39%
   CRB    | Manager   | Actual_Hours | 18,272.11     | 17,460.60     | 811.51       | 4.44% 
   CRB    | Principal | Actual_Hours | 14,577.70     | 12,327.80     | 2,249.90     | 15.43%
   CRCH   | Associate | Actual_Hours | 29,228.75     | 34,575.10     | 5,346.35     | 18.29%
   CRCH   | Manager   | Actual_Hours | 33,268.40     | 29,298.00     | 3,970.40     | 11.93%
   CRCH   | Principal | Actual_Hours | 17,941.82     | 15,856.20     | 2,085.62     | 11.62%
-  CRDC   | Associate | Actual_Hours | 16,517.70     | 18,029.20     | 1,511.50     | 9.15% 
+  CRDC   | Associate | Actual_Hours | 16,517.70     | 18,032.70     | 1,515.00     | 9.17% 
   CRDC   | Manager   | Actual_Hours | 28,527.80     | 29,720.30     | 1,192.50     | 4.18% 
-  CRDC   | Principal | Actual_Hours | 17,676.65     | 14,824.60     | 2,852.05     | 16.13%
+  CRDC   | Principal | Actual_Hours | 17,676.65     | 14,854.50     | 2,822.15     | 15.97%
   CRLA   | Associate | Actual_Hours | 12,421.40     | 13,346.80     | 925.40       | 7.45% 
   CRLA   | Principal | Actual_Hours | 10,978.20     | 10,042.20     | 936.00       | 8.53% 
   CRNY   | Associate | Actual_Hours | 26,306.64     | 34,458.30     | 8,151.66     | 30.99%
@@ -105,18 +104,18 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
   CRNY   | Principal | Actual_Hours | 18,615.50     | 16,188.30     | 2,427.20     | 13.04%
   CRSF   | Associate | Actual_Hours | 9,780.55      | 11,596.50     | 1,815.95     | 18.57%
   CRSF   | Principal | Actual_Hours | 5,202.00      | 3,315.00      | 1,887.00     | 36.27%
-  CRSV   | Analyst   | Actual_Hours | 31,172.60     | 30,203.30     | 969.30       | 3.11% 
+  CRSV   | Analyst   | Actual_Hours | 31,172.60     | 30,211.70     | 960.90       | 3.08% 
   CRSV   | Associate | Actual_Hours | 3,802.50      | 5,628.80      | 1,826.30     | 48.03%
   CRSV   | Manager   | Actual_Hours | 10,629.30     | 8,803.00      | 1,826.30     | 17.18%
   CRSV   | Officer   | Actual_Hours | 2,266.10      | 2,534.40      | 268.30       | 11.84%
-  CRB    | Associate | Standard_Rev | 10,357,890.00 | 14,191,770.00 | 3,833,880.00 | 37.01%
+  CRB    | Associate | Standard_Rev | 10,357,890.00 | 14,202,687.00 | 3,844,797.00 | 37.12%
   CRB    | Principal | Standard_Rev | 16,250,484.50 | 13,876,840.00 | 2,373,644.50 | 14.61%
   CRCH   | Associate | Standard_Rev | 20,810,089.75 | 25,582,200.00 | 4,772,110.25 | 22.93%
   CRCH   | Manager   | Standard_Rev | 31,251,023.00 | 28,243,171.00 | 3,007,852.00 | 9.62% 
   CRCH   | Principal | Standard_Rev | 20,084,219.20 | 17,883,911.00 | 2,200,308.20 | 10.96%
-  CRDC   | Associate | Standard_Rev | 12,094,372.00 | 13,421,661.00 | 1,327,289.00 | 10.97%
+  CRDC   | Associate | Standard_Rev | 12,094,372.00 | 13,424,338.00 | 1,329,966.00 | 11.00%
   CRDC   | Manager   | Standard_Rev | 27,410,322.00 | 28,992,032.00 | 1,581,710.00 | 5.77% 
-  CRDC   | Principal | Standard_Rev | 19,697,041.25 | 16,688,076.00 | 3,008,965.25 | 15.28%
+  CRDC   | Principal | Standard_Rev | 19,697,041.25 | 16,721,759.00 | 2,975,282.25 | 15.11%
   CRLA   | Associate | Standard_Rev | 8,946,923.50  | 9,742,768.00  | 795,844.50   | 8.90% 
   CRLA   | Principal | Standard_Rev | 12,350,591.50 | 11,363,112.00 | 987,479.50   | 8.00% 
   CRNY   | Associate | Standard_Rev | 19,288,528.60 | 26,295,409.00 | 7,006,880.40 | 36.33%
@@ -132,7 +131,7 @@ FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_europe_ytd 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: 2026_Total (Europe YTD) | Run: 2026-09-02
+  Report: August 2026 | Sheet: 2026_Total (Europe YTD) | Run: 2026-09-03
 
   Office | Title     | Column       | Util Report   | DB            | Diff         | Diff% 
   -------+-----------+--------------+---------------+---------------+--------------+-------
@@ -143,35 +142,35 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_europe_ytd
   Europe | Manager   | Target_Rev   | 14,855,325.53 | 12,186,080.00 | 2,669,245.53 | 17.97%
   Europe | Principal | Target_Rev   | 6,176,376.75  | 5,230,873.00  | 945,503.75   | 15.31%
   Europe | Associate | Actual_Hours | 10,152.60     | 14,679.20     | 4,526.60     | 44.59%
-  Europe | Manager   | Actual_Hours | 16,059.45     | 12,273.20     | 3,786.25     | 23.58%
-  Europe | Principal | Actual_Hours | 3,949.40      | 3,218.70      | 730.70       | 18.50%
+  Europe | Manager   | Actual_Hours | 16,059.45     | 12,280.40     | 3,779.05     | 23.53%
+  Europe | Principal | Actual_Hours | 3,949.40      | 3,229.70      | 719.70       | 18.22%
   Europe | Associate | Standard_Rev | 6,900,117.54  | 10,501,139.00 | 3,601,021.46 | 52.19%
-  Europe | Manager   | Standard_Rev | 13,909,894.15 | 11,083,454.00 | 2,826,440.15 | 20.32%
-  Europe | Principal | Standard_Rev | 4,411,220.66  | 3,636,639.00  | 774,581.66   | 17.56%
+  Europe | Manager   | Standard_Rev | 13,909,894.15 | 11,089,522.00 | 2,820,372.15 | 20.28%
+  Europe | Principal | Standard_Rev | 4,411,220.66  | 3,649,765.00  | 761,455.66   | 17.26%
 FAILED
 
 
 ================================== FAILURES ===================================
 ________________________ test_db_comparison_us_monthly ________________________
-tests\TeamworkDB\test_utilization_monthly.py:906: in test_db_comparison_us_monthly
+tests\TeamworkDB\test_utilization_monthly.py:907: in test_db_comparison_us_monthly
     run_location_comparison(df_excel, df_db, f"{REPORT_MONTH}_US", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:830: in run_location_comparison
+tests\TeamworkDB\test_utilization_monthly.py:831: in run_location_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 25 error(s) found
+E   Failed: 24 error(s) found
 __________________________ test_db_comparison_us_ytd __________________________
-tests\TeamworkDB\test_utilization_monthly.py:929: in test_db_comparison_us_ytd
+tests\TeamworkDB\test_utilization_monthly.py:930: in test_db_comparison_us_ytd
     run_location_comparison(df_excel, df_db, f"{REPORT_YEAR}_US (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:830: in run_location_comparison
+tests\TeamworkDB\test_utilization_monthly.py:831: in run_location_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 74 error(s) found
 ________________________ test_db_comparison_europe_ytd ________________________
-tests\TeamworkDB\test_utilization_monthly.py:942: in test_db_comparison_europe_ytd
+tests\TeamworkDB\test_utilization_monthly.py:943: in test_db_comparison_europe_ytd
     run_location_comparison(df_excel, df_db, f"{REPORT_YEAR}_Total (Europe YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:830: in run_location_comparison
+tests\TeamworkDB\test_utilization_monthly.py:831: in run_location_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 12 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_us_monthly
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_us_ytd
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_europe_ytd
-================= 3 failed, 1 passed, 52 deselected in 38.31s =================
+================= 3 failed, 1 passed, 53 deselected in 37.52s =================

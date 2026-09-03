@@ -10,6 +10,7 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '..', 'con
 
 from cornerstone_automation.utils.pandas_utilis import read_excel_file, get_excel_sheet_names, find_column_by_keywords, check_totals_match, compare_db_to_excel, safe_to_numeric
 from cornerstone_automation.utils.db_utils import get_db_connection_from_env, call_stored_procedure
+from cornerstone_automation.sqls.loader import load_query
 
 # ==========================================
 # CHANGE ONLY THIS LINE EACH MONTH
@@ -976,6 +977,100 @@ def test_db_comparison_employee_ytd(loc, db_detail_ytd):
 
     #print(f"[DEBUG] df_db:\n{df_db.to_string()}")
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
+
+def test_terminated_employees_with_hours_appear_in_ytd_report(db_detail_ytd):
+    """
+    Validates that employees who were terminated during the YTD period
+    but had actual billable hours still appear in the SP YTD Detail output.
+
+    Root cause of original bug: TargetDaily stops generating rows at
+    termination date, so hours worked before termination have no #TD row
+    to join against and are silently dropped from the SP output.
+
+    This test catches that by independently finding terminated employees
+    with hours from raw tables (TAT_TIME + HBM_PERSNL) and verifying
+    each one is present in the SP output — completely independent of
+    both the SP and the Excel report.
+    """
+    conn = get_db_connection_from_env(DB_SERVER, DB_DATABASE, trusted_connection=True)
+    try:
+        sql = load_query(
+            "terminated_employees_list",
+            "terminated_employees_list"
+        )
+        terminated_rows = conn.execute(
+            sql,
+            (
+                f"{REPORT_YEAR}-01-01",  # terminate_date >= year start
+                YTD_END,                 # terminate_date <= report end
+                f"{REPORT_YEAR}-01-01",  # hours from year start
+                YTD_END                  # hours through report end
+            )
+        ).fetchall()
+    finally:
+        conn.close()
+
+    if not terminated_rows:
+        print("\n[PASS] No terminated employees with hours found "
+              "in YTD period.")
+        return
+
+    # Build set of EmpNos present in SP Detail output
+    sp_empnos = set(
+        str(e).split('.')[0].strip()
+        for e in db_detail_ytd['EMPLOYEE_CODE'].dropna()
+    )
+
+    errors   = []
+    warnings = []
+
+    for row in terminated_rows:
+        emp_code         = str(row[0]).strip()
+        emp_name         = str(row[1])
+        termination_date = str(row[2])[:10]
+        office           = str(row[3])
+        total_hrs        = round(float(row[4]), 2)
+
+        if emp_code not in sp_empnos:
+            errors.append(
+                f"[MISSING TERMINATED EMPLOYEE] "
+                f"EmpNo={emp_code} | Name={emp_name} | "
+                f"Office={office} | "
+                f"TerminationDate={termination_date} | "
+                f"YTD_Hrs={total_hrs}"
+            )
+        else:
+            warnings.append(
+                f"[OK] EmpNo={emp_code} | Name={emp_name} | "
+                f"Office={office} | "
+                f"TerminationDate={termination_date} | "
+                f"YTD_Hrs={total_hrs}"
+            )
+
+    # Print passing employees for visibility
+    if warnings:
+        print(f"\n  Terminated employees correctly present in SP "
+              f"output ({len(warnings)}):")
+        for w in warnings:
+            print(f"    {w}")
+
+    if errors:
+        print(f"\n  TERMINATED EMPLOYEES MISSING FROM YTD REPORT "
+              f"({len(errors)}):")
+        print(f"  These employees were terminated during {REPORT_YEAR} "
+              f"but had actual hours and should appear in YTD data.\n")
+        for e in errors:
+            print(f"    {e}")
+        pytest.fail(
+            f"{len(errors)} terminated employee(s) with actual hours "
+            f"are missing from the YTD SP output. Check TargetDaily "
+            f"population for these employees."
+        )
+    else:
+        print(
+            f"\n[PASS] All {len(terminated_rows)} terminated employee(s) "
+            f"with YTD hours are present in the SP output."
+        )
 
 if __name__ == "__main__":
     pytest.main([__file__])
