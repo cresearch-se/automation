@@ -244,12 +244,14 @@ OFFICE_MAP = {
     'Boston': 'CRB',
     'Chicago': 'CRCH',
     'Washington, D.C.': 'CRDC',
+    'Washington DC': 'CRDC',      # Workday spelling
     'Los Angeles': 'CRLA',
     'New York': 'CRNY',
     'San Francisco': 'CRSF',
     'Silicon Valley': 'CRSV',
     'Europe': 'Europe'
 }
+
 
 NUMERIC_COLS = ['Target_Hours', 'Target_Rev', 'Actual_Hours', 'Standard_Rev']
 
@@ -270,6 +272,110 @@ COLUMN_MAP_BY_EMPLOYEE = {
     "TargetRev":       "Target_Rev",
     "Actual_hrs":      "Actual_Hours",
     "Actual_Amount":   "Standard_Rev"
+}
+
+# Workday office name → SP office code mapping
+# Kept separate from OFFICE_MAP to avoid affecting Excel parsing
+# London and Brussels map to Europe in the SP output
+WORKDAY_OFFICE_TO_CODE = {
+    'New York':       'CRNY',
+    'Chicago':        'CRCH',
+    'Washington DC':  'CRDC',
+    'Boston':         'CRB',
+    'San Francisco':  'CRSF',
+    'Los Angeles':    'CRLA',
+    'Silicon Valley': 'CRSV',
+    'London':         'Europe',
+    'Brussels':       'Europe'
+}
+
+# Workday Level code → Report title group mapping
+# Based on Level codes from Master_Users_WD
+WORKDAY_LEVEL_TO_TITLE = {
+    # Officers
+    'SRVP':     'Officer',
+    'SRVPUK':   'Officer',
+    'SRVPCOO':  'Officer',
+    'SRVPCTIO': 'Officer',
+    'VP':       'Officer',
+    'VPUK':     'Officer',
+    'VPBE':     'Officer',
+    'CEO':      'Officer',
+    'COB':      'Officer',
+    'SRADVREE': 'Manager',
+    # Principal
+    'P1':    'Principal',
+    'P2':    'Principal',
+    'P3':    'Principal',
+    'P4':    'Principal',
+    'P5':    'Principal',
+    'P6':    'Principal',
+    'P7':    'Principal',
+    'P1UK':  'Principal',
+    'P2UK':  'Principal',
+    'P3UK':  None,
+    'P4UK':  'Principal',
+    'P5UK':  'Principal',
+    'P5BE':  'Principal',
+    'P6UK':  'Principal',
+    # Manager
+    'SM1':    'Manager',
+    'SM2':    'Manager',
+    'SM1UK':  'Manager',
+    'SM2UK':  'Manager',
+    'M1':     'Manager',
+    'M2':     'Manager',
+    'M1UK':   'Manager',
+    'M2UK':   'Manager',
+    'M1BE':   'Manager',
+    'SEM1':   'Manager',
+    'SEM2':   'Manager',
+    'SEA2':   'Manager',
+    'SEA3':   'Manager',
+    'SEP2':   'Manager',
+    'SESM1':  'Manager',
+    'SESM2':  'Manager',
+    'SCM2':   'Manager',
+    # Associate
+    'A1':    'Associate',
+    'A2':    'Associate',
+    'A3':    'Associate',
+    'A4':    'Manager',
+    'A1UK':  'Associate',
+    'A2UK':  'Associate',
+    'A3UK':  'Associate',
+    'A3BE':  'Associate',
+    'SRA':   'Associate',
+    # Analyst
+    'RA1':    'Analyst',
+    'RA2':    'Analyst',
+    'RA3':    'Analyst',
+    'RA4':    'Analyst',
+    'RA1UK':  'Analyst',
+    'RA2UK':  'Analyst',
+    'RA3UK':  'Analyst',
+    'RA4UK':  'Analyst',
+    'SA1':    'Analyst',
+    'SA1UK':  'Analyst',
+    'SA1BE':  'Analyst',
+    'AN1':    'Analyst',
+    'AN2':    'Analyst',
+    'AN1BE':  'Analyst',
+    'AN2BE':  'Analyst',
+    'AN2UK':  'Analyst',
+}
+
+# SP Rank_title → broad title group mapping
+# Maps SP Detail output Rank_title to our 5 broad groups
+SP_TITLE_TO_GROUP = {
+    'SVP/VP':             'Officer',
+    'Principal':          'Principal',
+    'Senior Manager':     'Manager',
+    'Manager':            'Manager',
+    'SRA/Associate':      'Associate',
+    'Research Associate': 'Analyst',
+    'Senior Analyst':     'Analyst',
+    'Analyst':            'Analyst',
 }
 
 # Database connection settings — read from config/db.env (loaded via db_utils import)
@@ -1070,6 +1176,271 @@ def test_terminated_employees_with_hours_appear_in_ytd_report(db_detail_ytd):
         print(
             f"\n[PASS] All {len(terminated_rows)} terminated employee(s) "
             f"with YTD hours are present in the SP output."
+        )
+
+# ==========================================
+# ROSTER COMPLETENESS TESTS
+# ==========================================
+
+def _run_roster_check(roster_rows, sp_detail_df, label):
+    """
+    Core roster validation logic shared by monthly and YTD tests.
+
+    For each employee in the Workday roster checks:
+      1. Existence — is the employee in the SP output at all?
+      2. Office    — are they under the correct office?
+      3. Title     — are they under the correct title group?
+
+    Returns tuple of (errors, warnings) lists.
+    """
+    # Build lookup: EmpNo → {office, title} from SP output
+    sp_lookup = {}
+    for _, row in sp_detail_df.iterrows():
+        emp = str(row.get('EMPLOYEE_CODE', '')).split('.')[0].strip()
+        if emp and emp != 'nan':
+            sp_lookup[emp] = {
+                'office': str(row.get('Office_Code', '')).strip(),
+                'title':  str(row.get('Rank_title', '')).strip()
+            }
+
+    errors   = []
+    warnings = []
+
+    for row in roster_rows:
+        emp_code   = str(row[0]).strip()
+        emp_name   = str(row[1])
+        wd_office  = str(row[2])
+        dept_code  = str(row[3])
+        status     = str(row[6])
+        hire_date  = str(row[7])[:10]
+        term_date  = str(row[8])[:10] if row[8] else 'Active'
+        wd_level   = str(row[9]).strip() if row[9] else ''
+        wd_title   = str(row[10]).strip() if row[10] else ''
+
+        # Map Workday office and level to expected SP values
+        expected_office = WORKDAY_OFFICE_TO_CODE.get(wd_office, wd_office)
+        expected_title  = WORKDAY_LEVEL_TO_TITLE.get(wd_level, None)
+
+        # --- Check 1: Existence ---
+        if emp_code not in sp_lookup:
+            errors.append(
+                f"[MISSING FROM {label}] "
+                f"EmpNo={emp_code} | Name={emp_name} | "
+                f"Office={wd_office} | Dept={dept_code} | "
+                f"Status={status} | "
+                f"HireDate={hire_date} | "
+                f"TermDate={term_date} | "
+                f"Level={wd_level} | "
+                f"JobTitle={wd_title}"
+            )
+            continue  # No point checking office/title if missing
+
+        actual_office = sp_lookup[emp_code]['office']
+        actual_title  = sp_lookup[emp_code]['title']
+
+        # --- Check 2: Office ---
+        if actual_office != expected_office:
+            errors.append(
+                f"[WRONG OFFICE] "
+                f"EmpNo={emp_code} | Name={emp_name} | "
+                f"Expected_Office={expected_office} | "
+                f"Actual_Office={actual_office} | "
+                f"Workday_Office={wd_office}"
+            )
+
+        # --- Check 3: Title ---
+        if expected_title:
+            actual_title_group = SP_TITLE_TO_GROUP.get(
+                actual_title, None
+            )
+            if actual_title_group and actual_title_group != expected_title:
+                errors.append(
+                    f"[WRONG TITLE] "
+                    f"EmpNo={emp_code} | Name={emp_name} | "
+                    f"Expected_Title={expected_title} | "
+                    f"Actual_SP_Title={actual_title} | "
+                    f"Actual_Group={actual_title_group} | "
+                    f"Workday_Level={wd_level} | "
+                    f"Workday_JobTitle={wd_title}"
+                )
+            elif not actual_title_group:
+                print(
+                    f"    [WARN] Unknown SP title '{actual_title}' "
+                    f"for EmpNo={emp_code} | Name={emp_name}"
+                )
+
+        # Track passing employees — only if no error logged for them
+        has_error = any(f"EmpNo={emp_code}" in e for e in errors)
+        if not has_error:
+            warnings.append(
+                f"[OK] EmpNo={emp_code} | Name={emp_name} | "
+                f"Office={actual_office} | Title={actual_title}"
+            )
+
+    return errors, warnings
+
+
+def test_roster_completeness_monthly(db_detail_monthly):
+    """
+    Validates that all regular permanent employees who should be
+    in the monthly report are present in the SP monthly Detail output.
+
+    Checks three things per employee:
+      1. Existence — present in SP output
+      2. Office    — under correct office
+      3. Title     — under correct title group
+
+    Uses Master_Users_WD (Workday) as independent source of truth.
+    Monthly scope: employees active during the report month (~222).
+
+    Catches employees missing from BOTH Excel and SP which existing
+    comparison tests cannot detect.
+    """
+    conn = get_db_connection_from_env(
+        DB_SERVER, DB_DATABASE, trusted_connection=True
+    )
+    try:
+        sql = load_query("roster_completeness", "active_employees_in_scope")
+        roster_rows = conn.execute(
+            sql,
+            (
+                MONTHLY_END,    # HireDate <= report month end
+                MONTHLY_START   # TerminationDate >= month start or NULL
+            )
+        ).fetchall()
+    finally:
+        conn.close()
+
+    if not roster_rows:
+        print("\n[PASS] No in-scope employees found in Workday roster.")
+        return
+
+    errors, warnings = _run_roster_check(
+        roster_rows, db_detail_monthly, "MONTHLY REPORT"
+    )
+
+    if warnings:
+        print(
+            f"\n  Employees correctly present in monthly SP "
+            f"output ({len(warnings)}/{len(roster_rows)})"
+        )
+
+    if errors:
+        missing      = [e for e in errors if '[MISSING'      in e]
+        wrong_office = [e for e in errors if '[WRONG OFFICE]' in e]
+        wrong_title  = [e for e in errors if '[WRONG TITLE]'  in e]
+
+        if missing:
+            print(f"\n  MISSING FROM MONTHLY REPORT ({len(missing)}):")
+            for e in missing:
+                print(f"    {e}")
+
+        if wrong_office:
+            print(f"\n  WRONG OFFICE IN MONTHLY REPORT "
+                  f"({len(wrong_office)}):")
+            for e in wrong_office:
+                print(f"    {e}")
+
+        if wrong_title:
+            print(f"\n  WRONG TITLE IN MONTHLY REPORT "
+                  f"({len(wrong_title)}):")
+            for e in wrong_title:
+                print(f"    {e}")
+
+        pytest.fail(
+            f"{len(errors)} issue(s) found in monthly roster: "
+            f"{len(missing)} missing, "
+            f"{len(wrong_office)} wrong office, "
+            f"{len(wrong_title)} wrong title."
+        )
+    else:
+        print(
+            f"\n[PASS] All {len(roster_rows)} in-scope employee(s) "
+            f"from Workday roster are correctly present in monthly "
+            f"SP output with correct office and title."
+        )
+
+
+def test_roster_completeness_ytd(db_detail_ytd):
+    """
+    Validates that all regular permanent employees who should be
+    in the YTD report are present in the SP YTD Detail output.
+
+    Checks three things per employee:
+      1. Existence — present in SP output
+      2. Office    — under correct office
+      3. Title     — under correct title group
+
+    Uses Master_Users_WD (Workday) as independent source of truth.
+    YTD scope: employees active at any point Jan 1 → report end (~228).
+
+    Catches employees missing from BOTH Excel and SP which existing
+    comparison tests cannot detect — e.g. employees never populated
+    in TargetDaily or terminated employees whose TargetDaily rows
+    stopped before all their hours were recorded.
+    """
+    conn = get_db_connection_from_env(
+        DB_SERVER, DB_DATABASE, trusted_connection=True
+    )
+    try:
+        sql = load_query("roster_completeness", "active_employees_in_scope")
+        roster_rows = conn.execute(
+            sql,
+            (
+                YTD_END,    # HireDate <= YTD end
+                YTD_START   # TerminationDate >= Jan 1 or NULL
+            )
+        ).fetchall()
+    finally:
+        conn.close()
+
+    if not roster_rows:
+        print("\n[PASS] No in-scope employees found in Workday roster.")
+        return
+
+    errors, warnings = _run_roster_check(
+        roster_rows, db_detail_ytd, "YTD REPORT"
+    )
+
+    if warnings:
+        print(
+            f"\n  Employees correctly present in YTD SP "
+            f"output ({len(warnings)}/{len(roster_rows)})"
+        )
+
+    if errors:
+        missing      = [e for e in errors if '[MISSING'       in e]
+        wrong_office = [e for e in errors if '[WRONG OFFICE]' in e]
+        wrong_title  = [e for e in errors if '[WRONG TITLE]'  in e]
+
+        if missing:
+            print(f"\n  MISSING FROM YTD REPORT ({len(missing)}):")
+            for e in missing:
+                print(f"    {e}")
+
+        if wrong_office:
+            print(f"\n  WRONG OFFICE IN YTD REPORT "
+                  f"({len(wrong_office)}):")
+            for e in wrong_office:
+                print(f"    {e}")
+
+        if wrong_title:
+            print(f"\n  WRONG TITLE IN YTD REPORT "
+                  f"({len(wrong_title)}):")
+            for e in wrong_title:
+                print(f"    {e}")
+
+        pytest.fail(
+            f"{len(errors)} issue(s) found in YTD roster: "
+            f"{len(missing)} missing, "
+            f"{len(wrong_office)} wrong office, "
+            f"{len(wrong_title)} wrong title."
+        )
+    else:
+        print(
+            f"\n[PASS] All {len(roster_rows)} in-scope employee(s) "
+            f"from Workday roster are correctly present in YTD "
+            f"SP output with correct office and title."
         )
 
 if __name__ == "__main__":

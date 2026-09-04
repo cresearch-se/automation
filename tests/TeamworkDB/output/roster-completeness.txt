@@ -1,0 +1,63 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikarumuri\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\sowjikarumuri\Documents\Code
+configfile: pyproject.toml
+collecting ... collected 59 items / 57 deselected / 2 selected
+
+tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_monthly Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+
+  Employees correctly present in monthly SP output (219/220)
+
+  MISSING FROM MONTHLY REPORT (1):
+    [MISSING FROM MONTHLY REPORT] EmpNo=5905 | Name=Christina Zafeiridou | Office=London | Dept=1000 | Status=Active | HireDate=2025-08-03 | TermDate=Active | Level=P3UK | JobTitle=Principal
+FAILED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+
+  Employees correctly present in YTD SP output (202/225)
+
+  MISSING FROM YTD REPORT (1):
+    [MISSING FROM YTD REPORT] EmpNo=5905 | Name=Christina Zafeiridou | Office=London | Dept=1000 | Status=Active | HireDate=2025-08-03 | TermDate=Active | Level=P3UK | JobTitle=Principal
+
+  WRONG TITLE IN YTD REPORT (22):
+    [WRONG TITLE] EmpNo=5369 | Name=Vijeta Graham | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5483 | Name=Etienne Cayer | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5624 | Name=Prithvi Hingorani | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5766 | Name=Austin Schwed | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1 | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=5802 | Name=Burkett Evans | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1 | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=5967 | Name=Spencer Vernon | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1 | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=6122 | Name=Michael Hilfiker | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6330 | Name=Alejandro Hoyos Suarez | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6333 | Name=Julia Russell | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1 | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=6337 | Name=Benjamin Murphy | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1 | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=6342 | Name=Samuel Haltenhof | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6354 | Name=Arthur Corea-Smith | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6383 | Name=Matthew Davis | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=0531 | Name=Hannah Tilson | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1UK | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=0543 | Name=Maximilian Bredendiek | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1UK | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=4876 | Name=Avishai Schiff | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6410 | Name=Molly Glandon | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6415 | Name=Chady Gemayel | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6135 | Name=Kathleen Hu | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5100 | Name=Charles Boyer | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5432 | Name=Kathryn Fox | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5161 | Name=Bryan Pine | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+FAILED
+
+
+================================== FAILURES ===================================
+______________________ test_roster_completeness_monthly _______________________
+tests\TeamworkDB\test_utilization_monthly.py:1350: in test_roster_completeness_monthly
+    pytest.fail(
+E   Failed: 1 issue(s) found in monthly roster: 1 missing, 0 wrong office, 0 wrong title.
+________________________ test_roster_completeness_ytd _________________________
+tests\TeamworkDB\test_utilization_monthly.py:1433: in test_roster_completeness_ytd
+    pytest.fail(
+E   Failed: 23 issue(s) found in YTD roster: 1 missing, 0 wrong office, 22 wrong title.
+=========================== short test summary info ===========================
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_monthly
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd
+====================== 2 failed, 57 deselected in 35.59s ======================

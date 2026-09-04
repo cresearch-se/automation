@@ -3,7 +3,7 @@ platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikar
 cachedir: .pytest_cache
 rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
-collecting ... collected 57 items / 48 deselected / 9 selected
+collecting ... collected 59 items / 50 deselected / 9 selected
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Boston] Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
@@ -1523,57 +1523,57 @@ FAILED
 
 ================================== FAILURES ===================================
 ___________________ test_db_comparison_employee_ytd[Boston] ___________________
-tests\TeamworkDB\test_utilization_monthly.py:979: in test_db_comparison_employee_ytd
+tests\TeamworkDB\test_utilization_monthly.py:1085: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 195 error(s) found
 __________________ test_db_comparison_employee_ytd[Chicago] ___________________
-tests\TeamworkDB\test_utilization_monthly.py:979: in test_db_comparison_employee_ytd
+tests\TeamworkDB\test_utilization_monthly.py:1085: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 265 error(s) found
 _____________________ test_db_comparison_employee_ytd[DC] _____________________
-tests\TeamworkDB\test_utilization_monthly.py:979: in test_db_comparison_employee_ytd
+tests\TeamworkDB\test_utilization_monthly.py:1085: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 212 error(s) found
 _____________________ test_db_comparison_employee_ytd[LA] _____________________
-tests\TeamworkDB\test_utilization_monthly.py:979: in test_db_comparison_employee_ytd
+tests\TeamworkDB\test_utilization_monthly.py:1085: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 120 error(s) found
 _____________________ test_db_comparison_employee_ytd[NY] _____________________
-tests\TeamworkDB\test_utilization_monthly.py:979: in test_db_comparison_employee_ytd
+tests\TeamworkDB\test_utilization_monthly.py:1085: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 273 error(s) found
 _____________________ test_db_comparison_employee_ytd[SF] _____________________
-tests\TeamworkDB\test_utilization_monthly.py:979: in test_db_comparison_employee_ytd
+tests\TeamworkDB\test_utilization_monthly.py:1085: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 106 error(s) found
 _____________________ test_db_comparison_employee_ytd[SV] _____________________
-tests\TeamworkDB\test_utilization_monthly.py:979: in test_db_comparison_employee_ytd
+tests\TeamworkDB\test_utilization_monthly.py:1085: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 89 error(s) found
 ___________________ test_db_comparison_employee_ytd[EU-UK] ____________________
-tests\TeamworkDB\test_utilization_monthly.py:979: in test_db_comparison_employee_ytd
+tests\TeamworkDB\test_utilization_monthly.py:1085: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 146 error(s) found
 ___________________ test_db_comparison_employee_ytd[EU-BE] ____________________
-tests\TeamworkDB\test_utilization_monthly.py:979: in test_db_comparison_employee_ytd
+tests\TeamworkDB\test_utilization_monthly.py:1085: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:867: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 24 error(s) found
 =========================== short test summary info ===========================
@@ -1586,4 +1586,4 @@ FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-UK]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-BE]
-====================== 9 failed, 48 deselected in 26.59s ======================
+====================== 9 failed, 50 deselected in 30.57s ======================
