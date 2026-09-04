@@ -58,6 +58,14 @@ TEST_GROUPS = [
         "name": "Terminated Employee Visibility",
         "filter": "test_terminated_employees_with_hours_appear_in_ytd_report",
         "output_file": OUTPUT_DIR / "terminated-employee-visibility.txt"
+    },
+    {
+        "name": "Roster Completeness",
+        "filter": (
+            "test_roster_completeness_monthly or "
+            "test_roster_completeness_ytd"
+        ),
+        "output_file": OUTPUT_DIR / "roster-completeness.txt"
     }
 ]
 
@@ -208,7 +216,7 @@ def parse_output_file(filepath: Path | str) -> dict[str, Any]:
         if any(line.startswith(tag) for tag in [
             "[MISSING OFFICE]", "[MISSING TITLE]", "[BLANK VALUE]", "[MISSING TERMINATED EMPLOYEE]",
             "[DUPLICATE", "[WRONG ORDER]", "[ZERO VALUE]", "[MISSING SUBTOTAL",
-            "[MISSING GRAND TOTAL"
+            "[MISSING GRAND TOTAL", "[MISSING FROM", "[WRONG OFFICE]", "[WRONG TITLE]"
         ]):
             m_type = re.match(r'\[([^\]]+)\]\s*(.*)', line)
             err_type   = m_type.group(1) if m_type else ""

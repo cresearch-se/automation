@@ -3,7 +3,7 @@ platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikar
 cachedir: .pytest_cache
 rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
-collecting ... collected 57 items / 23 deselected / 34 selected
+collecting ... collected 59 items / 25 deselected / 34 selected
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_Monthly] 	
   [MISSING TITLE] CRSV — Associate-1st Yr
@@ -181,23 +181,23 @@ PASSED
 
 ================================== FAILURES ===================================
 _________ test_format_validations_by_location[US_Utilization_Monthly] _________
-tests\TeamworkDB\test_utilization_monthly.py:567: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:673: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 4 error(s) found
 _________ test_format_validations_by_location[EU_Utilization_Monthly] _________
-tests\TeamworkDB\test_utilization_monthly.py:567: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:673: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 6 error(s) found
 _______ test_format_validations_by_location[Total_Utilization_Monthly] ________
-tests\TeamworkDB\test_utilization_monthly.py:567: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:673: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 2 error(s) found
 ___________ test_format_validations_by_location[US_Utilization_YTD] ___________
-tests\TeamworkDB\test_utilization_monthly.py:567: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:673: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 4 error(s) found
 ___________ test_format_validations_by_location[EU_Utilization_YTD] ___________
-tests\TeamworkDB\test_utilization_monthly.py:567: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:673: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 4 error(s) found
 =========================== short test summary info ===========================
@@ -206,4 +206,4 @@ FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_Monthly]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_YTD]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD]
-================= 5 failed, 29 passed, 23 deselected in 9.40s =================
+================= 5 failed, 29 passed, 25 deselected in 9.04s =================

@@ -3,7 +3,7 @@ platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikar
 cachedir: .pytest_cache
 rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
-collecting ... collected 57 items / 56 deselected / 1 selected
+collecting ... collected 59 items / 58 deselected / 1 selected
 
 tests/TeamworkDB/test_utilization_monthly.py::test_terminated_employees_with_hours_appear_in_ytd_report Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
@@ -18,4 +18,4 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 PASSED
 
 
-====================== 1 passed, 56 deselected in 19.82s ======================
+====================== 1 passed, 58 deselected in 19.91s ======================
