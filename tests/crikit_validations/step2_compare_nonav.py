@@ -110,13 +110,70 @@ def compare_page(pid, legacy, gcc):
     else:
         issues.append("Left nav MISSING on GCC site")
 
-    # ── 6. Link count (informational) ────────────────────────────────────────
-    ll = legacy.get("link_count", 0)
-    gl = gcc.get("link_count", 0)
-    if ll != gl:
-        issues.append(f"Link count does not match — legacy: {ll}, GCC: {gl}")
+    # ── 6. Links — count + detail comparison ─────────────────────────────────
+    legacy_links = legacy.get("links", [])
+    gcc_links    = gcc.get("links", [])
+    ll = len(legacy_links)
+    gl = len(gcc_links)
+    def is_ignorable_link(href):
+        """Links expected to be missing in GCC — LAN/file/intranet paths."""
+        h = href.strip().lower()
+        return (h.startswith("file://") or "http://crikit/" in h or "//crikit/" in h
+                or h.replace("/","").replace("\\","").startswith("file:"))
+
+    def get_filename(href):
+        """Extract page filename from URL for fuzzy matching."""
+        import os as _os
+        from urllib.parse import urlparse, unquote
+        path = urlparse(href.strip()).path
+        return _os.path.basename(unquote(path)).lower()
+
+    # Build comparable sets (exclude ignorable links)
+    legacy_real = {(t.strip(), h.strip()) for t,h in legacy_links
+                   if t.strip() and not is_ignorable_link(h)}
+    gcc_real    = {(t.strip(), h.strip()) for t,h in gcc_links
+                   if t.strip() and not is_ignorable_link(h)}
+
+    exact_missing = legacy_real - gcc_real
+    exact_extra   = gcc_real    - legacy_real
+
+    # Match by same link text + same filename (relative vs absolute URL pattern)
+    url_changed  = []
+    still_extra  = set(exact_extra)
+    still_missing = set()
+
+    for l_entry in exact_missing:
+        l_text, l_href = l_entry
+        l_file = get_filename(l_href)
+        matched = False
+        for g_entry in list(still_extra):
+            g_text, g_href = g_entry
+            g_file = get_filename(g_href)
+            if (l_text.strip().lower() == g_text.strip().lower()
+                    and l_file and l_file == g_file):
+                url_changed.append((l_entry, g_entry))
+                still_extra.discard(g_entry)
+                matched = True
+                break
+        if not matched:
+            still_missing.add(l_entry)
+
+    missing_links  = sorted(still_missing)
+    extra_links    = sorted(still_extra)
+    legacy_ignored = [(t,h) for t,h in legacy_links if is_ignorable_link(h)]
+
+    if missing_links:
+        issues.append(f"Link mismatch — legacy: {ll}, GCC: {gl} "
+                      f"({len(missing_links)} links missing from GCC, "
+                      f"{len(extra_links)} extra in GCC)")
     else:
-        info.append(f"Link count matches — {ll} links ✓")
+        info.append(f"Links match — {len(legacy_real)} comparable links ✓")
+    if url_changed:
+        info.append(f"{len(url_changed)} link(s) URL format changed "
+                    f"(relative→absolute, same page) — shown in grey")
+    if legacy_ignored:
+        info.append(f"Ignored {len(legacy_ignored)} LAN/file/intranet links "
+                    f"(expected to be missing in GCC)")
 
     # ── Line-level diff for report display ───────────────────────────────────
     legacy_lines = [l for l in legacy.get("body_text", "").splitlines() if l.strip()]
@@ -137,6 +194,10 @@ def compare_page(pid, legacy, gcc):
         "missing_headings": missing_headings,
         "extra_paras":      extra_paras[:5],
         "extra_headings":   extra_headings,
+        "missing_links":    missing_links[:30],
+        "url_changed":      url_changed[:30],
+        "extra_links":      extra_links[:30],
+        "legacy_ignored":   legacy_ignored[:30],
         "legacy":           legacy,
         "gcc":              gcc,
     }
@@ -222,6 +283,89 @@ def generate_report(results, legacy_meta, gcc_meta, output_path):
         gurl = html_lib.escape(g.get("url",""))
         lt   = html_lib.escape(l.get("page_title","—"))
         gt   = html_lib.escape(g.get("page_title","—"))
+        # Link diff detail
+        ml = r.get("missing_links", [])
+        el = r.get("extra_links", [])
+        l_all_links = l.get("links", [])
+        g_all_links = g.get("links", [])
+        l_link_set  = {(t.strip(), h.strip()) for t,h in l_all_links if t.strip()}
+        g_link_set  = {(t.strip(), h.strip()) for t,h in g_all_links if t.strip()}
+
+        def is_ignorable(href):
+            h = href.strip().lower()
+            return (h.startswith("file://") or "http://crikit/" in h or "//crikit/" in h
+                    or h.replace("/","").replace("\\","").startswith("file:"))
+
+        import os as _os
+        from urllib.parse import urlparse as _urlparse, unquote as _unquote
+        def get_fn(href):
+            path = _urlparse(href.strip()).path
+            return _os.path.basename(_unquote(path)).lower()
+
+        uc_legacy = {tuple(le) for le,ge in r.get("url_changed",[])}
+        uc_gcc    = {tuple(ge) for le,ge in r.get("url_changed",[])}
+
+        def link_row(t, h, highlight="", faded=False, note=""):
+            bg    = f'background:{highlight};' if highlight else ""
+            color = "color:#aaa;" if faded else ""
+            note_html = f' <span style="font-size:10px;color:#888">{note}</span>' if note else ""
+            return (f'<tr style="{bg}">' 
+                    f'<td style="padding:4px 8px;font-size:12px;{color}">{html_lib.escape(t[:80])}{note_html}</td>'
+                    f'<td style="padding:4px 8px;font-size:11px;color:#888;word-break:break-all;{color}">{html_lib.escape(h[:150])}</td>'
+                    f'</tr>')
+
+        # Legacy links table
+        if l_all_links:
+            l_rows = "".join(
+                link_row(t, h,
+                    highlight="" if (is_ignorable(h) or (t.strip(),h.strip()) in uc_legacy) else
+                              ("#FCEBEB" if (t.strip(),h.strip()) in (l_link_set - g_link_set) else ""),
+                    faded=(is_ignorable(h) or (t.strip(),h.strip()) in uc_legacy),
+                    note="(URL format changed)" if (t.strip(),h.strip()) in uc_legacy else
+                         "(LAN/file - ignored)" if is_ignorable(h) else ""
+                )
+                for t,h in l_all_links if t.strip()
+            )
+            legacy_links_table = (
+                f'<table style="width:100%;border-collapse:collapse;border:1px solid #e0e0e0;margin-top:4px">' +
+                f'<tr style="background:#f0f0f0"><th style="padding:4px 8px;text-align:left;font-size:12px">Link text</th>' +
+                f'<th style="padding:4px 8px;text-align:left;font-size:12px">URL</th></tr>' +
+                l_rows + '</table>'
+            )
+        else:
+            legacy_links_table = "<em style='font-size:12px;color:#999'>No links on this page</em>"
+
+        # GCC links table — highlight ones not in legacy
+        if g_all_links:
+            g_rows = "".join(
+                link_row(t, h, "#E1F5EE" if (t.strip(),h.strip()) in (g_link_set - l_link_set) else "")
+                for t,h in g_all_links if t.strip()
+            )
+            gcc_links_table = (
+                f'<table style="width:100%;border-collapse:collapse;border:1px solid #e0e0e0;margin-top:4px">' +
+                f'<tr style="background:#f0f0f0"><th style="padding:4px 8px;text-align:left;font-size:12px">Link text</th>' +
+                f'<th style="padding:4px 8px;text-align:left;font-size:12px">URL</th></tr>' +
+                g_rows + '</table>'
+            )
+        else:
+            gcc_links_table = "<em style='font-size:12px;color:#999'>No links on this page</em>"
+
+        if l_all_links or g_all_links:
+            missing_links_html = (
+                f'<div style="margin-top:12px">' +
+                f'<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">' +
+                f'<div><b style="font-size:13px">Legacy links ({len(l_all_links)}) ' +
+                f'<span style="color:#A32D2D;font-size:11px">red = missing in GCC</span></b>' +
+                legacy_links_table + '</div>' +
+                f'<div><b style="font-size:13px">GCC links ({len(g_all_links)}) ' +
+                f'<span style="color:#1D7A6B;font-size:11px">green = new in GCC</span></b>' +
+                gcc_links_table + '</div>' +
+                '</div></div>'
+            )
+        else:
+            missing_links_html = ""
+        extra_links_html = ""
+
         lnav_items = l.get("left_nav",[])
         gnav_items = g.get("left_nav",[])
         gnav_html = ""
@@ -252,7 +396,7 @@ def generate_report(results, legacy_meta, gcc_meta, output_path):
               <div><b>GCC URL:</b><br><a href="{gurl}" target="_blank" style="color:#185FA5;word-break:break-all">{gurl}</a><br><b>Page title:</b> {gt}</div>
             </div>
             {issue_blocks}{warn_blocks}{info_blocks}
-            {missing_paras_html}{missing_headings_html}{extra_paras_html}
+            {missing_paras_html}{missing_headings_html}{extra_paras_html}{missing_links_html}{extra_links_html}
             {gnav_html}
             {'<div style="margin-top:12px"><b style="font-size:13px">Text diff (red = in legacy only, green = in GCC only):</b><div style="margin-top:6px">' + diff_html(r.get("diff_lines",[])) + '</div></div>' if r.get("diff_lines") else ""}
           </td>
