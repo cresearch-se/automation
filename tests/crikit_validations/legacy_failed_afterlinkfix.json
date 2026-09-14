@@ -1,6 +1,6 @@
 {
   "env": "legacy",
-  "extracted_at": "2026-09-11T22:50:26.579772",
+  "extracted_at": "2026-09-14T16:48:16.363913",
   "total_pages": 27,
   "progress": 27,
   "success": 27,
@@ -9,7 +9,7 @@
   "pages": {
     "page_1": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:45:01.422589",
+      "extracted_at": "2026-09-14T16:42:42.092124",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/Pages/home.aspx",
       "env": "legacy",
       "page_title": "home",
@@ -74,7 +74,7 @@
     },
     "page_2": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:45:16.717216",
+      "extracted_at": "2026-09-14T16:42:56.974957",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/PracticeAreasAndWorkingGroups/AccountingPracticeArea/Resources/Pages/Authoritative  Standards.aspx",
       "env": "legacy",
       "page_title": "Authoritative  Standards",
@@ -136,7 +136,7 @@
     },
     "page_3": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:45:32.274385",
+      "extracted_at": "2026-09-14T16:43:07.948885",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesC/Pages/Courtroom View Network (CVN).aspx",
       "env": "legacy",
       "page_title": "Courtroom View Network (CVN)",
@@ -241,7 +241,7 @@
     },
     "page_4": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:45:47.888922",
+      "extracted_at": "2026-09-14T16:43:25.547169",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesE/Pages/Tick History/Tick History (Datascope).aspx",
       "env": "legacy",
       "page_title": "Tick History (Datascope)",
@@ -323,7 +323,7 @@
     },
     "page_5": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:46:07.256710",
+      "extracted_at": "2026-09-14T16:43:36.509193",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/Pages/about.aspx",
       "env": "legacy",
       "page_title": "about",
@@ -386,7 +386,7 @@
     },
     "page_6": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:46:20.085716",
+      "extracted_at": "2026-09-14T16:43:49.674337",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/Pages/PageNotFoundError.aspx",
       "env": "legacy",
       "page_title": "Page not found",
@@ -455,7 +455,7 @@
     },
     "page_7": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:46:30.558331",
+      "extracted_at": "2026-09-14T16:44:05.763843",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesO/Pages/Oil, Gas  and  Energy Law (OGEL).aspx",
       "env": "legacy",
       "page_title": "Oil, Gas  and  Energy Law (OGEL)",
@@ -537,7 +537,7 @@
     },
     "page_8": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:46:46.810444",
+      "extracted_at": "2026-09-14T16:44:18.139052",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesA/Pages/Accurint (LexisNexis Database).aspx",
       "env": "legacy",
       "page_title": "Accurint (LexisNexis Database)",
@@ -623,7 +623,7 @@
     },
     "page_9": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:46:57.826468",
+      "extracted_at": "2026-09-14T16:44:30.284579",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesA/Pages/Advisory, Conciliation and Arbitration Service (ACAS).aspx",
       "env": "legacy",
       "page_title": "Advisory, Conciliation and Arbitration Service (ACAS)",
@@ -703,7 +703,7 @@
     },
     "page_10": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:47:13.497483",
+      "extracted_at": "2026-09-14T16:44:41.811931",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesA/Pages/Alacra.aspx",
       "env": "legacy",
       "page_title": "Alacra",
@@ -800,7 +800,7 @@
     },
     "page_11": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:47:24.180518",
+      "extracted_at": "2026-09-14T16:44:56.325126",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesS/Pages/S and P Dow Jones Indices.aspx",
       "env": "legacy",
       "page_title": "S and P Dow Jones Indices",
@@ -889,7 +889,7 @@
     },
     "page_12": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:47:35.007491",
+      "extracted_at": "2026-09-14T16:45:07.894384",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesA/Pages/American Lawyer Rankings.aspx",
       "env": "legacy",
       "page_title": "American Lawyer Rankings",
@@ -1743,7 +1743,7 @@
     },
     "page_13": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:47:45.501991",
+      "extracted_at": "2026-09-14T16:45:19.760225",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/Pages/CRIKIT home.aspx",
       "env": "legacy",
       "page_title": "CRIKIT home",
@@ -1809,7 +1809,7 @@
     },
     "page_14": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:47:56.993364",
+      "extracted_at": "2026-09-14T16:45:35.550713",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesA/Pages/Argus Vickers.aspx",
       "env": "legacy",
       "page_title": "Argus Vickers",
@@ -1897,7 +1897,7 @@
     },
     "page_15": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:48:07.444794",
+      "extracted_at": "2026-09-14T16:45:46.250471",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesA/Pages/Audit Analytics.aspx",
       "env": "legacy",
       "page_title": "Audit Analytics",
@@ -1994,7 +1994,7 @@
     },
     "page_16": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:48:19.103318",
+      "extracted_at": "2026-09-14T16:46:01.535738",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesA/Pages/Ad Age Datacenter.aspx",
       "env": "legacy",
       "page_title": "Ad Age Datacenter",
@@ -2104,7 +2104,7 @@
     },
     "page_17": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:48:34.401853",
+      "extracted_at": "2026-09-14T16:46:19.274907",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesA/Pages/Appfigures.aspx",
       "env": "legacy",
       "page_title": "Appfigures",
@@ -2201,7 +2201,7 @@
     },
     "page_18": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:48:44.994739",
+      "extracted_at": "2026-09-14T16:46:35.593892",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesA/Pages/Amazon.com.aspx",
       "env": "legacy",
       "page_title": "Amazon.com",
@@ -2290,7 +2290,7 @@
     },
     "page_19": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:48:57.845905",
+      "extracted_at": "2026-09-14T16:46:45.928396",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/Pages/CRIKIT Frequently Asked Questions.aspx",
       "env": "legacy",
       "page_title": "CRIKIT Frequently Asked Questions",
@@ -2409,7 +2409,7 @@
     },
     "page_20": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:49:11.848197",
+      "extracted_at": "2026-09-14T16:46:55.804053",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesB/Pages/Data Sources that start with B.aspx",
       "env": "legacy",
       "page_title": "Data Sources that start with B",
@@ -2552,7 +2552,7 @@
     },
     "page_21": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:49:19.939741",
+      "extracted_at": "2026-09-14T16:47:03.628167",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesB/Pages/Bailii.aspx",
       "env": "legacy",
       "page_title": "Page not found",
@@ -2571,7 +2571,7 @@
     },
     "page_22": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:49:26.508540",
+      "extracted_at": "2026-09-14T16:47:10.561115",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesB/Pages/Bank Holding Company Data.aspx",
       "env": "legacy",
       "page_title": "Page not found",
@@ -2590,7 +2590,7 @@
     },
     "page_23": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:49:36.915249",
+      "extracted_at": "2026-09-14T16:47:22.391828",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesB/Pages/Bankruptcy Research Database.aspx",
       "env": "legacy",
       "page_title": "Bankruptcy Research Database",
@@ -2697,7 +2697,7 @@
     },
     "page_24": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:49:46.764042",
+      "extracted_at": "2026-09-14T16:47:34.571500",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesB/Pages/Brandwatch.aspx",
       "env": "legacy",
       "page_title": "Brandwatch",
@@ -2854,7 +2854,7 @@
     },
     "page_25": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:49:57.764982",
+      "extracted_at": "2026-09-14T16:47:46.903138",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesB/Pages/Brand24.aspx",
       "env": "legacy",
       "page_title": "Brand24",
@@ -2963,7 +2963,7 @@
     },
     "page_26": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:50:07.955301",
+      "extracted_at": "2026-09-14T16:47:58.147144",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/ZZLibraryInsider/Pages/(20090204) Out with the old and in with the new.  Announcing the new IR Wiki_Portal Site.aspx",
       "env": "legacy",
       "page_title": "(20090204) Out with the old and in with the new.  Announcing the new IR Wiki_Portal Site",
@@ -3063,7 +3063,7 @@
     },
     "page_27": {
       "status": "ok",
-      "extracted_at": "2026-09-11T22:50:18.423853",
+      "extracted_at": "2026-09-14T16:48:08.248852",
       "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/ZZLibraryInsider/Pages/Staff  Meeting Minutes.aspx",
       "env": "legacy",
       "page_title": "Staff  Meeting Minutes",
