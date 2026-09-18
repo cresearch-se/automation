@@ -1,0 +1,783 @@
+{
+  "env": "legacy",
+  "extracted_at": "2026-09-14T18:16:06.377376",
+  "total_pages": 14,
+  "progress": 14,
+  "success": 14,
+  "error_count": 0,
+  "errors": [],
+  "pages": {
+    "page_1": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:13:45.876293",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/Pages/home.aspx",
+      "env": "legacy",
+      "page_title": "home",
+      "body_text": "Use the Enterprise Wiki to create a single, go-to place for knowledge sharing and project management across the enterprise. Enterprise Wikis are simple to use, flexible, and lightweight in features. They are quick and easy to create, and you can easily add links to other information systems, corporate directories, or applications. By using an Enterprise Wiki, you can avoid email overload, provide structure to new and existing information, and encourage collaboration. This helps build consensus among team members. Working with content - text, graphics or video - is as easy as working in any word processing application, such as Microsoft Word. Use the Rich Text Editor to enhance the formatting of content, apply styles to text, reorganize or spell check your content, insert and format tables, and embed graphics or video. You can do all these things without leaving the wiki page. Other things you can do when working with Enterprise Wikis: Collaborate on wiki pages with other users Comment on a wiki page to enable discussion about the contents of the page Rate a wiki page to share your opinion about its content Categorize wiki pages to enable users to quickly find information and share it with others",
+      "paragraphs": [
+        "Use the Enterprise Wiki to create a single, go-to place for knowledge sharing and project management across the enterprise. Enterprise Wikis are simple to use, flexible, and lightweight in features. They are quick and easy to create, and you can easily add links to other information systems, corporate directories, or applications.",
+        "By using an Enterprise Wiki, you can avoid email overload, provide structure to new and existing information, and encourage collaboration. This helps build consensus among team members.",
+        "Working with content - text, graphics or video - is as easy as working in any word processing application, such as Microsoft Word. Use the Rich Text Editor to enhance the formatting of content, apply styles to text, reorganize or spell check your content, insert and format tables, and embed graphics or video. You can do all these things without leaving the wiki page.",
+        "Other things you can do when working with Enterprise Wikis:"
+      ],
+      "headings": [],
+      "links": [],
+      "left_nav": [
+        [
+          "Case Summaries",
+          "/CRIKIT/CaseSummaries/Pages/Home.aspx"
+        ],
+        [
+          "Corporate",
+          "/CRIKIT/Corporate/Pages/Home.aspx"
+        ],
+        [
+          "Information Resources",
+          "/CRIKIT/InformationResources/Pages/IR Home Page.aspx"
+        ],
+        [
+          "Innovation Committee",
+          "/CRIKIT/InovationCommittee/Pages/Home.aspx"
+        ],
+        [
+          "Practice Areas and Working Groups",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/Pages/Home.aspx"
+        ],
+        [
+          "Accounting Practice Area",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/AccountingPracticeArea/Pages/Home.aspx"
+        ],
+        [
+          "UK/EU Practice Group",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/UKEUPracticeGroup/Pages/UK-EU Practice Group.aspx"
+        ],
+        [
+          "RecentCurrently selected",
+          "/CRIKIT"
+        ],
+        [
+          "Drop Off Library",
+          "/CRIKIT/DropOffLibrary/Forms/AllItems.aspx"
+        ],
+        [
+          "Expert",
+          "/CRIKIT/Expert/Pages/Home.aspx"
+        ],
+        [
+          "Site contents",
+          "/CRIKIT/_layouts/15/viewlsts.aspx"
+        ]
+      ],
+      "word_count": 199,
+      "para_count": 4,
+      "link_count": 0
+    },
+    "page_2": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:13:55.818945",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesS/Pages/S and P Dow Jones Indices.aspx",
+      "env": "legacy",
+      "page_title": "S and P Dow Jones Indices",
+      "body_text": "S&P DOW JONES INDICES Source https://www.spglobal.com/spdji/en/ How to Cite the Source © 20[xx] S&P Dow Jones Indices LLC Description Historical index constituents and total returns data Time Period Covered Varies by index Access Must purchase and license data directly from S&P Indices Exception: S&P Dow Jones Indices does not license intraday data. That data needs to be licensed directly from exchanges. A limited number of S&P indices are available from Tick Data. Intraday data may be available from CME and/or CBOE Contact: Please go through #Information Resources Cost As of 4/27/2026, $1,000 per year of data for one index, but we should ask for cost estimate for each request. In comparison, a subscription to access the data via LSEG Workspace would entail licensing the full index package that includes our requested index. For example, the DJ US index package is $30,000 per year and does not include history. Important Notes We cannot use data from the S&P Indices web site in our work. Most historical data for S&P indexes has to be licensed directly from S&P Indices. (There might be index price/value data in our other resources like Capital IQ and LSEG Workspace, but you're not likely to find constituents.) Purchasing and licensing data from S&P Indices can take a week, so please plan ahead. There are strict guidelines for licensing the data from S&P Indices, including: The index data must be subject to a Protective Order The amount of data used in the Expert Report must be limited. We can include only limited portions (both in terms of the amount of material obtained from the Services and the proportion of such amount as compared to the volume of content not from the Services within the Subscriber Expert Reports) of historical index values from the Services. S&P will need to verify the Permitted Data is publicly available prior to using it in a report When the matter has concluded, we must cease using the data. Constituent level data may not be reproduced. Opposing side will have to purchase data in order to replicate analysis Subscriber shall include in each Subscriber Expert Report, as it relates to the Permitted Data: (a) a notice indicating that the Permitted Data in the Subscriber Expert Report is only for use in connection with the relevant litigation and (b) the following legend, on behalf of S&P, its affiliates, and its third party licensors: \"The [Insert name of applicable S&P index(es)] (\"Index(es)\") and associated data are a product of S&P Dow Jones Indices LLC, its affiliates and/or their licensors and has been licensed for use by [Subscriber].  © 20[xx] S&P Dow Jones Indices LLC, its affiliates and/or their licensors. All rights reserved. For intended recipient only.  Redistribution or reproduction in whole or in part are prohibited without written permission of S&P Dow Jones Indices LLC. For more information on any of S&P Dow Jones Indices LLC's indices please visit www.spdji.com. S&P® is a registered trademark of Standard & Poor's Financial Services LLC (\"SPFS\") and Dow Jones® is a registered trademark of Dow Jones Trademark Holdings LLC (\"Dow Jones\"). Neither S&P Dow Jones Indices LLC, SPFS, Dow Jones, their affiliates nor their licensors (\"S&P DJI\") make any representation or warranty, express or implied, as to the ability of any index to accurately represent the asset class or market sector that it purports to represent and S&P DJI shall have no liability for any errors, omissions, or interruptions of any index or the data included therein.  In no event shall S&P DJI be liable for any damages, including, without limitation, direct and indirect damages in connection with any use of the Index(es).\" AI Restrictions ​Content accessible only through authentication may not be used to train any machine learning or artificial intelligence system, whether obtained through automated or manual means. AI Definitions/Capabilities For Website Content, S&P Global may use generative artificial intelligence (\"AI\") in two ways: (1) to create and process Website Content, and (2) through interactive features such as chatbots and conversational AI assistants. Our AI capabilities provide targeted industry analyses, market insights, and business intelligence. While our coverage continues to expand, certain specialized data and assessments may not be currently available. Published Content created or processed using AI is composed, reviewed, edited, and approved by S&P Global personnel. S&P Global claims full copyright ownership of all AI-assisted content, in accordance with applicable laws and regulations. Real-time chat responses are generated without human review. Due to the nature of AI technology, responses may contain errors, omissions, inaccuracies, hallucinations, biases, inconsistencies, or outdated information. You must independently verify all content before use, and any reliance on such content is entirely at your own risk. S&P Global and its affiliates do not accept any responsibility or liability for decisions made based on any AI-assisted or AI-generated Content or interactions, whether in contract, tort (including negligence and negligent misstatement), or otherwise. You may not attempt to reverse engineer our AI systems, and we may update features without notice. Conversations may be recorded and user feedback will be collected to improve service performance. Updated 4/27/2026_hg",
+      "paragraphs": [
+        "Must purchase and license data directly from S&P Indices",
+        "Exception: S&P Dow Jones Indices does not license intraday data. That data needs to be licensed directly from exchanges. A limited number of S&P indices are available from Tick Data. Intraday data may be available from CME and/or CBOE",
+        "As of 4/27/2026, $1,000 per year of data for one index, but we should ask for cost estimate for each request.",
+        "In comparison, a subscription to access the data via LSEG Workspace would entail licensing the full index package that includes our requested index. For example, the DJ US index package is $30,000 per year and does not include history.",
+        "We cannot use data from the S&P Indices web site in our work.",
+        "Most historical data for S&P indexes has to be licensed directly from S&P Indices. (There might be index price/value data in our other resources like Capital IQ and LSEG Workspace, but you're not likely to find constituents.)",
+        "Purchasing and licensing data from S&P Indices can take a week, so please plan ahead.",
+        "\"The [Insert name of applicable S&P index(es)] (\"Index(es)\") and associated data are a product of S&P Dow Jones Indices LLC, its affiliates and/or their licensors and has been licensed for use by [Subscriber].  © 20[xx] S&P Dow Jones Indices LLC, its affiliates and/or their licensors. All rights reserved. For intended recipient only.  Redistribution or reproduction in whole or in part are prohibited without written permission of S&P Dow Jones Indices LLC. For more information on any of S&P Dow Jones Indices LLC's indices please visit www.spdji.com. S&P® is a registered trademark of Standard & Poor's Financial Services LLC (\"SPFS\") and Dow Jones® is a registered trademark of Dow Jones Trademark Holdings LLC (\"Dow Jones\"). Neither S&P Dow Jones Indices LLC, SPFS, Dow Jones, their affiliates nor their licensors (\"S&P DJI\") make any representation or warranty, express or implied, as to the ability of any index to accurately represent the asset class or market sector that it purports to represent and S&P DJI shall have no liability for any errors, omissions, or interruptions of any index or the data included therein.  In no event shall S&P DJI be liable for any damages, including, without limitation, direct and indirect damages in connection with any use of the Index(es).\"",
+        "For Website Content, S&P Global may use generative artificial intelligence (\"AI\") in two ways: (1) to create and process Website Content, and (2) through interactive features such as chatbots and conversational AI assistants. Our AI capabilities provide targeted industry analyses, market insights, and business intelligence. While our coverage continues to expand, certain specialized data and assessments may not be currently available.",
+        "Published Content created or processed using AI is composed, reviewed, edited, and approved by S&P Global personnel. S&P Global claims full copyright ownership of all AI-assisted content, in accordance with applicable laws and regulations. Real-time chat responses are generated without human review. Due to the nature of AI technology, responses may contain errors, omissions, inaccuracies, hallucinations, biases, inconsistencies, or outdated information. You must independently verify all content before use, and any reliance on such content is entirely at your own risk.",
+        "S&P Global and its affiliates do not accept any responsibility or liability for decisions made based on any AI-assisted or AI-generated Content or interactions, whether in contract, tort (including negligence and negligent misstatement), or otherwise. You may not attempt to reverse engineer our AI systems, and we may update features without notice. Conversations may be recorded and user feedback will be collected to improve service performance."
+      ],
+      "headings": [
+        "S&P DOW JONES INDICES",
+        "Source",
+        "How to Cite the Source",
+        "Description",
+        "Time Period Covered",
+        "Access",
+        "Contact:",
+        "Cost",
+        "Important Notes",
+        "AI Restrictions",
+        "AI Definitions/Capabilities",
+        "Updated"
+      ],
+      "links": [],
+      "left_nav": [
+        [
+          "Information Resources",
+          "/CRIKIT/InformationResources"
+        ],
+        [
+          "Academic Literature",
+          "/CRIKIT/InformationResources/AcademicLiterature"
+        ],
+        [
+          "Data SourcesCurrently selected",
+          "/CRIKIT/InformationResources/DataSources"
+        ],
+        [
+          "- by Name",
+          "/CRIKIT/InformationResources/DataSources/Pages/Data Sources by Name.aspx"
+        ],
+        [
+          "- by Practice",
+          "/CRIKIT/InformationResources/DataSourcesByPractice"
+        ],
+        [
+          "- by Subject",
+          "/CRIKIT/InformationResources/DataSourcesBySubject"
+        ],
+        [
+          "- by Type",
+          "/CRIKIT/InformationResources/DataSourcesByType"
+        ],
+        [
+          "Institutional Investor Research Teams",
+          "/CRIKIT/InformationResources/IIResearchTeams"
+        ],
+        [
+          "Resource Pages by Subject",
+          "/CRIKIT/InformationResources/ResourcePagesBySubject"
+        ],
+        [
+          "ZZ Library Insider",
+          "/CRIKIT/InformationResources/ZZLibraryInsider"
+        ],
+        [
+          "Drop Off Library",
+          "/CRIKIT/InformationResources/DropOffLibrary/Forms/AllItems.aspx"
+        ],
+        [
+          "Site contents",
+          "/CRIKIT/InformationResources/DataSources/DataSourcesS/_layouts/15/viewlsts.aspx"
+        ]
+      ],
+      "word_count": 843,
+      "para_count": 11,
+      "link_count": 0
+    },
+    "page_3": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:14:10.669155",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/Pages/CRIKIT home.aspx",
+      "env": "legacy",
+      "page_title": "CRIKIT home",
+      "body_text": "CRIKIT Every Individual in Every Role Is Essential to and Entrusted with the Success of Cornerstone Research. CRIKIT is the Cornerstone Research resource for the development and preservation of intellectual capital.   All employees are invited to use and contribute to this firm wide resource. Some material may be inappropriate for a public content management system.   We expect contributions to be consistent with our core values, emphasize respect, and exhibit high quality. Content should be peer reviewed whenever practical before publishing to CRIKIT.  Content is intended for internal use only and should not be copied, printed, or used for external purposes without the approval of the content manager or content author.  Copyright requirements and court, client, and Cornerstone Research imposed requirements with respect to confidentiality must be followed. Cornerstone Research expressly disclaims any implied warranty or representation about the information or accuracy, relevance, timeliness, completeness, or appropriateness for any particular purpose of any kind presented on CRIKIT. The information presented on CRIKIT is submitted by third parties, is provided only as courtesy, reference and/or resource and does not imply, directly or indirectly, Cornerstone Research's endorsement, sponsorship or approval of the information, nor does any of the information reflect the opinions, analyses, positions, standards or policies of Cornerstone Research, any of its employees, or any expert supported by Cornerstone Research.",
+      "paragraphs": [
+        "Every Individual in Every Role Is Essential to and Entrusted with the Success of Cornerstone Research.CRIKIT is the Cornerstone Research resource for the development and preservation of intellectual capital.   All employees are invited to use and contribute to this firm wide resource.Some material may be inappropriate for a public content management system.   We expect contributions to be consistent with our core values, emphasize respect, and exhibit high quality. Content should be peer reviewed whenever practical before publishing to CRIKIT.  Content is intended for internal use only and should not be copied, printed, or used for external purposes without the approval of the content manager or content author.  Copyright requirements and court, client, and Cornerstone Research imposed requirements with respect to confidentiality must be followed.",
+        "Cornerstone Research expressly disclaims any implied warranty or representation about the information or accuracy, relevance, timeliness, completeness, or appropriateness for any particular purpose of any kind presented on CRIKIT. The information presented on CRIKIT is submitted by third parties, is provided only as courtesy, reference and/or resource and does not imply, directly or indirectly, Cornerstone Research's endorsement, sponsorship or approval of the information, nor does any of the information reflect the opinions, analyses, positions, standards or policies of Cornerstone Research, any of its employees, or any expert supported by Cornerstone Research."
+      ],
+      "headings": [
+        "CRIKIT",
+        "Every Individual in Every Role Is Essential to and Entrusted with the Success of Cornerstone Research."
+      ],
+      "links": [],
+      "left_nav": [
+        [
+          "Case Summaries",
+          "/CRIKIT/CaseSummaries/Pages/Home.aspx"
+        ],
+        [
+          "Corporate",
+          "/CRIKIT/Corporate/Pages/Home.aspx"
+        ],
+        [
+          "Information Resources",
+          "/CRIKIT/InformationResources/Pages/IR Home Page.aspx"
+        ],
+        [
+          "Innovation Committee",
+          "/CRIKIT/InovationCommittee/Pages/Home.aspx"
+        ],
+        [
+          "Practice Areas and Working Groups",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/Pages/Home.aspx"
+        ],
+        [
+          "Accounting Practice Area",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/AccountingPracticeArea/Pages/Home.aspx"
+        ],
+        [
+          "UK/EU Practice Group",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/UKEUPracticeGroup/Pages/UK-EU Practice Group.aspx"
+        ],
+        [
+          "RecentCurrently selected",
+          "/CRIKIT"
+        ],
+        [
+          "Drop Off Library",
+          "/CRIKIT/DropOffLibrary/Forms/AllItems.aspx"
+        ],
+        [
+          "Expert",
+          "/CRIKIT/Expert/Pages/Home.aspx"
+        ],
+        [
+          "Site contents",
+          "/CRIKIT/_layouts/15/viewlsts.aspx"
+        ]
+      ],
+      "word_count": 218,
+      "para_count": 2,
+      "link_count": 0
+    },
+    "page_4": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:14:25.260338",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/Pages/CRIKIT Frequently Asked Questions.aspx",
+      "env": "legacy",
+      "page_title": "CRIKIT Frequently Asked Questions",
+      "body_text": "​FAQ 1.  Copyright Restrictions 2.  How CRIKIT got it's name 3. Taxonomy 1.  Copyright Restrictions To comply with copyright restrictions, the following policies apply on CRIKIT: For Crikit Materials Any materials found on Crikit cannot be included verbatim into any work product. For Academic Literature In general all Academic papers should be added to the Academic Literature section of CRIKIT in the appropriate JEL category using the Academic Paper Template Please provide the link to the source - JSTOR, EBSCO (both available via Library Page on the Portal), SSRN, etc. Once the paper has been added under Academic Literature, you may link to that page from anywhere else in CRIKIT (for example, cite to it (see example)). In the rare instances where you feel the need to upload the paper directly to CRIKIT, please contact the IR  regarding the copyright policies for the paper in question. Please do not upload the paper unless you received an explicit permission from the IR. For Court Opinions If the Court opinion is obtained from the Court's website, you may upload it to CRIKIT directly.  Please provide the link the source (court's page) as appropriate. We cannot upload anything downloaded from Lexis or Westlaw. For Government Reports Please provide a link to the source directly (i.e. FCC page with the report in question) instead of uploading the report to CRIKIT. For additional information about Copyright, go here . 2.  How CRIKIT got it's name Background note: \"wiki\" in \"Wikipedia\" comes from \"wiki wiki\" which means \"quick\" in Hawaiian. An e-mail solicitation of possible names for Cornerstone Research (CR) knowledge management and sharing system among analysts and associates produced a list of suggestions.  A shortlist was offered to the members of Knowledge Sharing Task Force and by popular vote the name Crikit was chosen. \"CRIKIT\" comes from CR+WIKI+IT as in \"Find it!\" (and make it snappy - \"wiki\"). It is pronounced like \"cricket.\" Thanks to Matt Lambert (formerly CRSF) for suggesting the winning entry. 3.  Taxonomy Major Topics Standard Subdivisions Accounting Academic Articles Antitrust Applications Auctions Bibliography Bankruptcy Biography Best Practices Case Studies Business Valuation Chronology Class Actions Client Development Class Actions-Calculation of Damages Conferences, Meetings, Seminars, etc. Class Actions-Settlements Corporate Governance Cornerstone College Earnings Corporate Finance Economic Policy Corporate Finance-IPO Event Study Corporate Finance-Capital Structure Forecasts Corporate Finance-Mergers and Acquisitions Geographic Corporate Finance-Venture Capital Government Policy Corporate Finance-Payout Policy Information Resources Corporate Finance-Diversification Laws, regulations, etc. Corporate Finance-Bankruptcy Litigation Corporate Governance Market Share Corporate Governance-Executive Compensation Models Corporate Governance-Employee Turnover Prices and Rates Corporate Governance-Board of Directors Product Development Corporate Governance-Takeover Defenses Ratings Data Sources Reviews Data Sources-Bloomberg Rules and Regulations Data Sources-Bonds Standards Data Sources-Chat Rooms and Message Boards Statistics Data Sources-Compustat Studies Data Sources-CRSP Surveys Data Sources-IMS Data Sources-Options Data Sources-TAQ/Intraday Data Sources-First Call Data Sources-Others Demographics Derivatives Derivatives-Options Derivatives-Futures Derivatives-Swaps Econometrics Econometrics-Serial Correlation Econometrics-Heteroskedasticity Econometrics-Confidence Intervals Econometrics-Bootstrapping Econometrics-Sampling Economics Energy Equities Equities-Equity Valuation Equities-IPO Equities-Behavioral Biases Experts Finance Financial Institutions-Banks and Thrifts Financial Institutions-Credit Cards Financial Institutions-ERISA Financial Institutions-Hedge Funds Financial Institutions-Insurance Financial Institutions-Securities Firms Financial Institutions-Subprime Lenders Financial Institutions-Venture Capital Financial Institutions-Private Equity Fixed Income Fixed Income-Bond Markets Fixed Income-Interest Rates Healthcare Industry Industry Studies Intellectual Property-Patents Intellectual Property-Trademarks Intellectual Property-Copyright Legal Practice Management Market Efficiency Market Efficiency-Stock Price Reaction Market Efficiency-Event Studies Market Efficiency-Efficient Markets Hypotheses Market Efficiency-Arbitrage Market Efficiency-Analyst Reports Market Efficiency-Chat Rooms and Message Boards Market Microstructure Market Microstructure-Price Impact of Trades Market Microstructure-Liquidity Market Microstructure-Probability of Informed Trades Marketing Mathematics Mergers & Acquisitions Mutual Funds Mutual Funds-Factors Affecting Flow of Funds Mutual Funds-Mutual Fund Transaction Costs Professional Development Real Estate Securities Statistics Taxation Technology Training",
+      "paragraphs": [
+        "1.  Copyright Restrictions",
+        "2.  How CRIKIT got it's name",
+        "3. Taxonomy",
+        "1.  Copyright Restrictions",
+        "To comply with copyright restrictions, the following policies apply on CRIKIT:",
+        "For Crikit Materials",
+        "Any materials found on Crikit cannot be included verbatim into any work product.",
+        "For Academic Literature",
+        "In general all Academic papers should be added to the Academic Literature section of CRIKIT in the appropriate JEL category using the Academic Paper Template",
+        "Please provide the link to the source - JSTOR, EBSCO (both available via Library Page on the Portal), SSRN, etc.",
+        "Once the paper has been added under Academic Literature, you may link to that page from anywhere else in CRIKIT (for example, cite to it (see example)).",
+        "In the rare instances where you feel the need to upload the paper directly to CRIKIT, please contact the IR  regarding the copyright policies for the paper in question.",
+        "Please do not upload the paper unless you received an explicit permission from the IR.",
+        "For Court Opinions",
+        "If the Court opinion is obtained from the Court's website, you may upload it to CRIKIT directly.  Please provide the link the source (court's page) as appropriate. We cannot upload anything downloaded from Lexis or Westlaw.",
+        "For Government Reports",
+        "Please provide a link to the source directly (i.e. FCC page with the report in question) instead of uploading the report to CRIKIT.",
+        "For additional information about Copyright, gohere.",
+        "2.  How CRIKIT got it's name",
+        "Background note: \"wiki\" in \"Wikipedia\" comes from \"wiki wiki\" which means \"quick\" in Hawaiian.",
+        "An e-mail solicitation of possible names for Cornerstone Research (CR) knowledge management and sharing system among analysts and associates produced a list of suggestions.  A shortlist was offered to the members of Knowledge Sharing Task Force and by popular vote the name Crikit was chosen.",
+        "\"CRIKIT\" comes fromCR+WIKI+ITas in \"Find it!\" (and make it snappy - \"wiki\").",
+        "It is pronounced like \"cricket.\"",
+        "Thanks to Matt Lambert (formerly CRSF) for suggesting the winning entry.",
+        "3.  Taxonomy"
+      ],
+      "headings": [
+        "​FAQ",
+        "Major Topics",
+        "Standard Subdivisions"
+      ],
+      "links": [
+        [
+          "1.  Copyright Restrictions",
+          "#1.%20%20Copyright%20Restrictions"
+        ],
+        [
+          "2.  How CRIKIT got it's name",
+          "#2.%20How%20CRIKIT%20got%20it%27s%20name"
+        ],
+        [
+          "3. Taxonomy",
+          "#3.%20Taxonomy"
+        ],
+        [
+          "1.  Copyright Restrictions",
+          "#"
+        ],
+        [
+          "here",
+          "http://10.188.99.199/Information_Resources/Copyright_Information"
+        ],
+        [
+          "2.  How CRIKIT got it's name",
+          "#"
+        ],
+        [
+          "3.  Taxonomy",
+          "#"
+        ]
+      ],
+      "left_nav": [
+        [
+          "Case Summaries",
+          "/CRIKIT/CaseSummaries/Pages/Home.aspx"
+        ],
+        [
+          "Corporate",
+          "/CRIKIT/Corporate/Pages/Home.aspx"
+        ],
+        [
+          "Information Resources",
+          "/CRIKIT/InformationResources/Pages/IR Home Page.aspx"
+        ],
+        [
+          "Innovation Committee",
+          "/CRIKIT/InovationCommittee/Pages/Home.aspx"
+        ],
+        [
+          "Practice Areas and Working Groups",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/Pages/Home.aspx"
+        ],
+        [
+          "Accounting Practice Area",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/AccountingPracticeArea/Pages/Home.aspx"
+        ],
+        [
+          "UK/EU Practice Group",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/UKEUPracticeGroup/Pages/UK-EU Practice Group.aspx"
+        ],
+        [
+          "RecentCurrently selected",
+          "/CRIKIT"
+        ],
+        [
+          "Drop Off Library",
+          "/CRIKIT/DropOffLibrary/Forms/AllItems.aspx"
+        ],
+        [
+          "Expert",
+          "/CRIKIT/Expert/Pages/Home.aspx"
+        ],
+        [
+          "Site contents",
+          "/CRIKIT/_layouts/15/viewlsts.aspx"
+        ]
+      ],
+      "word_count": 599,
+      "para_count": 25,
+      "link_count": 7
+    },
+    "page_5": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:14:30.578769",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/PracticeAreasAndWorkingGroups/AccountingPracticeArea/Resources/Pages/Authoritative Standards.aspx",
+      "env": "legacy",
+      "page_title": "Page not found",
+      "body_text": "The page you're looking for doesn't exist.​​​​ Check for a typo in the URL, or i f you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>.",
+      "paragraphs": [
+        "Check for a typo in the URL, or if you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>."
+      ],
+      "headings": [
+        "The page you're looking for doesn't exist.​​​​"
+      ],
+      "links": [],
+      "left_nav": [],
+      "word_count": 32,
+      "para_count": 1,
+      "link_count": 0
+    },
+    "page_6": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:14:38.051525",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesB/Pages/Bailii.aspx",
+      "env": "legacy",
+      "page_title": "Page not found",
+      "body_text": "The page you're looking for doesn't exist.​​​​ Check for a typo in the URL, or i f you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>.",
+      "paragraphs": [
+        "Check for a typo in the URL, or if you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>."
+      ],
+      "headings": [
+        "The page you're looking for doesn't exist.​​​​"
+      ],
+      "links": [],
+      "left_nav": [],
+      "word_count": 32,
+      "para_count": 1,
+      "link_count": 0
+    },
+    "page_7": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:14:45.139628",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesB/Pages/Bank Holding Company Data.aspx",
+      "env": "legacy",
+      "page_title": "Page not found",
+      "body_text": "The page you're looking for doesn't exist.​​​​ Check for a typo in the URL, or i f you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>.",
+      "paragraphs": [
+        "Check for a typo in the URL, or if you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>."
+      ],
+      "headings": [
+        "The page you're looking for doesn't exist.​​​​"
+      ],
+      "links": [],
+      "left_nav": [],
+      "word_count": 32,
+      "para_count": 1,
+      "link_count": 0
+    },
+    "page_8": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:14:52.278053",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/ZZLibraryInsider/Pages/(20090204) Out with the old and in with the new. Announcing the new IR Wiki_Portal Site.aspx",
+      "env": "legacy",
+      "page_title": "Page not found",
+      "body_text": "The page you're looking for doesn't exist.​​​​ Check for a typo in the URL, or i f you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>.",
+      "paragraphs": [
+        "Check for a typo in the URL, or if you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>."
+      ],
+      "headings": [
+        "The page you're looking for doesn't exist.​​​​"
+      ],
+      "links": [],
+      "left_nav": [],
+      "word_count": 32,
+      "para_count": 1,
+      "link_count": 0
+    },
+    "page_9": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:14:59.234563",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/ZZLibraryInsider/Pages/Staff Meeting Minutes.aspx",
+      "env": "legacy",
+      "page_title": "Page not found",
+      "body_text": "The page you're looking for doesn't exist.​​​​ Check for a typo in the URL, or i f you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>.",
+      "paragraphs": [
+        "Check for a typo in the URL, or if you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>."
+      ],
+      "headings": [
+        "The page you're looking for doesn't exist.​​​​"
+      ],
+      "links": [],
+      "left_nav": [],
+      "word_count": 32,
+      "para_count": 1,
+      "link_count": 0
+    },
+    "page_10": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:15:04.104149",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/PracticeAreasAndWorkingGroups/AccountingPracticeArea/Resources/Pages/Authoritative Standards.aspx",
+      "env": "legacy",
+      "page_title": "Page not found",
+      "body_text": "The page you're looking for doesn't exist.​​​​ Check for a typo in the URL, or i f you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>.",
+      "paragraphs": [
+        "Check for a typo in the URL, or if you need IT applications / Cornerzone assistance, send an email to #IT Help Desk <ITHelpDesk@cornerstone.com>."
+      ],
+      "headings": [
+        "The page you're looking for doesn't exist.​​​​"
+      ],
+      "links": [],
+      "left_nav": [],
+      "word_count": 32,
+      "para_count": 1,
+      "link_count": 0
+    },
+    "page_11": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:15:18.838717",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesC/Pages/Courtroom View Network (CVN).aspx",
+      "env": "legacy",
+      "page_title": "Courtroom View Network (CVN)",
+      "body_text": "Courtroom View Network (CVN) Source Courtroom View Network (CVN) How to Cite the Source Courtroom View Network Description Courtroom View Network (CVN) delivers live and on-demand video and editorial coverage of high-stakes civil litigation. Since 2004, the CVN video library has grown to include over 1,000 trials with tens of thousands of hours of fully indexed, searchable video. Unless otherwise stated, all trials are fully indexed with evidence slides so that you see exactly what was presented at trial. Users can search by trial name, attorney, judge, expert witness, and more. Premium CVN docket, gavel-to-gavel CVN Video, and CVN Training services are provided as subscriptions, which provide access to trials, hearings, oral arguments, and other courtroom video that may be streamed over the Internet. Users may watch proceedings Live, or On Demand, on their personal computer, depending on the subscription. Video may also be viewed on DVD-ROM (Computer Only, playable in the CVN Player with synched digital exhibits) or DVD. When ordering DVDs, subscribers select proceedings at on CVN.com and receive them on DVD by U.S. mail or Fedex. CVN Video proceedings are designated into two categories: CVN Live Current Cases and CVN On Demand Archive Cases. CVN Live Current Cases are proceedings that are upcoming, in progress, or concluded within the last 30 days. These proceedings are available in one or all of the following formats: Live, On Demand, on DVD. A CVN Live subscription provides video access to all Current Cases, with premium events available only under a CVN Live Premium subscription. CVN On Demand Archive Cases are proceedings that concluded more than 30 days ago, and where the video has undergone a quality assessment, quality improvement where possible, and video chapters are logged for better browsing and navigation. These proceedings are available in these formats: DVD, On Demand. These proceedings are sold in a discount subscription and available through an annual CVN On Demand subscription. CVN's Editorial team finds trials using a variety of sources, including dockets and news articles. They also receive many tips and they poll subscribers to find out what they want to see. List of cases covered Time Period Covered 2004 - present Access Must purchase subscription Contact: #Information Resources Cost Video Library access online: https://cvn.com/pricing ($99 per month for 1 person, $399 per month for up to 6). This only includes online viewing of completed trials. Premium Live Access or Digital Downloads: Pricing for live and on-demand access to a single case is below. Each account or user would be able to log in from one device at a time. 1-3 accounts - $600 per day 4-6 accounts - $800 per day 7-9 accounts - $1000 per day Firm Wide - $1200 per day Downloadable files in addition to any option above would be $400 per day. Downloadable files would be delivered within 36 hours of each day ending. Live and on-demand access for the firm to all trials we cover would be $3,000 per month on an annual contract. Important Notes CVN focuses on civil litigation. Memberships automatically renew unless cancelled, which can be done on the Account page. Video Library memberships do not include access to live trials. CVN will periodically offer certain live trials to our members depending on interest. We would need to negotiate a license with CVN if we were to get a full subscription. AI Restrictions Parent company Remote Counsel (RC) grants users a limited license to access and make personal use of CVN and not to download (other than page caching) or modify it, or any portion of it, except with express written consent of RC. This license does not include any resale or commercial use of CVN.com or its contents; any collection and use of any product listings, descriptions, or prices; any derivative use of CVN.com or its contents; any downloading or copying of account information for the benefit of another merchant; or any use of data mining, robots, or similar data gathering and extraction tools. CVN.com and any portion of it content may not be reproduced, duplicated, copied, sold, resold, visited, or otherwise exploited for any commercial purpose without express written consent of RC. AI Definitions/Capabilities ​ Updated 9/25/25_hg",
+      "paragraphs": [
+        "Courtroom View Network (CVN) delivers live and on-demand video and editorial coverage of high-stakes civil litigation. Since 2004, the CVN video library has grown to include over 1,000 trials with tens of thousands of hours of fully indexed, searchable video. Unless otherwise stated, all trials are fully indexed with evidence slides so that you see exactly what was presented at trial.Users can search by trial name, attorney, judge, expert witness, and more.",
+        "Premium CVN docket, gavel-to-gavel CVN Video, and CVN Training services are provided as subscriptions, which provide access to trials, hearings, oral arguments, and other courtroom video that may be streamed over the Internet. Users may watch proceedings Live, or On Demand, on their personal computer, depending on the subscription.",
+        "Video may also be viewed on DVD-ROM (Computer Only, playable in the CVN Player with synched digital exhibits) or DVD. When ordering DVDs, subscribers select proceedings at on CVN.com and receive them on DVD by U.S. mail or Fedex.",
+        "CVN Video proceedings are designated into two categories: CVN Live Current Cases and CVN On Demand Archive Cases.",
+        "CVN's Editorial team finds trials using a variety of sources, including dockets and news articles. They also receive many tips and they poll subscribers to find out what they want to see.",
+        "List of cases covered",
+        "Video Library access online:https://cvn.com/pricing($99 per month for 1 person, $399 per month for up to 6). This only includes online viewing of completed trials.",
+        "Premium Live Access or Digital Downloads:Pricing for live and on-demand access to a single case is below. Each account or user would be able to log in from one device at a time.",
+        "CVN focuses on civil litigation.",
+        "Memberships automatically renew unless cancelled, which can be done on the Account page.",
+        "Video Library memberships do not include access to live trials. CVN will periodically offer certain live trials to our members depending on interest.",
+        "We would need to negotiate a license with CVN if we were to get a full subscription."
+      ],
+      "headings": [
+        "Courtroom View Network (CVN)",
+        "Source",
+        "How to Cite the Source",
+        "Description",
+        "CVN Live Current Cases",
+        "CVN On Demand Archive Cases",
+        "Time Period Covered",
+        "Access",
+        "Contact:",
+        "Cost",
+        "Important Notes",
+        "AI Restrictions",
+        "AI Definitions/Capabilities",
+        "Updated"
+      ],
+      "links": [
+        [
+          "Courtroom View Network (CVN)",
+          "https://cvn.com/"
+        ],
+        [
+          "List of cases covered",
+          "https://cvn.com/proceedings/browse"
+        ],
+        [
+          "https://cvn.com/pricing",
+          "https://cvn.com/pricing"
+        ]
+      ],
+      "left_nav": [
+        [
+          "Information Resources",
+          "/CRIKIT/InformationResources"
+        ],
+        [
+          "Academic Literature",
+          "/CRIKIT/InformationResources/AcademicLiterature"
+        ],
+        [
+          "Data SourcesCurrently selected",
+          "/CRIKIT/InformationResources/DataSources"
+        ],
+        [
+          "- by Name",
+          "/CRIKIT/InformationResources/DataSources/Pages/Data Sources by Name.aspx"
+        ],
+        [
+          "- by Practice",
+          "/CRIKIT/InformationResources/DataSourcesByPractice"
+        ],
+        [
+          "- by Subject",
+          "/CRIKIT/InformationResources/DataSourcesBySubject"
+        ],
+        [
+          "- by Type",
+          "/CRIKIT/InformationResources/DataSourcesByType"
+        ],
+        [
+          "Institutional Investor Research Teams",
+          "/CRIKIT/InformationResources/IIResearchTeams"
+        ],
+        [
+          "Resource Pages by Subject",
+          "/CRIKIT/InformationResources/ResourcePagesBySubject"
+        ],
+        [
+          "ZZ Library Insider",
+          "/CRIKIT/InformationResources/ZZLibraryInsider"
+        ],
+        [
+          "Drop Off Library",
+          "/CRIKIT/InformationResources/DropOffLibrary/Forms/AllItems.aspx"
+        ],
+        [
+          "Site contents",
+          "/CRIKIT/InformationResources/DataSources/DataSourcesC/_layouts/15/viewlsts.aspx"
+        ]
+      ],
+      "word_count": 696,
+      "para_count": 12,
+      "link_count": 3
+    },
+    "page_12": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:15:28.975373",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/Pages/about.aspx",
+      "env": "legacy",
+      "page_title": "about",
+      "body_text": "You can replace this text with your own and use this page to describe this wiki and its purpose. Of course, you can use the page for something else or discard it altogether. Some things people might be interested in knowing: The intended topic(s) of the wiki The intended audience: who can read and who can contribute content to the wiki What compliance rules apply to the content on the wiki, if any Where to upload media and files Who to contact for help or questions",
+      "paragraphs": [
+        "You can replace this text with your own and use this page to describe this wiki and its purpose. Of course, you can use the page for something else or discard it altogether.",
+        "Some things people might be interested in knowing:"
+      ],
+      "headings": [],
+      "links": [],
+      "left_nav": [
+        [
+          "Case Summaries",
+          "/CRIKIT/CaseSummaries/Pages/Home.aspx"
+        ],
+        [
+          "Corporate",
+          "/CRIKIT/Corporate/Pages/Home.aspx"
+        ],
+        [
+          "Information Resources",
+          "/CRIKIT/InformationResources/Pages/IR Home Page.aspx"
+        ],
+        [
+          "Innovation Committee",
+          "/CRIKIT/InovationCommittee/Pages/Home.aspx"
+        ],
+        [
+          "Practice Areas and Working Groups",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/Pages/Home.aspx"
+        ],
+        [
+          "Accounting Practice Area",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/AccountingPracticeArea/Pages/Home.aspx"
+        ],
+        [
+          "UK/EU Practice Group",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/UKEUPracticeGroup/Pages/UK-EU Practice Group.aspx"
+        ],
+        [
+          "RecentCurrently selected",
+          "/CRIKIT"
+        ],
+        [
+          "Drop Off Library",
+          "/CRIKIT/DropOffLibrary/Forms/AllItems.aspx"
+        ],
+        [
+          "Expert",
+          "/CRIKIT/Expert/Pages/Home.aspx"
+        ],
+        [
+          "Site contents",
+          "/CRIKIT/_layouts/15/viewlsts.aspx"
+        ]
+      ],
+      "word_count": 86,
+      "para_count": 2,
+      "link_count": 0
+    },
+    "page_13": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:15:39.742680",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/Pages/PageNotFoundError.aspx",
+      "env": "legacy",
+      "page_title": "Page not found",
+      "body_text": "The page you're looking for doesn't exist. Check for a typo in the URL, or go to the site home",
+      "paragraphs": [
+        "Check for a typo in the URL, orgo to the site home"
+      ],
+      "headings": [
+        "The page you're looking for doesn't exist."
+      ],
+      "links": [
+        [
+          "go to the site home",
+          "/CRIKIT"
+        ]
+      ],
+      "left_nav": [
+        [
+          "Case Summaries",
+          "/CRIKIT/CaseSummaries/Pages/Home.aspx"
+        ],
+        [
+          "Corporate",
+          "/CRIKIT/Corporate/Pages/Home.aspx"
+        ],
+        [
+          "Information Resources",
+          "/CRIKIT/InformationResources/Pages/IR Home Page.aspx"
+        ],
+        [
+          "Innovation Committee",
+          "/CRIKIT/InovationCommittee/Pages/Home.aspx"
+        ],
+        [
+          "Practice Areas and Working Groups",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/Pages/Home.aspx"
+        ],
+        [
+          "Accounting Practice Area",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/AccountingPracticeArea/Pages/Home.aspx"
+        ],
+        [
+          "UK/EU Practice Group",
+          "/CRIKIT/PracticeAreasAndWorkingGroups/UKEUPracticeGroup/Pages/UK-EU Practice Group.aspx"
+        ],
+        [
+          "RecentCurrently selected",
+          "/CRIKIT"
+        ],
+        [
+          "Drop Off Library",
+          "/CRIKIT/DropOffLibrary/Forms/AllItems.aspx"
+        ],
+        [
+          "Expert",
+          "/CRIKIT/Expert/Pages/Home.aspx"
+        ],
+        [
+          "Site contents",
+          "/CRIKIT/_layouts/15/viewlsts.aspx"
+        ]
+      ],
+      "word_count": 20,
+      "para_count": 1,
+      "link_count": 1
+    },
+    "page_14": {
+      "status": "ok",
+      "extracted_at": "2026-09-14T18:15:57.639988",
+      "url": "https://cresearch1.sharepoint.com/CRIKIT/InformationResources/DataSources/DataSourcesO/Pages/Oil%2C%20Gas%20%20and%20%20Energy%20Law%20(OGEL).aspx",
+      "env": "legacy",
+      "page_title": "Oil, Gas  and  Energy Law (OGEL)",
+      "body_text": "Oil, Gas & Energy Law (OGEL) Source Oil, Gas & Energy Law (a sub journal of TDM) How to Cite the Source OGEL Energy Law Journal Description OGEL Energy Law (ISSN 1875-418X) is a peer-reviewed academic journal covering recent developments in the area of energy law, policies, regulation, treaties, judicial and arbitral cases, voluntary guidelines, tax and contracting, including energy geopolitics. It publishes short comments, scholarly articles, opinion pieces, and book reviews. Time Period Covered 2003 through present Access As of 4/15/2026 - We no longer subscribe to Oil, Gas and Energy Law (OGEL). Contact: Cost Important Notes AI Restrictions ​ AI Definitions/Capabilities ​ Updated src_12/19/25",
+      "paragraphs": [],
+      "headings": [
+        "Oil, Gas & Energy Law (OGEL)",
+        "Source",
+        "How to Cite the Source",
+        "Description",
+        "Time Period Covered",
+        "Access",
+        "Contact:",
+        "Cost",
+        "Important Notes",
+        "AI Restrictions",
+        "AI Definitions/Capabilities",
+        "Updated"
+      ],
+      "links": [
+        [
+          "Oil, Gas & Energy Law",
+          "https://www.ogel.org/"
+        ]
+      ],
+      "left_nav": [
+        [
+          "Information Resources",
+          "/CRIKIT/InformationResources"
+        ],
+        [
+          "Academic Literature",
+          "/CRIKIT/InformationResources/AcademicLiterature"
+        ],
+        [
+          "Data SourcesCurrently selected",
+          "/CRIKIT/InformationResources/DataSources"
+        ],
+        [
+          "- by Name",
+          "/CRIKIT/InformationResources/DataSources/Pages/Data Sources by Name.aspx"
+        ],
+        [
+          "- by Practice",
+          "/CRIKIT/InformationResources/DataSourcesByPractice"
+        ],
+        [
+          "- by Subject",
+          "/CRIKIT/InformationResources/DataSourcesBySubject"
+        ],
+        [
+          "- by Type",
+          "/CRIKIT/InformationResources/DataSourcesByType"
+        ],
+        [
+          "Institutional Investor Research Teams",
+          "/CRIKIT/InformationResources/IIResearchTeams"
+        ],
+        [
+          "Resource Pages by Subject",
+          "/CRIKIT/InformationResources/ResourcePagesBySubject"
+        ],
+        [
+          "ZZ Library Insider",
+          "/CRIKIT/InformationResources/ZZLibraryInsider"
+        ],
+        [
+          "Drop Off Library",
+          "/CRIKIT/InformationResources/DropOffLibrary/Forms/AllItems.aspx"
+        ],
+        [
+          "Site contents",
+          "/CRIKIT/InformationResources/DataSources/DataSourcesO/_layouts/15/viewlsts.aspx"
+        ]
+      ],
+      "word_count": 106,
+      "para_count": 0,
+      "link_count": 1
+    }
+  }
+}

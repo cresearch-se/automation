@@ -1,17 +1,27 @@
 """
-STEP 2 — Compare & Report
-==========================
-python step2_compare.py --legacy legacy_content.json --gcc gcc_content.json --output diff_report.html
+STEP 2 — Compare & Report (No Nav version)
+===========================================
+python step2_compare_nonav.py --legacy legacy_content.json --gcc gcc_content.json --output diff_report.html
 
 Validation rules:
-  1. BODY CONTENT   — legacy .ms-rtestate-field must match GCC .contentView_91b335df
-                      <60% similarity → FAIL, 60-90% → WARN, ≥90% → PASS
+  1. BODY CONTENT   — must match exactly (whitespace normalised) → FAIL if different
   2. WORD COUNT     — must match exactly → FAIL if different
-  3. PARAGRAPHS     — any paragraph present in legacy but missing in GCC → FAIL
-  4. HEADINGS       — exact match required; any heading in legacy missing from GCC → FAIL
-  5. LEFT NAV (GCC) — left nav must be PRESENT on every GCC site → FAIL if missing
-                      (legacy has no left nav so we don't compare nav content, just presence)
-  6. LINKS          — must match exactly → FAIL if different
+  3. PARAGRAPHS     — every legacy paragraph must exist in GCC → FAIL if any missing
+  4. HEADINGS       — every legacy heading must exist in GCC (exact text) → FAIL if any missing
+  5. LEFT NAV       — content compared if both sides have nav (MATCHING/MISMATCH)
+                      MISSING if GCC has no nav, PRESENT if only GCC has it
+                      NEVER fails overall status — informational only
+  6. LINKS          — real links must match; ignored: file://, LAN paths, intranet URLs
+                      relative→absolute URL format changes are treated as grey (not a fail)
+
+Report columns:
+  Status     — PASS / WARN / FAIL / ERR
+  Body text  — MATCH / DIFF
+  Words      — legacy → GCC word count
+  Paras      — legacy → GCC paragraph count
+  Headings   — legacy → GCC heading count
+  Left nav   — PRESENT / MISSING (informational only)
+  Links      — PASSED / GREY PASSED / FAILED / N/A
 """
 
 import argparse, json, html as html_lib, re
@@ -103,12 +113,24 @@ def compare_page(pid, legacy, gcc):
     if extra_headings:
         info.append(f"{len(extra_headings)} new heading(s) in GCC not in legacy (may be intentional)")
 
-    # ── 5. Left nav — GCC presence check only ────────────────────────────────
-    gcc_left_nav = gcc.get("left_nav", [])
-    if gcc_left_nav:
-        info.append(f"Left nav present on GCC — {len(gcc_left_nav)} item(s) ✓")
+    # ── 5. Left nav — compare if both present, never fails overall status ───
+    legacy_left_nav = legacy.get("left_nav", [])
+    gcc_left_nav    = gcc.get("left_nav", [])
+    legacy_nav_set  = set(t.strip() for t,_ in legacy_left_nav if t.strip())
+    gcc_nav_set     = set(t.strip() for t,_ in gcc_left_nav    if t.strip())
+
+    if legacy_nav_set and gcc_nav_set:
+        missing_from_gcc = sorted(legacy_nav_set - gcc_nav_set)
+        if missing_from_gcc:
+            info.append(f"Left nav MISMATCH — {len(missing_from_gcc)} item(s) in legacy missing from GCC")
+        else:
+            info.append(f"Left nav MATCHING — {len(gcc_nav_set)} item(s) ✓")
+    elif not legacy_nav_set and gcc_nav_set:
+        info.append(f"Left nav PRESENT in GCC only — legacy had none")
+    elif legacy_nav_set and not gcc_nav_set:
+        info.append("Left nav MISSING on GCC site (informational only)")
     else:
-        issues.append("Left nav MISSING on GCC site")
+        info.append("No left nav on either side (N/A)")
 
     # ── 6. Links — count + detail comparison ─────────────────────────────────
     legacy_links = legacy.get("links", [])
@@ -122,11 +144,54 @@ def compare_page(pid, legacy, gcc):
                 or h.replace("/","").replace("\\","").startswith("file:"))
 
     def get_filename(href):
-        """Extract page filename from URL for fuzzy matching."""
-        import os as _os
-        from urllib.parse import urlparse, unquote
-        path = urlparse(href.strip()).path
-        return _os.path.basename(unquote(path)).lower()
+        """Extract and fully decode page filename + query string for comparison.
+        Handles absolute URLs, relative paths, all URL encoding variants,
+        strips #anchor fragments.
+        
+        Special cases:
+        - DispForm.aspx?ID=N  → includes ID value so different items are distinct
+        - xlviewer.aspx?id=.. → uses only the filename at end of the ?id= path
+                                 (the path prefix differs between legacy and GCC)
+        - Semicolon (;) in URL → encode before parsing (urlparse splits on ; as path sep)
+        - All others          → filename only, no query string
+        """
+        import os as _os, re as _re
+        from urllib.parse import urlparse, unquote, parse_qs
+        href = href.strip()
+        # Strip #anchor fragment first
+        if '#' in href:
+            href = href.split('#')[0]
+        if not href:
+            return ''
+        # Encode semicolons before parsing — urlparse treats ; as path separator
+        # which truncates filenames like "RE; New Pricing..." to just "RE"
+        href = href.replace(';', '%3B')
+        parsed   = urlparse(href)
+        path     = parsed.path if parsed.scheme else href.split('?')[0]
+        filename = _os.path.basename(unquote(path)).lower().rstrip('/')
+        # Remove .aspx extension
+        if filename.endswith('.aspx'):
+            filename = filename[:-5]
+        query = parsed.query
+        if query:
+            qs = parse_qs(query)
+            if filename == 'dispform':
+                # DispForm.aspx?ID=11 — include ID to distinguish different items
+                id_val = qs.get('ID', qs.get('id', ['']))[0]
+                filename = filename + 'id' + id_val.lower()
+            elif filename == 'xlviewer':
+                # xlviewer.aspx?id=/path/to/file.xls — use only the file at end of path
+                id_path = qs.get('id', qs.get('ID', ['']))[0]
+                filename = _os.path.basename(unquote(id_path)).lower()
+            # All other query strings ignored — match on filename only
+        # Strip CRIKIT_ prefix added during GCC migration
+        # e.g. CRIKIT_UKEUPracticeGroup → UKEUPracticeGroup
+        filename = _re.sub(r'^crikit', '', filename)
+        # Strip CRIKIT_ prefix added in GCC site names during migration
+        filename = filename.replace('crikit', '')
+        # Normalise: remove all spaces, brackets, punctuation
+        filename = _re.sub(r'[^a-z0-9]', '', filename)
+        return filename
 
     # Build comparable sets (exclude ignorable links)
     legacy_real = {(t.strip(), h.strip()) for t,h in legacy_links
@@ -142,21 +207,67 @@ def compare_page(pid, legacy, gcc):
     still_extra  = set(exact_extra)
     still_missing = set()
 
+    def normalise_text(t):
+        """Normalise link text for comparison — strip punctuation, spaces,
+        curly quotes, apostrophes so minor formatting differences don't cause mismatches."""
+        import re as _re
+        t = t.lower().strip()
+        # Replace curly quotes, apostrophes, dashes with plain equivalents
+        t = t.replace('‘','').replace('’','').replace('“','').replace('”','')
+        t = t.replace('–','-').replace('—','-').replace("'","").replace("`","")
+        # Remove all non-alphanumeric characters and collapse spaces
+        t = _re.sub(r'[^a-z0-9 ]', '', t)
+        t = _re.sub(r' +', ' ', t).strip()
+        return t
+
+    # Build a lookup of GCC filenames → GCC entries for fast matching
+    # Multiple legacy links can point to the same GCC page (e.g. TOP OF PAGE)
+    gcc_file_map = {}
+    for g_entry in exact_extra:
+        g_text, g_href = g_entry
+        g_file = get_filename(g_href)
+        if g_file:
+            if g_file not in gcc_file_map:
+                gcc_file_map[g_file] = []
+            gcc_file_map[g_file].append(g_entry)
+
+    def normalise_text(t):
+        """Normalise link text for fallback matching when filename is empty."""
+        import re as _re
+        t = t.lower().strip()
+        t = t.replace('‘','').replace('’','').replace('“','').replace('”','')
+        t = t.replace("'","").replace("`","")
+        t = _re.sub(r'[^a-z0-9 ]', '', t)
+        t = _re.sub(r' +', ' ', t).strip()
+        return t
+
+    # Build text-based lookup for fallback when filename key is empty
+    # (handles anchor-only links, root paths, domain-only external URLs)
+    gcc_text_map = {}
+    for g_entry in exact_extra:
+        g_norm = normalise_text(g_entry[0])
+        if g_norm:
+            gcc_text_map.setdefault(g_norm, []).append(g_entry)
+
     for l_entry in exact_missing:
         l_text, l_href = l_entry
         l_file = get_filename(l_href)
-        matched = False
-        for g_entry in list(still_extra):
-            g_text, g_href = g_entry
-            g_file = get_filename(g_href)
-            if (l_text.strip().lower() == g_text.strip().lower()
-                    and l_file and l_file == g_file):
-                url_changed.append((l_entry, g_entry))
-                still_extra.discard(g_entry)
-                matched = True
-                break
-        if not matched:
+        l_norm = normalise_text(l_text)
+        if l_file and l_file in gcc_file_map and gcc_file_map[l_file]:
+            # Match by filename — same page, URL format changed
+            g_entry = gcc_file_map[l_file][0]
+            url_changed.append((l_entry, g_entry))
+        elif not l_file and l_norm and l_norm in gcc_text_map:
+            # Filename is empty (anchor, root path, domain-only) — match by link text
+            g_entry = gcc_text_map[l_norm][0]
+            url_changed.append((l_entry, g_entry))
+        else:
             still_missing.add(l_entry)
+
+    # Extra links in GCC that have no legacy equivalent at all
+    matched_gcc_files = set(get_filename(g[1]) for _,g in url_changed)
+    still_extra = {g_entry for g_entry in exact_extra
+                   if get_filename(g_entry[1]) not in matched_gcc_files}
 
     missing_links  = sorted(still_missing)
     extra_links    = sorted(still_extra)
@@ -263,8 +374,39 @@ def generate_report(results, legacy_meta, gcc_meta, output_path):
         lp, gp    = l.get("para_count", 0), g.get("para_count", 0)
         lh        = len(set(l.get("headings", [])))
         gh        = len(set(g.get("headings", [])))
-        g_nav = g.get("left_nav", [])
-        nav_ok = '<span style="color:#1D7A6B;font-weight:600">PRESENT</span>' if g_nav else '<span style="color:#A32D2D;font-weight:700">MISSING</span>'
+        l_nav_set = set(t.strip() for t,_ in l.get("left_nav",[]) if t.strip())
+        g_nav_set = set(t.strip() for t,_ in g.get("left_nav",[]) if t.strip())
+        if l_nav_set and g_nav_set:
+            nav_ok      = ('<span style="color:#1D7A6B;font-weight:600">MATCHING</span>'
+                           if not (l_nav_set - g_nav_set)
+                           else '<span style="color:#A32D2D;font-weight:600">MISMATCH</span>')
+            nav_data    = "MATCHING" if not (l_nav_set - g_nav_set) else "MISMATCH"
+        elif not l_nav_set and g_nav_set:
+            nav_ok   = '<span style="color:#888;font-weight:600">PRESENT</span>'
+            nav_data = "PRESENT"
+        elif l_nav_set and not g_nav_set:
+            nav_ok   = '<span style="color:#A32D2D;font-weight:600">MISSING</span>'
+            nav_data = "MISSING"
+        else:
+            nav_ok   = '<span style="color:#888">N/A</span>'
+            nav_data = "N/A"
+        # Links column
+        ml_count = len(r.get("missing_links", []))
+        uc_count = len(r.get("url_changed", []))
+        ll_count = len(l.get("links", []))
+        if ml_count > 0:
+            links_col = '<span style="color:#A32D2D;font-weight:600">FAILED</span>'
+            links_data = "FAILED"
+        elif uc_count > 0 and ml_count == 0:
+            links_col = '<span style="color:#888;font-weight:600">PASSED</span>'
+            links_data = "PASSED"
+        elif ll_count == 0:
+            links_col = '<span style="color:#888">N/A</span>'
+            links_data = "N/A"
+        else:
+            links_col = '<span style="color:#1D7A6B;font-weight:600">PASSED</span>'
+            links_data = "PASSED"
+
         n_issues  = len(r["issues"])
         n_warns   = len(r["warnings"])
         issue_col = f'<span style="color:#A32D2D;font-weight:600">{n_issues} fail</span>' if n_issues else "0 fail"
@@ -296,22 +438,46 @@ def generate_report(results, legacy_meta, gcc_meta, output_path):
             return (h.startswith("file://") or "http://crikit/" in h or "//crikit/" in h
                     or h.replace("/","").replace("\\","").startswith("file:"))
 
-        import os as _os
+        import os as _os, re as _re
         from urllib.parse import urlparse as _urlparse, unquote as _unquote
         def get_fn(href):
-            path = _urlparse(href.strip()).path
-            return _os.path.basename(_unquote(path)).lower()
+            from urllib.parse import parse_qs as _parse_qs
+            href = href.strip()
+            if '#' in href:
+                href = href.split('#')[0]
+            if not href:
+                return ''
+            href = href.replace(';', '%3B')
+            parsed   = _urlparse(href)
+            path     = parsed.path if parsed.scheme else href.split('?')[0]
+            filename = _os.path.basename(_unquote(path)).lower().rstrip('/')
+            if filename.endswith('.aspx'):
+                filename = filename[:-5]
+            query = parsed.query
+            if query:
+                qs = _parse_qs(query)
+                if filename == 'dispform':
+                    id_val = qs.get('ID', qs.get('id', ['']))[0]
+                    filename = filename + 'id' + id_val.lower()
+                elif filename == 'xlviewer':
+                    id_path = qs.get('id', qs.get('ID', ['']))[0]
+                    filename = _os.path.basename(_unquote(id_path)).lower()
+            filename = _re.sub(r'^crikit', '', filename)
+            return _re.sub(r'[^a-z0-9]', '', filename)
 
         uc_legacy = {tuple(le) for le,ge in r.get("url_changed",[])}
         uc_gcc    = {tuple(ge) for le,ge in r.get("url_changed",[])}
+        # Filenames that were matched (URL format changed) — GCC links with these are not "new"
+        matched_fns = {get_fn(ge[1]) for _,ge in r.get("url_changed",[])}
 
         def link_row(t, h, highlight="", faded=False, note=""):
-            bg    = f'background:{highlight};' if highlight else ""
-            color = "color:#aaa;" if faded else ""
-            note_html = f' <span style="font-size:10px;color:#888">{note}</span>' if note else ""
-            return (f'<tr style="{bg}">' 
-                    f'<td style="padding:4px 8px;font-size:12px;{color}">{html_lib.escape(t[:80])}{note_html}</td>'
-                    f'<td style="padding:4px 8px;font-size:11px;color:#888;word-break:break-all;{color}">{html_lib.escape(h[:150])}</td>'
+            bg       = f'background:{highlight};' if highlight else ""
+            color    = "color:#aaa;" if faded else ""
+            note_html= f' <span style="font-size:10px;color:#888">{note}</span>' if note else ""
+            return (f'<tr style="{bg}">'
+                    f'<td style="padding:4px 8px;font-size:12px;{color};width:30%;min-width:120px">{html_lib.escape(t)}{note_html}</td>'
+                    f'<td style="padding:4px 8px;font-size:11px;color:#555;word-break:break-all;{color};width:70%">'
+                    f'<a href="{html_lib.escape(h)}" target="_blank" style="color:#185FA5;text-decoration:none">{html_lib.escape(h)}</a></td>'
                     f'</tr>')
 
         # Legacy links table
@@ -338,7 +504,12 @@ def generate_report(results, legacy_meta, gcc_meta, output_path):
         # GCC links table — highlight ones not in legacy
         if g_all_links:
             g_rows = "".join(
-                link_row(t, h, "#E1F5EE" if (t.strip(),h.strip()) in (g_link_set - l_link_set) else "")
+                link_row(t, h,
+                    highlight="#FCEBEB" if (t.strip(),h.strip()) in (g_link_set - l_link_set) and
+                                          get_fn(t.strip()) not in matched_fns else "",
+                    note="(not in legacy)" if (t.strip(),h.strip()) in (g_link_set - l_link_set) and
+                                              get_fn(t.strip()) not in matched_fns else ""
+                )
                 for t,h in g_all_links if t.strip()
             )
             gcc_links_table = (
@@ -358,7 +529,7 @@ def generate_report(results, legacy_meta, gcc_meta, output_path):
                 f'<span style="color:#A32D2D;font-size:11px">red = missing in GCC</span></b>' +
                 legacy_links_table + '</div>' +
                 f'<div><b style="font-size:13px">GCC links ({len(g_all_links)}) ' +
-                f'<span style="color:#1D7A6B;font-size:11px">green = new in GCC</span></b>' +
+                f'<span style="color:#A32D2D;font-size:11px">red = in GCC but not in legacy</span></b>' +
                 gcc_links_table + '</div>' +
                 '</div></div>'
             )
@@ -366,27 +537,22 @@ def generate_report(results, legacy_meta, gcc_meta, output_path):
             missing_links_html = ""
         extra_links_html = ""
 
-        lnav_items = l.get("left_nav",[])
-        gnav_items = g.get("left_nav",[])
+        # Nav — presence only, no detail comparison
         gnav_html = ""
-        if lnav_items or gnav_items:
-            l_lis = "".join(f"<li style='font-size:12px'>{html_lib.escape(t)}</li>" for t,_ in lnav_items) or "<li style='color:#888;font-size:12px'>No left nav</li>"
-            g_lis = "".join(f"<li style='font-size:12px'>{html_lib.escape(t)}</li>" for t,_ in gnav_items) or "<li style='color:#A32D2D;font-size:12px'>MISSING</li>"
-            gnav_html = (f'<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">' 
-                        f'<div><b style="font-size:12px">Legacy left nav:</b><ul style="margin:4px 0 0 16px">{l_lis}</ul></div>'
-                        f'<div><b style="font-size:12px">GCC left nav:</b><ul style="margin:4px 0 0 16px">{g_lis}</ul></div>'
-                        f'</div>')
 
         rows.append(f"""
         <tr class="mr" onclick="td('{pid}')" style="cursor:pointer"
-            data-status="{r['status']}" data-pid="{html_lib.escape(pid.lower())}">
-          <td style="font-family:monospace;font-size:12px">{html_lib.escape(pid)}</td>
+            data-status="{r['status']}" data-pid="{html_lib.escape(pid.lower())}"
+            data-body="{('MATCH' if r.get('body_sim',0)==1.0 else 'DIFF')}"
+            data-nav="{nav_data}"
+            data-links="{links_data}">
+          <td style="font-size:11px;word-break:break-all;max-width:220px"><a href="{lurl}" target="_blank" style="color:#185FA5">{html_lib.escape(l.get('url',''))[:80]}{"..." if len(l.get("url",""))>80 else ""}</a></td>
+          <td style="font-size:11px;word-break:break-all;max-width:220px"><a href="{gurl}" target="_blank" style="color:#185FA5">{html_lib.escape(g.get('url',''))[:80]}{"..." if len(g.get("url",""))>80 else ""}</a></td>
           <td>{badge(r['status'])}</td>
           <td style="text-align:center">{sim_pct}</td>
-          <td style="text-align:center">{lw} → {gw}</td>
-          <td style="text-align:center">{lp} → {gp}</td>
-          <td style="text-align:center">{lh} → {gh}</td>
+          <td style="text-align:center;font-size:11px;line-height:1.8">W: {lw}→{gw}<br>P: {lp}→{gp}<br>H: {lh}→{gh}</td>
           <td style="text-align:center">{nav_ok}</td>
+          <td style="text-align:center">{links_col}</td>
           <td style="font-size:12px">{issue_col} &nbsp; {warn_col}</td>
         </tr>
         <tr id="d-{pid}" class="dr" style="display:none;background:#fafafa">
@@ -451,23 +617,52 @@ def generate_report(results, legacy_meta, gcc_meta, output_path):
 
 <div class="rules">
   <b>Validation rules:</b>
-  Body text exact match (whitespace-normalised) → PASS, any difference → FAIL &nbsp;|&nbsp;
-  
-  Any legacy paragraph missing from GCC → FAIL &nbsp;|&nbsp;
-  Any legacy heading missing from GCC → FAIL &nbsp;|&nbsp;
-  Left nav: presence check only — content comparison skipped &nbsp;|&nbsp;
-  
+  <ul style="margin:6px 0 2px 18px;padding:0;font-size:12px;line-height:1.7">
+    <li><b>Body text</b> — must match exactly (whitespace ignored) → FAIL if different</li>
+    <li><b>Word count</b> — must match exactly → FAIL if different</li>
+    <li><b>Paragraphs</b> — every legacy paragraph must exist in GCC → FAIL if any missing</li>
+    <li><b>Headings</b> — every legacy heading must exist in GCC with exact text → FAIL if any missing</li>
+    <li><b>Left nav MATCHING</b> — both legacy and GCC have nav and all items match</li>
+    <li><b>Left nav MISMATCH</b> — both have nav but one or more items in legacy are missing from GCC</li>
+    <li><b>Left nav MISSING</b> — legacy had a nav but GCC does not have one</li>
+    <li><b>Left nav PRESENT</b> — only GCC has a nav, legacy did not have one (expected in modern SharePoint)</li>
+    <li><b>Left nav N/A</b> — neither legacy nor GCC has a nav</li>
+    <li><b>Note:</b> left nav result never affects the overall PASS/FAIL status — it is informational only</li>
+    <li><b>Links FAILED</b> — one or more real links missing from GCC → FAIL</li>
+    <li><b>Links PASSED (grey)</b> — links matched relatively (URL format or encoding differences) → not a failure</li>
+    <li><b>Links PASSED (green)</b> — all links match exactly</li>
+    <li><b>Links ignored</b> — file:// paths, LAN/UNC (\server), intranet (http://crikit/) — expected to be missing in GCC, not counted as failures</li>
+  </ul>
 </div>
 
 <div class="controls">
-  <label>Filter:</label>
-  <input type="text" id="searchBox" placeholder="Search page ID..." oninput="filt()">
-  <select id="sf" onchange="filt()">
+  <input type="text" id="searchBox" placeholder="Search URL or page name..." oninput="filt()">
+  <select id="sf_status" onchange="filt()">
     <option value="">All statuses</option>
-    <option value="FAIL">FAIL only</option>
-    <option value="WARN">WARN only</option>
-    <option value="PASS">PASS only</option>
-    <option value="ERR">ERR only</option>
+    <option value="FAIL">FAIL</option>
+    <option value="WARN">WARN</option>
+    <option value="PASS">PASS</option>
+    <option value="ERR">ERR</option>
+  </select>
+  <select id="sf_body" onchange="filt()">
+    <option value="">Body text</option>
+    <option value="MATCH">MATCH</option>
+    <option value="DIFF">DIFF</option>
+  </select>
+  <select id="sf_nav" onchange="filt()">
+    <option value="">Left nav</option>
+    <option value="MATCHING">MATCHING</option>
+    <option value="MISMATCH">MISMATCH</option>
+    <option value="PRESENT">PRESENT</option>
+    <option value="MISSING">MISSING</option>
+    <option value="N/A">N/A</option>
+  </select>
+  <select id="sf_links" onchange="filt()">
+    <option value="">Links</option>
+    <option value="FAILED">FAILED</option>
+    <option value="PASSED">PASSED</option>
+    <option value="PASSED">PASSED</option>
+    <option value="N/A">N/A</option>
   </select>
   <button onclick="expandAll()">Expand all</button>
   <button onclick="collapseAll()">Collapse all</button>
@@ -476,13 +671,13 @@ def generate_report(results, legacy_meta, gcc_meta, output_path):
 <div class="wrap">
 <table>
   <thead><tr>
-    <th>Page ID</th>
+    <th>Legacy URL</th>
+    <th>GCC URL</th>
     <th>Status</th>
     <th style="text-align:center">Body text</th>
-    <th style="text-align:center">Words (L→G)</th>
-    <th style="text-align:center">Paras (L→G)</th>
-    <th style="text-align:center">Headings (L→G)</th>
-    <th style="text-align:center">GCC left nav</th>
+    <th style="text-align:center">Content (W/P/H)</th>
+    <th style="text-align:center">Left nav</th>
+    <th style="text-align:center">Links</th>
     <th>Issues / Warnings</th>
   </tr></thead>
   <tbody id="tb">{''.join(rows)}</tbody>
@@ -497,11 +692,17 @@ function td(id) {{
 function expandAll()  {{ document.querySelectorAll('.dr').forEach(r => r.style.display='table-row'); }}
 function collapseAll() {{ document.querySelectorAll('.dr').forEach(r => r.style.display='none'); }}
 function filt() {{
-  const s  = document.getElementById('searchBox').value.toLowerCase();
-  const sf = document.getElementById('sf').value;
+  const s       = document.getElementById('searchBox').value.toLowerCase();
+  const sfSt    = document.getElementById('sf_status').value;
+  const sfBody  = document.getElementById('sf_body').value;
+  const sfNav   = document.getElementById('sf_nav').value;
+  const sfLinks = document.getElementById('sf_links').value;
   document.querySelectorAll('.mr').forEach(row => {{
-    const show = (!s || (row.dataset.pid||'').includes(s)) &&
-                 (!sf || (row.dataset.status||'').includes(sf));
+    const show = (!s       || (row.dataset.pid||'').includes(s) || row.cells[0].textContent.toLowerCase().includes(s) || row.cells[1].textContent.toLowerCase().includes(s)) &&
+                 (!sfSt    || (row.dataset.status||'').includes(sfSt))   &&
+                 (!sfBody  || (row.dataset.body||'')  === sfBody)        &&
+                 (!sfNav   || (row.dataset.nav||'')   === sfNav)         &&
+                 (!sfLinks || (row.dataset.links||'') === sfLinks);
     row.style.display = show ? '' : 'none';
     const dr = row.nextElementSibling;
     if (dr && dr.classList.contains('dr') && !show) dr.style.display = 'none';

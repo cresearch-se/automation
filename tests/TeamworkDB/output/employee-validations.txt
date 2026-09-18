@@ -1,0 +1,77 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikarumuri\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\sowjikarumuri\Documents\Code
+configfile: pyproject.toml
+collecting ... collected 67 items / 64 deselected / 3 selected
+
+tests/TeamworkDB/test_utilization_monthly.py::test_terminated_employees_with_hours_appear_in_ytd_report Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+
+  Terminated employees correctly present in SP output (4):
+    [OK] EmpNo=4786 | Name=Michael Lindh | Office=CRDC | TerminationDate=2026-06-29 | YTD_Hrs=828.7
+    [OK] EmpNo=6158 | Name=Ashley Vissing | Office=CRCH | TerminationDate=2026-06-29 | YTD_Hrs=1335.3
+    [OK] EmpNo=6245 | Name=Simona Mola Yost | Office=CRDC | TerminationDate=2026-01-22 | YTD_Hrs=143.8
+    [OK] EmpNo=6390 | Name=Juliana Zhao | Office=CRNY | TerminationDate=2026-04-02 | YTD_Hrs=533.0
+
+[PASS] All 4 terminated employee(s) with YTD hours are present in the SP output.
+PASSED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_monthly Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+
+[DEBUG] SP columns: ['Office_Code', 'Rank_title', 'Rank_sort', 'Title', 'EMPLOYEE_CODE', 'EMPLOYEE_NAME', 'VA_Target_Hrs', 'TargetRev', 'Actual_hrs', 'Actual_Amount']
+
+[DEBUG] Rows containing 5905:
+    Office_Code Rank_title  Rank_sort                                               Title EMPLOYEE_CODE          EMPLOYEE_NAME VA_Target_Hrs TargetRev Actual_hrs Actual_Amount
+724      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina         111.7   125,744      114.5       128,908
+
+  Employees correctly present in monthly SP output (220/220)
+
+[PASS] All 220 in-scope employee(s) from Workday roster are correctly present in monthly SP output with correct office and title.
+PASSED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+
+[DEBUG] SP columns: ['Office_Code', 'Rank_title', 'Rank_sort', 'Title', 'EMPLOYEE_CODE', 'EMPLOYEE_NAME', 'VA_Target_Hrs', 'TargetRev', 'Actual_hrs', 'Actual_Amount']
+
+[DEBUG] Rows containing 5905:
+    Office_Code Rank_title  Rank_sort                                               Title EMPLOYEE_CODE          EMPLOYEE_NAME VA_Target_Hrs  TargetRev Actual_hrs Actual_Amount
+978      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina       1,060.8  1,192,255    1,056.9     1,184,921
+
+  Employees correctly present in YTD SP output (203/225)
+
+  WRONG TITLE IN YTD REPORT (22):
+    [WRONG TITLE] EmpNo=5369 | Name=Vijeta Graham | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5483 | Name=Etienne Cayer | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5624 | Name=Prithvi Hingorani | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5766 | Name=Austin Schwed | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1 | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=5802 | Name=Burkett Evans | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1 | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=5967 | Name=Spencer Vernon | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1 | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=6122 | Name=Michael Hilfiker | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6330 | Name=Alejandro Hoyos Suarez | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6333 | Name=Julia Russell | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1 | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=6337 | Name=Benjamin Murphy | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1 | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=6342 | Name=Samuel Haltenhof | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6354 | Name=Arthur Corea-Smith | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6383 | Name=Matthew Davis | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=0531 | Name=Hannah Tilson | Expected_Title=Manager | Actual_SP_Title=SRA/Associate | Actual_Group=Associate | Workday_Level=M1UK | Workday_JobTitle=Manager
+    [WRONG TITLE] EmpNo=0543 | Name=Maximilian Bredendiek | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1UK | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=4876 | Name=Avishai Schiff | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6410 | Name=Molly Glandon | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6415 | Name=Chady Gemayel | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=6135 | Name=Kathleen Hu | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5100 | Name=Charles Boyer | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5432 | Name=Kathryn Fox | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+    [WRONG TITLE] EmpNo=5161 | Name=Bryan Pine | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
+FAILED
+
+
+================================== FAILURES ===================================
+________________________ test_roster_completeness_ytd _________________________
+tests\TeamworkDB\test_utilization_monthly.py:1591: in test_roster_completeness_ytd
+    pytest.fail(
+E   Failed: 22 issue(s) found in YTD roster: 0 missing, 0 wrong office, 22 wrong title.
+=========================== short test summary info ===========================
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd
+================= 1 failed, 2 passed, 64 deselected in 31.05s =================

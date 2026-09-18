@@ -1,0 +1,39 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikarumuri\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\sowjikarumuri\Documents\Code
+configfile: pyproject.toml
+collecting ... collected 61 items / 59 deselected / 2 selected
+
+tests/TeamworkDB/test_utilization_monthly.py::test_cross_sheet_consistency_monthly     [OK] Boston Monthly — all columns match
+    [OK] Chicago Monthly — all columns match
+    [OK] DC Monthly — all columns match
+    [OK] LA Monthly — all columns match
+    [OK] NY Monthly — all columns match
+    [OK] SF Monthly — all columns match
+    [OK] SV Monthly — all columns match
+    [OK] Brussels Monthly — all columns match
+    [OK] London Monthly — all columns match
+    [OK] US Total vs US Sheet Monthly — all columns match
+    [OK] Europe Total vs Europe Sheet Monthly — all columns match
+
+[PASS] All monthly summary sheet totals match their corresponding detail sheets.
+PASSED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_cross_sheet_consistency_ytd     [OK] Boston YTD — all columns match
+    [OK] Chicago YTD — all columns match
+    [OK] DC YTD — all columns match
+    [OK] LA YTD — all columns match
+    [OK] NY YTD — all columns match
+    [OK] SF YTD — all columns match
+    [OK] SV YTD — all columns match
+    [OK] Brussels YTD — all columns match
+    [OK] London YTD — all columns match
+    [OK] US Total vs US Sheet YTD — all columns match
+    [OK] Europe Total vs Europe Sheet YTD — all columns match
+
+[PASS] All YTD summary sheet totals match their corresponding detail sheets.
+PASSED
+
+
+====================== 2 passed, 59 deselected in 8.78s =======================
