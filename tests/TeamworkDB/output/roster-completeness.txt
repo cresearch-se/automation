@@ -3,24 +3,32 @@ platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikar
 cachedir: .pytest_cache
 rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
-collecting ... collected 59 items / 57 deselected / 2 selected
+collecting ... collected 61 items / 59 deselected / 2 selected
 
 tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_monthly Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
-  Employees correctly present in monthly SP output (219/220)
+[DEBUG] SP columns: ['Office_Code', 'Rank_title', 'Rank_sort', 'Title', 'EMPLOYEE_CODE', 'EMPLOYEE_NAME', 'VA_Target_Hrs', 'TargetRev', 'Actual_hrs', 'Actual_Amount']
 
-  MISSING FROM MONTHLY REPORT (1):
-    [MISSING FROM MONTHLY REPORT] EmpNo=5905 | Name=Christina Zafeiridou | Office=London | Dept=1000 | Status=Active | HireDate=2025-08-03 | TermDate=Active | Level=P3UK | JobTitle=Principal
-FAILED
+[DEBUG] Rows containing 5905:
+    Office_Code Rank_title  Rank_sort                                               Title EMPLOYEE_CODE          EMPLOYEE_NAME VA_Target_Hrs TargetRev Actual_hrs Actual_Amount
+724      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina         111.7   125,744      114.5       128,908
+
+  Employees correctly present in monthly SP output (220/220)
+
+[PASS] All 220 in-scope employee(s) from Workday roster are correctly present in monthly SP output with correct office and title.
+PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
-  Employees correctly present in YTD SP output (202/225)
+[DEBUG] SP columns: ['Office_Code', 'Rank_title', 'Rank_sort', 'Title', 'EMPLOYEE_CODE', 'EMPLOYEE_NAME', 'VA_Target_Hrs', 'TargetRev', 'Actual_hrs', 'Actual_Amount']
 
-  MISSING FROM YTD REPORT (1):
-    [MISSING FROM YTD REPORT] EmpNo=5905 | Name=Christina Zafeiridou | Office=London | Dept=1000 | Status=Active | HireDate=2025-08-03 | TermDate=Active | Level=P3UK | JobTitle=Principal
+[DEBUG] Rows containing 5905:
+    Office_Code Rank_title  Rank_sort                                               Title EMPLOYEE_CODE          EMPLOYEE_NAME VA_Target_Hrs  TargetRev Actual_hrs Actual_Amount
+978      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina       1,060.8  1,192,255    1,056.9     1,184,921
+
+  Employees correctly present in YTD SP output (203/225)
 
   WRONG TITLE IN YTD REPORT (22):
     [WRONG TITLE] EmpNo=5369 | Name=Vijeta Graham | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
@@ -49,15 +57,10 @@ FAILED
 
 
 ================================== FAILURES ===================================
-______________________ test_roster_completeness_monthly _______________________
-tests\TeamworkDB\test_utilization_monthly.py:1350: in test_roster_completeness_monthly
-    pytest.fail(
-E   Failed: 1 issue(s) found in monthly roster: 1 missing, 0 wrong office, 0 wrong title.
 ________________________ test_roster_completeness_ytd _________________________
-tests\TeamworkDB\test_utilization_monthly.py:1433: in test_roster_completeness_ytd
+tests\TeamworkDB\test_utilization_monthly.py:1591: in test_roster_completeness_ytd
     pytest.fail(
-E   Failed: 23 issue(s) found in YTD roster: 1 missing, 0 wrong office, 22 wrong title.
+E   Failed: 22 issue(s) found in YTD roster: 0 missing, 0 wrong office, 22 wrong title.
 =========================== short test summary info ===========================
-FAILED tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_monthly
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd
-====================== 2 failed, 57 deselected in 35.59s ======================
+================= 1 failed, 1 passed, 59 deselected in 36.33s =================

@@ -26,13 +26,21 @@ OUTPUT_DIR = Path("tests/TeamworkDB/output")
 
 TEST_GROUPS = [
     {
-        "name": "Format Validations",
-        "filter": (
-            "test_format_validations_by_location or "
-            "test_totals_validation_by_location or "
-            "test_format_validations_by_employee"
-        ),
-        "output_file": OUTPUT_DIR / "format-validations.txt"
+    "name": "Format Validations",
+    "filter": (
+        "test_format_validations_by_location or "
+        "test_totals_validation_by_location or "
+        "test_format_validations_by_employee or "
+        "test_cross_sheet_consistency_monthly or "
+        "test_cross_sheet_consistency_ytd or "
+        "test_cornerstone_research_equals_us_plus_europe_monthly or "
+        "test_cornerstone_research_equals_us_plus_europe_ytd or "
+        "test_associate_analyst_rollup_by_location or "
+        "test_no_employee_in_multiple_office_sheets_monthly or "
+        "test_no_employee_in_multiple_office_sheets_ytd or "
+        "test_ytd_hours_greater_than_or_equal_to_monthly"
+    ),
+    "output_file": OUTPUT_DIR / "format-validations.txt"
     },
     {
         "name": "DB Location",
@@ -55,17 +63,13 @@ TEST_GROUPS = [
         "output_file": OUTPUT_DIR / "db-employee-ytd.txt"
     },
     {
-        "name": "Terminated Employee Visibility",
-        "filter": "test_terminated_employees_with_hours_appear_in_ytd_report",
-        "output_file": OUTPUT_DIR / "terminated-employee-visibility.txt"
-    },
-    {
-        "name": "Roster Completeness",
+        "name": "Employee Validations",
         "filter": (
+            "test_terminated_employees_with_hours_appear_in_ytd_report or "
             "test_roster_completeness_monthly or "
             "test_roster_completeness_ytd"
         ),
-        "output_file": OUTPUT_DIR / "roster-completeness.txt"
+        "output_file": OUTPUT_DIR / "employee-validations.txt"
     }
 ]
 
@@ -119,6 +123,7 @@ def parse_output_file(filepath: Path | str) -> dict[str, Any]:
     mismatches     = []
     missing_tables = []   # [{"sheet": str, "rows": [{"Type", "EmpNo", "Name"}]}]
     other_errors   = []   # [{"sheet": str, "rows": [{"Type", "Detail"}]}]
+    pass_summaries = []
 
     def _missing_sheet_bucket(sheet):
         """Return existing bucket for sheet or create a new one."""
@@ -181,7 +186,6 @@ def parse_output_file(filepath: Path | str) -> dict[str, Any]:
                 if "Column" in lines[j] and "DB" in lines[j] and "Diff" in lines[j]:
                     header_idx = j
                     break
-
             if header_idx is None:
                 i += 1
                 continue
@@ -212,11 +216,18 @@ def parse_output_file(filepath: Path | str) -> dict[str, Any]:
         if line.startswith("[MISSING IN DB]") or line.startswith("[MISSING IN XLS]"):
             _parse_missing_line(line, current_sheet)
 
+        # Capture pass summary lines
+        if line.startswith("[PASS]"):
+            pass_summaries.append(line)
+
         # Format validation errors
         if any(line.startswith(tag) for tag in [
             "[MISSING OFFICE]", "[MISSING TITLE]", "[BLANK VALUE]", "[MISSING TERMINATED EMPLOYEE]",
             "[DUPLICATE", "[WRONG ORDER]", "[ZERO VALUE]", "[MISSING SUBTOTAL",
-            "[MISSING GRAND TOTAL", "[MISSING FROM", "[WRONG OFFICE]", "[WRONG TITLE]"
+            "[MISSING GRAND TOTAL", "[MISSING FROM", "[WRONG OFFICE]", "[WRONG TITLE]",
+            "[CROSS-SHEET", "[CR MISMATCH]",
+            "[ASSOCIATE ROLLUP MISMATCH]", "[ANALYST ROLLUP MISMATCH]",
+            "[EMPLOYEE IN MULTIPLE OFFICES]", "[YTD LESS THAN MONTHLY]"
         ]):
             m_type = re.match(r'\[([^\]]+)\]\s*(.*)', line)
             err_type   = m_type.group(1) if m_type else ""
@@ -235,7 +246,8 @@ def parse_output_file(filepath: Path | str) -> dict[str, Any]:
         "failed":       failed,
         "mismatches":   mismatches,
         "missing":      missing_tables,
-        "other_errors": other_errors
+        "other_errors": other_errors,
+        "pass_summaries": pass_summaries
     }
 
 
@@ -420,6 +432,20 @@ def generate_excel_report(results: list[dict[str, Any]], report_name: str) -> No
         if r.get("other_errors"):
             write_bucket_section(ws, "FORMAT ERRORS", r["other_errors"], FORMAT_ERROR_COLS)
 
+        # Write pass summaries
+        if r.get("pass_summaries"):
+            ws.append([])
+            ws.append(["PASSED CHECKS"])
+            ws.cell(ws.max_row, 1).font = bold_font
+            ws.append([])
+            for summary in r["pass_summaries"]:
+                ws.append([summary])
+                row_num = ws.max_row
+                green_fill = PatternFill("solid", fgColor="C6EFCE")
+                ws.cell(row_num, 1).fill   = green_fill
+                ws.cell(row_num, 1).border = border
+            ws.append([])
+
         auto_width(ws)
 
     if diag_conn:
@@ -492,6 +518,20 @@ def generate_html_report(results: list[dict[str, Any]], report_name: str) -> Non
 
         if r.get("other_errors"):
             body_html += bucket_section_html("Format Errors", r["other_errors"], FORMAT_ERROR_COLS, "error(s)")
+
+        # Add pass summaries if any
+        pass_summaries = r.get("pass_summaries", [])
+        if pass_summaries:
+            pass_rows = "".join(
+                f"<tr><td>&#10003; {s}</td></tr>"
+                for s in pass_summaries
+            )
+            body_html += f"""
+                <p class="sheet-label"><strong>Passed Checks</strong></p>
+                <table>
+                    <thead><tr><th>Check</th></tr></thead>
+                    <tbody style="background:#eafaf1">{pass_rows}</tbody>
+                </table>"""
 
         if not body_html:
             body_html = "<p class='all-pass'>&#10003; All checks passed.</p>"
@@ -567,6 +607,10 @@ if __name__ == "__main__":
 
     print("\n[2/3] Parsing output files...")
     results = parse_all_groups()
+
+    # DEBUG — check pass_summaries
+    for r in results:
+        print(f"  {r['name']}: {len(r.get('pass_summaries', []))} pass summaries")
 
     report_name = get_report_name()
     print(f"\n[3/3] Generating reports ({report_name})...")

@@ -3,7 +3,7 @@ platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikar
 cachedir: .pytest_cache
 rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
-collecting ... collected 59 items / 25 deselected / 34 selected
+collecting ... collected 67 items / 25 deselected / 42 selected
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_Monthly] 	
   [MISSING TITLE] CRSV — Associate-1st Yr
@@ -178,26 +178,80 @@ tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_employe
 [PASS] All Subtotals and grand total verified for 'YTD - Applied Research'.
 PASSED
 
+tests/TeamworkDB/test_utilization_monthly.py::test_cross_sheet_consistency_monthly     [OK] Boston Monthly — all columns match
+    [OK] Chicago Monthly — all columns match
+    [OK] DC Monthly — all columns match
+    [OK] LA Monthly — all columns match
+    [OK] NY Monthly — all columns match
+    [OK] SF Monthly — all columns match
+    [OK] SV Monthly — all columns match
+    [OK] Brussels Monthly — all columns match
+    [OK] London Monthly — all columns match
+    [OK] US Total vs US Sheet Monthly — all columns match
+    [OK] Europe Total vs Europe Sheet Monthly — all columns match
+
+[PASS] All monthly summary sheet totals match their corresponding detail sheets.
+PASSED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_cross_sheet_consistency_ytd     [OK] Boston YTD — all columns match
+    [OK] Chicago YTD — all columns match
+    [OK] DC YTD — all columns match
+    [OK] LA YTD — all columns match
+    [OK] NY YTD — all columns match
+    [OK] SF YTD — all columns match
+    [OK] SV YTD — all columns match
+    [OK] Brussels YTD — all columns match
+    [OK] London YTD — all columns match
+    [OK] US Total vs US Sheet YTD — all columns match
+    [OK] Europe Total vs Europe Sheet YTD — all columns match
+
+[PASS] All YTD summary sheet totals match their corresponding detail sheets.
+PASSED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_cornerstone_research_equals_us_plus_europe_monthly 
+[PASS] All Cornerstone Research rows in monthly Total sheet equal US + Europe correctly.
+PASSED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_cornerstone_research_equals_us_plus_europe_ytd 
+[PASS] All Cornerstone Research rows in YTD Total sheet equal US + Europe correctly.
+PASSED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_associate_analyst_rollup_by_location 
+[PASS] All Associate and Analyst rollup rows correctly equal Exp + 1st Yr across all summary sheets.
+PASSED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_no_employee_in_multiple_office_sheets_monthly 
+[PASS] No employees appear in multiple monthly office sheets.
+PASSED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_no_employee_in_multiple_office_sheets_ytd 
+[PASS] No employees appear in multiple YTD office sheets.
+PASSED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_ytd_hours_greater_than_or_equal_to_monthly 
+[PASS] All employees have YTD values greater than or equal to their monthly values.
+PASSED
+
 
 ================================== FAILURES ===================================
 _________ test_format_validations_by_location[US_Utilization_Monthly] _________
-tests\TeamworkDB\test_utilization_monthly.py:673: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:820: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 4 error(s) found
 _________ test_format_validations_by_location[EU_Utilization_Monthly] _________
-tests\TeamworkDB\test_utilization_monthly.py:673: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:820: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 6 error(s) found
 _______ test_format_validations_by_location[Total_Utilization_Monthly] ________
-tests\TeamworkDB\test_utilization_monthly.py:673: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:820: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 2 error(s) found
 ___________ test_format_validations_by_location[US_Utilization_YTD] ___________
-tests\TeamworkDB\test_utilization_monthly.py:673: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:820: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 4 error(s) found
 ___________ test_format_validations_by_location[EU_Utilization_YTD] ___________
-tests\TeamworkDB\test_utilization_monthly.py:673: in test_format_validations_by_location
+tests\TeamworkDB\test_utilization_monthly.py:820: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 4 error(s) found
 =========================== short test summary info ===========================
@@ -206,4 +260,4 @@ FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_Monthly]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_YTD]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD]
-================= 5 failed, 29 passed, 25 deselected in 9.04s =================
+================ 5 failed, 37 passed, 25 deselected in 17.79s =================

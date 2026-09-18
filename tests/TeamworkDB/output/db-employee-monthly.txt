@@ -3,161 +3,353 @@ platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikar
 cachedir: .pytest_cache
 rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
-collecting ... collected 59 items / 50 deselected / 9 selected
+collecting ... collected 67 items / 58 deselected / 9 selected
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Boston] Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: Month - CRB  (Monthly) | Run: 2026-09-03
+  Report: August 2026 | Sheet: Month - CRB  (Monthly) | Run: 2026-09-17
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101372 | Name=Lobo, Isabelle
+    [MISSING IN DB] EmpNo=102005 | Name=Leventhal, Zach
     [MISSING IN DB] EmpNo=102071 | Name=Hsu, Caroline
     [MISSING IN XLS] EmpNo=101409 | Name=nan
 
-  EmpNo  | Name           | Column       | Util Report | DB        | Diff     | Diff% 
-  -------+----------------+--------------+-------------+-----------+----------+-------
-  101426 | Vaughn, Orly   | Actual_Hours | 132.80      | 143.50    | 10.70    | 8.06% 
-  101612 | Alhorr, Layane | Actual_Hours | 90.10       | 101.90    | 11.80    | 13.10%
-  101426 | Vaughn, Orly   | Standard_Rev | 81,672.00   | 88,253.00 | 6,581.00 | 8.06% 
-  101612 | Alhorr, Layane | Standard_Rev | 68,926.50   | 77,954.00 | 9,027.50 | 13.10%
+  EmpNo  | Name                   | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+------------------------+--------------+-------------+------------+-----------+-------
+  101290 | Liu, Jiahua            | Target_Hours | 155.40      | 146.20     | 9.20      | 5.92% 
+  102202 | Klas, Christina        | Target_Hours | 168.00      | 160.00     | 8.00      | 4.76% 
+  5136   | Bulan, Laarni          | Target_Hours | 68.70       | 63.80      | 4.90      | 7.13% 
+  101290 | Liu, Jiahua            | Target_Rev   | 133,644.00  | 125,689.00 | 7,955.00  | 5.95% 
+  102202 | Klas, Christina        | Target_Rev   | 73,080.00   | 69,600.00  | 3,480.00  | 4.76% 
+  5136   | Bulan, Laarni          | Target_Rev   | 83,128.28   | 77,230.00  | 5,898.28  | 7.10% 
+  101426 | Vaughn, Orly           | Actual_Hours | 132.80      | 143.50     | 10.70     | 8.06% 
+  101571 | Sherpa, Sonam          | Actual_Hours | 90.50       | 96.10      | 5.60      | 6.19% 
+  101612 | Alhorr, Layane         | Actual_Hours | 90.10       | 101.90     | 11.80     | 13.10%
+  101807 | Ruth, George           | Actual_Hours | 145.00      | 161.20     | 16.20     | 11.17%
+  101949 | Kotrebai, Daniel       | Actual_Hours | 102.60      | 108.20     | 5.60      | 5.46% 
+  102174 | Mo, Sophia             | Actual_Hours | 140.10      | 145.50     | 5.40      | 3.85% 
+  102422 | Jullian Guyard, Steffy | Actual_Hours | 128.20      | 25.60      | 102.60    | 80.03%
+  102447 | Lee, Jonathan          | Actual_Hours | 48.70       | 50.70      | 2.00      | 4.11% 
+  102455 | Farhan, Fateh          | Actual_Hours | 156.20      | 164.20     | 8.00      | 5.12% 
+  4710   | Schneider, Frank       | Actual_Hours | 75.00       | 69.50      | 5.50      | 7.33% 
+  101426 | Vaughn, Orly           | Standard_Rev | 81,672.00   | 88,253.00  | 6,581.00  | 8.06% 
+  101571 | Sherpa, Sonam          | Standard_Rev | 52,037.50   | 55,258.00  | 3,220.50  | 6.19% 
+  101612 | Alhorr, Layane         | Standard_Rev | 68,926.50   | 77,954.00  | 9,027.50  | 13.10%
+  101807 | Ruth, George           | Standard_Rev | 63,075.00   | 70,122.00  | 7,047.00  | 11.17%
+  101949 | Kotrebai, Daniel       | Standard_Rev | 49,761.00   | 52,477.00  | 2,716.00  | 5.46% 
+  102174 | Mo, Sophia             | Standard_Rev | 94,567.50   | 98,213.00  | 3,645.50  | 3.85% 
+  102422 | Jullian Guyard, Steffy | Standard_Rev | 55,767.00   | 11,136.00  | 44,631.00 | 80.03%
+  102447 | Lee, Jonathan          | Standard_Rev | 21,184.50   | 22,055.00  | 870.50    | 4.11% 
+  102455 | Farhan, Fateh          | Standard_Rev | 75,757.00   | 79,637.00  | 3,880.00  | 5.12% 
+  4710   | Schneider, Frank       | Standard_Rev | 101,250.00  | 93,825.00  | 7,425.00  | 7.33% 
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Chicago] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: Month - CRCH (Monthly) | Run: 2026-09-03
+  Report: August 2026 | Sheet: Month - CRCH (Monthly) | Run: 2026-09-17
 
   MISSING ROWS:
+    [MISSING IN DB] EmpNo=101825 | Name=Di Mario, Matteo
     [MISSING IN XLS] EmpNo=101102 | Name=nan
 
-  EmpNo  | Name           | Column       | Util Report | DB         | Diff     | Diff%
-  -------+----------------+--------------+-------------+------------+----------+------
-  101644 | Murphy, Kevin  | Target_Hours | 152.00      | 144.00     | 8.00     | 5.26%
-  101644 | Murphy, Kevin  | Target_Rev   | 87,400.00   | 82,800.00  | 4,600.00 | 5.26%
-  101279 | Lee, Shinyoung | Actual_Hours | 218.10      | 233.50     | 15.40    | 7.06%
-  101644 | Murphy, Kevin  | Actual_Hours | 108.20      | 117.60     | 9.40     | 8.69%
-  102296 | Han, Yvonne    | Actual_Hours | 167.40      | 175.70     | 8.30     | 4.96%
-  101279 | Lee, Shinyoung | Standard_Rev | 134,131.50  | 143,603.00 | 9,471.50 | 7.06%
-  101644 | Murphy, Kevin  | Standard_Rev | 62,215.00   | 67,620.00  | 5,405.00 | 8.69%
-  102296 | Han, Yvonne    | Standard_Rev | 112,995.00  | 118,598.00 | 5,603.00 | 4.96%
+  EmpNo  | Name              | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+-------------------+--------------+-------------+------------+-----------+-------
+  101644 | Murphy, Kevin     | Target_Hours | 152.00      | 144.00     | 8.00      | 5.26% 
+  101913 | Hemond, Quinn     | Target_Hours | 160.00      | 152.00     | 8.00      | 5.00% 
+  101916 | Wong, Christopher | Target_Hours | 160.20      | 152.20     | 8.00      | 4.99% 
+  6336   | Gonzalez, Julia   | Target_Hours | 68.35       | 62.50      | 5.85      | 8.56% 
+  6337   | Murphy, Ben       | Target_Hours | 155.40      | 146.20     | 9.20      | 5.92% 
+  101644 | Murphy, Kevin     | Target_Rev   | 87,400.00   | 82,800.00  | 4,600.00  | 5.26% 
+  101913 | Hemond, Quinn     | Target_Rev   | 77,600.00   | 73,720.00  | 3,880.00  | 5.00% 
+  101916 | Wong, Christopher | Target_Rev   | 77,697.00   | 73,817.00  | 3,880.00  | 4.99% 
+  6336   | Gonzalez, Julia   | Target_Rev   | 72,111.62   | 65,925.00  | 6,186.62  | 8.58% 
+  6337   | Murphy, Ben       | Target_Rev   | 133,644.00  | 125,689.00 | 7,955.00  | 5.95% 
+  101279 | Lee, Shinyoung    | Actual_Hours | 218.10      | 233.50     | 15.40     | 7.06% 
+  101326 | Mehrotra, Nik     | Actual_Hours | 195.70      | 204.00     | 8.30      | 4.24% 
+  101379 | Mahajan, Mansha   | Actual_Hours | 93.50       | 101.60     | 8.10      | 8.66% 
+  101551 | Ross, Matt        | Actual_Hours | 137.30      | 145.80     | 8.50      | 6.19% 
+  101638 | Zalke, Kenneth    | Actual_Hours | 100.60      | 109.00     | 8.40      | 8.35% 
+  101640 | Pesko, Audra      | Actual_Hours | 105.80      | 115.00     | 9.20      | 8.70% 
+  101644 | Murphy, Kevin     | Actual_Hours | 108.20      | 117.60     | 9.40      | 8.69% 
+  102044 | Jones, Collin     | Actual_Hours | 193.00      | 200.70     | 7.70      | 3.99% 
+  102050 | Amemiya, Hans     | Actual_Hours | 15.60       | 26.40      | 10.80     | 69.23%
+  102208 | Konatham, Nikhil  | Actual_Hours | 180.50      | 186.80     | 6.30      | 3.49% 
+  102280 | Srinivasan, Nayan | Actual_Hours | 128.60      | 139.30     | 10.70     | 8.32% 
+  102296 | Han, Yvonne       | Actual_Hours | 167.40      | 175.70     | 8.30      | 4.96% 
+  5250   | Mascari, Frank    | Actual_Hours | 68.40       | 64.90      | 3.50      | 5.12% 
+  5634   | Poczatek, Matt    | Actual_Hours | 188.40      | 202.20     | 13.80     | 7.32% 
+  5653   | Colella, Cameron  | Actual_Hours | 110.60      | 119.00     | 8.40      | 7.59% 
+  5994   | Chen, Rui         | Actual_Hours | 197.70      | 204.50     | 6.80      | 3.44% 
+  6056   | Pokorny, John     | Actual_Hours | 138.90      | 132.60     | 6.30      | 4.54% 
+  6337   | Murphy, Ben       | Actual_Hours | 229.20      | 237.40     | 8.20      | 3.58% 
+  101279 | Lee, Shinyoung    | Standard_Rev | 134,131.50  | 143,603.00 | 9,471.50  | 7.06% 
+  101326 | Mehrotra, Nik     | Standard_Rev | 112,527.50  | 117,300.00 | 4,772.50  | 4.24% 
+  101379 | Mahajan, Mansha   | Standard_Rev | 60,775.00   | 66,040.00  | 5,265.00  | 8.66% 
+  101551 | Ross, Matt        | Standard_Rev | 105,034.50  | 111,537.00 | 6,502.50  | 6.19% 
+  101638 | Zalke, Kenneth    | Standard_Rev | 86,516.00   | 93,740.00  | 7,224.00  | 8.35% 
+  101640 | Pesko, Audra      | Standard_Rev | 46,023.00   | 50,025.00  | 4,002.00  | 8.70% 
+  101644 | Murphy, Kevin     | Standard_Rev | 62,215.00   | 67,620.00  | 5,405.00  | 8.69% 
+  102044 | Jones, Collin     | Standard_Rev | 130,275.00  | 135,473.00 | 5,198.00  | 3.99% 
+  102050 | Amemiya, Hans     | Standard_Rev | 6,786.00    | 11,484.00  | 4,698.00  | 69.23%
+  102208 | Konatham, Nikhil  | Standard_Rev | 78,517.50   | 81,258.00  | 2,740.50  | 3.49% 
+  102280 | Srinivasan, Nayan | Standard_Rev | 55,941.00   | 60,596.00  | 4,655.00  | 8.32% 
+  102296 | Han, Yvonne       | Standard_Rev | 112,995.00  | 118,598.00 | 5,603.00  | 4.96% 
+  5250   | Mascari, Frank    | Standard_Rev | 82,764.00   | 78,529.00  | 4,235.00  | 5.12% 
+  5634   | Poczatek, Matt    | Standard_Rev | 215,718.00  | 231,519.00 | 15,801.00 | 7.32% 
+  5653   | Colella, Cameron  | Standard_Rev | 111,153.00  | 119,595.00 | 8,442.00  | 7.59% 
+  5994   | Chen, Rui         | Standard_Rev | 151,240.50  | 156,443.00 | 5,202.50  | 3.44% 
+  6056   | Pokorny, John     | Standard_Rev | 155,568.00  | 148,512.00 | 7,056.00  | 4.54% 
+  6337   | Murphy, Ben       | Standard_Rev | 197,112.00  | 204,164.00 | 7,052.00  | 3.58% 
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[DC] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: Month - CRDC (Monthly) | Run: 2026-09-03
+  Report: August 2026 | Sheet: Month - CRDC (Monthly) | Run: 2026-09-17
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=102067 | Name=Gould, Naomi
     [MISSING IN DB] EmpNo=102077 | Name=Hagerty, Matthew
 
-  EmpNo  | Name           | Column       | Util Report | DB         | Diff      | Diff% 
-  -------+----------------+--------------+-------------+------------+-----------+-------
-  101387 | Foley, Conor   | Target_Hours | 155.40      | 146.30     | 9.10      | 5.86% 
-  101387 | Foley, Conor   | Target_Rev   | 143,745.00  | 135,360.00 | 8,385.00  | 5.83% 
-  101528 | Podwol, Joseph | Actual_Hours | 33.40       | 58.70      | 25.30     | 75.75%
-  101591 | Jones, Nate    | Actual_Hours | 111.80      | 117.80     | 6.00      | 5.37% 
-  101528 | Podwol, Joseph | Standard_Rev | 37,575.00   | 66,038.00  | 28,463.00 | 75.75%
-  101591 | Jones, Nate    | Standard_Rev | 54,223.00   | 57,133.00  | 2,910.00  | 5.37% 
+  EmpNo  | Name                  | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+-----------------------+--------------+-------------+------------+-----------+-------
+  101387 | Foley, Conor          | Target_Hours | 155.40      | 146.30     | 9.10      | 5.86% 
+  101572 | Oura, Shoma           | Target_Hours | 168.00      | 160.00     | 8.00      | 4.76% 
+  5035   | Moran, Nicole         | Target_Hours | 109.06      | 103.80     | 5.26      | 4.83% 
+  101387 | Foley, Conor          | Target_Rev   | 143,745.00  | 135,360.00 | 8,385.00  | 5.83% 
+  101572 | Oura, Shoma           | Target_Rev   | 81,480.00   | 77,600.00  | 3,880.00  | 4.76% 
+  5035   | Moran, Nicole         | Target_Rev   | 131,967.23  | 125,574.00 | 6,393.23  | 4.84% 
+  101165 | Flores-Golfin, Felipe | Actual_Hours | 135.50      | 144.00     | 8.50      | 6.27% 
+  101528 | Podwol, Joseph        | Actual_Hours | 33.40       | 58.70      | 25.30     | 75.75%
+  101588 | Papich, Sarah         | Actual_Hours | 167.30      | 177.10     | 9.80      | 5.86% 
+  101591 | Jones, Nate           | Actual_Hours | 111.80      | 117.80     | 6.00      | 5.37% 
+  101749 | Tsai, Joanna          | Actual_Hours | 19.60       | 13.20      | 6.40      | 32.65%
+  101970 | Bednarek, Pawel       | Actual_Hours | 116.10      | 123.40     | 7.30      | 6.29% 
+  102164 | Smith, Dan            | Actual_Hours | 179.20      | 188.90     | 9.70      | 5.41% 
+  102271 | Wong, Kevin           | Actual_Hours | 155.80      | 162.90     | 7.10      | 4.56% 
+  5073   | McBride, Steve        | Actual_Hours | 113.10      | 109.50     | 3.60      | 3.18% 
+  101165 | Flores-Golfin, Felipe | Standard_Rev | 125,337.50  | 133,200.00 | 7,862.50  | 6.27% 
+  101528 | Podwol, Joseph        | Standard_Rev | 37,575.00   | 66,038.00  | 28,463.00 | 75.75%
+  101588 | Papich, Sarah         | Standard_Rev | 112,927.50  | 119,543.00 | 6,615.50  | 5.86% 
+  101591 | Jones, Nate           | Standard_Rev | 54,223.00   | 57,133.00  | 2,910.00  | 5.37% 
+  101749 | Tsai, Joanna          | Standard_Rev | 25,676.00   | 17,292.00  | 8,384.00  | 32.65%
+  101970 | Bednarek, Pawel       | Standard_Rev | 88,816.50   | 94,401.00  | 5,584.50  | 6.29% 
+  102164 | Smith, Dan            | Standard_Rev | 120,960.00  | 127,508.00 | 6,548.00  | 5.41% 
+  102271 | Wong, Kevin           | Standard_Rev | 75,563.00   | 79,007.00  | 3,444.00  | 4.56% 
+  5073   | McBride, Steve        | Standard_Rev | 134,023.50  | 129,758.00 | 4,265.50  | 3.18% 
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[LA] 
-[PASS] 'Month - CRLA (Monthly)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: August 2026 | Sheet: Month - CRLA (Monthly) | Run: 2026-09-17
+
+  MISSING ROWS:
+    [MISSING IN XLS] EmpNo=101664 | Name=nan
+
+  EmpNo  | Name                    | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+-------------------------+--------------+-------------+------------+-----------+-------
+  101716 | Medina-Cortina, Eduardo | Target_Hours | 159.60      | 114.00     | 45.60     | 28.57%
+  101716 | Medina-Cortina, Eduardo | Target_Rev   | 137,256.00  | 98,040.00  | 39,216.00 | 28.57%
+  101216 | Fu, Iris                | Actual_Hours | 142.00      | 153.10     | 11.10     | 7.82% 
+  101216 | Fu, Iris                | Standard_Rev | 131,350.00  | 141,618.00 | 10,268.00 | 7.82% 
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[NY] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: Month - CRNY (Monthly) | Run: 2026-09-03
+  Report: August 2026 | Sheet: Month - CRNY (Monthly) | Run: 2026-09-17
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101102 | Name=Nandwani, Gehna Rai
     [MISSING IN DB] EmpNo=101409 | Name=Trubnikova, Anna
+    [MISSING IN DB] EmpNo=101412 | Name=Martin, Shawn
     [MISSING IN XLS] EmpNo=101372 | Name=nan
     [MISSING IN XLS] EmpNo=102067 | Name=nan
     [MISSING IN XLS] EmpNo=102071 | Name=nan
     [MISSING IN XLS] EmpNo=102077 | Name=nan
 
-  EmpNo  | Name                | Column       | Util Report | DB        | Diff     | Diff%
-  -------+---------------------+--------------+-------------+-----------+----------+------
-  102079 | Solaeche, Guadalupe | Actual_Hours | 50.30       | 53.20     | 2.90     | 5.77%
-  102219 | Shah, Shriya        | Actual_Hours | 119.40      | 128.50    | 9.10     | 7.62%
-  102079 | Solaeche, Guadalupe | Standard_Rev | 21,880.50   | 23,142.00 | 1,261.50 | 5.77%
-  102219 | Shah, Shriya        | Standard_Rev | 51,939.00   | 55,898.00 | 3,959.00 | 7.62%
+  EmpNo  | Name                | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+---------------------+--------------+-------------+------------+-----------+-------
+  101788 | Rocafort, Roland    | Target_Hours | 142.00      | 134.00     | 8.00      | 5.63% 
+  4591   | Cao, Yan            | Target_Hours | 81.99       | 76.90      | 5.09      | 6.21% 
+  101788 | Rocafort, Roland    | Target_Rev   | 81,650.00   | 77,050.00  | 4,600.00  | 5.63% 
+  4591   | Cao, Yan            | Target_Rev   | 110,688.56  | 103,824.00 | 6,864.56  | 6.20% 
+  101424 | Goldberg, Benjamin  | Actual_Hours | 98.90       | 107.60     | 8.70      | 8.80% 
+  101915 | Kottou, Rafaela     | Actual_Hours | 138.30      | 143.20     | 4.90      | 3.54% 
+  102079 | Solaeche, Guadalupe | Actual_Hours | 50.30       | 53.20      | 2.90      | 5.77% 
+  102180 | Turchiano, Caprice  | Actual_Hours | 130.90      | 139.60     | 8.70      | 6.65% 
+  102219 | Shah, Shriya        | Actual_Hours | 119.40      | 130.40     | 11.00     | 9.21% 
+  102439 | Narayanan, Ananya   | Actual_Hours | 169.30      | 175.70     | 6.40      | 3.78% 
+  102461 | Kurczynski, Konrad  | Actual_Hours | 112.10      | 117.20     | 5.10      | 4.55% 
+  4692   | Schwartz, Allie     | Actual_Hours | 42.30       | 38.60      | 3.70      | 8.75% 
+  5224   | Travers, Brendan    | Actual_Hours | 157.40      | 169.10     | 11.70     | 7.43% 
+  6139   | Shang, Brandon      | Actual_Hours | 110.70      | 143.70     | 33.00     | 29.81%
+  101424 | Goldberg, Benjamin  | Standard_Rev | 60,823.50   | 66,174.00  | 5,350.50  | 8.80% 
+  101915 | Kottou, Rafaela     | Standard_Rev | 67,075.50   | 69,452.00  | 2,376.50  | 3.54% 
+  102079 | Solaeche, Guadalupe | Standard_Rev | 21,880.50   | 23,142.00  | 1,261.50  | 5.77% 
+  102180 | Turchiano, Caprice  | Standard_Rev | 56,941.50   | 60,726.00  | 3,784.50  | 6.65% 
+  102219 | Shah, Shriya        | Standard_Rev | 51,939.00   | 56,724.00  | 4,785.00  | 9.21% 
+  102439 | Narayanan, Ananya   | Standard_Rev | 73,645.50   | 76,430.00  | 2,784.50  | 3.78% 
+  102461 | Kurczynski, Konrad  | Standard_Rev | 48,763.50   | 50,982.00  | 2,218.50  | 4.55% 
+  4692   | Schwartz, Allie     | Standard_Rev | 53,509.50   | 48,829.00  | 4,680.50  | 8.75% 
+  5224   | Travers, Brendan    | Standard_Rev | 173,927.00  | 186,856.00 | 12,929.00 | 7.43% 
+  6139   | Shang, Brandon      | Standard_Rev | 116,788.50  | 151,604.00 | 34,815.50 | 29.81%
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SF] 
-[PASS] 'Month - CRSF (Monthly)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: August 2026 | Sheet: Month - CRSF (Monthly) | Run: 2026-09-17
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=102195 | Name=Strizik, Sari
+
+  EmpNo  | Name           | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+----------------+--------------+-------------+------------+-----------+-------
+  101347 | Piveteau, Paul | Actual_Hours | 159.50      | 167.80     | 8.30      | 5.20% 
+  101367 | Li, Angela     | Actual_Hours | 165.30      | 179.60     | 14.30     | 8.65% 
+  102163 | Elsyad, Dinan  | Actual_Hours | 170.80      | 197.00     | 26.20     | 15.34%
+  101347 | Piveteau, Paul | Standard_Rev | 168,272.50  | 177,029.00 | 8,756.50  | 5.20% 
+  101367 | Li, Angela     | Standard_Rev | 101,659.50  | 110,454.00 | 8,794.50  | 8.65% 
+  102163 | Elsyad, Dinan  | Standard_Rev | 74,298.00   | 85,695.00  | 11,397.00 | 15.34%
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SV] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: Month - CRSV (Monthly) | Run: 2026-09-03
+  Report: August 2026 | Sheet: Month - CRSV (Monthly) | Run: 2026-09-17
 
-  EmpNo  | Name       | Column       | Util Report | DB        | Diff     | Diff%
-  -------+------------+--------------+-------------+-----------+----------+------
-  101961 | Jang, Ryan | Actual_Hours | 114.60      | 123.00    | 8.40     | 7.33%
-  101961 | Jang, Ryan | Standard_Rev | 55,581.00   | 59,655.00 | 4,074.00 | 7.33%
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=102213 | Name=Lin, Sharon
+
+  EmpNo  | Name                 | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+----------------------+--------------+-------------+------------+-----------+-------
+  101615 | Wang, Yige           | Target_Hours | 160.00      | 152.00     | 8.00      | 5.00% 
+  101615 | Wang, Yige           | Target_Rev   | 92,000.00   | 87,400.00  | 4,600.00  | 5.00% 
+  101730 | Blair, Eric          | Actual_Hours | 192.10      | 218.60     | 26.50     | 13.79%
+  101961 | Jang, Ryan           | Actual_Hours | 114.60      | 123.00     | 8.40      | 7.33% 
+  102214 | Tran, Reese          | Actual_Hours | 171.10      | 182.30     | 11.20     | 6.55% 
+  6063   | Hu, Xiaoyuan         | Actual_Hours | 110.40      | 114.60     | 4.20      | 3.80% 
+  6180   | Pons Benaiges, Oriol | Actual_Hours | 169.00      | 181.00     | 12.00     | 7.10% 
+  101730 | Blair, Eric          | Standard_Rev | 110,457.50  | 125,695.00 | 15,237.50 | 13.79%
+  101961 | Jang, Ryan           | Standard_Rev | 55,581.00   | 59,655.00  | 4,074.00  | 7.33% 
+  102214 | Tran, Reese          | Standard_Rev | 74,428.50   | 79,301.00  | 4,872.50  | 6.55% 
+  6063   | Hu, Xiaoyuan         | Standard_Rev | 116,472.00  | 120,903.00 | 4,431.00  | 3.80% 
+  6180   | Pons Benaiges, Oriol | Standard_Rev | 178,295.00  | 190,955.00 | 12,660.00 | 7.10% 
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[EU-UK] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: August 2026 | Sheet: Month - CRUK (Monthly) | Run: 2026-09-03
+  Report: August 2026 | Sheet: Month - CRUK (Monthly) | Run: 2026-09-17
 
-  EmpNo  | Name                   | Column       | Util Report | DB         | Diff      | Diff%
-  -------+------------------------+--------------+-------------+------------+-----------+------
-  0543   | Bredendiek, Maximilian | Actual_Hours | 112.90      | 118.50     | 5.60      | 4.96%
-  101964 | Roketskiy, Nikita      | Actual_Hours | 90.80       | 98.00      | 7.20      | 7.93%
-  102337 | Williams, Ryan         | Actual_Hours | 147.50      | 158.50     | 11.00     | 7.46%
-  101964 | Roketskiy, Nikita      | Standard_Rev | 76,516.02   | 82,583.00  | 6,066.98  | 7.93%
-  102337 | Williams, Ryan         | Standard_Rev | 176,003.71  | 189,129.00 | 13,125.29 | 7.46%
+  EmpNo  | Name                   | Column       | Util Report | DB         | Diff      | Diff% 
+  -------+------------------------+--------------+-------------+------------+-----------+-------
+  0531   | Tilson, Hannah         | Target_Hours | 155.40      | 148.00     | 7.40      | 4.76% 
+  101350 | Colley, Liam           | Target_Hours | 58.98       | 53.80      | 5.18      | 8.78% 
+  102263 | Sanders, Max           | Target_Hours | 88.00       | 80.00      | 8.00      | 9.09% 
+  102287 | Matiyani, Tanay        | Target_Hours | 160.00      | 152.00     | 8.00      | 5.00% 
+  0531   | Tilson, Hannah         | Target_Rev   | 121,524.98  | 115,738.00 | 5,786.98  | 4.76% 
+  101350 | Colley, Liam           | Target_Rev   | 83,892.11   | 76,477.00  | 7,415.11  | 8.84% 
+  102263 | Sanders, Max           | Target_Rev   | 35,001.87   | 31,820.00  | 3,181.87  | 9.09% 
+  102287 | Matiyani, Tanay        | Target_Rev   | 63,639.76   | 60,458.00  | 3,181.76  | 5.00% 
+  0531   | Tilson, Hannah         | Actual_Hours | 74.90       | 68.70      | 6.20      | 8.28% 
+  0543   | Bredendiek, Maximilian | Actual_Hours | 112.90      | 123.60     | 10.70     | 9.48% 
+  101181 | Tanndal, Julia         | Actual_Hours | 113.40      | 102.60     | 10.80     | 9.52% 
+  101250 | Chhabra, Kanishka      | Actual_Hours | 129.50      | 113.50     | 16.00     | 12.36%
+  101607 | Harper, Ben            | Actual_Hours | 136.50      | 144.30     | 7.80      | 5.71% 
+  101611 | Wu, Jennifer           | Actual_Hours | 153.50      | 137.50     | 16.00     | 10.42%
+  101936 | Ranoszek, Stefan       | Actual_Hours | 109.90      | 92.80      | 17.10     | 15.56%
+  101958 | Uboldi, Lorenzo        | Actual_Hours | 47.60       | 54.60      | 7.00      | 14.71%
+  101964 | Roketskiy, Nikita      | Actual_Hours | 90.80       | 98.00      | 7.20      | 7.93% 
+  101969 | Swan, Andrew           | Actual_Hours | 61.50       | 69.50      | 8.00      | 13.01%
+  102337 | Williams, Ryan         | Actual_Hours | 147.50      | 158.50     | 11.00     | 7.46% 
+  0531   | Tilson, Hannah         | Standard_Rev | 58,572.85   | 53,724.00  | 4,848.85  | 8.28% 
+  0543   | Bredendiek, Maximilian | Standard_Rev | 118,733.99  | 124,098.00 | 5,364.01  | 4.52% 
+  101181 | Tanndal, Julia         | Standard_Rev | 102,441.14  | 92,685.00  | 9,756.14  | 9.52% 
+  101250 | Chhabra, Kanishka      | Standard_Rev | 75,953.11   | 66,569.00  | 9,384.11  | 12.36%
+  101607 | Harper, Ben            | Standard_Rev | 60,734.17   | 64,205.00  | 3,470.83  | 5.71% 
+  101611 | Wu, Jennifer           | Standard_Rev | 61,054.39   | 54,690.00  | 6,364.39  | 10.42%
+  101936 | Ranoszek, Stefan       | Standard_Rev | 48,898.80   | 41,290.00  | 7,608.80  | 15.56%
+  101958 | Uboldi, Lorenzo        | Standard_Rev | 21,179.10   | 24,294.00  | 3,114.90  | 14.71%
+  101964 | Roketskiy, Nikita      | Standard_Rev | 76,516.02   | 82,583.00  | 6,066.98  | 7.93% 
+  101969 | Swan, Andrew           | Standard_Rev | 79,189.03   | 89,490.00  | 10,300.97 | 13.01%
+  102337 | Williams, Ryan         | Standard_Rev | 176,003.71  | 189,129.00 | 13,125.29 | 7.46% 
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[EU-BE] 
-[PASS] 'Month - CRBE (Monthly)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: August 2026 | Sheet: Month - CRBE (Monthly) | Run: 2026-09-17
+
+  EmpNo  | Name                   | Column       | Util Report | DB        | Diff     | Diff% 
+  -------+------------------------+--------------+-------------+-----------+----------+-------
+  102375 | De Grazia, Américo     | Target_Hours | 128.00      | 120.00    | 8.00     | 6.25% 
+  102375 | De Grazia, Américo     | Target_Rev   | 55,680.00   | 52,200.00 | 3,480.00 | 6.25% 
+  102270 | Isasi Hernández, Laura | Actual_Hours | 26.50       | 31.70     | 5.20     | 19.62%
+  102270 | Isasi Hernández, Laura | Standard_Rev | 11,527.50   | 13,790.00 | 2,262.50 | 19.63%
+FAILED
 
 
 ================================== FAILURES ===================================
 _________________ test_db_comparison_employee_monthly[Boston] _________________
-tests\TeamworkDB\test_utilization_monthly.py:1066: in test_db_comparison_employee_monthly
+tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 7 error(s) found
+E   Failed: 30 error(s) found
 ________________ test_db_comparison_employee_monthly[Chicago] _________________
-tests\TeamworkDB\test_utilization_monthly.py:1066: in test_db_comparison_employee_monthly
+tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 9 error(s) found
+E   Failed: 48 error(s) found
 ___________________ test_db_comparison_employee_monthly[DC] ___________________
-tests\TeamworkDB\test_utilization_monthly.py:1066: in test_db_comparison_employee_monthly
+tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 8 error(s) found
-___________________ test_db_comparison_employee_monthly[NY] ___________________
-tests\TeamworkDB\test_utilization_monthly.py:1066: in test_db_comparison_employee_monthly
+E   Failed: 26 error(s) found
+___________________ test_db_comparison_employee_monthly[LA] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
-    pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 10 error(s) found
-___________________ test_db_comparison_employee_monthly[SV] ___________________
-tests\TeamworkDB\test_utilization_monthly.py:1066: in test_db_comparison_employee_monthly
-    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
-    pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 2 error(s) found
-_________________ test_db_comparison_employee_monthly[EU-UK] __________________
-tests\TeamworkDB\test_utilization_monthly.py:1066: in test_db_comparison_employee_monthly
-    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
-tests\TeamworkDB\test_utilization_monthly.py:973: in run_employee_comparison
+tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 5 error(s) found
+___________________ test_db_comparison_employee_monthly[NY] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
+    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 31 error(s) found
+___________________ test_db_comparison_employee_monthly[SF] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
+    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 7 error(s) found
+___________________ test_db_comparison_employee_monthly[SV] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
+    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 13 error(s) found
+_________________ test_db_comparison_employee_monthly[EU-UK] __________________
+tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
+    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 30 error(s) found
+_________________ test_db_comparison_employee_monthly[EU-BE] __________________
+tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
+    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 4 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Boston]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Chicago]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[DC]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[LA]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[NY]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SF]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SV]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[EU-UK]
-================= 6 failed, 3 passed, 50 deselected in 18.04s =================
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[EU-BE]
+====================== 9 failed, 58 deselected in 15.35s ======================
