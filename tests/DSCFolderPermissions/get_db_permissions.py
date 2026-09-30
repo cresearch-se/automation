@@ -55,7 +55,7 @@ def main():
         .str.upper()
         .unique()
     )
-    servers.sort()
+    servers = sorted(servers)
     SERVERS_FILE.write_text("\n".join(servers), encoding="utf-8")
     print(f"Servers list ({len(servers)}) saved to: {SERVERS_FILE}")
     for s in servers:
