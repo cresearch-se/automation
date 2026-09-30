@@ -122,17 +122,10 @@ foreach ($server in $Servers) {
 
     Write-Host "[$($serversDone + 1)/$totalServers] Scanning $server ..." -ForegroundColor Cyan
 
-    # Verify the server is reachable before trying to enumerate
-    if (-not (Test-Path $server -ErrorAction SilentlyContinue)) {
-        Write-Warning "  Cannot reach $server - skipping."
-        $serversSkipped++
-        continue
-    }
-
     $projectFolders = Get-ChildItem -Path $server -Directory -Filter "Projects*" -ErrorAction SilentlyContinue
 
     if (-not $projectFolders) {
-        Write-Warning "  No 'Projects*' folders found at $server - skipping."
+        Write-Warning "  No 'Projects*' folders found at $server - skipping (no access or no matching folders)."
         $serversSkipped++
         continue
     }
