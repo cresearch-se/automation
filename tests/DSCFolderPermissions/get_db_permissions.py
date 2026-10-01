@@ -23,7 +23,8 @@ from cornerstone_automation.utils.db_utils import get_db_connection_from_env, se
 
 OUTPUT_DIR   = Path(__file__).parent / "output"
 OUTPUT_FILE  = OUTPUT_DIR / "db_permissions.csv"
-SERVERS_FILE = OUTPUT_DIR / "servers.txt"
+SERVERS_FILE       = OUTPUT_DIR / "servers.txt"
+PROJECT_PATHS_FILE = OUTPUT_DIR / "project_paths.txt"
 
 SERVER   = os.getenv("DSC_DB_SERVER",   "SQLT4COSTAGDW")
 DATABASE = os.getenv("DSC_DB_DATABASE", "DSCCaseFolder")
@@ -60,6 +61,20 @@ def main():
     print(f"Servers list ({len(servers)}) saved to: {SERVERS_FILE}")
     for s in servers:
         print(f"  {s}")
+
+    # Extract distinct \\SERVER\ProjectsXXX paths (server + share/project level)
+    project_paths = (
+        df["FolderPath"]
+        .dropna()
+        .str.strip()
+        .str.extract(r'^(\\\\[^\\]+\\[^\\]+)', expand=False)
+        .dropna()
+        .str.upper()
+        .unique()
+    )
+    project_paths = sorted(project_paths)
+    PROJECT_PATHS_FILE.write_text("\n".join(project_paths), encoding="utf-8")
+    print(f"Project paths ({len(project_paths)}) saved to: {PROJECT_PATHS_FILE}")
 
 
 if __name__ == "__main__":

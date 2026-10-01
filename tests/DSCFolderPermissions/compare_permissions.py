@@ -46,11 +46,15 @@ def main():
     folder_df = pd.read_csv(FOLDER_PERMS_FILE, dtype=str).fillna("")
     db_df     = pd.read_csv(DB_PERMS_FILE,     dtype=str).fillna("")
 
-    # Only compare Case-level rows; skip inherited system entries (SYSTEM, Administrators, etc.)
-    folder_cases = folder_df[folder_df["FolderType"] == "Case"].copy()
-    folder_cases = folder_cases[folder_cases["IsInherited"] == "False"].copy()
+    # Separate NO_ACCESS rows — folders we couldn't read at all
+    no_access_df  = folder_df[folder_df["FolderType"] == "NO_ACCESS"].copy()
+    folder_cases  = folder_df[folder_df["FolderType"] == "Case"].copy()
+    folder_cases  = folder_cases[folder_cases["IsInherited"] == "False"].copy()
+
+    no_access_paths = set(normalise_path(r["FolderPath"]) for _, r in no_access_df.iterrows())
 
     print(f"Folder CSV (case, non-inherited) : {len(folder_cases)} rows")
+    print(f"Folder CSV (no access)           : {len(no_access_df)} folders")
     print(f"DB CSV                           : {len(db_df)} rows")
 
     # Build set: (normalised_path, normalised_group)
@@ -72,12 +76,20 @@ def main():
 
     # In DB but not in Windows
     for path, group in db_set - windows_set:
-        results.append({
-            "DiffType":    "MISSING_IN_WINDOWS",
-            "FolderPath":  path,
-            "GroupName":   group,
-            "Detail":      "DB has this group for the folder but Windows ACL does not",
-        })
+        if path in no_access_paths:
+            results.append({
+                "DiffType":  "NO_ACCESS",
+                "FolderPath": path,
+                "GroupName":  group,
+                "Detail":    "No access to server/folder - Windows ACL could not be read, verification skipped",
+            })
+        else:
+            results.append({
+                "DiffType":    "MISSING_IN_WINDOWS",
+                "FolderPath":  path,
+                "GroupName":   group,
+                "Detail":      "DB has this group for the folder but Windows ACL does not",
+            })
 
     # In Windows but not in DB
     for path, group in windows_set - db_set:
@@ -94,13 +106,22 @@ def main():
     print("\n=== Comparison Summary ===")
     print(f"  MISSING_IN_WINDOWS : {counts.get('MISSING_IN_WINDOWS', 0)}")
     print(f"  MISSING_IN_DB      : {counts.get('MISSING_IN_DB', 0)}")
+    print(f"  NO_ACCESS          : {counts.get('NO_ACCESS', 0)}  (could not verify - insufficient permissions)")
     print(f"  TOTAL DIFFS        : {len(report_df)}")
     if report_df.empty:
         print("  All permissions match!")
 
+    print("""
+NOTE: This report is DB-driven — it only checks folders the DB knows about.
+  - MISSING_IN_WINDOWS / NO_ACCESS / RIGHTS_MISMATCH are reliable findings.
+  - MISSING_IN_DB cannot be detected: folders that exist on the file server
+    but are not in the DB are invisible without admin-level share enumeration.
+    Please check with the team if admin access can be provided to cover this gap.
+""")
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     report_df.to_csv(REPORT_FILE, index=False, encoding="utf-8")
-    print(f"\nReport saved to: {REPORT_FILE}")
+    print(f"Report saved to: {REPORT_FILE}")
 
 
 if __name__ == "__main__":
