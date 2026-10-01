@@ -21,30 +21,39 @@ load_dotenv(REPO_ROOT / "config" / "db.env")
 sys.path.insert(0, str(REPO_ROOT / "src"))
 from cornerstone_automation.utils.db_utils import get_db_connection_from_env, select_query
 
-OUTPUT_DIR   = Path(__file__).parent / "output"
-OUTPUT_FILE  = OUTPUT_DIR / "db_permissions.csv"
-SERVERS_FILE       = OUTPUT_DIR / "servers.txt"
-PROJECT_PATHS_FILE = OUTPUT_DIR / "project_paths.txt"
+OUTPUT_DIR              = Path(__file__).parent / "output"
+OUTPUT_FILE             = OUTPUT_DIR / "db_permissions.csv"
+SERVERS_FILE            = OUTPUT_DIR / "servers.txt"
+PROJECT_PATHS_FILE      = OUTPUT_DIR / "project_paths.txt"
+IGNORED_PRINCIPALS_FILE = OUTPUT_DIR / "ignored_principals.csv"
 
 SERVER   = os.getenv("DSC_DB_SERVER",   "SQLT4COSTAGDW")
 DATABASE = os.getenv("DSC_DB_DATABASE", "DSCCaseFolder")
 
-QUERY = "SELECT * FROM [vw_lan_CaseFolderAccessUsers]"
+QUERY          = "SELECT * FROM [vw_lan_CaseFolderAccessUsers]"
+IGNORED_QUERY  = "SELECT PrincipalName FROM [Lan_IgnoredPrincipal] WHERE IsActive = 1"
 
 
 def main():
     print(f"Connecting to {SERVER} / {DATABASE} ...")
     conn = get_db_connection_from_env(SERVER, DATABASE, trusted_connection=True)
 
-    print("Running query ...")
+    print("Running permissions query ...")
     df = select_query(conn, QUERY, as_dataframe=True)
+
+    print("Running ignored principals query ...")
+    ignored_df = select_query(conn, IGNORED_QUERY, as_dataframe=True)
     conn.close()
 
-    print(f"Query returned {len(df)} rows")
+    print(f"Permissions query returned {len(df)} rows")
+    print(f"Ignored principals: {len(ignored_df)} entries")
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     df.to_csv(OUTPUT_FILE, index=False, encoding="utf-8")
     print(f"Saved to: {OUTPUT_FILE}")
+
+    ignored_df.to_csv(IGNORED_PRINCIPALS_FILE, index=False, encoding="utf-8")
+    print(f"Ignored principals saved to: {IGNORED_PRINCIPALS_FILE}")
 
     # Extract distinct servers from FolderPath (e.g. \\CRCHFS1\Projects...) -> \\CRCHFS1
     servers = (
