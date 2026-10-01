@@ -20,10 +20,14 @@ Run from the repo root:
 from pathlib import Path
 import pandas as pd
 
-OUTPUT_DIR        = Path(__file__).parent / "output"
-FOLDER_PERMS_FILE = OUTPUT_DIR / "folder_permissions.csv"
-DB_PERMS_FILE     = OUTPUT_DIR / "db_permissions.csv"
-REPORT_FILE       = OUTPUT_DIR / "comparison_report.csv"
+OUTPUT_DIR              = Path(__file__).parent / "output"
+FOLDER_PERMS_FILE       = OUTPUT_DIR / "folder_permissions.csv"
+DB_PERMS_FILE           = OUTPUT_DIR / "db_permissions.csv"
+IGNORED_PRINCIPALS_FILE = OUTPUT_DIR / "ignored_principals.csv"
+REPORT_FILE             = OUTPUT_DIR / "comparison_report.csv"
+
+# Groups always ignored regardless of Lan_IgnoredPrincipal table content
+HARDCODED_IGNORED = {"CASEFOLDERADMINS"}
 
 
 def strip_domain(identity: str) -> str:
@@ -43,8 +47,12 @@ def main():
                 "Run Get-FolderPermissions.ps1 and get_db_permissions.py first."
             )
 
-    folder_df = pd.read_csv(FOLDER_PERMS_FILE, dtype=str).fillna("")
-    db_df     = pd.read_csv(DB_PERMS_FILE,     dtype=str).fillna("")
+    folder_df  = pd.read_csv(FOLDER_PERMS_FILE,       dtype=str).fillna("")
+    db_df      = pd.read_csv(DB_PERMS_FILE,           dtype=str).fillna("")
+    ignored_df = pd.read_csv(IGNORED_PRINCIPALS_FILE, dtype=str).fillna("") \
+                 if IGNORED_PRINCIPALS_FILE.exists() else pd.DataFrame(columns=["PrincipalName"])
+
+    ignored_set = set(ignored_df["PrincipalName"].apply(lambda x: strip_domain(str(x))))
 
     # Separate NO_ACCESS rows — folders we couldn't read at all
     no_access_df  = folder_df[folder_df["FolderType"] == "NO_ACCESS"].copy()
@@ -93,12 +101,27 @@ def main():
 
     # In Windows but not in DB
     for path, group in windows_set - db_set:
-        results.append({
-            "DiffType":    "MISSING_IN_DB",
-            "FolderPath":  path,
-            "GroupName":   group,
-            "Detail":      "Windows ACL has this group for the folder but DB does not",
-        })
+        if group in ignored_set or group in HARDCODED_IGNORED:
+            results.append({
+                "DiffType":  "IGNORED",
+                "FolderPath": path,
+                "GroupName":  group,
+                "Detail":    "Group is in Lan_IgnoredPrincipal — excluded from validation",
+            })
+        elif group.startswith("PROJECTS"):
+            results.append({
+                "DiffType":  "IGNORED",
+                "FolderPath": path,
+                "GroupName":  group,
+                "Detail":    "AD group starting with 'Projects' — filtered by DB view, excluded from validation",
+            })
+        else:
+            results.append({
+                "DiffType":    "MISSING_IN_DB",
+                "FolderPath":  path,
+                "GroupName":   group,
+                "Detail":      "Windows ACL has this group for the folder but DB does not",
+            })
 
     report_df = pd.DataFrame(results).sort_values(["DiffType", "FolderPath"])
 
@@ -107,17 +130,11 @@ def main():
     print(f"  MISSING_IN_WINDOWS : {counts.get('MISSING_IN_WINDOWS', 0)}")
     print(f"  MISSING_IN_DB      : {counts.get('MISSING_IN_DB', 0)}")
     print(f"  NO_ACCESS          : {counts.get('NO_ACCESS', 0)}  (could not verify - insufficient permissions)")
+    print(f"  IGNORED            : {counts.get('IGNORED', 0)}  (in Lan_IgnoredPrincipal - excluded from validation)")
     print(f"  TOTAL DIFFS        : {len(report_df)}")
     if report_df.empty:
         print("  All permissions match!")
 
-    print("""
-NOTE: This report is DB-driven — it only checks folders the DB knows about.
-  - MISSING_IN_WINDOWS / NO_ACCESS / RIGHTS_MISMATCH are reliable findings.
-  - MISSING_IN_DB cannot be detected: folders that exist on the file server
-    but are not in the DB are invisible without admin-level share enumeration.
-    Please check with the team if admin access can be provided to cover this gap.
-""")
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     report_df.to_csv(REPORT_FILE, index=False, encoding="utf-8")

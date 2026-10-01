@@ -18,8 +18,6 @@ Validates that Windows NTFS folder permissions on DSC case folders match what is
 | `MISSING_IN_DB` | Windows ACL has a group for a folder but DB has no record of it |
 | `NO_ACCESS` | Could not read Windows ACL — no access to that server/folder, verification skipped |
 
-> **Known limitation:** `MISSING_IN_DB` detection requires admin-level access to enumerate all shares on each file server. Without that, only folders the DB already knows about can be verified. Please check with the team if admin access can be provided to cover this gap.
-
 ---
 
 ## Folder Structure
@@ -55,7 +53,8 @@ tests/DSCFolderPermissions/
 ### For Step 2 (PowerShell script — run from any Windows machine with file server access)
 - PowerShell 5.1 or later (built-in on Windows 10 / Server 2016+)
 - Network access to the DSC file servers (`\\CRCHFS1`, `\\CRNYFS2`, etc.)
-- No extra modules or admin rights required — read access to case folders is enough
+- A service/admin account with access to enumerate all file server shares (provided by the dev team)
+- The script will prompt for username and password when it starts
 
 ---
 
@@ -71,8 +70,8 @@ python tests/DSCFolderPermissions/get_db_permissions.py
 
 **Output files generated in `output/`:**
 - `db_permissions.csv` — full permissions data from the DB
-- `servers.txt` — list of distinct file servers
-- `project_paths.txt` — list of all `\\SERVER\ProjectsXXX` paths (used by Step 2)
+- `servers.txt` — list of distinct file servers (used by Step 2)
+- `project_paths.txt` — list of `\\SERVER\ProjectsXXX` paths (fallback if no service account)
 
 ---
 
@@ -81,7 +80,7 @@ python tests/DSCFolderPermissions/get_db_permissions.py
 > Run this on a machine that has network access to the DSC file servers.
 
 Copy these two files to that machine:
-- `tests/DSCFolderPermissions/output/project_paths.txt`
+- `tests/DSCFolderPermissions/output/servers.txt`
 - `tests/DSCFolderPermissions/scripts/Get-FolderPermissions.ps1`
 
 Place both files in the same folder, then run:
@@ -90,7 +89,7 @@ Place both files in the same folder, then run:
 powershell -ExecutionPolicy Bypass -File .\Get-FolderPermissions.ps1
 ```
 
-The script reads `project_paths.txt` automatically and scans each project share for case folder ACLs.
+The script will prompt for the service account username and password, then scan all servers in `servers.txt`, enumerating every `Projects*` share and its case folders.
 
 **Output file generated:**
 - `folder_permissions.csv` — Windows ACL entries for all accessible case folders
