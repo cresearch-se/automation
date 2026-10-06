@@ -8,13 +8,15 @@ collecting ... collected 67 items / 64 deselected / 3 selected
 tests/TeamworkDB/test_utilization_monthly.py::test_terminated_employees_with_hours_appear_in_ytd_report Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
-  Terminated employees correctly present in SP output (4):
+  Terminated employees correctly present in SP output (6):
     [OK] EmpNo=4786 | Name=Michael Lindh | Office=CRDC | TerminationDate=2026-06-29 | YTD_Hrs=828.7
+    [OK] EmpNo=5252 | Name=Jean-Philippe Poissant | Office=CRLA | TerminationDate=2026-09-23 | YTD_Hrs=1714.2
     [OK] EmpNo=6158 | Name=Ashley Vissing | Office=CRCH | TerminationDate=2026-06-29 | YTD_Hrs=1335.3
     [OK] EmpNo=6245 | Name=Simona Mola Yost | Office=CRDC | TerminationDate=2026-01-22 | YTD_Hrs=143.8
+    [OK] EmpNo=6291 | Name=Fernando Miguel Pinto Martins | Office=CRB | TerminationDate=2026-09-14 | YTD_Hrs=1499.2
     [OK] EmpNo=6390 | Name=Juliana Zhao | Office=CRNY | TerminationDate=2026-04-02 | YTD_Hrs=533.0
 
-[PASS] All 4 terminated employee(s) with YTD hours are present in the SP output.
+[PASS] All 6 terminated employee(s) with YTD hours are present in the SP output.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_monthly Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
@@ -24,11 +26,11 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
 [DEBUG] Rows containing 5905:
     Office_Code Rank_title  Rank_sort                                               Title EMPLOYEE_CODE          EMPLOYEE_NAME VA_Target_Hrs TargetRev Actual_hrs Actual_Amount
-724      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina         111.7   125,744      114.5       128,908
+758      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina           136   153,862      130.3       147,414
 
-  Employees correctly present in monthly SP output (220/220)
+  Employees correctly present in monthly SP output (223/223)
 
-[PASS] All 220 in-scope employee(s) from Workday roster are correctly present in monthly SP output with correct office and title.
+[PASS] All 223 in-scope employee(s) from Workday roster are correctly present in monthly SP output with correct office and title.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
@@ -36,10 +38,10 @@ tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd Conne
 [DEBUG] SP columns: ['Office_Code', 'Rank_title', 'Rank_sort', 'Title', 'EMPLOYEE_CODE', 'EMPLOYEE_NAME', 'VA_Target_Hrs', 'TargetRev', 'Actual_hrs', 'Actual_Amount']
 
 [DEBUG] Rows containing 5905:
-    Office_Code Rank_title  Rank_sort                                               Title EMPLOYEE_CODE          EMPLOYEE_NAME VA_Target_Hrs  TargetRev Actual_hrs Actual_Amount
-978      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina       1,060.8  1,192,255    1,056.9     1,184,921
+     Office_Code Rank_title  Rank_sort                                               Title EMPLOYEE_CODE          EMPLOYEE_NAME VA_Target_Hrs  TargetRev Actual_hrs Actual_Amount
+1021      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina       1,196.8  1,346,118    1,187.2     1,332,335
 
-  Employees correctly present in YTD SP output (203/225)
+  Employees correctly present in YTD SP output (206/228)
 
   WRONG TITLE IN YTD REPORT (22):
     [WRONG TITLE] EmpNo=5369 | Name=Vijeta Graham | Expected_Title=Principal | Actual_SP_Title=Senior Manager | Actual_Group=Manager | Workday_Level=P1 | Workday_JobTitle=Principal
@@ -74,4 +76,4 @@ tests\TeamworkDB\test_utilization_monthly.py:1591: in test_roster_completeness_y
 E   Failed: 22 issue(s) found in YTD roster: 0 missing, 0 wrong office, 22 wrong title.
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd
-================= 1 failed, 2 passed, 64 deselected in 31.05s =================
+================= 1 failed, 2 passed, 64 deselected in 36.60s =================

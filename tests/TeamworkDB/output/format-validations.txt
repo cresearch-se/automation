@@ -13,8 +13,8 @@ tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_locatio
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_Monthly] 	
-  [MISSING TITLE] Brussels — Associate-1st Yr
-  [WRONG ORDER] Brussels — expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']
+  [ZERO VALUE] Brussels — Associate-1st Yr — Actual_Hours is zero
+  [ZERO VALUE] Brussels — Associate-1st Yr — Standard_Rev is zero
   [ZERO VALUE] Brussels — Analyst-1st Yr — Actual_Hours is zero
   [ZERO VALUE] Brussels — Analyst-1st Yr — Standard_Rev is zero
   [ZERO VALUE] London — Analyst-1st Yr — Actual_Hours is zero
@@ -34,8 +34,8 @@ tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_locatio
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD] 	
-  [MISSING TITLE] Brussels — Associate-1st Yr
-  [WRONG ORDER] Brussels — expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']
+  [ZERO VALUE] Brussels — Associate-1st Yr — Actual_Hours is zero
+  [ZERO VALUE] Brussels — Associate-1st Yr — Standard_Rev is zero
   [ZERO VALUE] London — Analyst-1st Yr — Actual_Hours is zero
   [ZERO VALUE] London — Analyst-1st Yr — Standard_Rev is zero
 FAILED
@@ -45,15 +45,15 @@ tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_locatio
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[US_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202608_US'.
+[PASS] All subtotals and grand total verified correctly for '202609_US'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[EU_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202608_Europe'.
+[PASS] All subtotals and grand total verified correctly for '202609_Europe'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[Total_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202608_Total'.
+[PASS] All subtotals and grand total verified correctly for '202609_Total'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[US_Utilization_YTD] 
@@ -260,4 +260,4 @@ FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_Monthly]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_YTD]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD]
-================ 5 failed, 37 passed, 25 deselected in 17.79s =================
+================ 5 failed, 37 passed, 25 deselected in 22.60s =================
