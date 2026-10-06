@@ -1,10 +1,14 @@
 # -*- coding: latin-1 -*-
 
-import os
+import os, sys
 import re
 import json
 import argparse
 from typing import Dict, List
+
+# Force UTF-8 output on Windows so special characters in names (e.g. ö, é) don't crash the console
+if sys.stdout.encoding and sys.stdout.encoding.lower() != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 # Run this using: py .\test_folderPermissions.py
 # run this from code folder as: py .\tests\ShareHoldersApp\test_folderPermissions.py
@@ -182,8 +186,8 @@ def test_parse_and_print_folder_permissions(role_to_permissions: Dict[str, List[
         path_parts = folder_path.split('/')
         
         if len(path_parts) >= 4:
-            extracted_position = path_parts[2].strip() 
-            raw_name_component = path_parts[3].strip()
+            extracted_position = path_parts[5].strip() 
+            raw_name_component = path_parts[6].strip()
             extracted_name = raw_name_component.split('_')[0].strip()
 
            

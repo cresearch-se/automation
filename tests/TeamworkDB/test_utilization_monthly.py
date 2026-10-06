@@ -15,7 +15,7 @@ from cornerstone_automation.sqls.loader import load_query
 # ==========================================
 # CHANGE ONLY THIS LINE EACH MONTH
 # ==========================================
-FIXTURE_FILE  = "tests/TeamworkDB/fixtures/Utilization_202608.xlsx"
+FIXTURE_FILE  = "tests/TeamworkDB/fixtures/Utilization_202609.xlsx"
 
 # Derived automatically from the filename — no other changes needed
 REPORT_MONTH  = os.path.basename(FIXTURE_FILE).replace("Utilization_", "").replace(".xlsx", "")  # e.g. "202602"
