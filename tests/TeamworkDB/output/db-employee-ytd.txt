@@ -11,8 +11,6 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Bo
   Report: October 2026 | Sheet: YTD - CRB  (YTD) | Run: 2026-11-03
 
   MISSING ROWS:
-    [MISSING IN DB] EmpNo=100997 | Name=Huang, Catelyn
-    [MISSING IN DB] EmpNo=102105 | Name=Sangpisit, Rinnara
     [MISSING IN XLS] EmpNo=102091 | Name=nan
 
   EmpNo  | Name                    | Column       | Util Report  | DB           | Diff         | Diff% 
@@ -216,9 +214,7 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[Ch
   Report: October 2026 | Sheet: YTD - CRCH (YTD) | Run: 2026-11-03
 
   MISSING ROWS:
-    [MISSING IN DB] EmpNo=101854 | Name=Abiakalam Chinagorom, Diamond
     [MISSING IN DB] EmpNo=102197 | Name=Cross, Harrison
-    [MISSING IN XLS] EmpNo=101097 | Name=nan
 
   EmpNo  | Name                     | Column       | Util Report  | DB           | Diff         | Diff% 
   -------+--------------------------+--------------+--------------+--------------+--------------+-------
@@ -493,7 +489,6 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[DC
   Report: October 2026 | Sheet: YTD - CRDC (YTD) | Run: 2026-11-03
 
   MISSING ROWS:
-    [MISSING IN DB] EmpNo=102076 | Name=Wilson, Katie
     [MISSING IN DB] EmpNo=102126 | Name=Wong, Kyle
 
   EmpNo  | Name                    | Column       | Util Report  | DB           | Diff         | Diff% 
@@ -713,7 +708,6 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[LA
   Report: October 2026 | Sheet: YTD - CRLA (YTD) | Run: 2026-11-03
 
   MISSING ROWS:
-    [MISSING IN DB] EmpNo=101712 | Name=Stevens, Cameron
     [MISSING IN XLS] EmpNo=101412 | Name=nan
     [MISSING IN XLS] EmpNo=102126 | Name=nan
 
@@ -838,13 +832,9 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY
   Report: October 2026 | Sheet: YTD - CRNY (YTD) | Run: 2026-11-03
 
   MISSING ROWS:
-    [MISSING IN DB] EmpNo=101097 | Name=Bauer-Mitterlehner, Helena
     [MISSING IN DB] EmpNo=101412 | Name=Martin, Shawn
     [MISSING IN DB] EmpNo=102091 | Name=Shahrabi, Mahdi
-    [MISSING IN XLS] EmpNo=100997 | Name=nan
     [MISSING IN XLS] EmpNo=101468 | Name=nan
-    [MISSING IN XLS] EmpNo=101712 | Name=nan
-    [MISSING IN XLS] EmpNo=101712 | Name=nan
 
   EmpNo  | Name                  | Column       | Util Report  | DB           | Diff         | Diff% 
   -------+-----------------------+--------------+--------------+--------------+--------------+-------
@@ -892,6 +882,8 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY
   101700 | Moreno, Valentina     | Target_Hours | 1,632.00     | 976.00       | 656.00       | 40.20%
   101708 | Lakkis, Emil          | Target_Hours | 1,446.70     | 603.10       | 843.60       | 58.31%
   101708 | Lakkis, Emil          | Target_Hours | 1,446.70     | 843.60       | 603.10       | 41.69%
+  101712 | Stevens, Cameron      | Target_Hours | 1,562.00     | 630.00       | 932.00       | 59.67%
+  101712 | Stevens, Cameron      | Target_Hours | 1,562.00     | 932.00       | 630.00       | 40.33%
   101714 | Sharpe, Colin         | Target_Hours | 1,476.40     | 629.00       | 847.40       | 57.40%
   101714 | Sharpe, Colin         | Target_Hours | 1,476.40     | 847.40       | 629.00       | 42.60%
   101723 | Yao, Iris             | Target_Hours | 1,497.00     | 569.80       | 927.20       | 61.94%
@@ -960,6 +952,8 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY
   101700 | Moreno, Valentina     | Target_Rev   | 938,400.00   | 561,200.00   | 377,200.00   | 40.20%
   101708 | Lakkis, Emil          | Target_Rev   | 1,244,162.00 | 518,666.00   | 725,496.00   | 58.31%
   101708 | Lakkis, Emil          | Target_Rev   | 1,244,162.00 | 725,496.00   | 518,666.00   | 41.69%
+  101712 | Stevens, Cameron      | Target_Rev   | 898,150.00   | 362,250.00   | 535,900.00   | 59.67%
+  101712 | Stevens, Cameron      | Target_Rev   | 898,150.00   | 535,900.00   | 362,250.00   | 40.33%
   101714 | Sharpe, Colin         | Target_Rev   | 1,269,704.00 | 540,940.00   | 728,764.00   | 57.40%
   101714 | Sharpe, Colin         | Target_Rev   | 1,269,704.00 | 728,764.00   | 540,940.00   | 42.60%
   101723 | Yao, Iris             | Target_Rev   | 1,287,420.00 | 490,028.00   | 797,392.00   | 61.94%
@@ -1028,6 +1022,8 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY
   101700 | Moreno, Valentina     | Actual_Hours | 1,107.90     | 572.30       | 535.60       | 48.34%
   101708 | Lakkis, Emil          | Actual_Hours | 1,410.40     | 610.70       | 799.70       | 56.70%
   101708 | Lakkis, Emil          | Actual_Hours | 1,410.40     | 799.70       | 610.70       | 43.30%
+  101712 | Stevens, Cameron      | Actual_Hours | 1,370.00     | 539.20       | 830.80       | 60.64%
+  101712 | Stevens, Cameron      | Actual_Hours | 1,370.00     | 830.80       | 539.20       | 39.36%
   101714 | Sharpe, Colin         | Actual_Hours | 1,819.30     | 718.00       | 1,101.30     | 60.53%
   101714 | Sharpe, Colin         | Actual_Hours | 1,819.30     | 1,101.30     | 718.00       | 39.47%
   101723 | Yao, Iris             | Actual_Hours | 1,490.40     | 546.30       | 944.10       | 63.35%
@@ -1096,6 +1092,8 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[NY
   101700 | Moreno, Valentina     | Standard_Rev | 637,042.50   | 329,073.00   | 307,969.50   | 48.34%
   101708 | Lakkis, Emil          | Standard_Rev | 1,212,944.00 | 525,202.00   | 687,742.00   | 56.70%
   101708 | Lakkis, Emil          | Standard_Rev | 1,212,944.00 | 687,742.00   | 525,202.00   | 43.30%
+  101712 | Stevens, Cameron      | Standard_Rev | 787,750.00   | 310,040.00   | 477,710.00   | 60.64%
+  101712 | Stevens, Cameron      | Standard_Rev | 787,750.00   | 477,710.00   | 310,040.00   | 39.36%
   101714 | Sharpe, Colin         | Standard_Rev | 1,564,598.00 | 617,480.00   | 947,118.00   | 60.53%
   101714 | Sharpe, Colin         | Standard_Rev | 1,564,598.00 | 947,118.00   | 617,480.00   | 39.47%
   101723 | Yao, Iris             | Standard_Rev | 1,281,744.00 | 469,818.00   | 811,926.00   | 63.35%
@@ -1128,7 +1126,6 @@ tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SF
 
   MISSING ROWS:
     [MISSING IN DB] EmpNo=101468 | Name=Sim, Casey
-    [MISSING IN XLS] EmpNo=102076 | Name=nan
     [MISSING IN XLS] EmpNo=102197 | Name=nan
 
   EmpNo  | Name               | Column       | Util Report  | DB           | Diff         | Diff% 
@@ -1243,9 +1240,6 @@ FAILED
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV] 
   UTILIZATION QA — VALUE MISMATCHES
   Report: October 2026 | Sheet: YTD - CRSV (YTD) | Run: 2026-11-03
-
-  MISSING ROWS:
-    [MISSING IN XLS] EmpNo=102105 | Name=nan
 
   EmpNo  | Name                | Column       | Util Report  | DB         | Diff       | Diff% 
   -------+---------------------+--------------+--------------+------------+------------+-------
@@ -1530,43 +1524,43 @@ tests\TeamworkDB\test_utilization_monthly.py:1232: in test_db_comparison_employe
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 195 error(s) found
+E   Failed: 193 error(s) found
 __________________ test_db_comparison_employee_ytd[Chicago] ___________________
 tests\TeamworkDB\test_utilization_monthly.py:1232: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 267 error(s) found
+E   Failed: 265 error(s) found
 _____________________ test_db_comparison_employee_ytd[DC] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:1232: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 210 error(s) found
+E   Failed: 209 error(s) found
 _____________________ test_db_comparison_employee_ytd[LA] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:1232: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 115 error(s) found
+E   Failed: 114 error(s) found
 _____________________ test_db_comparison_employee_ytd[NY] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:1232: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 279 error(s) found
+E   Failed: 283 error(s) found
 _____________________ test_db_comparison_employee_ytd[SF] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:1232: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 108 error(s) found
+E   Failed: 107 error(s) found
 _____________________ test_db_comparison_employee_ytd[SV] _____________________
 tests\TeamworkDB\test_utilization_monthly.py:1232: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 89 error(s) found
+E   Failed: 88 error(s) found
 ___________________ test_db_comparison_employee_ytd[EU-UK] ____________________
 tests\TeamworkDB\test_utilization_monthly.py:1232: in test_db_comparison_employee_ytd
     run_employee_comparison(df_excel, df_db, f"{loc['ytd_sheet']} (YTD)", tolerance=3.0)
@@ -1589,4 +1583,4 @@ FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[SV]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-UK]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_ytd[EU-BE]
-====================== 9 failed, 58 deselected in 26.12s ======================
+====================== 9 failed, 58 deselected in 25.21s ======================
