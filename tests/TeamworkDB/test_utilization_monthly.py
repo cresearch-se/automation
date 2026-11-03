@@ -15,7 +15,7 @@ from cornerstone_automation.sqls.loader import load_query
 # ==========================================
 # CHANGE ONLY THIS LINE EACH MONTH
 # ==========================================
-FIXTURE_FILE  = "tests/TeamworkDB/fixtures/Utilization_202609.xlsx"
+FIXTURE_FILE  = "tests/TeamworkDB/fixtures/Utilization_202610.xlsx"
 
 # Derived automatically from the filename — no other changes needed
 REPORT_MONTH  = os.path.basename(FIXTURE_FILE).replace("Utilization_", "").replace(".xlsx", "")  # e.g. "202602"
@@ -1785,7 +1785,7 @@ def _run_cross_sheet_check(comparisons, period_label, header_row=1):
                     f"Diff={diff:,.2f} | "
                     f"Diff%={pct_diff:.2f}%"
                 )
-        
+
         if not any(label in e for e in errors):
             print(f"    [OK] {label} — all columns match")
 
@@ -2353,6 +2353,6 @@ def test_ytd_hours_greater_than_or_equal_to_monthly():
             f"\n[PASS] All employees have YTD values greater than or "
             f"equal to their monthly values."
         )
-        
+
 if __name__ == "__main__":
     pytest.main([__file__])
