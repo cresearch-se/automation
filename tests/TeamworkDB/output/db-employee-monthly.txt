@@ -1,5 +1,5 @@
 ============================= test session starts =============================
-platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikarumuri\AppData\Local\Programs\Python\Python313\python.exe
+platform win32 -- Python 3.13.15, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\sowjikarumuri\AppData\Local\Programs\Python\Python313\python.exe
 cachedir: .pytest_cache
 rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
@@ -8,67 +8,70 @@ collecting ... collected 67 items / 58 deselected / 9 selected
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Boston] Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: September 2026 | Sheet: Month - CRB  (Monthly) | Run: 2026-10-02
+  Report: October 2026 | Sheet: Month - CRB  (Monthly) | Run: 2026-11-03
 
   MISSING ROWS:
-    [MISSING IN DB] EmpNo=101566 | Name=New-Schmidt, Addie
-    [MISSING IN DB] EmpNo=102056 | Name=Bond, Griffin
-    [MISSING IN DB] EmpNo=102071 | Name=Hsu, Caroline
+    [MISSING IN DB] EmpNo=100997 | Name=Huang, Catelyn
+    [MISSING IN DB] EmpNo=102105 | Name=Sangpisit, Rinnara
+    [MISSING IN XLS] EmpNo=102091 | Name=nan
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Chicago] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: September 2026 | Sheet: Month - CRCH (Monthly) | Run: 2026-10-02
+  Report: October 2026 | Sheet: Month - CRCH (Monthly) | Run: 2026-11-03
 
   MISSING ROWS:
-    [MISSING IN DB] EmpNo=102084 | Name=Shao, Grace
-    [MISSING IN DB] EmpNo=102086 | Name=King, Ling
-    [MISSING IN DB] EmpNo=102106 | Name=Ghuneim, Roaya
-    [MISSING IN DB] EmpNo=6321 | Name=Chai, Fong
-    [MISSING IN XLS] EmpNo=101102 | Name=nan
+    [MISSING IN DB] EmpNo=101854 | Name=Abiakalam Chinagorom, Diamond
+    [MISSING IN DB] EmpNo=102197 | Name=Cross, Harrison
+    [MISSING IN XLS] EmpNo=101097 | Name=nan
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[DC] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: September 2026 | Sheet: Month - CRDC (Monthly) | Run: 2026-10-02
+  Report: October 2026 | Sheet: Month - CRDC (Monthly) | Run: 2026-11-03
 
   MISSING ROWS:
-    [MISSING IN DB] EmpNo=101576 | Name=Shah, Kavi
-    [MISSING IN DB] EmpNo=102067 | Name=Gould, Naomi
-    [MISSING IN XLS] EmpNo=102056 | Name=nan
+    [MISSING IN DB] EmpNo=102076 | Name=Wilson, Katie
+    [MISSING IN DB] EmpNo=102126 | Name=Wong, Kyle
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[LA] 
-[PASS] 'Month - CRLA (Monthly)' matches database.
-PASSED
+  UTILIZATION QA — VALUE MISMATCHES
+  Report: October 2026 | Sheet: Month - CRLA (Monthly) | Run: 2026-11-03
+
+  MISSING ROWS:
+    [MISSING IN DB] EmpNo=101712 | Name=Stevens, Cameron
+    [MISSING IN XLS] EmpNo=101412 | Name=nan
+    [MISSING IN XLS] EmpNo=102126 | Name=nan
+FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[NY] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: September 2026 | Sheet: Month - CRNY (Monthly) | Run: 2026-10-02
+  Report: October 2026 | Sheet: Month - CRNY (Monthly) | Run: 2026-11-03
 
   MISSING ROWS:
-    [MISSING IN DB] EmpNo=101102 | Name=Nandwani, Gehna Rai
-    [MISSING IN XLS] EmpNo=101576 | Name=nan
-    [MISSING IN XLS] EmpNo=102067 | Name=nan
-    [MISSING IN XLS] EmpNo=102071 | Name=nan
-    [MISSING IN XLS] EmpNo=102084 | Name=nan
-    [MISSING IN XLS] EmpNo=102086 | Name=nan
+    [MISSING IN DB] EmpNo=101097 | Name=Bauer-Mitterlehner, Helena
+    [MISSING IN DB] EmpNo=101412 | Name=Martin, Shawn
+    [MISSING IN DB] EmpNo=102091 | Name=Shahrabi, Mahdi
+    [MISSING IN XLS] EmpNo=100997 | Name=nan
+    [MISSING IN XLS] EmpNo=101712 | Name=nan
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SF] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: September 2026 | Sheet: Month - CRSF (Monthly) | Run: 2026-10-02
+  Report: October 2026 | Sheet: Month - CRSF (Monthly) | Run: 2026-11-03
 
   MISSING ROWS:
-    [MISSING IN XLS] EmpNo=101566 | Name=nan
+    [MISSING IN XLS] EmpNo=102076 | Name=nan
+    [MISSING IN XLS] EmpNo=102197 | Name=nan
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SV] 
   UTILIZATION QA — VALUE MISMATCHES
-  Report: September 2026 | Sheet: Month - CRSV (Monthly) | Run: 2026-10-02
+  Report: October 2026 | Sheet: Month - CRSV (Monthly) | Run: 2026-11-03
 
   MISSING ROWS:
-    [MISSING IN XLS] EmpNo=6321 | Name=nan
+    [MISSING IN XLS] EmpNo=102105 | Name=nan
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[EU-UK] 
@@ -92,8 +95,14 @@ tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employe
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 5 error(s) found
+E   Failed: 3 error(s) found
 ___________________ test_db_comparison_employee_monthly[DC] ___________________
+tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
+    run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
+tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
+    pytest.fail(f"{len(errors)} error(s) found")
+E   Failed: 2 error(s) found
+___________________ test_db_comparison_employee_monthly[LA] ___________________
 tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
@@ -104,13 +113,13 @@ tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employe
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 6 error(s) found
+E   Failed: 5 error(s) found
 ___________________ test_db_comparison_employee_monthly[SF] ___________________
 tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
 tests\TeamworkDB\test_utilization_monthly.py:1120: in run_employee_comparison
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 1 error(s) found
+E   Failed: 2 error(s) found
 ___________________ test_db_comparison_employee_monthly[SV] ___________________
 tests\TeamworkDB\test_utilization_monthly.py:1213: in test_db_comparison_employee_monthly
     run_employee_comparison(df_excel, df_db, f"{loc['monthly_sheet']} (Monthly)", tolerance=3.0)
@@ -121,7 +130,8 @@ E   Failed: 1 error(s) found
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Boston]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[Chicago]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[DC]
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[LA]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[NY]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SF]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_db_comparison_employee_monthly[SV]
-================= 6 failed, 3 passed, 58 deselected in 18.16s =================
+================= 7 failed, 2 passed, 58 deselected in 16.42s =================

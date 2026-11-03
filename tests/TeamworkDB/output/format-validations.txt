@@ -1,5 +1,5 @@
 ============================= test session starts =============================
-platform win32 -- Python 3.13.5, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sowjikarumuri\AppData\Local\Programs\Python\Python313\python.exe
+platform win32 -- Python 3.13.15, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\sowjikarumuri\AppData\Local\Programs\Python\Python313\python.exe
 cachedir: .pytest_cache
 rootdir: C:\Users\sowjikarumuri\Documents\Code
 configfile: pyproject.toml
@@ -8,36 +8,25 @@ collecting ... collected 67 items / 25 deselected / 42 selected
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_Monthly] 	
   [MISSING TITLE] CRSV — Associate-1st Yr
   [WRONG ORDER] CRSV — expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']
-  [ZERO VALUE] CRSF — Associate-1st Yr — Actual_Hours is zero
-  [ZERO VALUE] CRSF — Associate-1st Yr — Standard_Rev is zero
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_Monthly] 	
   [ZERO VALUE] Brussels — Associate-1st Yr — Actual_Hours is zero
   [ZERO VALUE] Brussels — Associate-1st Yr — Standard_Rev is zero
-  [ZERO VALUE] Brussels — Analyst-1st Yr — Actual_Hours is zero
-  [ZERO VALUE] Brussels — Analyst-1st Yr — Standard_Rev is zero
-  [ZERO VALUE] London — Analyst-1st Yr — Actual_Hours is zero
-  [ZERO VALUE] London — Analyst-1st Yr — Standard_Rev is zero
 FAILED
 
-tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_Monthly] 	
-  [ZERO VALUE] Europe — Analyst-1st Yr — Actual_Hours is zero
-  [ZERO VALUE] Europe — Analyst-1st Yr — Standard_Rev is zero
-FAILED
+tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_Monthly] 
+[PASS] All 3 offices and all 9 titles are present as expected, and no blank or zero values found.
+PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_YTD] 	
   [MISSING TITLE] CRSV — Associate-1st Yr
   [WRONG ORDER] CRSV — expected ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate-1st Yr', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst'] but got ['Officer', 'Principal', 'Manager', 'Associate-Exp', 'Associate', 'Analyst-Exp', 'Analyst-1st Yr', 'Analyst']
-  [ZERO VALUE] CRSF — Associate-1st Yr — Actual_Hours is zero
-  [ZERO VALUE] CRSF — Associate-1st Yr — Standard_Rev is zero
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD] 	
   [ZERO VALUE] Brussels — Associate-1st Yr — Actual_Hours is zero
   [ZERO VALUE] Brussels — Associate-1st Yr — Standard_Rev is zero
-  [ZERO VALUE] London — Analyst-1st Yr — Actual_Hours is zero
-  [ZERO VALUE] London — Analyst-1st Yr — Standard_Rev is zero
 FAILED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_YTD] 
@@ -45,15 +34,15 @@ tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_locatio
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[US_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202609_US'.
+[PASS] All subtotals and grand total verified correctly for '202610_US'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[EU_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202609_Europe'.
+[PASS] All subtotals and grand total verified correctly for '202610_Europe'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[Total_Utilization_Monthly] 
-[PASS] All subtotals and grand total verified correctly for '202609_Total'.
+[PASS] All subtotals and grand total verified correctly for '202610_Total'.
 PASSED
 
 tests/TeamworkDB/test_utilization_monthly.py::test_totals_validation_by_location[US_Utilization_YTD] 
@@ -237,27 +226,22 @@ PASSED
 _________ test_format_validations_by_location[US_Utilization_Monthly] _________
 tests\TeamworkDB\test_utilization_monthly.py:820: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 4 error(s) found
+E   Failed: 2 error(s) found
 _________ test_format_validations_by_location[EU_Utilization_Monthly] _________
-tests\TeamworkDB\test_utilization_monthly.py:820: in test_format_validations_by_location
-    pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 6 error(s) found
-_______ test_format_validations_by_location[Total_Utilization_Monthly] ________
 tests\TeamworkDB\test_utilization_monthly.py:820: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
 E   Failed: 2 error(s) found
 ___________ test_format_validations_by_location[US_Utilization_YTD] ___________
 tests\TeamworkDB\test_utilization_monthly.py:820: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 4 error(s) found
+E   Failed: 2 error(s) found
 ___________ test_format_validations_by_location[EU_Utilization_YTD] ___________
 tests\TeamworkDB\test_utilization_monthly.py:820: in test_format_validations_by_location
     pytest.fail(f"{len(errors)} error(s) found")
-E   Failed: 4 error(s) found
+E   Failed: 2 error(s) found
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_Monthly]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_Monthly]
-FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[Total_Utilization_Monthly]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_YTD]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD]
-================ 5 failed, 37 passed, 25 deselected in 22.60s =================
+================ 4 failed, 38 passed, 25 deselected in 23.01s =================
