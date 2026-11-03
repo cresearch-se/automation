@@ -244,4 +244,4 @@ FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_Monthly]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[US_Utilization_YTD]
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_format_validations_by_location[EU_Utilization_YTD]
-================ 4 failed, 38 passed, 25 deselected in 27.91s =================
+================ 4 failed, 38 passed, 25 deselected in 23.66s =================

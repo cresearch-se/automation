@@ -76,4 +76,4 @@ tests\TeamworkDB\test_utilization_monthly.py:1591: in test_roster_completeness_y
 E   Failed: 22 issue(s) found in YTD roster: 0 missing, 0 wrong office, 22 wrong title.
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd
-================= 1 failed, 2 passed, 64 deselected in 32.47s =================
+================= 1 failed, 2 passed, 64 deselected in 31.40s =================
