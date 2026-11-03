@@ -26,7 +26,7 @@ Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
 
 [DEBUG] Rows containing 5905:
     Office_Code Rank_title  Rank_sort                                               Title EMPLOYEE_CODE          EMPLOYEE_NAME VA_Target_Hrs TargetRev Actual_hrs Actual_Amount
-765      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina         132.6   146,860      114.6       126,925
+764      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina         132.6   146,860      114.6       126,925
 
   Employees correctly present in monthly SP output (222/222)
 
@@ -39,7 +39,7 @@ tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd Conne
 
 [DEBUG] Rows containing 5905:
      Office_Code Rank_title  Rank_sort                                               Title EMPLOYEE_CODE          EMPLOYEE_NAME VA_Target_Hrs  TargetRev Actual_hrs Actual_Amount
-1049      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina       1,329.4  1,492,978    1,319.4     1,479,171
+1048      Europe  Principal          2  P3UK                                                      5905    Zafeiridou, Christina       1,329.4  1,492,978    1,319.4     1,479,171
 
   Employees correctly present in YTD SP output (207/229)
 
@@ -76,4 +76,4 @@ tests\TeamworkDB\test_utilization_monthly.py:1591: in test_roster_completeness_y
 E   Failed: 22 issue(s) found in YTD roster: 0 missing, 0 wrong office, 22 wrong title.
 =========================== short test summary info ===========================
 FAILED tests/TeamworkDB/test_utilization_monthly.py::test_roster_completeness_ytd
-================= 1 failed, 2 passed, 64 deselected in 36.52s =================
+================= 1 failed, 2 passed, 64 deselected in 32.47s =================
