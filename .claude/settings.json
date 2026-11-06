@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(head -20)",
+      "PowerShell(git branch -d july-validations gcc-collab-permissions gcc-sp-permission 2>&1)",
+      "PowerShell(git push origin --delete july-validations gcc-collab-permissions gcc-sp-permission gcc-permissions 2>&1)"
+    ]
+  }
+}
