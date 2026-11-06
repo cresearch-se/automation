@@ -49,6 +49,33 @@ ILLEGAL_XML_CHARS = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f]")
 
 
 # ---------------------------------------------------------------- HTTP
+class NotJsonError(RuntimeError):
+    """Server returned HTML instead of JSON (login page, error page, ...)."""
+
+
+def describe_html(r):
+    """Save the HTML response and summarise it so the cause is visible."""
+    os.makedirs(os.path.join(HERE, "output"), exist_ok=True)
+    path = os.path.join(HERE, "output", "last_response.html")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(r.text)
+    title = re.search(r"<title[^>]*>(.*?)</title>", r.text, re.I | re.S)
+    text = re.sub(r"<(script|style).*?</\1>", " ", r.text, flags=re.I | re.S)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    redirects = " -> ".join(f"{h.status_code} {h.url}" for h in r.history) or "none"
+    return (
+        "Server returned HTML instead of JSON.\n"
+        f"  HTTP status     : {r.status_code}\n"
+        f"  final URL       : {r.url}\n"
+        f"  redirects       : {redirects}\n"
+        f"  page title      : {title.group(1).strip() if title else '(none)'}\n"
+        f"  visible text    : {text[:300]!r}\n"
+        f"  full page saved : {path}\n"
+        "  Likely cause: not logged in (missing/expired cookie), or the request body/headers are wrong."
+    )
+
+
 def build_session(args):
     s = requests.Session()
     s.verify = not args.insecure
@@ -62,7 +89,11 @@ def build_session(args):
         s.auth = HttpNtlmAuth(user, pwd)
     else:
         cookie = os.getenv("FP_COOKIE") or getpass.getpass("Cookie header value: ")
-        s.headers["Cookie"] = cookie.strip()
+        cookie = cookie.strip()
+        if cookie.lower().startswith("cookie:"):
+            cookie = cookie[7:].strip()
+        print(f"Cookie received: {len(cookie)} characters" + ("  <-- EMPTY!" if not cookie else ""))
+        s.headers["Cookie"] = cookie
     for h in args.header or []:
         name, _, value = h.partition(":")
         s.headers[name.strip()] = value.strip()
@@ -75,7 +106,9 @@ def read_body():
               "The server will probably return nothing useful.")
         return ""
     with open(BODY_FILE, "r", encoding="utf-8") as f:
-        return f.read().strip()
+        body = f.read().strip()
+    print(f"Request body loaded: {len(body)} characters" + ("  <-- EMPTY!" if not body else ""))
+    return body
 
 
 def fetch_page(session, args, body, page, limit):
@@ -95,9 +128,11 @@ def fetch_page(session, args, body, page, limit):
             try:
                 return r.json()
             except ValueError:
-                snippet = r.text[:200].replace("\n", " ")
-                raise RuntimeError(
-                    f"Response is not JSON (login page / auth problem?). Starts with: {snippet!r}")
+                raise NotJsonError(describe_html(r))
+        except NotJsonError:
+            raise  # login/error page: retrying will not help
+        except requests.exceptions.SSLError as e:
+            raise RuntimeError(f"SSL certificate problem - re-run with --insecure. ({e})")
         except Exception as e:  # noqa: BLE001 - retry on anything, report the last one
             last_err = e
             wait = 2 ** attempt
