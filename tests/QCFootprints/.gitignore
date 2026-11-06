@@ -1,0 +1,4 @@
+# Raw API pages and extracted data contain ticket bodies / emails / employee info - do not commit
+output/
+fixtures/*.xlsx
+request_body.txt
