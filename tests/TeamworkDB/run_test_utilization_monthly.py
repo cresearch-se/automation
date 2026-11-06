@@ -70,12 +70,20 @@ TEST_GROUPS = [
             "test_roster_completeness_ytd"
         ),
         "output_file": OUTPUT_DIR / "employee-validations.txt"
+    },
+    {
+        "name": "Office Transfer Detection",
+        "filter": (
+            "test_office_transfers_flagged_in_ytd or "
+            "test_transferred_employees_appear_in_current_office_ytd"
+        ),
+        "output_file": OUTPUT_DIR / "office-transfer-detection.txt"
     }
 ]
 
 
 # Column definitions for bucketed report sections
-MISSING_COLS      = ["Type", "EmpNo", "Name"]
+MISSING_COLS      = ["Type", "EmpNo", "Name", "Detail"]
 FORMAT_ERROR_COLS = ["Type", "Detail"]
 
 
@@ -125,12 +133,26 @@ def parse_output_file(filepath: Path | str) -> dict[str, Any]:
     other_errors   = []   # [{"sheet": str, "rows": [{"Type", "Detail"}]}]
     pass_summaries = []
 
+    # Canonical sheet name map — collapse duplicate labels into one
+    SHEET_CANONICAL = {
+        "Boston":   "Month - CRB  (Monthly)",
+        "Chicago":  "Month - CRCH (Monthly)",
+        "DC":       "Month - CRDC (Monthly)",
+        "LA":       "Month - CRLA (Monthly)",
+        "NY":       "Month - CRNY (Monthly)",
+        "SF":       "Month - CRSF (Monthly)",
+        "SV":       "Month - CRSV (Monthly)",
+        "Brussels": "Month - CRBE (Monthly)",
+        "London":   "Month - CRUK (Monthly)",
+    }
+
     def _missing_sheet_bucket(sheet):
         """Return existing bucket for sheet or create a new one."""
+        canonical = SHEET_CANONICAL.get(sheet, sheet)
         for b in missing_tables:
-            if b["sheet"] == sheet:
+            if b["sheet"] == canonical:
                 return b
-        bucket = {"sheet": sheet, "rows": []}
+        bucket = {"sheet": canonical, "rows": []}
         missing_tables.append(bucket)
         return bucket
 
@@ -227,7 +249,8 @@ def parse_output_file(filepath: Path | str) -> dict[str, Any]:
             "[MISSING GRAND TOTAL", "[MISSING FROM", "[WRONG OFFICE]", "[WRONG TITLE]",
             "[CROSS-SHEET", "[CR MISMATCH]",
             "[ASSOCIATE ROLLUP MISMATCH]", "[ANALYST ROLLUP MISMATCH]",
-            "[EMPLOYEE IN MULTIPLE OFFICES]", "[YTD LESS THAN MONTHLY]"
+            "[EMPLOYEE IN MULTIPLE OFFICES]", "[YTD LESS THAN MONTHLY]", "[TRANSFERRED EMPLOYEE MISSING]",
+            "[TRANSFERRED EMPLOYEE WRONG OFFICE]"
         ]):
             m_type = re.match(r'\[([^\]]+)\]\s*(.*)', line)
             err_type   = m_type.group(1) if m_type else ""
@@ -251,6 +274,96 @@ def parse_output_file(filepath: Path | str) -> dict[str, Any]:
     }
 
 
+def detect_wrong_office(parsed: dict[str, Any]) -> dict[str, Any]:
+    """
+    Post-processes missing rows to detect wrong office cases.
+
+    If the same EmpNo appears as:
+      MISSING IN DB  in sheet A  → employee is in Excel under A but DB says wrong office
+      MISSING IN XLS in sheet B  → DB has them under B but Excel doesn't show them there
+
+    → Replace both entries with one clear [WRONG OFFICE] row.
+
+    Employees that only appear in one category (no cross-match) are kept
+    as genuine MISSING IN DB or MISSING IN XLS rows.
+    """
+    missing = parsed.get("missing", [])
+
+    # Build lookup: EmpNo → list of {type, sheet, name}
+    emp_seen = {}
+    for bucket in missing:
+        for row in bucket["rows"]:
+            emp = row.get("EmpNo", "").strip()
+            if not emp:
+                continue
+            if emp not in emp_seen:
+                emp_seen[emp] = []
+            emp_seen[emp].append({
+                "type":  row.get("Type", ""),
+                "sheet": bucket["sheet"],
+                "name":  row.get("Name", "")
+            })
+
+    # Find employees with both MISSING IN DB and MISSING IN XLS
+    wrong_office_rows = []
+    matched_empnos    = set()
+
+    for emp, entries in emp_seen.items():
+        db_entries  = [e for e in entries if "MISSING IN DB"  in e["type"]]
+        xls_entries = [e for e in entries if "MISSING IN XLS" in e["type"]]
+
+        if db_entries and xls_entries:
+            matched_empnos.add(emp)
+            for db_e in db_entries:
+                for xls_e in xls_entries:
+                    wrong_office_rows.append({
+                        "Type":   "WRONG OFFICE",
+                        "EmpNo":  emp,
+                        "Name":   db_e["name"] or xls_e["name"],
+                        "Detail": (
+                            f"Found in Excel: {db_e['sheet']} | "
+                            f"Should be in: {xls_e['sheet']} | "
+                            f"Action: Move employee to correct office sheet"
+                        )
+                    })
+
+    # Rebuild missing — remove matched empnos and deduplicate by EmpNo per bucket
+    seen_buckets = {}  # sheet_key → set of EmpNos already added
+    new_missing  = []
+    for bucket in missing:
+        sheet_key   = bucket["sheet"]
+        seen_empnos = seen_buckets.setdefault(sheet_key, set())
+        new_rows    = []
+        for row in bucket["rows"]:
+            emp = row.get("EmpNo", "").strip()
+            if emp in matched_empnos:
+                continue  # already shown as WRONG OFFICE
+            if emp in seen_empnos:
+                continue  # duplicate from second parse pass
+            seen_empnos.add(emp)
+            new_rows.append(row)
+        if new_rows:
+            new_missing.append({"sheet": sheet_key, "rows": new_rows})
+
+    # Deduplicate wrong office rows — keep unique EmpNo + Detail combos
+    seen_combos  = set()
+    deduped_rows = []
+    for row in wrong_office_rows:
+        key = (row["EmpNo"], row["Detail"])
+        if key not in seen_combos:
+            seen_combos.add(key)
+            deduped_rows.append(row)
+
+    if deduped_rows:
+        new_missing.insert(0, {
+            "sheet": "Wrong Office Employees",
+            "rows":  deduped_rows
+        })
+
+    parsed["missing"] = new_missing
+    return parsed
+
+
 def parse_all_groups() -> list[dict[str, Any]]:
     """Parse all output files and attach group name to each result."""
     results = []
@@ -260,7 +373,8 @@ def parse_all_groups() -> list[dict[str, Any]]:
                              "mismatches": [], "missing": [], "other_errors": [],
                              "error": "Output file not found"})
             continue
-        parsed       = parse_output_file(group["output_file"])
+        parsed         = parse_output_file(group["output_file"])
+        parsed         = detect_wrong_office(parsed)
         parsed["name"] = group["name"]
         results.append(parsed)
     return results

@@ -1340,16 +1340,6 @@ def _run_roster_check(roster_rows, sp_detail_df, label):
 
     Returns tuple of (errors, warnings) lists.
     """
-
-    # DEBUG — check columns and find 5905
-    print(f"\n[DEBUG] SP columns: {list(sp_detail_df.columns)}")
-    matches = sp_detail_df[
-        sp_detail_df.apply(
-            lambda row: '5905' in str(row.values), axis=1
-        )
-    ]
-    print(f"\n[DEBUG] Rows containing 5905:\n{matches.to_string()}")
-
     # Build lookup: EmpNo → {office, title} from SP output
 
     sp_lookup = {}
@@ -2352,6 +2342,175 @@ def test_ytd_hours_greater_than_or_equal_to_monthly():
         print(
             f"\n[PASS] All employees have YTD values greater than or "
             f"equal to their monthly values."
+        )
+
+# ==========================================
+# OFFICE TRANSFER TESTS
+# ==========================================
+
+def test_office_transfers_flagged_in_ytd():
+    """
+    Detects employees who transferred offices during the YTD period
+    and warns about them.
+
+    The SP intentionally rolls ALL YTD hours to the employee's CURRENT
+    office (from HBM_PERSNL). This means:
+      - The old office loses credit for hours worked there before transfer
+      - The new office gains credit for those hours
+      - Users looking at the old office sheet will see the employee missing
+
+    Dev confirmed this is INTENDED behavior — employees should appear
+    under their current office only.
+
+    This test does NOT fail — it warns so the report team can
+    proactively communicate office transfers to stakeholders.
+    """
+    conn = get_db_connection_from_env(
+        DB_SERVER, DB_DATABASE, trusted_connection=True
+    )
+    try:
+        sql = load_query("office_transfers", "office_transfers_ytd")
+        rows = conn.execute(
+            sql,
+            (f"{REPORT_YEAR}-01-01", YTD_END)
+        ).fetchall()
+    finally:
+        conn.close()
+
+    if not rows:
+        print("\n[PASS] No office transfers detected in YTD period.")
+        return
+
+    print(
+        f"\n[INFO] {len(rows)} employee(s) transferred offices "
+        f"during {REPORT_YEAR} YTD period."
+    )
+    print(
+        f"  Their YTD hours are reported under their CURRENT office "
+        f"per SP design. Hours worked in old office are NOT shown "
+        f"under that office.\n"
+    )
+
+    header = (
+        f"  {'EmpNo':<10} {'Name':<30} "
+        f"{'Old Office':<12} {'New Office':<12} "
+        f"{'Hrs in Old Office':>18}"
+    )
+    print(header)
+    print("  " + "-" * len(header.strip()))
+
+    for row in rows:
+        emp_code       = str(row[0]).strip()
+        emp_name       = str(row[1])
+        current_office = str(row[2]).strip()
+        old_office     = str(row[3]).strip()
+        hrs_old        = round(float(row[7]), 2)
+        print(
+            f"  {emp_code:<10} {emp_name:<30} "
+            f"{old_office:<12} {current_office:<12} "
+            f"{hrs_old:>18.2f}"
+        )
+
+    print(
+        f"\n  [INFO] This is intended SP behavior per dev confirmation. "
+        f"No action required unless business rules change."
+    )
+    # Does NOT fail — this is by design
+
+
+def test_transferred_employees_appear_in_current_office_ytd(db_detail_ytd):
+    """
+    For employees who transferred offices during the YTD period,
+    verifies that they DO appear in the SP Detail output under their
+    CURRENT office.
+
+    Dev confirmed: employees should appear under current office only.
+    This test ensures transferred employees are not completely lost
+    from the report — they must appear somewhere.
+
+    Complements test_office_transfers_flagged_in_ytd.
+    """
+    conn = get_db_connection_from_env(
+        DB_SERVER, DB_DATABASE, trusted_connection=True
+    )
+    try:
+        sql = load_query("office_transfers", "office_transfers_ytd")
+        rows = conn.execute(
+            sql,
+            (f"{REPORT_YEAR}-01-01", YTD_END)
+        ).fetchall()
+    finally:
+        conn.close()
+
+    if not rows:
+        print("\n[PASS] No office transfers to verify.")
+        return
+
+    # Build lookup: EmpNo → Office_Code from SP output
+    sp_emp_office = {}
+    for _, row in db_detail_ytd.iterrows():
+        emp = str(row.get('EMPLOYEE_CODE', '')).split('.')[0].strip()
+        if emp and emp != 'nan':
+            sp_emp_office[emp] = str(
+                row.get('Office_Code', '')
+            ).strip()
+
+    errors   = []
+    warnings = []
+
+    for row in rows:
+        emp_code       = str(row[0]).strip()
+        emp_name       = str(row[1])
+        current_office = str(row[2]).strip()
+        old_office     = str(row[3]).strip()
+
+        if emp_code not in sp_emp_office:
+            errors.append(
+                f"[TRANSFERRED EMPLOYEE MISSING] "
+                f"EmpNo={emp_code} | Name={emp_name} | "
+                f"Transferred: {old_office} → {current_office} | "
+                f"Not found in SP output at all"
+            )
+        else:
+            actual_office = sp_emp_office[emp_code]
+            if actual_office != current_office:
+                errors.append(
+                    f"[TRANSFERRED EMPLOYEE WRONG OFFICE] "
+                    f"EmpNo={emp_code} | Name={emp_name} | "
+                    f"Expected_Current_Office={current_office} | "
+                    f"Actual_Office_In_SP={actual_office} | "
+                    f"Old_Office={old_office}"
+                )
+            else:
+                warnings.append(
+                    f"[OK] EmpNo={emp_code} | Name={emp_name} | "
+                    f"Transferred: {old_office} → {current_office} | "
+                    f"Correctly appears under {actual_office}"
+                )
+
+    if warnings:
+        print(
+            f"\n  Transferred employees correctly in current office "
+            f"({len(warnings)}):"
+        )
+        for w in warnings:
+            print(f"    {w}")
+
+    if errors:
+        print(
+            f"\n  TRANSFERRED EMPLOYEES NOT IN CURRENT OFFICE "
+            f"({len(errors)}):"
+        )
+        for e in errors:
+            print(f"    {e}")
+        pytest.fail(
+            f"{len(errors)} transferred employee(s) are either missing "
+            f"or in the wrong office in SP output."
+        )
+    else:
+        print(
+            f"\n[PASS] All {len(rows)} transferred employee(s) correctly "
+            f"appear under their current office in SP output."
         )
 
 if __name__ == "__main__":
