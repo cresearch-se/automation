@@ -11,7 +11,8 @@ Run on the LOCAL machine (the app is not reachable from the dev server), from th
 
 Inputs (all in tests/QCFootprints/):
     request_body.txt   raw POST body copied from the browser (DevTools > Network > the "run" request > Payload)
-    column_names.json  OPTIONAL JSON list of column names, in rowValues order. Without it: Col_01, Col_02, ...
+    column_names.json  OPTIONAL override list of column names, in rowValues order.
+                       Without it, names come from the response's own 'columns' list.
 
 Auth (--auth):
     ntlm   (default) FP_USERNAME / FP_PASSWORD from config/footprints.env (or prompted if not set)
@@ -143,8 +144,36 @@ def fetch_page(session, args, body, page, limit):
 
 # ---------------------------------------------------------------- parsing
 def get_blocks(payload):
-    data = payload.get("data")
+    # Server uses "pageData" (older/other responses used "data")
+    data = payload.get("pageData") or payload.get("data")
     return data if isinstance(data, list) else []
+
+
+NAME_KEYS = ("name", "label", "displayName", "header", "title", "text", "fieldName", "dataIndex", "caption")
+
+
+def get_columns(payload):
+    """Column names from the response's 'columns' list, or None if they can't be worked out."""
+    blocks = get_blocks(payload)
+    cols = blocks[0].get("columns") if blocks else None
+    if not cols:
+        return None
+    names = []
+    for i, c in enumerate(cols):
+        name = None
+        if isinstance(c, dict):
+            for k in NAME_KEYS:
+                if c.get(k):
+                    name = str(c[k]).strip()
+                    break
+        names.append(name or f"Col_{i + 1:02d}")
+    # make names unique (Excel/pandas get confused by duplicates)
+    seen = {}
+    for i, n in enumerate(names):
+        seen[n] = seen.get(n, 0) + 1
+        if seen[n] > 1:
+            names[i] = f"{n}_{seen[n]}"
+    return names
 
 
 def get_rows(payload):
@@ -155,8 +184,9 @@ def get_rows(payload):
 
 
 def get_total(payload):
-    if payload.get("total") is not None:
-        return int(payload["total"])
+    for key in ("totalCount", "total"):
+        if payload.get(key) is not None:
+            return int(payload[key])
     blocks = get_blocks(payload)
     return int(blocks[0]["total"]) if blocks and "total" in blocks[0] else None
 
@@ -210,6 +240,16 @@ def probe(session, args, body):
         print(f"values per row           : {len(rows[0].get('rowValues', []))}")
     print("\n--- response structure (row data omitted) ---")
     outline(payload)
+    blocks = get_blocks(payload)
+    cols = blocks[0].get("columns") if blocks else None
+    if cols:
+        print("\n--- first 2 column definitions (full) ---")
+        for c in cols[:2]:
+            print(json.dumps(c, ensure_ascii=False))
+        print("\n--- column names the script will use (rowValues order) ---")
+        for i, n in enumerate(get_columns(payload) or []):
+            print(f"  {i + 1:>2}. {n}")
+        print("\n(Names like Col_NN mean the name key was not recognised - send me the 2 definitions above.)")
 
 
 def extract(session, args, body):
@@ -265,7 +305,10 @@ def build_excel(total, pages, limit):
 
     df = pd.DataFrame(records)
     value_cols = [c for c in df.columns if isinstance(c, int)]
-    names = load_column_names()
+    names = load_column_names()  # manual override file wins
+    if not names:
+        with open(os.path.join(RAW_DIR, "page_001.json"), "r", encoding="utf-8") as f:
+            names = get_columns(json.load(f))
     rename = {}
     for c in value_cols:
         rename[c] = names[c] if names and c < len(names) else f"Col_{c + 1:02d}"
