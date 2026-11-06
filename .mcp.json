@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "sql-util-dw": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": ["/c", "C:\\Users\\Skarumuriadmin\\.claude\\plugins\\utilization-sql\\scripts\\start-dab.cmd"]
+    }
+  }
+}
