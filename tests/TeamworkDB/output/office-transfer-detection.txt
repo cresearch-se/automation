@@ -1,0 +1,28 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.15, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\sowjikarumuri\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\sowjikarumuri\Documents\Code
+configfile: pyproject.toml
+collecting ... collected 69 items / 67 deselected / 2 selected
+
+tests/TeamworkDB/test_utilization_monthly.py::test_office_transfers_flagged_in_ytd Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+FAILED
+
+tests/TeamworkDB/test_utilization_monthly.py::test_transferred_employees_appear_in_current_office_ytd Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+Connected to SQL Server database 'ReportDevl' on server 'SQLT1COFIN'
+FAILED
+
+
+================================== FAILURES ===================================
+____________________ test_office_transfers_flagged_in_ytd _____________________
+tests\TeamworkDB\test_utilization_monthly.py:2373: in test_office_transfers_flagged_in_ytd
+    rows = conn.execute(
+E   pyodbc.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'Employee_Type_Code'. (207) (SQLExecDirectW); [42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'Employee_Type_Code'. (207); [42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'Employee_Type_Code'. (207); [42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'Employee_Type_Code'. (207); [42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared. (8180)")
+___________ test_transferred_employees_appear_in_current_office_ytd ___________
+tests\TeamworkDB\test_utilization_monthly.py:2438: in test_transferred_employees_appear_in_current_office_ytd
+    rows = conn.execute(
+E   pyodbc.ProgrammingError: ('42S22', "[42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'Employee_Type_Code'. (207) (SQLExecDirectW); [42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'Employee_Type_Code'. (207); [42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'Employee_Type_Code'. (207); [42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid column name 'Employee_Type_Code'. (207); [42S22] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Statement(s) could not be prepared. (8180)")
+=========================== short test summary info ===========================
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_office_transfers_flagged_in_ytd
+FAILED tests/TeamworkDB/test_utilization_monthly.py::test_transferred_employees_appear_in_current_office_ytd
+====================== 2 failed, 67 deselected in 23.92s ======================
