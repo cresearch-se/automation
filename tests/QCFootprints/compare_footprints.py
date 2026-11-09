@@ -22,12 +22,14 @@ Rules applied
     * Blanks: '', 'NULL', None, NaN are all treated as blank.
     * Tickets in the DB export but not in the app (and vice versa) are reported as MISSING.
 
-Output: tests/QCFootprints/output/qc_footprints_report_<YYYYMMDD_HHMMSS>.xlsx
+Output: tests/QCFootprints/output/qc_footprints_report_<YYYYMMDD_HHMMSS>.xlsx   (every run, not tracked)
+        tests/QCFootprints/reports/qc_footprints_report_latest.xlsx             (full runs only, tracked in git)
 """
 import argparse
 import glob
 import os
 import re
+import shutil
 import sys
 import time
 import unicodedata
@@ -37,6 +39,7 @@ import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 FIXTURES_DIR = os.path.join(HERE, "fixtures")
 OUTPUT_DIR = os.path.join(HERE, "output")
+REPORTS_DIR = os.path.join(HERE, "reports")  # tracked in git: qc_footprints_report_latest.xlsx
 DEFAULT_DB_FILE = os.path.join(FIXTURES_DIR, "QCFootprint_DB_Details.xlsx")
 
 KEY_APP = "Record Number"
@@ -315,6 +318,12 @@ def write_report(res, sample, app_path, db_path):
         missing_df.to_excel(xw, sheet_name="Missing_in_DB", index=False)
         pd.DataFrame({"Record Number": res["missing_in_app"]}).to_excel(xw, sheet_name="Missing_in_App", index=False)
         pd.DataFrame({"Record Number": res["deleted_in_app"]}).to_excel(xw, sheet_name="Deleted_in_DB", index=False)
+    if not sample:
+        # Tracked copy: the repo always holds the latest full report (git history keeps older ones).
+        os.makedirs(REPORTS_DIR, exist_ok=True)
+        latest = os.path.join(REPORTS_DIR, "qc_footprints_report_latest.xlsx")
+        shutil.copyfile(out, latest)
+        print(f"Latest copy for the repo: {latest}")
     return out, summary
 
 
