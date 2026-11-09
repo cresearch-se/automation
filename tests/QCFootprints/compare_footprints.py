@@ -22,14 +22,13 @@ Rules applied
     * Blanks: '', 'NULL', None, NaN are all treated as blank.
     * Tickets in the DB export but not in the app (and vice versa) are reported as MISSING.
 
-Output: tests/QCFootprints/output/qc_footprints_report_<YYYYMMDD_HHMMSS>.xlsx   (every run, not tracked)
-        tests/QCFootprints/reports/qc_footprints_report_latest.xlsx             (full runs only, tracked in git)
+Output: tests/QCFootprints/output/qc_footprints_report.xlsx         (full run; same name every time, tracked in git)
+        tests/QCFootprints/output/qc_footprints_report_sample.xlsx  (--sample run; not tracked)
 """
 import argparse
 import glob
 import os
 import re
-import shutil
 import sys
 import time
 import unicodedata
@@ -39,7 +38,6 @@ import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 FIXTURES_DIR = os.path.join(HERE, "fixtures")
 OUTPUT_DIR = os.path.join(HERE, "output")
-REPORTS_DIR = os.path.join(HERE, "reports")  # tracked in git: qc_footprints_report_latest.xlsx
 DEFAULT_DB_FILE = os.path.join(FIXTURES_DIR, "QCFootprint_DB_Details.xlsx")
 
 KEY_APP = "Record Number"
@@ -283,7 +281,9 @@ def cap(df):
 
 def write_report(res, sample, app_path, db_path):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    out = os.path.join(OUTPUT_DIR, f"qc_footprints_report_{time.strftime('%Y%m%d_%H%M%S')}.xlsx")
+    # One fixed file name, overwritten on every run, so the repo only ever holds the latest report.
+    # Sample runs use a different name so they never overwrite the full report.
+    out = os.path.join(OUTPUT_DIR, "qc_footprints_report_sample.xlsx" if sample else "qc_footprints_report.xlsx")
     mm = res["mismatches"]
     mm_cats = (mm.groupby(["Category", "App column"]).size().rename("Cells").reset_index()
                .sort_values(["Category", "Cells"], ascending=[True, False])) if len(mm) else \
@@ -310,20 +310,17 @@ def write_report(res, sample, app_path, db_path):
         ("Value mismatches (cells)", len(res["mismatches"])),
         ("Tickets with a mismatch", res["mismatches"]["Record Number"].nunique() if len(res["mismatches"]) else 0),
     ], columns=["Item", "Value"])
-    with pd.ExcelWriter(out, engine="openpyxl") as xw:
-        summary.to_excel(xw, sheet_name="Summary", index=False)
-        res["col_stats"].to_excel(xw, sheet_name="Column_Check", index=False)
-        mm_cats.to_excel(xw, sheet_name="Mismatch_Categories", index=False)
-        cap(res["mismatches"]).to_excel(xw, sheet_name="Value_Mismatches", index=False)
-        missing_df.to_excel(xw, sheet_name="Missing_in_DB", index=False)
-        pd.DataFrame({"Record Number": res["missing_in_app"]}).to_excel(xw, sheet_name="Missing_in_App", index=False)
-        pd.DataFrame({"Record Number": res["deleted_in_app"]}).to_excel(xw, sheet_name="Deleted_in_DB", index=False)
-    if not sample:
-        # Tracked copy: the repo always holds the latest full report (git history keeps older ones).
-        os.makedirs(REPORTS_DIR, exist_ok=True)
-        latest = os.path.join(REPORTS_DIR, "qc_footprints_report_latest.xlsx")
-        shutil.copyfile(out, latest)
-        print(f"Latest copy for the repo: {latest}")
+    try:
+        with pd.ExcelWriter(out, engine="openpyxl") as xw:
+            summary.to_excel(xw, sheet_name="Summary", index=False)
+            res["col_stats"].to_excel(xw, sheet_name="Column_Check", index=False)
+            mm_cats.to_excel(xw, sheet_name="Mismatch_Categories", index=False)
+            cap(res["mismatches"]).to_excel(xw, sheet_name="Value_Mismatches", index=False)
+            missing_df.to_excel(xw, sheet_name="Missing_in_DB", index=False)
+            pd.DataFrame({"Record Number": res["missing_in_app"]}).to_excel(xw, sheet_name="Missing_in_App", index=False)
+            pd.DataFrame({"Record Number": res["deleted_in_app"]}).to_excel(xw, sheet_name="Deleted_in_DB", index=False)
+    except PermissionError:
+        sys.exit(f"Cannot write {out} - close it in Excel and run again.")
     return out, summary
 
 

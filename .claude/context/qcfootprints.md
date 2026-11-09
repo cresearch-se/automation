@@ -32,3 +32,8 @@ DB Ticket Number <-> app Record Number (also Request Number); Ticket Internal ID
 - Missing in DB: 101 = 95 newer than DB's highest ticket (IR-88530) + 6 inside range (IR-65403..65405, IR-65418..65420) -> ask dev.
 - Script now: labels each mismatch with a Category, tags tickets whose app Updated On > DB export cutoff as CHANGED AFTER DB EXPORT, splits Missing_in_DB into NEWER THAN DB EXPORT / WITHIN DB RANGE, adds Mismatch_Categories sheet.
 - Questions for the dev: why is created/updated-by -315 instead of 'Email Request'; why are non-ASCII characters flattened/'?'-replaced; why are tickets IR-65403..65405 and IR-65418..65420 absent from the DB export.
+
+## Report publishing (decision 2026-11-09)
+- Single report file with a fixed name, overwritten each run: `tests/QCFootprints/output/qc_footprints_report.xlsx`, tracked in git so everyone (and Claude) can read it from the repo. `--sample` runs write `output/qc_footprints_report_sample.xlsx` (ignored) so they never overwrite the full report. No timestamped copies, no `reports/` folder.
+- `tests/QCFootprints/.gitignore` now ignores only output/raw/, probe/debug files, *.pkl cache, *_sample.xlsx and request_body.txt. fixtures/ (app extract + DB export) are tracked.
+- Publish flow (user, local): git pull --autostash origin qc_footprints; run compare_footprints.py; git add tests/QCFootprints/output/qc_footprints_report.xlsx; commit; push.
