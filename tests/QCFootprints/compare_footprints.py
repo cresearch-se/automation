@@ -12,6 +12,9 @@ Run on the LOCAL machine from the repo root:
 Inputs
     app file : newest tests/QCFootprints/fixtures/QCFootprints_<date>.xlsx   (or --app PATH)
     DB file  : tests/QCFootprints/fixtures/QCFootprint_DB_Details.xlsx       (or --db PATH)
+    attachments (optional): fixtures/QCFootprints_Attachments.xlsx from extract_attachments.py
+        -> adds UI-vs-DB attachment count checks (sheets Attachment_Count_Check, Attachments_Not_Fetched);
+           skip with --no-attachments
 
 Rules applied
     * Key = app "Record Number"  <->  DB "Ticket Number"  (IR-nnnnn)
@@ -39,6 +42,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 FIXTURES_DIR = os.path.join(HERE, "fixtures")
 OUTPUT_DIR = os.path.join(HERE, "output")
 DEFAULT_DB_FILE = os.path.join(FIXTURES_DIR, "QCFootprint_DB_Details.xlsx")
+DEFAULT_ATT_FILE = os.path.join(FIXTURES_DIR, "QCFootprints_Attachments.xlsx")
 
 KEY_APP = "Record Number"
 KEY_DB = "Ticket Number"
@@ -267,6 +271,54 @@ def compare(app, db_all, sample, tol_seconds):
         "deleted_in_app": deleted_in_app, "compared": len(both),
         "mismatches": mism_df, "col_stats": pd.DataFrame(col_stats),
         "n_app": len(app_u), "n_db_live": len(db_u), "n_db_deleted": len(db_deleted),
+        "db_live": db_u, "stale_keys": stale_keys,
+    }
+
+
+# ---------------------------------------------------------------- attachments
+CAT_ATT_STALE = "CHANGED AFTER DB EXPORT"
+CAT_ATT_MORE = "MORE ATTACHMENTS IN UI THAN DB"
+CAT_ATT_FEWER = "FEWER ATTACHMENTS IN UI THAN DB"
+
+
+def check_attachments(att_path, res):
+    """UI attachment counts (from extract_attachments.py) vs the DB's Attachment Count.
+
+    Only tickets present in the attachment file are checked. The extract normally holds every ticket the
+    DB says has attachments plus a random sample of tickets it says have none.
+    """
+    print(f"Attachments file: {att_path}")
+    ui = pd.read_excel(att_path, sheet_name="Ticket_Counts", dtype=object)
+    ui["_key"] = ui["Record Number"].astype(str).str.strip()
+    ui["UI Attachment Count"] = pd.to_numeric(ui["UI Attachment Count"], errors="coerce").fillna(0).astype(int)
+    ui = ui.drop_duplicates("_key").set_index("_key")
+
+    db = res["db_live"].set_index("_key")
+    db_count = pd.to_numeric(db["Attachment Count"], errors="coerce").fillna(0).astype(int)
+
+    checked = sorted(set(ui.index) & set(db.index))
+    not_in_db = sorted(set(ui.index) - set(db.index))
+    todo = sorted(set(db_count.index[db_count > 0]) - set(ui.index))  # DB says attachments, not fetched yet
+
+    cmp = pd.DataFrame({"DB Attachment Count": db_count.loc[checked],
+                        "UI Attachment Count": ui.loc[checked, "UI Attachment Count"]})
+    cmp["Difference (UI - DB)"] = cmp["UI Attachment Count"] - cmp["DB Attachment Count"]
+    bad = cmp[cmp["Difference (UI - DB)"] != 0].copy()
+    bad["Category"] = [CAT_ATT_STALE if k in res["stale_keys"] else
+                       (CAT_ATT_MORE if d > 0 else CAT_ATT_FEWER)
+                       for k, d in zip(bad.index, bad["Difference (UI - DB)"])]
+    bad = bad.reset_index().rename(columns={"_key": "Record Number", "index": "Record Number"})
+    bad = bad[["Record Number", "Category", "DB Attachment Count", "UI Attachment Count", "Difference (UI - DB)"]]
+
+    none_sample = cmp[cmp["DB Attachment Count"] == 0]
+    with_att = cmp[cmp["DB Attachment Count"] > 0]
+    return {
+        "file": os.path.basename(att_path), "checked": len(checked), "not_in_db": not_in_db,
+        "to_fetch": todo, "mismatches": bad,
+        "with_att_checked": len(with_att), "with_att_ok": int((with_att["Difference (UI - DB)"] == 0).sum()),
+        "none_checked": len(none_sample),
+        "none_with_ui_att": int((none_sample["UI Attachment Count"] > 0).sum()),
+        "db_total": int(cmp["DB Attachment Count"].sum()), "ui_total": int(cmp["UI Attachment Count"].sum()),
     }
 
 
@@ -310,6 +362,22 @@ def write_report(res, sample, app_path, db_path):
         ("Value mismatches (cells)", len(res["mismatches"])),
         ("Tickets with a mismatch", res["mismatches"]["Record Number"].nunique() if len(res["mismatches"]) else 0),
     ], columns=["Item", "Value"])
+    att = res.get("attach")
+    if att:
+        mm_att = att["mismatches"]
+        summary = pd.concat([summary, pd.DataFrame([
+            ("--- ATTACHMENTS ---", ""),
+            ("Attachment file", att["file"]),
+            ("Tickets checked (UI vs DB count)", att["checked"]),
+            ("   DB says attachments: checked / count matches", f"{att['with_att_checked']} / {att['with_att_ok']}"),
+            ("   DB says none (sample): checked", att["none_checked"]),
+            ("   DB says none but UI has attachments", att["none_with_ui_att"]),
+            ("Total attachments, DB vs UI (checked tickets)", f"{att['db_total']} vs {att['ui_total']}"),
+            ("Attachment count mismatches (tickets)", len(mm_att)),
+            ("   of which changed after DB export", int((mm_att["Category"] == CAT_ATT_STALE).sum())),
+            ("DB says attachments but not yet fetched", len(att["to_fetch"])),
+            ("In attachment file but not a live DB ticket", len(att["not_in_db"])),
+        ], columns=["Item", "Value"])], ignore_index=True)
     try:
         with pd.ExcelWriter(out, engine="openpyxl") as xw:
             summary.to_excel(xw, sheet_name="Summary", index=False)
@@ -319,6 +387,9 @@ def write_report(res, sample, app_path, db_path):
             missing_df.to_excel(xw, sheet_name="Missing_in_DB", index=False)
             pd.DataFrame({"Record Number": res["missing_in_app"]}).to_excel(xw, sheet_name="Missing_in_App", index=False)
             pd.DataFrame({"Record Number": res["deleted_in_app"]}).to_excel(xw, sheet_name="Deleted_in_DB", index=False)
+            if att:
+                att["mismatches"].to_excel(xw, sheet_name="Attachment_Count_Check", index=False)
+                pd.DataFrame({"Record Number": att["to_fetch"]}).to_excel(xw, sheet_name="Attachments_Not_Fetched", index=False)
     except PermissionError:
         sys.exit(f"Cannot write {out} - close it in Excel and run again.")
     return out, summary
@@ -349,12 +420,19 @@ def print_console(res, sample, summary):
 
 
 def main():
+    try:  # Windows consoles (cp1252) cannot print every character found in ticket text
+        sys.stdout.reconfigure(errors="replace")
+    except (AttributeError, ValueError):
+        pass
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--app", help="app extract Excel (default: newest QCFootprints_<date>.xlsx)")
     p.add_argument("--db", default=DEFAULT_DB_FILE, help="DB export Excel")
     p.add_argument("--sample", action="store_true",
                    help="only compare tickets present in the app file; skip MISSING IN APP")
     p.add_argument("--tolerance", type=float, default=1.0, help="datetime tolerance in seconds (default 1)")
+    p.add_argument("--attachments", default=DEFAULT_ATT_FILE,
+                   help="attachment extract from extract_attachments.py (default: fixtures/QCFootprints_Attachments.xlsx)")
+    p.add_argument("--no-attachments", action="store_true", help="skip the attachment count checks")
     args = p.parse_args()
 
     app_path = args.app or newest_app_file()
@@ -365,6 +443,11 @@ def main():
     db = clean_db(load_db(args.db))
 
     res = compare(app, db, args.sample, args.tolerance)
+    if not args.no_attachments:
+        if os.path.exists(args.attachments):
+            res["attach"] = check_attachments(args.attachments, res)
+        else:
+            print(f"(no attachment file at {args.attachments} - attachment checks skipped)")
     out, summary = write_report(res, args.sample, app_path, args.db)
     print_console(res, args.sample, summary)
     print(f"\nReport written to: {out}")
