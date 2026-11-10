@@ -156,14 +156,28 @@ def fetch_ticket(base, args, item_id, ticket_id):
     return items
 
 
+def read_cache(path):
+    """Cached attachment list for a ticket, or None if missing / half-written."""
+    if not os.path.exists(path):
+        return None
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, list) else None
+    except ValueError:
+        return None
+
+
 def get_ticket(base, args, row):
     path = os.path.join(RAW_ATT_DIR, f"{row['ID']}.json")
-    if os.path.exists(path) and not args.refresh:
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
+    cached = None if args.refresh else read_cache(path)
+    if cached is not None:
+        return cached
     items = fetch_ticket(base, args, row["Item ID"], row["ID"])
-    with open(path, "w", encoding="utf-8") as f:
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
         json.dump(items, f, ensure_ascii=False)
+    os.replace(tmp, path)  # atomic: a stopped run never leaves a partial file
     time.sleep(args.delay)
     return items
 
@@ -193,11 +207,10 @@ def build_excel(selected, args):
     att_rows, count_rows, failed = [], [], []
     for _, row in selected.iterrows():
         path = os.path.join(RAW_ATT_DIR, f"{row['ID']}.json")
-        if not os.path.exists(path):
+        items = read_cache(path)
+        if items is None:
             failed.append(row["Record Number"])
             continue
-        with open(path, "r", encoding="utf-8") as f:
-            items = json.load(f)
         count_rows.append({"Record Number": row["Record Number"], "ID": row["ID"], "UI Attachment Count": len(items)})
         for a in items:
             att_rows.append({
@@ -232,7 +245,7 @@ def run(base, args, tickets):
     selected = choose_tickets(args, tickets)
     total = len(selected)
     todo = [r for _, r in selected.iterrows()
-            if args.refresh or not os.path.exists(os.path.join(RAW_ATT_DIR, f"{r['ID']}.json"))]
+            if args.refresh or read_cache(os.path.join(RAW_ATT_DIR, f"{r['ID']}.json")) is None]
     print(f"tickets selected: {total}; already cached: {total - len(todo)}; to fetch: {len(todo)} "
           f"({args.workers} parallel)")
     done, errors, t0 = 0, [], time.time()
