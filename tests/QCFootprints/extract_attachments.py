@@ -128,22 +128,31 @@ def fetch_json(base, url, params, args):
     raise RuntimeError(f"{url} failed after {args.retries} attempts: {last}")
 
 
+def unpack(payload):
+    """(items, total, success) from either {"data": [...], "success": true} or a bare list."""
+    if isinstance(payload, list):
+        return payload, None, True
+    if isinstance(payload, dict):
+        data = payload.get("data")
+        if isinstance(data, dict):  # e.g. {"data": {"items": [...]}}
+            data = data.get("items") or data.get("attachments") or []
+        return (data or []), payload.get("totalCount", payload.get("total")), payload.get("success", True)
+    raise RuntimeError(f"unexpected response type {type(payload).__name__}: {str(payload)[:200]}")
+
+
 def fetch_ticket(base, args, item_id, ticket_id):
     """All attachments for one ticket (pages through if there are more than PAGE_SIZE)."""
     url = f"{args.url}/{item_id}/{ticket_id}"
-    items, page, payloads = [], 1, []
+    items, page = [], 1
     while True:
         params = {"_dc": int(time.time() * 1000), "page": page, "start": (page - 1) * PAGE_SIZE, "limit": PAGE_SIZE}
-        payload = fetch_json(base, url, params, args)
-        payloads.append(payload)
-        data = payload.get("data") or []
+        data, total, success = unpack(fetch_json(base, url, params, args))
+        if not success:
+            raise RuntimeError(f"server said success=false for ticket {ticket_id}")
         items.extend(data)
-        total = payload.get("totalCount", payload.get("total"))
         if len(data) < PAGE_SIZE or (total is not None and len(items) >= int(total)):
             break
         page += 1
-    if not payloads[0].get("success", True):
-        raise RuntimeError(f"server said success=false for ticket {ticket_id}: {str(payloads[0])[:200]}")
     return items
 
 
@@ -169,9 +178,12 @@ def probe(base, args, tickets):
     url = f"{args.url}/{row['Item ID']}/{row['ID']}"
     print(f"GET {url}")
     payload = fetch_json(base, url, {"_dc": int(time.time() * 1000), "page": 1, "start": 0, "limit": PAGE_SIZE}, args)
-    keys = [k for k in payload if k != "data"]
-    print(f"top-level keys: {list(payload)}   other values: { {k: payload[k] for k in keys} }")
-    data = payload.get("data") or []
+    if isinstance(payload, dict):
+        print(f"response is a dict; keys: {list(payload)}; other values: "
+              f"{ {k: v for k, v in payload.items() if k != 'data'} }")
+    else:
+        print(f"response is a {type(payload).__name__} of {len(payload)} items")
+    data, _, _ = unpack(payload)
     print(f"attachments returned: {len(data)}")
     for a in data:
         print(f"  {a.get('name')}.{a.get('extension')}  size={a.get('size')}  created={a.get('creationDate')}")
