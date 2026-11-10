@@ -126,8 +126,10 @@ def fetch_json(base, url, params, args):
             raise RuntimeError(f"SSL certificate problem - re-run with --insecure. ({e})")
         except Exception as e:  # noqa: BLE001
             last = e
+            if isinstance(e, requests.exceptions.Timeout) and attempt >= 2:
+                break  # a hung ticket: give up quickly instead of tying up a worker for minutes
             time.sleep(2 ** attempt)
-    raise RuntimeError(f"{url} failed after {args.retries} attempts: {last}")
+    raise RuntimeError(f"gave up on {url}: {last}")
 
 
 def unpack(payload):
@@ -211,7 +213,7 @@ def probe(base, args, tickets):
         print(f"  {a.get('name')}.{a.get('extension')}  size={a.get('size')}  created={a.get('creationDate')}")
 
 
-def build_excel(selected, args):
+def build_excel(selected, args, reasons=None):
     att_rows, count_rows, failed = [], [], []
     for _, row in selected.iterrows():
         path = os.path.join(RAW_ATT_DIR, f"{row['ID']}.json")
@@ -239,6 +241,9 @@ def build_excel(selected, args):
     with pd.ExcelWriter(out, engine="openpyxl") as xw:
         att.to_excel(xw, sheet_name="Attachments", index=False)
         cnt.to_excel(xw, sheet_name="Ticket_Counts", index=False)
+        pd.DataFrame({"Record Number": failed,
+                      "Reason": [(reasons or {}).get(k, "not fetched yet") for k in failed]}
+                     ).to_excel(xw, sheet_name="Not_Fetched", index=False)
     print("\n==== ATTACHMENT EXTRACT SUMMARY ====")
     print(f"output file            : {out}")
     print(f"tickets in output      : {len(cnt)}  (selected {len(selected)}, no data for {len(failed)})")
@@ -298,10 +303,10 @@ def run(base, args, tickets):
                 for f in futures:
                     f.cancel()
     if errors:
-        print(f"\n{len(errors)} tickets failed (first 5): {errors[:5]}")
+        print(f"\n{len(errors)} tickets could not be fetched (see the Not_Fetched sheet). First 5: {errors[:5]}")
     if stop:
         sys.exit(1)
-    build_excel(selected, args)
+    build_excel(selected, args, dict(errors))
 
 
 def main():
