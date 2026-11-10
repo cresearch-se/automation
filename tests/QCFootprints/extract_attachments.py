@@ -144,18 +144,45 @@ def unpack(payload):
     raise RuntimeError(f"unexpected response type {type(payload).__name__}: {str(payload)[:200]}")
 
 
+BIG_LIMIT = 500  # used when the server ignores the page number
+MAX_PAGES = 40  # safety net: 40 x 25 = 1000 attachments on one ticket
+
+
+def item_key(a):
+    """Identify an attachment without its signed token (the token may change on every call)."""
+    return (a.get("name"), a.get("extension"), a.get("size"), a.get("creationDate"),
+            str(a.get("uri") or "").split("?")[0])
+
+
 def fetch_ticket(base, args, item_id, ticket_id):
-    """All attachments for one ticket (pages through if there are more than PAGE_SIZE)."""
+    """All attachments for one ticket.
+
+    Pages of PAGE_SIZE are requested until a short page, but the loop also stops when the server
+    ignores paging (a page identical to one already seen) or returns more than PAGE_SIZE at once
+    (it sent everything), so a ticket with many attachments can never loop forever.
+    """
     url = f"{args.url}/{item_id}/{ticket_id}"
-    items, page = [], 1
+    items, seen_pages, page = [], set(), 1
     while True:
+        if page > MAX_PAGES:
+            raise RuntimeError(f"ticket {ticket_id}: still getting attachments after {MAX_PAGES} pages")
         params = {"_dc": int(time.time() * 1000), "page": page, "start": (page - 1) * PAGE_SIZE, "limit": PAGE_SIZE}
         data, total, success = unpack(fetch_json(base, url, params, args))
         if not success:
             raise RuntimeError(f"server said success=false for ticket {ticket_id}")
+        signature = tuple(item_key(a) for a in data)
+        if signature in seen_pages:
+            # The server ignored the page number and repeated a page. Ask for everything in one request.
+            params = {"_dc": int(time.time() * 1000), "page": 1, "start": 0, "limit": BIG_LIMIT}
+            data, _, _ = unpack(fetch_json(base, url, params, args))
+            if len(data) > len(items):
+                return data
+            raise RuntimeError(f"ticket {ticket_id}: server ignores paging, only the first {len(items)} "
+                               "attachments are available - INCOMPLETE")
+        seen_pages.add(signature)
         items.extend(data)
-        if len(data) < PAGE_SIZE or (total is not None and len(items) >= int(total)):
-            break
+        if len(data) != PAGE_SIZE or (total is not None and len(items) >= int(total)):
+            break  # short page, or a page larger than asked for (everything came at once)
         page += 1
     return items
 
