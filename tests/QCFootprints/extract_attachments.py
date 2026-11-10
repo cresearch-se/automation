@@ -175,10 +175,10 @@ def fetch_ticket(base, args, item_id, ticket_id):
             # The server ignored the page number and repeated a page. Ask for everything in one request.
             params = {"_dc": int(time.time() * 1000), "page": 1, "start": 0, "limit": BIG_LIMIT}
             data, _, _ = unpack(fetch_json(base, url, params, args))
-            if len(data) > len(items):
-                return data
-            raise RuntimeError(f"ticket {ticket_id}: server ignores paging, only the first {len(items)} "
-                               "attachments are available - INCOMPLETE")
+            # A ticket with exactly PAGE_SIZE attachments also lands here (page 2 repeats page 1), and
+            # the big request then returns the same list: that is complete, not an error. A real
+            # undercount is caught later by the UI-vs-DB attachment count check in compare_footprints.py.
+            return data if len(data) >= len(items) else items
         seen_pages.add(signature)
         items.extend(data)
         if len(data) != PAGE_SIZE or (total is not None and len(items) >= int(total)):
