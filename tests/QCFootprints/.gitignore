@@ -1,6 +1,7 @@
 # Tracked on purpose: fixtures/ (app extract + DB export) and output/qc_footprints_report.xlsx.
 # Not committed: raw API pages, probe/debug output, DB read cache, sample-run reports, request body.
 output/raw/
+output/raw_att/
 output/probe_page1.json
 output/last_response.html
 output/*.pkl
