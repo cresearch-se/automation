@@ -22,7 +22,7 @@ Run on the LOCAL machine (the app is not reachable from the dev server), from th
 
 Each ticket's response is cached in output/raw_att/<ID>.json, so a re-run after a cookie expiry resumes
 where it stopped (use --refresh to ignore the cache). Output (the signed token after '?' in the file
-path is removed):  fixtures/QCFootprints_Attachments_<YYYYMMDD>.xlsx
+path is removed):  fixtures/QCFootprints_Attachments.xlsx (overwritten each run)
 """
 import argparse
 import glob
@@ -202,7 +202,7 @@ def build_excel(selected, args):
     att = pd.DataFrame(att_rows, columns=["Record Number", "ID", "Name", "Extension", "File Name",
                                           "Size (bytes)", "Creation Date", "Path", "Mime Type"])
     cnt = pd.DataFrame(count_rows, columns=["Record Number", "ID", "UI Attachment Count"])
-    out = os.path.join(FIXTURES_DIR, f"QCFootprints_Attachments_{time.strftime('%Y%m%d')}.xlsx")
+    out = os.path.join(FIXTURES_DIR, f"QCFootprints_Attachments.xlsx")
     with pd.ExcelWriter(out, engine="openpyxl") as xw:
         att.to_excel(xw, sheet_name="Attachments", index=False)
         cnt.to_excel(xw, sheet_name="Ticket_Counts", index=False)
