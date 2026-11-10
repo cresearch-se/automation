@@ -44,6 +44,8 @@ DB_FILE = os.path.join(FIXTURES_DIR, "QCFootprint_DB_Details.xlsx")
 BASE_URL = "https://crcofpsc.cornerstone.com/footprints/servicedesk/api/item/attachment"
 PAGE_SIZE = 25
 _local = threading.local()
+_inflight = {}  # ticket -> time its request started (for the heartbeat)
+_inflight_lock = threading.Lock()
 
 
 # ---------------------------------------------------------------- inputs
@@ -173,7 +175,13 @@ def get_ticket(base, args, row):
     cached = None if args.refresh else read_cache(path)
     if cached is not None:
         return cached
-    items = fetch_ticket(base, args, row["Item ID"], row["ID"])
+    with _inflight_lock:
+        _inflight[row["Record Number"]] = time.time()
+    try:
+        items = fetch_ticket(base, args, row["Item ID"], row["ID"])
+    finally:
+        with _inflight_lock:
+            _inflight.pop(row["Record Number"], None)
     tmp = path + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(items, f, ensure_ascii=False)
@@ -250,6 +258,21 @@ def run(base, args, tickets):
           f"({args.workers} parallel)")
     done, errors, t0 = 0, [], time.time()
     stop = False
+    progress = {"done": 0}
+    quit_evt = threading.Event()
+
+    def heartbeat():
+        # Proves the run is alive and names any request that has been waiting a long time.
+        slow_after = min(20, args.heartbeat)
+        while not quit_evt.wait(args.heartbeat):
+            now = time.time()
+            with _inflight_lock:
+                slow = sorted((k, int(now - t)) for k, t in _inflight.items() if now - t > slow_after)
+                n = len(_inflight)
+            msg = f"  [alive {time.strftime('%H:%M:%S')}] {progress['done']}/{len(todo)} done, {n} requests in flight"
+            print(msg + (f"; waiting >{slow_after}s: {slow}" if slow else ""), flush=True)
+
+    threading.Thread(target=heartbeat, daemon=True).start()
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         futures = {pool.submit(get_ticket, base, args, r): r for r in todo}
         try:
@@ -258,16 +281,19 @@ def run(base, args, tickets):
                 try:
                     fut.result()
                     done += 1
+                    progress["done"] = done
                 except NotJsonError as e:
                     print(f"\n{e}\nCookie probably expired - get a fresh one and re-run (cached tickets are kept).")
                     stop = True
                     break
                 except Exception as e:  # noqa: BLE001
                     errors.append((r["Record Number"], str(e)[:150]))
-                if done and done % 200 == 0:
+                if done and done % 100 == 0:
                     rate = done / (time.time() - t0)
-                    print(f"  {done}/{len(todo)} fetched  ({rate:.1f}/s, ~{(len(todo) - done) / rate / 60:.0f} min left)")
+                    print(f"  {done}/{len(todo)} fetched  ({rate:.1f}/s, ~{(len(todo) - done) / rate / 60:.0f} min left)",
+                          flush=True)
         finally:
+            quit_evt.set()
             if stop:
                 for f in futures:
                     f.cancel()
@@ -291,7 +317,8 @@ def main():
     p.add_argument("--auth", choices=["ntlm", "cookie"], default="ntlm")
     p.add_argument("--header", action="append")
     p.add_argument("--workers", type=int, default=4, help="parallel requests")
-    p.add_argument("--timeout", type=int, default=60)
+    p.add_argument("--timeout", type=int, default=30, help="seconds to wait for one response")
+    p.add_argument("--heartbeat", type=float, default=30, help="seconds between '[alive]' status lines")
     p.add_argument("--retries", type=int, default=3)
     p.add_argument("--delay", type=float, default=0.1, help="seconds each worker waits after a ticket")
     p.add_argument("--refresh", action="store_true", help="ignore cached responses")
