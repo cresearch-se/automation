@@ -35,6 +35,8 @@ import re
 import sys
 import time
 import unicodedata
+from collections import Counter
+from urllib.parse import unquote
 
 import pandas as pd
 
@@ -104,7 +106,8 @@ def load_db(path):
             print("  (using cached DB read)")
             return cached["raw"]
     print("  reading DB Excel (first time takes a few minutes)...")
-    raw = pd.read_excel(path, sheet_name="Sheet1", usecols=range(20), dtype=object)
+    # All columns (A-AD): the attachment names/paths, history text and 'Possible Credential' are in U-AD.
+    raw = pd.read_excel(path, sheet_name="Sheet1", dtype=object)
     pd.to_pickle({"stamp": stamp, "raw": raw}, cache)
     return raw
 
@@ -275,6 +278,197 @@ def compare(app, db_all, sample, tol_seconds):
     }
 
 
+# ---------------------------------------------------------------- attachment names / size / paths
+DB_NAMES = "Attachment File Names"
+DB_PATHS = "Attachment Locations (same order)"
+DB_SIZE = "Total Attachment Size Recorded (MB)"
+DB_HISTORY = "Full Description History"
+DB_CRED = "Possible Credential"
+LIST_SEP = " | "
+# Expected DB path: D:\FPextract\out\item\attachment\<n>\<n>\<ticket internal ID>\<file>  (compared with / for \)
+PATH_RX = re.compile(r"^D:/FPextract/out/item/attachment/\d+/\d+/(\d+)/([^/]+)$")
+ILLEGAL_FILE_CHARS = re.compile(r'[\\/:*?"<>|]')
+SIZE_TOLERANCE_MB = 0.011  # DB value is rounded to 2 decimals
+
+CAT_NAME_DIFF = "NAME DIFFERENCE"
+CAT_SIZE_DIFF = "SIZE DIFFERENCE"
+CAT_P_SAME = "SAME NAME"
+CAT_P_PREFIX = "NUMERIC PREFIX ADDED"
+CAT_P_ILLEGAL = "ILLEGAL CHARACTERS REPLACED BY _"
+CAT_P_SHORT = "NAME SHORTENED WITH ~"
+CAT_P_SPECIAL = "SPECIAL CHARACTERS SIMPLIFIED"
+CAT_P_OTHER = "OTHER"
+
+
+def split_list(value):
+    return [x for x in str(value).split(LIST_SEP) if x] if pd.notna(value) else []
+
+
+def path_name_category(att_name, file_name):
+    """How the file name inside a DB path differs from the attachment's own name."""
+    core, prefixed = file_name, False
+    if file_name != att_name and file_name != ILLEGAL_FILE_CHARS.sub("_", att_name):
+        m = re.match(r"\d+_(.*)$", file_name, re.S)
+        if m:
+            core, prefixed = m.group(1), True
+    if core == att_name:
+        base = CAT_P_SAME
+    elif core == ILLEGAL_FILE_CHARS.sub("_", att_name):
+        base = CAT_P_ILLEGAL
+    elif "~" in core:
+        base = CAT_P_SHORT
+    elif ascii_fold(core) == ascii_fold(att_name):
+        base = CAT_P_SPECIAL
+    else:
+        base = CAT_P_OTHER
+    if prefixed:
+        return CAT_P_PREFIX if base == CAT_P_SAME else base + " + NUMERIC PREFIX"
+    return base
+
+
+def check_attachment_details(att_path, res, db, checked):
+    """Attachment names, total size and D-drive paths: UI (attachment file) vs the DB's columns U-W.
+
+    DB names are URL-decoded first (the export holds some as %3A, %5E, ...). A ticket whose app
+    Updated On is after the DB export is labelled CHANGED AFTER DB EXPORT. Paths cannot be compared
+    with the UI (the app only has an internal URL), so they are checked for the expected pattern and
+    the DB path file name is compared with the attachment name.
+    """
+    ui_att = pd.read_excel(att_path, sheet_name="Attachments", dtype=object)
+    ui_att["_key"] = ui_att["Record Number"].astype(str).str.strip()
+    ui_by = {k: g for k, g in ui_att.groupby("_key")}
+    stale = res["stale_keys"]
+    db_count = pd.to_numeric(db["Attachment Count"], errors="coerce").fillna(0).astype(int)
+
+    name_rows, size_rows, path_rows = [], [], []
+    path_cat, n_files, n_path_bad, n_tickets = {}, 0, 0, 0
+    for k in checked:
+        if db_count.loc[k] == 0:
+            continue
+        n_tickets += 1
+        g = ui_by.get(k)
+        ui_names = [str(x) for x in g["File Name"]] if g is not None else []
+        db_names = [unquote(x) for x in split_list(db.loc[k, DB_NAMES])]
+
+        if sorted(db_names) != sorted(ui_names):
+            only_db = list((Counter(db_names) - Counter(ui_names)).elements())
+            only_ui = list((Counter(ui_names) - Counter(db_names)).elements())
+            name_rows.append({"Record Number": k,
+                              "Category": CAT_ATT_STALE if k in stale else CAT_NAME_DIFF,
+                              "In DB only": "; ".join(only_db)[:EXCEL_CELL_LIMIT],
+                              "In UI only": "; ".join(only_ui)[:EXCEL_CELL_LIMIT]})
+
+        ui_mib = (pd.to_numeric(g["Size (bytes)"], errors="coerce").sum() / 1048576) if g is not None else 0.0
+        db_mb = pd.to_numeric(db.loc[k, DB_SIZE], errors="coerce")
+        if pd.isna(db_mb) or abs(db_mb - ui_mib) > SIZE_TOLERANCE_MB:
+            size_rows.append({"Record Number": k,
+                              "Category": CAT_ATT_STALE if k in stale else CAT_SIZE_DIFF,
+                              "DB size (MB)": db_mb, "UI size (MiB)": round(ui_mib, 2)})
+
+        paths = split_list(db.loc[k, DB_PATHS])
+        raw_names = split_list(db.loc[k, DB_NAMES])
+        internal_id = str(int(float(db.loc[k, DB_INTERNAL_ID])))
+        if len(paths) != len(raw_names):
+            n_path_bad += 1
+            path_rows.append({"Record Number": k, "Category": "PATH COUNT != NAME COUNT",
+                              "Attachment name": "", "Path file name": "", "DB path": ""})
+            continue
+        for name_raw, p in zip(raw_names, paths):
+            n_files += 1
+            m = PATH_RX.match(p.replace(chr(92), "/"))
+            if not m:
+                n_path_bad += 1
+                path_rows.append({"Record Number": k, "Category": "UNEXPECTED PATH PATTERN",
+                                  "Attachment name": unquote(name_raw), "Path file name": "", "DB path": p})
+                continue
+            if m.group(1) != internal_id:
+                n_path_bad += 1
+                path_rows.append({"Record Number": k, "Category": "FOLDER ID != TICKET INTERNAL ID",
+                                  "Attachment name": unquote(name_raw), "Path file name": m.group(2), "DB path": p})
+                continue
+            cat = path_name_category(unquote(name_raw), m.group(2))
+            path_cat[cat] = path_cat.get(cat, 0) + 1
+            if cat != CAT_P_SAME:
+                path_rows.append({"Record Number": k, "Category": cat, "Attachment name": unquote(name_raw),
+                                  "Path file name": m.group(2), "DB path": p})
+
+    empty = lambda cols: pd.DataFrame(columns=cols)
+    return {
+        "tickets": n_tickets, "files": n_files, "path_violations": n_path_bad, "path_cat": path_cat,
+        "names": pd.DataFrame(name_rows) if name_rows else empty(["Record Number", "Category", "In DB only", "In UI only"]),
+        "sizes": pd.DataFrame(size_rows) if size_rows else empty(["Record Number", "Category", "DB size (MB)", "UI size (MiB)"]),
+        "paths": pd.DataFrame(path_rows) if path_rows else
+        empty(["Record Number", "Category", "Attachment name", "Path file name", "DB path"]),
+    }
+
+
+# ---------------------------------------------------------------- possible credentials
+# A password-like word followed by a value, e.g. "password: Abc123", "pw is Xy7!q".
+CRED_WORD_RX = re.compile(r"(?i)\b(?:passw\w*|pwd|pw|passcode)\b")
+CRED_VALUE_RX = re.compile(r"(?i)\b(?:passw(?:ord|d)s?|pwd|pw|passcode)\b\s*(?:(?:is|are|was|=|:|-|->)\s*[:=]?\s*)(\S+)")
+CRED_STOP = {"to", "for", "and", "the", "reset", "change", "changed", "is", "has", "will", "please", "you", "your",
+             "in", "on", "a", "of", "was", "expired", "incorrect", "protected", "manager", "required", "needed",
+             "request", "link", "below", "above", "attached", "same", "it", "this", "that", "or", "not", "with"}
+CRED_PREFIX = 40  # characters of context shown before the password word
+
+
+def looks_like_password(token):
+    t = token.strip("\"'.,;:)(]>[<“”‘’")
+    low = t.lower()
+    if len(t) < 4 or low in CRED_STOP or low.startswith(("http", "www.")) or "@" in t:
+        return False
+    has_digit = any(c.isdigit() for c in t)
+    has_symbol = any(not c.isalnum() for c in t)
+    inner_mixed = any(c.isupper() for c in t[1:]) and any(c.islower() for c in t)
+    return has_digit or has_symbol or inner_mixed
+
+
+def check_credentials(res):
+    """List tickets flagged 'Possible Credential = Yes' and judge whether the text holds a real password.
+
+    The report is public in the repo, so values are never written: a likely password is replaced by
+    [REDACTED] and a plain mention shows only the words before the term.
+    """
+    db = res["db_live"]
+    if DB_CRED not in db.columns:
+        print("  (DB file has no 'Possible Credential' column - credential review skipped)")
+        return None
+    flagged = db[db[DB_CRED].astype(str).str.strip().str.lower() == "yes"]
+    rows = []
+    for _, r in flagged.iterrows():
+        text = re.sub(r"\s+", " ", str(r[DB_HISTORY])) if pd.notna(r.get(DB_HISTORY)) else ""
+        hits = [m for m in CRED_VALUE_RX.finditer(text) if looks_like_password(m.group(1))]
+        # A meeting passcode is not a password typed into the ticket: "...zoom.us/j/123?pwd=abc" in a URL,
+        # or "Meeting ID: 123 | Passcode: abc".
+        is_meeting = lambda m: (m.start() > 0 and text[m.start() - 1] in "?&") or             "meeting id" in text[max(0, m.start() - 80):m.start()].lower()
+        in_url = [m for m in hits if is_meeting(m)]
+        likely = [m for m in hits if m not in in_url]
+        any_word = CRED_WORD_RX.search(text)
+        if likely:
+            m = likely[0]
+            ctx = text[max(0, m.start() - CRED_PREFIX):m.start(1)].strip() + " [REDACTED]"
+            verdict = "LIKELY REAL PASSWORD - REVIEW"
+        elif in_url:
+            m = in_url[0]
+            ctx = text[max(0, m.start() - CRED_PREFIX):m.start()].strip() + m.group(0)[:len(m.group(0)) - len(m.group(1))] + " [REDACTED]"
+            verdict = "MEETING PASSCODE (Zoom link / Meeting ID)"
+        elif any_word:
+            ctx = text[max(0, any_word.start() - CRED_PREFIX):any_word.end()].strip()
+            verdict = "MENTIONS PASSWORD WORD ONLY"
+        else:
+            ctx, verdict = "", "NO PASSWORD WORD FOUND"
+        rows.append({"Record Number": r["_key"], "Possible Credential": "Yes", "Assessment": verdict,
+                     "Likely password matches": len(likely), "Masked context": ctx})
+    order = {"LIKELY REAL PASSWORD - REVIEW": 0, "MEETING PASSCODE (Zoom link / Meeting ID)": 1,
+             "MENTIONS PASSWORD WORD ONLY": 2, "NO PASSWORD WORD FOUND": 3}
+    cols = ["Record Number", "Possible Credential", "Assessment", "Likely password matches", "Masked context"]
+    df = pd.DataFrame(rows, columns=cols)
+    if len(df):
+        df = df.sort_values("Assessment", key=lambda s: s.map(order), kind="stable").reset_index(drop=True)
+    return {"flagged": len(flagged), "table": df,
+            "counts": df["Assessment"].value_counts().to_dict() if len(df) else {}}
+
+
 # ---------------------------------------------------------------- attachments
 CAT_ATT_STALE = "CHANGED AFTER DB EXPORT"
 CAT_ATT_MORE = "MORE ATTACHMENTS IN UI THAN DB"
@@ -312,7 +506,13 @@ def check_attachments(att_path, res):
 
     none_sample = cmp[cmp["DB Attachment Count"] == 0]
     with_att = cmp[cmp["DB Attachment Count"] > 0]
+    details = None
+    if all(c in db.columns for c in (DB_NAMES, DB_PATHS, DB_SIZE)):
+        details = check_attachment_details(att_path, res, db, checked)
+    else:
+        print("  (DB file has no attachment name/path/size columns - name, path and size checks skipped)")
     return {
+        "details": details,
         "file": os.path.basename(att_path), "checked": len(checked), "not_in_db": not_in_db,
         "to_fetch": todo, "mismatches": bad,
         "with_att_checked": len(with_att), "with_att_ok": int((with_att["Difference (UI - DB)"] == 0).sum()),
@@ -378,6 +578,31 @@ def write_report(res, sample, app_path, db_path):
             ("DB says attachments but not yet fetched", len(att["to_fetch"])),
             ("In attachment file but not a live DB ticket", len(att["not_in_db"])),
         ], columns=["Item", "Value"])], ignore_index=True)
+        d = att.get("details")
+        if d:
+            pc = d["path_cat"]
+            n_same = pc.get(CAT_P_SAME, 0)
+            n_diff = sum(v for k, v in pc.items() if k != CAT_P_SAME)
+            rows = [
+                ("--- ATTACHMENT NAMES / SIZE / D-DRIVE PATHS (DB columns U-W) ---", ""),
+                ("Tickets checked (DB says attachments)", d["tickets"]),
+                ("Name differences UI vs DB (tickets)", len(d["names"])),
+                ("   of which changed after DB export", int((d["names"]["Category"] == CAT_ATT_STALE).sum())),
+                ("Total-size differences UI vs DB (tickets)", len(d["sizes"])),
+                ("   of which changed after DB export", int((d["sizes"]["Category"] == CAT_ATT_STALE).sum())),
+                ("DB paths checked (files)", d["files"]),
+                ("Path problems (bad pattern / wrong folder ID / count)", d["path_violations"]),
+                ("Path file name identical to attachment name", n_same),
+                ("Path file name differs from attachment name", n_diff),
+            ]
+            rows += [(f"   {k}", v) for k, v in sorted(pc.items(), key=lambda kv: -kv[1]) if k != CAT_P_SAME]
+            summary = pd.concat([summary, pd.DataFrame(rows, columns=["Item", "Value"])], ignore_index=True)
+    cred = res.get("cred")
+    if cred:
+        rows = [("--- POSSIBLE CREDENTIAL = YES (masked review list) ---", ""),
+                ("Tickets flagged Possible Credential = Yes", cred["flagged"])]
+        rows += [(f"   {k}", v) for k, v in cred["counts"].items()]
+        summary = pd.concat([summary, pd.DataFrame(rows, columns=["Item", "Value"])], ignore_index=True)
     try:
         with pd.ExcelWriter(out, engine="openpyxl") as xw:
             summary.to_excel(xw, sheet_name="Summary", index=False)
@@ -390,6 +615,13 @@ def write_report(res, sample, app_path, db_path):
             if att:
                 att["mismatches"].to_excel(xw, sheet_name="Attachment_Count_Check", index=False)
                 pd.DataFrame({"Record Number": att["to_fetch"]}).to_excel(xw, sheet_name="Attachments_Not_Fetched", index=False)
+                d = att.get("details")
+                if d:
+                    d["names"].to_excel(xw, sheet_name="Attachment_Name_Check", index=False)
+                    d["sizes"].to_excel(xw, sheet_name="Attachment_Size_Check", index=False)
+                    cap(d["paths"]).to_excel(xw, sheet_name="Attachment_Path_Check", index=False)
+            if cred:
+                cap(cred["table"]).to_excel(xw, sheet_name="Credential_Review", index=False)
     except PermissionError:
         sys.exit(f"Cannot write {out} - close it in Excel and run again.")
     return out, summary
@@ -448,6 +680,7 @@ def main():
             res["attach"] = check_attachments(args.attachments, res)
         else:
             print(f"(no attachment file at {args.attachments} - attachment checks skipped)")
+    res["cred"] = check_credentials(res)
     out, summary = write_report(res, args.sample, app_path, args.db)
     print_console(res, args.sample, summary)
     print(f"\nReport written to: {out}")
