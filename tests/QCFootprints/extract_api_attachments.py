@@ -74,6 +74,17 @@ def db_attachment_flags():
 
 
 def choose_tickets(args, tickets):
+    if args.add:
+        # Everything already cached in output/raw_att/ PLUS the listed tickets, so the output file keeps all
+        # earlier tickets and just gains the new ones (the default scope would re-draw the random sample).
+        wanted = [t.strip().upper() for t in args.add.split(",") if t.strip()]
+        cached = {os.path.splitext(f)[0] for f in os.listdir(RAW_ATT_DIR)} if os.path.isdir(RAW_ATT_DIR) else set()
+        missing = set(wanted) - set(tickets["Record Number"])
+        if missing:
+            print(f"[warn] not in the app extract: {sorted(missing)}")
+        sel = tickets[tickets["Record Number"].isin(wanted) | tickets["ID"].astype(str).isin(cached)]
+        print(f"--add: {len(sel) - len(set(wanted) - missing)} cached tickets kept + {len(wanted)} added")
+        return sel
     if args.tickets:
         wanted = [t.strip().upper() for t in args.tickets.split(",") if t.strip()]
         sel = tickets[tickets["Record Number"].isin(wanted)]
@@ -339,7 +350,8 @@ def run(base, args, tickets):
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--probe", metavar="IR-NNNNN", help="fetch one ticket and print the response")
-    p.add_argument("--tickets", help="comma-separated IR numbers")
+    p.add_argument("--tickets", help="comma-separated IR numbers (the output file then holds ONLY these)")
+    p.add_argument("--add", help="comma-separated IR numbers to fetch and ADD to everything already cached")
     p.add_argument("--first", type=int, help="only the first N tickets of the app extract")
     p.add_argument("--all", action="store_true", help="every ticket (default: DB-flagged + a sample of the rest)")
     p.add_argument("--sample-none", type=int, default=500, help="random tickets the DB says have no attachments")
