@@ -7,3 +7,5 @@ output/last_response.html
 output/*.pkl
 output/*_sample.xlsx
 request_body.txt
+# Excel lock files (exist while a workbook is open - the compare cannot overwrite an open report)
+~$*
