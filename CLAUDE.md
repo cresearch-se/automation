@@ -29,7 +29,10 @@ Code/
 │   ├── ConsultingComp/          — API tests against CompWebAPI (staging)
 │   ├── SelfEval/                — SharePoint self-eval file matching
 │   ├── ShareHoldersApp/         — folder permissions + missing PRP validation
-│   └── TimeOffSheets/           — time off Excel validation
+│   ├── TimeOffSheets/           — time off Excel validation
+│   └── QCFootprints/            — Footprints app (API) vs DB export validation + attachments + credential review
+│       (extract_api_tickets.py, extract_api_attachments.py, extract_db_footprints.py, compare_footprints.py;
+│        notes: .claude/context/qcfootprints.md — code is written on the server, run on the user's machine)
 └── config/
     ├── db.env                   — DB server/database names (loaded via dotenv)
     └── api.env                  — API username/password for NTLM auth

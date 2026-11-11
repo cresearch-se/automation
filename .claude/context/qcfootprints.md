@@ -1,70 +1,91 @@
 # QCFootprints — Footprints app vs DB validation
 
-## Workflow (code here, run locally — see memory: code-here-run-on-local-machine)
-- App not reachable from the dev server. Scripts are written here, user runs them on the local machine and pastes output back.
-- Branch: `qc_footprints` (tracks origin/main by user request; push with `git push origin qc_footprints`).
+Status as of 2026-11-11 (report commit `9ae7591`, branch `qc_footprints`). Rewritten as a current-state summary; the
+history of how we got here is in git log and in the "Lessons" section.
 
-## Extractor: `tests/QCFootprints/extract_api_tickets.py`
-- POST `https://crcofpsc.cornerstone.com/footprints/servicedesk/api/search/advanced/run?_dc=..&limit=500&page=N&start=(N-1)*500`
-- Body = saved search definition (~17.9k chars) in `tests/QCFootprints/request_body.txt` (local only, gitignored).
-- Auth: NTLM does NOT work (returns HTML login page). Use `--auth cookie` (browser Cookie header, ~584 chars; FP_COOKIE in `config/footprints.env`, env file was not being picked up — user pastes at prompt instead). Cookie expires.
-- Needs `--insecure` (internal CA not trusted by Python requests).
-- Response: `{totalCount, pageData:[{total, rowsData:[{rowValues:[40 values]}], columns:[40 {title,fieldName}]}]}`. Column names come from `columns[].title`.
-- Output: raw `output/raw/page_NNN.json`, Excel `fixtures/QCFootprints_<YYYYMMDD>.xlsx` (both gitignored). Raw pages are cached: use `--refresh` (or delete output/raw) before a full run after a sample run.
-- App total drifts upward (30307 -> 30309 -> 30322 over a few days); new tickets during a run can shift offset paging.
-- 25-row sample run verified OK (2026-11-09). Full run (61 pages) not yet done.
+## Workflow (see memory: code-here-run-on-local-machine)
+- The Footprints app and the fpdb001 DB are NOT reachable from the dev server. Code is written here; the user runs it on the
+  local machine, pushes results to GitHub, and Claude pulls and reviews them. Claude only sees what is pushed or pasted.
+- Branch `qc_footprints`, push with `git push origin qc_footprints`. If a push is rejected:
+  `git pull --no-rebase --no-edit origin qc_footprints` then push again.
+- Outputs have FIXED names (overwritten each run, tracked in git, no timestamped copies):
+  `fixtures/QCFootprints_<YYYYMMDD>.xlsx` (app tickets), `fixtures/QCFootprints_Attachments.xlsx`,
+  `fixtures/QCFootprint_DB_Details.xlsx`, `output/qc_footprints_report.xlsx`.
+- Do NOT have the report open in Excel while running the compare: Windows blocks the overwrite (compare exits with
+  "Cannot write ... close it in Excel"). Excel lock files `~$*` are git-ignored.
 
-## DB export: `tests/QCFootprints/fixtures/QCFootprint_DB_Details.xlsx` (50 MB, force-added to git)
-- Sheet1 headers (20): Ticket Number, Ticket Title, Case Name, Case / Matter Number, Status, Priority, Responsible Officer, Officer Location, Ticket Created Date, Created By, Last Updated Date, Last Updated By, Requester First Name, Requester Last Name, Requester Email, Flagged Deleted in FootPrints, Ticket Internal ID, Has Attachments, Attachment Count, Attachments Not Exported.
-- Sheet1 has 33,689 non-empty rows but only **31,226 real ticket rows** (those with Ticket Internal ID). The other 2,463 rows are **spilled ticket description text** (multi-line text broke rows; only 1–2 cells filled, interleaved among real rows). Must drop rows with null Ticket Internal ID. One junk cell is an openpyxl ArrayFormula, one a datetime.
-- Real rows: Ticket Number unique (no dups), all `IR-nnnnn`; created 2021-01-04 .. 2026-11-03 (export ~Nov 3-4 2026).
-- Flagged Deleted: No 30,224 / Yes 1,002. App total ~30,322 — likely the app excludes deleted tickets (unconfirmed).
-- Priority: DB has literal string 'NULL' (26,768) plus real nulls; Status values Closed/Open/Pending; Officer Location codes (CRMP, CRNY, CRB, COR, CRCH, CRDC, CRLA, CRSF, CRUK, CRLO, NY).
-- Sheet2: 30 rows, only a "Ticket Number" column containing header-name text (stray, ignore).
-- Dates: DB datetimes are **5 hours ahead** of the app's (DB 2021-01-04 01:28:03.540 vs app 2021-01-03T20:28:03.540 for IR-57299) -> DB is UTC, app is Eastern; offset is 4h in DST. Needs tz conversion before comparing.
+## The three inputs and the compare
+Key = ticket number `IR-nnnnn` (app `Record Number` <-> DB `Ticket Number`). The DB export is used so the DB is not queried on every run.
 
-## Probable column mapping (unconfirmed with user)
-DB Ticket Number <-> app Record Number (also Request Number); Ticket Internal ID <-> ID; Ticket Title <-> Title; Case Name <-> Client Matter Name; Case / Matter Number <-> Client Matter Number; Status <-> Status; Priority <-> Priority; Responsible Officer <-> Responsible Officer; Officer Location <-> Officer Location; Ticket Created Date <-> Created On; Created By <-> Created By; Last Updated Date <-> Updated On; Last Updated By <-> Updated By; Requester First/Last Name <-> First Name/Last Name; Requester Email <-> Email Address. DB-only: Flagged Deleted, Has Attachments, Attachment Count, Attachments Not Exported.
+| Script (tests/QCFootprints/) | Source | Writes |
+|---|---|---|
+| `extract_api_tickets.py` (was extract_footprints.py) | Footprints search API | app ticket Excel |
+| `extract_api_attachments.py` (was extract_attachments.py) | Footprints attachment API | attachments Excel |
+| `extract_db_footprints.py` (new) | `SELECT * FROM IR_Ticket_Summary`, Windows Auth | DB export Excel |
+| `compare_footprints.py` | reads the three files above | the report |
 
-## First full comparison (report qc_footprints_report_20261109_122436.xlsx, 2026-11-09)
-- App 30,325 tickets, DB live 30,224 (1,002 deleted excluded). All 30,224 DB live tickets found in app. Created On: 0 mismatches over the whole range -> DST handling (America/New_York) is correct.
-- 958 mismatch cells / 774 tickets. Causes: (1) Created/Updated By 'Email Request' vs DB '-315' = 522 (DB holds user id, not name); (2) accents flattened in DB (Ł->L, ł->l) = 331 (Created By 199, First Name 132); (3) ticket changed in app after DB export (~50 tickets: Status 30, Updated On 43, Updated By ~10, matter/officer 1-2) -> clears with a fresh DB export; (4) Title: 3 leading/embedded quotes stripped, 1 non-ASCII -> '?', 1 title starting with '-' came through blank in the DB Excel (export artifact), 2 non-breaking hyphens; (5) Client Matter Number text values ('test', 'a5345') flagged falsely = BUG in compare script, fixed (text fallback when either side is non-numeric).
-- Missing in DB: 101 = 95 newer than DB's highest ticket (IR-88530) + 6 inside range (IR-65403..65405, IR-65418..65420). ROOT CAUSE FOUND: they ARE in the DB xlsx but mangled. IR-65403's title starts with a quote char, so the export swallowed the next ~17 tickets (tab-separated fields, descriptions) into ONE Ticket Title cell (32,789 chars, past Excel's 32,767 cell limit, spilling into the next row). Row IR-65403 has blank status/dates; 65404/65405/65418-20 have no row of their own. Export-format bug (unescaped quote), not missing data. Tell Kim/Ofmara to escape/strip quotes in titles and re-export.
-- Script now: labels each mismatch with a Category, tags tickets whose app Updated On > DB export cutoff as CHANGED AFTER DB EXPORT, splits Missing_in_DB into NEWER THAN DB EXPORT / WITHIN DB RANGE, adds Mismatch_Categories sheet.
-- Questions for the dev: why is created/updated-by -315 instead of 'Email Request'; why are non-ASCII characters flattened/'?'-replaced; why are tickets IR-65403..65405 and IR-65418..65420 absent from the DB export.
+Typical full refresh, in this order: DB extract -> API tickets -> API attachments -> compare -> push report.
 
-## Report publishing (decision 2026-11-09)
-- Single report file with a fixed name, overwritten each run: `tests/QCFootprints/output/qc_footprints_report.xlsx`, tracked in git so everyone (and Claude) can read it from the repo. `--sample` runs write `output/qc_footprints_report_sample.xlsx` (ignored) so they never overwrite the full report. No timestamped copies, no `reports/` folder.
-- `tests/QCFootprints/.gitignore` now ignores only output/raw/, probe/debug files, *.pkl cache, *_sample.xlsx and request_body.txt. fixtures/ (app extract + DB export) are tracked.
-- Publish flow (user, local): git pull --autostash origin qc_footprints; run compare_footprints.py; git add tests/QCFootprints/output/qc_footprints_report.xlsx; commit; push.
+### extract_api_tickets.py
+- POST `https://crcofpsc.cornerstone.com/footprints/servicedesk/api/search/advanced/run?_dc=..&limit=500&page=N&start=..`
+  Body = saved search (`request_body.txt`, local, gitignored). 61 pages for ~30.3k tickets. Raw pages cached in `output/raw/`; use `--refresh` after a sample run.
+- Auth: NTLM does NOT work. Use `--auth cookie` (full browser Cookie header, ~584 chars; a partial one redirects to login). Cookie expires. Needs `--insecure`.
+- The app total drifts upward while running (new tickets), which can shift offset paging slightly.
 
-## Dev validation notes (2026-11-10) and attachments
-- Dev checklist: all IR tickets 1/1/2021-Nov 3 present; UI count == DB; spot check ID/case/title; attachment counts UI vs DB; attachment names identical UI vs DB field; open attachments (D drive); attachment location in DB field correct; D drive matches; flag tickets with real passwords in description (ignore plain 'change password'); question for Gurpreet: scan attachments for passwords? Kim still working on zip attachments.
-- Checked from existing data: DB IR-57299..88530, only gaps = the 6 missing tickets; 31,226 rows - 1,002 deleted = 30,224 + 101 missing = 30,325 app. DB Has Attachments consistent with Attachment Count (12,556 tickets with, 18,670 without, 32,575 attachments; Attachments Not Exported all 0). DB has counts only, no names/paths.
-- App saved search (#11901 'IR >2021 Tickets') has NO attachment fields and no 'Possible Credential' field (field picker: only Common 3 + Information Resources.Request 19). Ask Kim where Possible Credential comes from.
-- Attachment API (found via browser DevTools): GET .../footprints/servicedesk/api/item/attachment/<Item ID>/<ID>?limit=25&page=1&start=0 -> {"data":[{name,size,extension,creationDate,uri,mimeType}],"success":true}. <Item ID>=21103 (same for all, = _metaId), <ID> = ticket 'ID' column (IR-57299 -> 7399). uri = item/attachment/<x>/<definitionId 6518>/<ID>/<file>?<signed token> (token stripped in output).
-- Script `extract_api_attachments.py` (written + tested vs fake server, not yet run against real app): default scope = DB-flagged tickets with attachments + random 500 without; --all, --tickets, --first, --probe. Caches output/raw_att/<ID>.json (ignored), writes fixtures/QCFootprints_Attachments.xlsx (fixed name) (sheets Attachments, Ticket_Counts). Next: compare UI count vs DB Attachment Count in compare script; password scan of app Description (mask values - report is public in repo).
-- compare_footprints.py now also reads fixtures/QCFootprints_Attachments.xlsx (if present; --attachments PATH, --no-attachments to skip): UI count (Ticket_Counts sheet) vs DB 'Attachment Count' per checked ticket. Report gets an ATTACHMENTS block in Summary + sheets Attachment_Count_Check (categories: CHANGED AFTER DB EXPORT / MORE / FEWER ATTACHMENTS IN UI THAN DB) and Attachments_Not_Fetched. Also flags sampled 'DB says none' tickets that have UI attachments. Tested with fake data only; stdout set to errors=replace (cp1252 consoles crashed on odd chars). Attachment NAME/path comparison still needs the DB-side file names/paths from Kim.
+### extract_api_attachments.py
+- GET `.../api/item/attachment/<Item ID>/<ID>?limit=25&page=1&start=0` (Item ID = 21103 for all; ID = the ticket ID column). Response is a bare list or `{"data":[...]}`; each item has name,size,extension,creationDate,uri,mimeType (signed token stripped).
+- Default scope = tickets the DB says have attachments + a random 500 of those it says have none (`--sample-none`, `--seed`). Others: `--all`, `--first N`, `--probe IR-n`, `--workers`, `--timeout`, `--retries`, `--refresh`.
+- `--tickets IR-a,IR-b` builds the output from ONLY those tickets (it would overwrite the full file!). To add a ticket to the existing file use `--add IR-a,...`: it fetches the listed tickets and keeps everything already cached in `output/raw_att/` (local, gitignored). Verified 2026-11-11: file went 12,892 -> 12,893 tickets.
+- Tickets with 25+ attachments: server ignores paging, handled with a page-signature check, BIG_LIMIT=500 fallback and MAX_PAGES=40. Responses cached per ticket with atomic writes. Failures are listed on the Not_Fetched sheet.
 
-## CORRECTION 2026-11-10: DB export has 30 columns (A-AD), not 20
-- Only A-T have headers; U-AD are UNNAMED but hold data (scripts used usecols=range(20), so they were never read until now). Found when the user pointed at column W.
-- U = total attachment size in MiB (matches UI sum of bytes/1048576 for 12,388 of 12,392 tickets; the 4 are changed-after-export). V = attachment names joined by ' | ' (some URL-encoded: %3A %5E %C2%AE ...; unquote them). W = D-drive paths joined by ' | ', parallel to V, all of form D:\FPextract\out\item\attachment\6257\6518\<ticket internal ID>\<file>. V/W are filled exactly for the 12,556 tickets with attachments and item counts == Attachment Count on every row.
-- X = number of messages (matches max [n] in AC for 29,954/31,226). Y, Z = datetimes (not equal to Created/Updated Date; meaning unknown). AA = a person name (equals Last Updated By for 25,882). AB = latest message text. AC = full thread text "[n] date (Pacific) | Name: text". AD = Yes/No/blank (214 Yes / 29,402 No / 1,610 blank) - very likely 'Possible Credential' (all 214 Yes mention password terms); NOT yet confirmed with Kim. Ask Kim for the real headers of U-AD.
-- Attachment NAME check UI vs DB (live tickets, 12,392): all match after URL-decoding DB names, except the 4 changed-after-export tickets (IR-86397, IR-88389, IR-88459, IR-88524).
-- DB path file names vs attachment names: 26,780 identical; 4,934 have a numeric prefix '<digits>_' (99.6% of them in tickets with the same name more than once -> disambiguation); ~321 have illegal Windows chars (: ? " etc.) replaced by '_'; ~261 long names shortened with '~'; 14 unicode hyphen -> '-'. The real D-drive existence/openability check still has to run on a machine that sees D: (script not written yet).
-- Gotcha: when writing scripts here, backslashes in heredocs get halved; use chr(92) or replace to '/' before regex.
+### extract_db_footprints.py
+- Reads straight from the DB and writes the Excel cell by cell. Replaces SSMS copy/paste, which broke the data (see Lessons).
+- Config in `config/db.env` (gitignored): `FOOTPRINTS_DB_SERVER`, `FOOTPRINTS_DB_DATABASE` (or `--server/--database`). `--check` = dry run, writes nothing. Takes a few minutes (large text columns).
+- Prints row count, ticket range, duplicates, missing/extra columns vs what compare expects.
+- Text longer than Excel's 32,767-char cell limit is split over continuation columns `Full Description History (part 2..N)` and `Latest Description Entry (part 2..4)` (32,000 chars each); `compare_footprints.clean_db` joins them back. The largest history (IR-73240, 5.7M chars, 89 entries) needs 179 columns - likely embedded content; the file is ~70 MB.
 
-## 2026-11-10: DB headers confirmed + new checks in compare_footprints.py
-- DB U-AD headers now in the file: U 'Total Attachment Size Recorded (MB)', V 'Attachment File Names', W 'Attachment Locations (same order)', X 'History Entry Count', Y/Z 'First/Last Entry Date (Pacific)', AA 'Last Entry Author', AB 'Latest Description Entry', AC 'Full Description History', AD 'Possible Credential' (confirmed). load_db now reads ALL columns (cache pkl re-reads when the file changes).
-- New report sheets/summary blocks: Attachment_Name_Check (DB names URL-decoded vs UI; 4 diffs, all changed-after-export), Attachment_Size_Check (DB MB vs UI MiB, tol 0.011; 4 diffs, same tickets), Attachment_Path_Check (non-identical path file names; 0 pattern/folder-ID problems over 32,265 files; 26,780 identical, 4,889 numeric prefix, 296 illegal chars->_, 241 '~' shortened, ...), Credential_Review.
-- Credential_Review = live tickets with Possible Credential = Yes (188; 214 incl. deleted), scanned in 'Full Description History'. Values are NEVER written (report is public in repo): likely password -> '[REDACTED]'; mention only -> text before the term only. Categories: LIKELY REAL PASSWORD - REVIEW (56), MEETING PASSCODE (Zoom link / Meeting ID) (101), MENTIONS PASSWORD WORD ONLY (31). Heuristic - a human must review the 56. Context shows usernames/emails (not secrets) - consider before sharing wider.
-- Still open: D-drive existence/open check (needs machine that sees D:), AB/AC vs app Description comparison, answers from Kim/Ofmara (-315, accents, 6 missing tickets), fresh DB export.
+### compare_footprints.py
+- Reads app file, DB file (cached as `output/db_clean_cache.pkl`, keyed on mtime+size; delete it to force a re-read), optional attachments file. Flags: `--sample` (writes ignored `_sample.xlsx`), `--attachments PATH`, `--no-attachments`, `--db PATH`.
+- DB deleted tickets (`Flagged Deleted in FootPrints` = Yes, 1,002) are excluded. DB timestamps are UTC, app is US Eastern (converted via America/New_York, verified: 0 Created On mismatches). DB export cutoff = 2026-11-02 19:15:02 Eastern; highest DB ticket IR-88530.
+- Report sheets: Summary, Column_Check, Mismatch_Categories, Value_Mismatches, Missing_in_DB, Missing_in_App, Deleted_in_DB, Attachment_Count_Check, Attachments_Not_Fetched, Attachment_Name_Check, Attachment_Size_Check, Attachment_Path_Check, Credential_Review.
+- Mismatch categories: CHANGED AFTER DB EXPORT (app `Updated On` later than the cutoff - expected, not a defect), USER ID INSTEAD OF NAME (DB), ACCENTS / SPECIAL CHARACTERS, NON-ASCII REPLACED BY '?', QUOTES REMOVED, DB BLANK APP HAS VALUE, OTHER. Missing_in_DB: NEWER THAN DB EXPORT vs WITHIN DB RANGE - INVESTIGATE.
+- Console is set to errors="replace" (cp1252 consoles crashed on odd characters). pandas 3.x: use `sheet_name=` keyword.
 
-## Rename + DB extractor (2026-11-11)
-- `extract_footprints.py` renamed to `extract_api_tickets.py` (app/API ticket extract). Imports in extract_api_attachments.py updated.
-- NEW `extract_db_footprints.py`: runs `SELECT * FROM IR_Ticket_Summary` over Windows Auth and writes `fixtures/QCFootprint_DB_Details.xlsx` directly (replaces SSMS copy/paste, which merged IR-65403..65420 into one cell). Needs `FOOTPRINTS_DB_SERVER` / `FOOTPRINTS_DB_DATABASE` in config/db.env (or --server/--database). `--check` = dry run. Warns on missing/extra columns vs what compare expects, cuts >32,767-char cells, strips control chars. UNTESTED against the real DB - confirm view column names match the 30 headers.
-- First real --check (2026-11-11, 25SQLT4COTEST\sql2019 / fpdb001): 31,232 rows x 30 cols, IR-57299..IR-88530, 0 duplicates, no missing columns (extra: First/Last Entry Date (Pacific), Last Entry Author). Old SSMS paste had 33,689 rows = inflated by overflow/split rows. 1,610 'Full Description History' + 96 'Latest Description Entry' exceed Excel's 32,767-char cell limit -> cut on write (credential review scans truncated text for those).
-- 2026-11-11 FIX: long text no longer cut. extract_db_footprints.py splits 'Full Description History' / 'Latest Description Entry' into continuation columns '<col> (part 2)', '(part 3)'... (32,000 chars each); compare_footprints.clean_db joins them back. Reason: IR-57761's Zoom `?pwd=` link sits past 32,767 chars, so the credential scan saw the cut text and reported 'NO PASSWORD WORD FOUND' for a ticket the DB flags Yes. Needs a DB re-extract to take effect. Round trip tested with a 70k string.
-- 2026-11-11 ANALYSIS after split-history DB re-extract (5ba9671): DB file 31,232 rows; live 30,230 compared; flag Possible Credential Yes=267 (241 live), blank=0 (old paste had 1,610 blank). Value mismatches fell 952->612: ONLY two causes remain = CHANGED AFTER DB EXPORT (90 cells/43 tickets) and USER ID INSTEAD OF NAME (522 cells; always App 'Email Request' vs DB '-315', single id). The accent flattening, '?' replacement, stripped-quote and blank-title mismatches were all artifacts of the SSMS copy/paste, NOT DB bugs -> do not raise them with Kim/Ofmara. Missing_in_DB = 95, all newer than export. Attachments_Not_Fetched = IR-65403 (DB now shows 1 attachment; run extract_api_attachments.py --tickets IR-65403). Odd: some histories are huge (IR-73240 5.7M chars, 89 entries; needs 179 columns) - likely embedded base64/inline content; 4 tickets where History Entry Count != entries in text (IR-65843 3 vs 106, IR-74278 14 vs 12, IR-80590 10 vs 9, IR-79430 31 vs 30).
-- Credential scan fix: 'PW-xxxx' (Cornerstone project code prefix) and URL slugs counted as 'pw - value' -> false 'likely password'. Now excluded (is_project_code_or_slug): flagged-Yes likely 68->65. Scanning flag=No tickets with the same logic: 352 -> 8 after the fix; 7 look like real passwords (IR-58782, 59410, 71937, 73289, 78717, 84144, 87367 - patterns 'pw is', 'Password :', 'password -', 'Your password is:') = DB flag misses; IR-79859 is a URL slug. Flag Yes rate is flat (~0.7%) across ticket ranges, so no batch gap. Candidate question for devs: flag logic misses 'pw is', 'Password :', 'Password -'.
-- 2026-11-11 Credential scan miss: IR-57400 ('Password: <plain capitalised word>') was reported MENTIONS PASSWORD WORD ONLY because looks_like_password() needs a digit/symbol/inner capital. Added plausible_value(): a plain alphabetic word >=5 chars after an explicit 'label:'/'label =' now counts unless it is filler (CRED_FILLER). Flagged-Yes now: 140 meeting / 67 likely / 34 word-only (IR-57400 and IR-61478 moved to likely). Still a heuristic - human review of the likely list is required; passwords sit in cleartext in the DB history (a security finding in itself).
+## DB export columns (30, A-AD)
+A-T: Ticket Number, Ticket Title, Case Name, Case / Matter Number, Status, Priority, Responsible Officer, Officer Location, Ticket Created Date, Created By, Last Updated Date, Last Updated By, Requester First Name, Requester Last Name, Requester Email, Flagged Deleted in FootPrints, Ticket Internal ID, Has Attachments, Attachment Count, Attachments Not Exported.
+U Total Attachment Size Recorded (MB) (really MiB); V Attachment File Names (joined ' | ', some URL-encoded); W Attachment Locations (same order) (`D:\FPextract\out\item\attachment\6257\6518\<internal ID>\<file>`); X History Entry Count; Y/Z First/Last Entry Date (Pacific); AA Last Entry Author; AB Latest Description Entry; AC Full Description History (`[n] date (Pacific) | Name: text`); AD Possible Credential (Yes/No).
+Mapping DB <-> app: Ticket Internal ID<->ID, Ticket Title<->Title, Case Name<->Client Matter Name, Case / Matter Number<->Client Matter Number, Status, Priority, Responsible Officer, Officer Location, Ticket Created Date<->Created On, Created By, Last Updated Date<->Updated On, Last Updated By<->Updated By, Requester First/Last Name<->First/Last Name, Requester Email<->Email Address.
+Current DB file: 31,232 rows (30,230 live + 1,002 deleted), IR-57299..IR-88530, no duplicates. History Entry Count matches the entries in the text for all but 4 tickets (IR-65843 3 vs 106, IR-74278 14 vs 12, IR-80590 10 vs 9, IR-79430 31 vs 30) - unexplained, low priority.
+
+## Current results (report 9ae7591)
+- App 30,325 tickets; DB live 30,230 compared. Value mismatches: 612 cells / 558 tickets, ONLY two causes:
+  1. USER ID INSTEAD OF NAME: 522 cells - app 'Email Request' vs DB `-315` (single id, 513 Created By + 9 Updated By).
+  2. CHANGED AFTER DB EXPORT: 90 cells / 43 tickets (edited in app after the cutoff). A fresh DB export clears these.
+- Missing_in_DB: 95, all NEWER THAN DB EXPORT. Missing_in_App 0. Deleted_in_DB 0.
+- Attachments (12,893 tickets checked; DB says attachments 12,393): counts, names and total sizes all match except the 4 tickets changed after export (IR-86397, IR-88389, IR-88459, IR-88524 - extra files created after the cutoff, verified from creation dates). Sample of 500 'DB says none' tickets: 0 have UI attachments. Attachments_Not_Fetched: 0. Path check: 32,265 D-drive paths, 0 pattern/folder-ID problems; file name identical for 26,794, differs for 5,471 (4,889 numeric prefix, 296 illegal chars -> `_`, 241 shortened with `~`, 45 combined).
+- Credential review (DB flag Possible Credential = Yes: 267 incl. deleted, 241 live): 140 MEETING PASSCODE, 67 LIKELY REAL PASSWORD - REVIEW, 34 MENTIONS PASSWORD WORD ONLY, 0 NO PASSWORD WORD FOUND.
+
+## Credential scan logic (compare_footprints.check_credentials)
+- Scans `Full Description History` of live tickets flagged Yes. Values are NEVER written (report is tracked in git): likely password -> `[REDACTED]`; context shows username/email text, so think before sharing the report wider.
+- Order: LIKELY (value after password/passwd/pwd/pw/passcode label, not meeting) > MEETING PASSCODE (`?pwd=` in a URL or after 'Meeting ID') > MENTIONS WORD ONLY > NO WORD FOUND.
+- `plausible_value()`: value counts if it has a digit/symbol/inner capital, OR is a plain word >=5 letters after an explicit `label:`/`label =` and not filler (CRED_STOP, CRED_FILLER). Added after IR-57400 ('Password: <plain word>') was missed.
+- `is_project_code_or_slug()`: ignores `PW-xxxx` (Cornerstone project code prefix) and URL slugs like `bitcoin-passwords-2021`. Without it the unflagged scan showed 352 false hits instead of 8.
+- Heuristic only: a human must review the 67. A password written in words without a label is not caught.
+- DB flag misses (scan of tickets with flag = No finds a likely real password): IR-58782, IR-59410, IR-71937, IR-73289, IR-78717, IR-84144, IR-87367 (patterns 'pw is', 'Password :', 'Password -', 'Your password is:'). The flag rate (~0.7%) is flat across ticket ranges, so there is no batch gap. Not built into the report yet (offered: a Credential_Flag_Mismatch sheet, kept out of git).
+- Real credentials are stored in plain text in the DB ticket history (e.g. IR-57400) - a security finding in itself.
+
+## Lessons (root causes found - keep so they are not re-investigated)
+- **SSMS copy/paste into Excel corrupts the export.** A title starting with a straight quote (IR-65403 `"Remarkable Retail” ...`) made Excel treat everything up to the next quote as ONE cell: IR-65404..65420 were swallowed into one 32,789-char Title cell (past the 32,767 cell limit, spilling into the next row). That produced the 6 'WITHIN DB RANGE' missing tickets, 2,463 'spilled text' rows, 1,610 blank Possible Credential flags (long histories), and the accent flattening / '?' / stripped-quote / blank-title mismatches. None of these were DB bugs; all disappeared with the direct DB extract. Do not raise them with Kim/Ofmara.
+- Excel cell limit 32,767 chars: why history is split into continuation columns. Truncating it made the credential scan miss text past the cut (IR-57761's Zoom `?pwd=` link -> falsely 'NO PASSWORD WORD FOUND').
+- The report file must be closed in Excel before running the compare.
+- DB column count: the export has 30 columns; an old `usecols=range(20)` hid U-AD for a while (extract_api_attachments.db_attachment_flags still uses range(20) on purpose - it only needs A-T).
+- Writing scripts through shell heredocs halves backslashes; use `chr(92)` or normalise paths to `/` before regex.
+- Push rejected after the other machine pushed: pull with `--no-rebase --no-edit` then push. A pull with unstaged deletions fails: `git restore` them first.
+
+## Open items
+- Ask Kim/Ofmara: why created/updated-by is `-315` instead of 'Email Request'; get a fresh DB export (clears the 90 CHANGED AFTER cells and 95 newer tickets); the 7 tickets the DB credential flag missed; numeric prefixes / `~` shortening / `_` replacement in D-drive file names; 4 tickets with History Entry Count mismatches.
+- Gurpreet's question: scan attachment contents for passwords (about 489 zip/archive attachments; Kim is still working on zip attachments).
+- Human review of the 67 LIKELY REAL PASSWORD tickets.
+- D-drive existence/openability check: needs a machine that sees D: (script not written).
+- Not built yet: compare app Description vs DB Latest Description Entry / Full History; Credential_Flag_Mismatch sheet; HTML report; pytest wrapper.
+- Repo housekeeping: plaintext password in a commented line of `src/cornerstone_automation/utils/api_utils.py` (in git history) - remove and rotate; no PR yet for `qc_footprints`; `backup-untracked-files` branch has no PR.

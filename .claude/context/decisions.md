@@ -31,3 +31,27 @@
 ## SSH Remote Only
 **Decision:** Use `git@github.com:cresearch-se/automation.git` (SSH), not HTTPS.
 **Why:** HTTPS fails on this server without a PAT configured. SSH key is set up and works.
+
+## QCFootprints: Read the DB directly, never copy/paste from SSMS
+**Decision:** The DB export Excel is produced by `extract_db_footprints.py` (pyodbc, Windows Auth, cell-by-cell write), not by copying SSMS results into Excel.
+**Why:** Pasting broke on a title starting with a straight quote - Excel swallowed 17 tickets into one cell, spilled rows, blanked flags and flattened accents. All of those false differences vanished with the direct extract.
+
+## QCFootprints: Long text goes into continuation columns, not truncated
+**Decision:** `Full Description History` / `Latest Description Entry` are split into `<col> (part N)` columns of 32,000 chars; the compare joins them back.
+**Why:** Excel cells hold 32,767 chars. Truncating hid password terms past the cut (IR-57761) and gave false 'NO PASSWORD WORD FOUND'.
+
+## QCFootprints: Fixed-name tracked outputs, one report
+**Decision:** Fixed file names, overwritten each run, tracked in git (fixtures + `output/qc_footprints_report.xlsx`); `--sample` writes an ignored `_sample.xlsx`.
+**Why:** Claude works from the repo copy (apps/DB unreachable from the server) and the user wanted no timestamped clutter.
+
+## QCFootprints: Credential values are never written to the report
+**Decision:** Credential_Review shows `[REDACTED]` for values and only the words around the label.
+**Why:** The report is tracked in a git repo. Context still shows usernames/emails - revisit before wider sharing.
+
+## QCFootprints: `--add` instead of `--tickets` for extra attachment tickets
+**Decision:** `extract_api_attachments.py --add IR-n` fetches the ticket and keeps everything already cached; `--tickets` builds the file from only the named tickets.
+**Why:** Fetching one missing ticket with `--tickets` would have overwritten the 12,892-ticket file; the default scope would re-draw the random 500 sample and re-fetch ~500 tickets.
+
+## QCFootprints: Credential scan ignores `PW-` project codes and URL slugs
+**Decision:** `is_project_code_or_slug()` skips `pw -`/`PW-xxxx` and values preceded by `-`, `/` or `_`; `plausible_value()` accepts plain words after an explicit `label:`.
+**Why:** `PW-Silver` etc. are project codes (352 false hits among unflagged tickets, 344 of them this); and 'Password: <plain word>' (IR-57400) was missed by the digit/symbol rule.
