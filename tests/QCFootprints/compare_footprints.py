@@ -120,6 +120,16 @@ def clean_db(raw):
     db = raw[raw[DB_INTERNAL_ID].notna()].copy()  # drops spilled description-text rows
     print(f"  DB rows: {n_all} non-empty, {n_all - len(db)} spilled-text rows dropped, {len(db)} real tickets")
     db["_key"] = db[KEY_DB].astype(str).str.strip()
+    # extract_db_footprints.py continues text longer than one Excel cell in "<col> (part N)" columns
+    for base in (DB_HISTORY, "Latest Description Entry"):
+        parts = sorted((c for c in db.columns if re.fullmatch(re.escape(base) + r" \(part \d+\)", str(c))),
+                       key=lambda c: int(re.search(r"part (\d+)", c).group(1)))
+        if parts and base in db.columns:
+            joined = db[base].where(db[base].notna(), "").astype(str)
+            for c in parts:
+                joined = joined + db[c].where(db[c].notna(), "").astype(str)
+            db[base] = joined.where(joined != "", None)
+            print(f"  joined {len(parts)} continuation column(s) of '{base}'")
     return db
 
 

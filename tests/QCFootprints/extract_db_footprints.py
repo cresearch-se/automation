@@ -49,6 +49,8 @@ EXPECTED = [
     "Full Description History", "Latest Description Entry", "Possible Credential",
 ]
 EXCEL_CELL_LIMIT = 32767
+PART_SIZE = 32000  # a little under the cell limit
+LONG_COLS = ["Full Description History", "Latest Description Entry"]
 ILLEGAL_XML = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f]")  # openpyxl rejects these
 
 
@@ -98,6 +100,22 @@ def main():
         dups = df[key].duplicated().sum()
         print(f"Ticket range: {df[key].min()} .. {df[key].max()}   duplicate ticket numbers: {dups}")
 
+    # Long history text does not fit one Excel cell: continue it in "<col> (part 2)", "(part 3)" ...
+    # so nothing is lost (compare_footprints.py joins the parts back together).
+    for col in LONG_COLS:
+        if col not in df.columns:
+            continue
+        s = df[col].where(df[col].notna(), "").astype(str)
+        n_parts = max(1, -(-int(s.str.len().max()) // PART_SIZE))
+        if n_parts > 1:
+            print(f"[info] {col}: {int((s.str.len() > PART_SIZE).sum())} values longer than {PART_SIZE} chars "
+                  f"-> split over {n_parts} columns")
+            pos = list(df.columns).index(col) + 1
+            for i in range(2, n_parts + 1):
+                piece = s.str.slice((i - 1) * PART_SIZE, i * PART_SIZE)
+                df.insert(pos + i - 2, f"{col} (part {i})", piece.where(piece != "", None))
+            df[col] = s.str.slice(0, PART_SIZE).where(df[col].notna(), None)
+
     obj_cols = [c for c in df.columns
                 if not pd.api.types.is_numeric_dtype(df[c]) and not pd.api.types.is_datetime64_any_dtype(df[c])
                 and not pd.api.types.is_bool_dtype(df[c])]
@@ -107,6 +125,7 @@ def main():
         print(f"[warn] values longer than Excel's {EXCEL_CELL_LIMIT}-char cell limit were cut: {too_long}")
     for c in obj_cols:
         df[c] = df[c].map(clean_cell)
+    # Control-character stripping above can only shorten text, so every part stays within the limit.
 
     # Excel cannot store timezone-aware datetimes
     for c in df.columns:
