@@ -4,10 +4,10 @@ Extract all rows from the Footprints advanced-search API into one Excel file.
 Run on the LOCAL machine (the app is not reachable from the dev server), from the repo root:
 
     # 1) Probe: fetch 5 rows, save raw JSON, print the response structure. Send the output back.
-    python tests/QCFootprints/extract_footprints.py --probe
+    python tests/QCFootprints/extract_api_tickets.py --probe
 
     # 2) Full extract: all pages (limit 500) -> fixtures/QCFootprints_<YYYYMMDD>.xlsx
-    python tests/QCFootprints/extract_footprints.py
+    python tests/QCFootprints/extract_api_tickets.py
 
 Inputs (all in tests/QCFootprints/):
     request_body.txt   raw POST body copied from the browser (DevTools > Network > the "run" request > Payload)

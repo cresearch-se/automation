@@ -9,16 +9,16 @@ app extract (tests/QCFootprints/fixtures/QCFootprints_<date>.xlsx). So fetch tha
 Run on the LOCAL machine (the app is not reachable from the dev server), from the repo root:
 
     # 1) Probe: one ticket, print the response structure
-    python tests/QCFootprints/extract_attachments.py --auth cookie --insecure --probe IR-57299
+    python tests/QCFootprints/extract_api_attachments.py --auth cookie --insecure --probe IR-57299
 
     # 2) Default run: every ticket the DB export says has attachments (12.5k) + a random sample of
     #    500 tickets the DB says have none (to confirm the UI also shows none)
-    python tests/QCFootprints/extract_attachments.py --auth cookie --insecure
+    python tests/QCFootprints/extract_api_attachments.py --auth cookie --insecure
 
     # Other scopes
-    python tests/QCFootprints/extract_attachments.py --auth cookie --insecure --tickets IR-57299,IR-57327
-    python tests/QCFootprints/extract_attachments.py --auth cookie --insecure --first 200      # first N tickets
-    python tests/QCFootprints/extract_attachments.py --auth cookie --insecure --all            # all ~30k tickets
+    python tests/QCFootprints/extract_api_attachments.py --auth cookie --insecure --tickets IR-57299,IR-57327
+    python tests/QCFootprints/extract_api_attachments.py --auth cookie --insecure --first 200      # first N tickets
+    python tests/QCFootprints/extract_api_attachments.py --auth cookie --insecure --all            # all ~30k tickets
 
 Each ticket's response is cached in output/raw_att/<ID>.json, so a re-run after a cookie expiry resumes
 where it stopped (use --refresh to ignore the cache). Output (the signed token after '?' in the file
@@ -37,7 +37,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import pandas as pd
 import requests
 
-from extract_footprints import FIXTURES_DIR, HERE, NotJsonError, build_session, describe_html
+from extract_api_tickets import FIXTURES_DIR, HERE, NotJsonError, build_session, describe_html
 
 RAW_ATT_DIR = os.path.join(HERE, "output", "raw_att")
 DB_FILE = os.path.join(FIXTURES_DIR, "QCFootprint_DB_Details.xlsx")
@@ -52,7 +52,7 @@ _inflight_lock = threading.Lock()
 def newest_app_extract():
     files = sorted(glob.glob(os.path.join(FIXTURES_DIR, "QCFootprints_2*.xlsx")))
     if not files:
-        sys.exit(f"No app extract found in {FIXTURES_DIR} - run extract_footprints.py first.")
+        sys.exit(f"No app extract found in {FIXTURES_DIR} - run extract_api_tickets.py first.")
     return files[-1]
 
 

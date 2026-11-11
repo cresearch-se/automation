@@ -12,7 +12,7 @@ Run on the LOCAL machine from the repo root:
 Inputs
     app file : newest tests/QCFootprints/fixtures/QCFootprints_<date>.xlsx   (or --app PATH)
     DB file  : tests/QCFootprints/fixtures/QCFootprint_DB_Details.xlsx       (or --db PATH)
-    attachments (optional): fixtures/QCFootprints_Attachments.xlsx from extract_attachments.py
+    attachments (optional): fixtures/QCFootprints_Attachments.xlsx from extract_api_attachments.py
         -> adds UI-vs-DB attachment count checks (sheets Attachment_Count_Check, Attachments_Not_Fetched);
            skip with --no-attachments
 
@@ -80,7 +80,7 @@ def newest_app_file():
     files = sorted(glob.glob(os.path.join(FIXTURES_DIR, "QCFootprints_2*.xlsx")),
                    key=os.path.getmtime)
     if not files:
-        sys.exit("No app extract found in fixtures/ (QCFootprints_<date>.xlsx). Run extract_footprints.py first.")
+        sys.exit("No app extract found in fixtures/ (QCFootprints_<date>.xlsx). Run extract_api_tickets.py first.")
     return files[-1]
 
 
@@ -476,7 +476,7 @@ CAT_ATT_FEWER = "FEWER ATTACHMENTS IN UI THAN DB"
 
 
 def check_attachments(att_path, res):
-    """UI attachment counts (from extract_attachments.py) vs the DB's Attachment Count.
+    """UI attachment counts (from extract_api_attachments.py) vs the DB's Attachment Count.
 
     Only tickets present in the attachment file are checked. The extract normally holds every ticket the
     DB says has attachments plus a random sample of tickets it says have none.
@@ -663,7 +663,7 @@ def main():
                    help="only compare tickets present in the app file; skip MISSING IN APP")
     p.add_argument("--tolerance", type=float, default=1.0, help="datetime tolerance in seconds (default 1)")
     p.add_argument("--attachments", default=DEFAULT_ATT_FILE,
-                   help="attachment extract from extract_attachments.py (default: fixtures/QCFootprints_Attachments.xlsx)")
+                   help="attachment extract from extract_api_attachments.py (default: fixtures/QCFootprints_Attachments.xlsx)")
     p.add_argument("--no-attachments", action="store_true", help="skip the attachment count checks")
     args = p.parse_args()
 
