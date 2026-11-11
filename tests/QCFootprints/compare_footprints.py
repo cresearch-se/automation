@@ -433,6 +433,13 @@ def looks_like_password(token):
     return has_digit or has_symbol or inner_mixed
 
 
+def is_project_code_or_slug(text, m):
+    """'PW-Silver' is a Cornerstone project code, not 'pw - <value>'; 'bitcoin-passwords-2021' is a URL slug."""
+    if re.match(r"(?i)pw\s*-", m.group(0)):
+        return True
+    return m.start() > 0 and text[m.start() - 1] in "-/_"
+
+
 def check_credentials(res):
     """List tickets flagged 'Possible Credential = Yes' and judge whether the text holds a real password.
 
@@ -447,7 +454,8 @@ def check_credentials(res):
     rows = []
     for _, r in flagged.iterrows():
         text = re.sub(r"\s+", " ", str(r[DB_HISTORY])) if pd.notna(r.get(DB_HISTORY)) else ""
-        hits = [m for m in CRED_VALUE_RX.finditer(text) if looks_like_password(m.group(1))]
+        hits = [m for m in CRED_VALUE_RX.finditer(text)
+                if looks_like_password(m.group(1)) and not is_project_code_or_slug(text, m)]
         # A meeting passcode is not a password typed into the ticket: "...zoom.us/j/123?pwd=abc" in a URL,
         # or "Meeting ID: 123 | Passcode: abc".
         is_meeting = lambda m: (m.start() > 0 and text[m.start() - 1] in "?&") or             "meeting id" in text[max(0, m.start() - 80):m.start()].lower()
