@@ -9,3 +9,4 @@ output/*_sample.xlsx
 request_body.txt
 # Excel lock files (exist while a workbook is open - the compare cannot overwrite an open report)
 ~$*
+output/qc_footprints_flag_check.xlsx

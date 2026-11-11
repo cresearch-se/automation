@@ -55,3 +55,7 @@
 ## QCFootprints: Credential scan ignores `PW-` project codes and URL slugs
 **Decision:** `is_project_code_or_slug()` skips `pw -`/`PW-xxxx` and values preceded by `-`, `/` or `_`; `plausible_value()` accepts plain words after an explicit `label:`.
 **Why:** `PW-Silver` etc. are project codes (352 false hits among unflagged tickets, 344 of them this); and 'Password: <plain word>' (IR-57400) was missed by the digit/symbol rule.
+
+## QCFootprints: flag-check detail kept out of git
+**Decision:** The tracked report's `Flag_Check_No` sheet lists ticket numbers and verdicts only; the masked context goes to the git-ignored `output/qc_footprints_flag_check.xlsx`.
+**Why:** Context text includes usernames/emails around the password label; the report lives in a repo. (Credential_Review still shows context for flagged tickets - revisit.)

@@ -414,7 +414,7 @@ def check_attachment_details(att_path, res, db, checked):
 
 # ---------------------------------------------------------------- possible credentials
 # A password-like word followed by a value, e.g. "password: Abc123", "pw is Xy7!q".
-CRED_WORD_RX = re.compile(r"(?i)\b(?:passw\w*|pwd|pw|passcode)\b")
+CRED_WORD_RX = re.compile(r"(?i)\b(?:passw\w*|pwd|pw(?!\s*-)|passcode)\b")  # 'PW-xxxx' is a project code
 CRED_VALUE_RX = re.compile(r"(?i)\b(?:passw(?:ord|d)s?|pwd|pw|passcode)\b\s*(?:(?:is|are|was|=|:|-|->)\s*[:=]?\s*)(\S+)")
 CRED_STOP = {"to", "for", "and", "the", "reset", "change", "changed", "is", "has", "will", "please", "you", "your",
              "in", "on", "a", "of", "was", "expired", "incorrect", "protected", "manager", "required", "needed",
@@ -460,6 +460,39 @@ def is_project_code_or_slug(text, m):
     return m.start() > 0 and text[m.start() - 1] in "-/_"
 
 
+V_LIKELY = "LIKELY REAL PASSWORD - REVIEW"
+V_MEETING = "MEETING PASSCODE (Zoom link / Meeting ID)"
+V_WORD = "MENTIONS PASSWORD WORD ONLY"
+V_NONE = "NO PASSWORD WORD FOUND"
+V_ORDER = {V_LIKELY: 0, V_MEETING: 1, V_WORD: 2, V_NONE: 3}
+
+
+def assess_text(text):
+    """Judge one ticket's description history. Returns (verdict, masked context, number of likely matches)."""
+    hits = [m for m in CRED_VALUE_RX.finditer(text)
+            if plausible_value(m) and not is_project_code_or_slug(text, m)]
+    # A meeting passcode is not a password typed into the ticket: "...zoom.us/j/123?pwd=abc" in a URL,
+    # or "Meeting ID: 123 | Passcode: abc".
+    is_meeting = lambda m: (m.start() > 0 and text[m.start() - 1] in "?&") or         "meeting id" in text[max(0, m.start() - 80):m.start()].lower()
+    in_url = [m for m in hits if is_meeting(m)]
+    likely = [m for m in hits if m not in in_url]
+    any_word = CRED_WORD_RX.search(text)
+    if likely:
+        m = likely[0]
+        return V_LIKELY, text[max(0, m.start() - CRED_PREFIX):m.start(1)].strip() + " [REDACTED]", len(likely)
+    if in_url:
+        m = in_url[0]
+        ctx = text[max(0, m.start() - CRED_PREFIX):m.start()].strip() +             m.group(0)[:len(m.group(0)) - len(m.group(1))] + " [REDACTED]"
+        return V_MEETING, ctx, 0
+    if any_word:
+        return V_WORD, text[max(0, any_word.start() - CRED_PREFIX):any_word.end()].strip(), 0
+    return V_NONE, "", 0
+
+
+def history_text(r):
+    return re.sub(r"\s+", " ", str(r[DB_HISTORY])) if pd.notna(r.get(DB_HISTORY)) else ""
+
+
 def check_credentials(res):
     """List tickets flagged 'Possible Credential = Yes' and judge whether the text holds a real password.
 
@@ -473,38 +506,38 @@ def check_credentials(res):
     flagged = db[db[DB_CRED].astype(str).str.strip().str.lower() == "yes"]
     rows = []
     for _, r in flagged.iterrows():
-        text = re.sub(r"\s+", " ", str(r[DB_HISTORY])) if pd.notna(r.get(DB_HISTORY)) else ""
-        hits = [m for m in CRED_VALUE_RX.finditer(text)
-                if plausible_value(m) and not is_project_code_or_slug(text, m)]
-        # A meeting passcode is not a password typed into the ticket: "...zoom.us/j/123?pwd=abc" in a URL,
-        # or "Meeting ID: 123 | Passcode: abc".
-        is_meeting = lambda m: (m.start() > 0 and text[m.start() - 1] in "?&") or             "meeting id" in text[max(0, m.start() - 80):m.start()].lower()
-        in_url = [m for m in hits if is_meeting(m)]
-        likely = [m for m in hits if m not in in_url]
-        any_word = CRED_WORD_RX.search(text)
-        if likely:
-            m = likely[0]
-            ctx = text[max(0, m.start() - CRED_PREFIX):m.start(1)].strip() + " [REDACTED]"
-            verdict = "LIKELY REAL PASSWORD - REVIEW"
-        elif in_url:
-            m = in_url[0]
-            ctx = text[max(0, m.start() - CRED_PREFIX):m.start()].strip() + m.group(0)[:len(m.group(0)) - len(m.group(1))] + " [REDACTED]"
-            verdict = "MEETING PASSCODE (Zoom link / Meeting ID)"
-        elif any_word:
-            ctx = text[max(0, any_word.start() - CRED_PREFIX):any_word.end()].strip()
-            verdict = "MENTIONS PASSWORD WORD ONLY"
-        else:
-            ctx, verdict = "", "NO PASSWORD WORD FOUND"
+        verdict, ctx, n = assess_text(history_text(r))
         rows.append({"Record Number": r["_key"], "Possible Credential": "Yes", "Assessment": verdict,
-                     "Likely password matches": len(likely), "Masked context": ctx})
-    order = {"LIKELY REAL PASSWORD - REVIEW": 0, "MEETING PASSCODE (Zoom link / Meeting ID)": 1,
-             "MENTIONS PASSWORD WORD ONLY": 2, "NO PASSWORD WORD FOUND": 3}
+                     "Likely password matches": n, "Masked context": ctx})
     cols = ["Record Number", "Possible Credential", "Assessment", "Likely password matches", "Masked context"]
     df = pd.DataFrame(rows, columns=cols)
     if len(df):
-        df = df.sort_values("Assessment", key=lambda s: s.map(order), kind="stable").reset_index(drop=True)
+        df = df.sort_values("Assessment", key=lambda s: s.map(V_ORDER), kind="stable").reset_index(drop=True)
     return {"flagged": len(flagged), "table": df,
             "counts": df["Assessment"].value_counts().to_dict() if len(df) else {}}
+
+
+def check_flag_no(res):
+    """Is 'Possible Credential' = No (or blank) really correct? Scan those tickets with the same logic.
+
+    Returns every ticket whose text looks like it holds a password / meeting passcode / the password word,
+    plus counts for all outcomes. Masked context is returned separately so it can stay out of git.
+    """
+    db = res["db_live"]
+    if DB_CRED not in db.columns:
+        return None
+    unflagged = db[db[DB_CRED].astype(str).str.strip().str.lower() != "yes"]
+    rows = []
+    for _, r in unflagged.iterrows():
+        verdict, ctx, n = assess_text(history_text(r))
+        rows.append((r["_key"], str(r[DB_CRED]).strip() if pd.notna(r[DB_CRED]) else "(blank)", verdict, n, ctx))
+    full = pd.DataFrame(rows, columns=["Record Number", "Possible Credential", "Assessment",
+                                       "Likely password matches", "Masked context"])
+    counts = full["Assessment"].value_counts().to_dict() if len(full) else {}
+    hits = full[full["Assessment"] != V_NONE].copy()
+    hits = hits.sort_values("Assessment", key=lambda s: s.map(V_ORDER), kind="stable").reset_index(drop=True)
+    return {"scanned": len(unflagged), "counts": counts, "table": hits.drop(columns=["Masked context"]),
+            "table_ctx": hits}
 
 
 # ---------------------------------------------------------------- attachments
@@ -641,6 +674,12 @@ def write_report(res, sample, app_path, db_path):
                 ("Tickets flagged Possible Credential = Yes", cred["flagged"])]
         rows += [(f"   {k}", v) for k, v in cred["counts"].items()]
         summary = pd.concat([summary, pd.DataFrame(rows, columns=["Item", "Value"])], ignore_index=True)
+    fno = res.get("flag_no")
+    if fno:
+        rows = [("--- POSSIBLE CREDENTIAL = NO / BLANK: is the flag right? (same scan) ---", ""),
+                ("Tickets with flag No/blank scanned", fno["scanned"])]
+        rows += [(f"   {k}", fno["counts"].get(k, 0)) for k in V_ORDER]
+        summary = pd.concat([summary, pd.DataFrame(rows, columns=["Item", "Value"])], ignore_index=True)
     try:
         with pd.ExcelWriter(out, engine="openpyxl") as xw:
             summary.to_excel(xw, sheet_name="Summary", index=False)
@@ -660,8 +699,16 @@ def write_report(res, sample, app_path, db_path):
                     cap(d["paths"]).to_excel(xw, sheet_name="Attachment_Path_Check", index=False)
             if cred:
                 cap(cred["table"]).to_excel(xw, sheet_name="Credential_Review", index=False)
+            if fno:  # ticket numbers + verdict only; the masked text goes to the untracked file below
+                cap(fno["table"]).to_excel(xw, sheet_name="Flag_Check_No", index=False)
+        if fno:
+            ctx_out = os.path.join(OUTPUT_DIR, "qc_footprints_flag_check_sample.xlsx" if sample
+                                   else "qc_footprints_flag_check.xlsx")
+            with pd.ExcelWriter(ctx_out, engine="openpyxl") as xw:  # git-ignored: shows usernames/emails
+                cap(fno["table_ctx"]).to_excel(xw, sheet_name="Flag_Check_No", index=False)
+            print(f"Flag check with masked context (not tracked in git): {ctx_out}")
     except PermissionError:
-        sys.exit(f"Cannot write {out} - close it in Excel and run again.")
+        sys.exit(f"Cannot write {out} (or the flag-check file) - close it in Excel and run again.")
     return out, summary
 
 
@@ -719,6 +766,7 @@ def main():
         else:
             print(f"(no attachment file at {args.attachments} - attachment checks skipped)")
     res["cred"] = check_credentials(res)
+    res["flag_no"] = check_flag_no(res)
     out, summary = write_report(res, args.sample, app_path, args.db)
     print_console(res, args.sample, summary)
     print(f"\nReport written to: {out}")

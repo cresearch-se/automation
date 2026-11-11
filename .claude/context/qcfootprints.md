@@ -89,3 +89,8 @@ Current DB file: 31,232 rows (30,230 live + 1,002 deleted), IR-57299..IR-88530, 
 - D-drive existence/openability check: needs a machine that sees D: (script not written).
 - Not built yet: compare app Description vs DB Latest Description Entry / Full History; Credential_Flag_Mismatch sheet; HTML report; pytest wrapper.
 - Repo housekeeping: plaintext password in a commented line of `src/cornerstone_automation/utils/api_utils.py` (in git history) - remove and rotate; no PR yet for `qc_footprints`; `backup-untracked-files` branch has no PR.
+
+## Flag check: is Possible Credential = No/blank really right? (added 2026-11-11)
+- `check_flag_no()` in compare_footprints.py scans the 29,989 live tickets with flag No/blank using the same `assess_text()` as the Yes list. Report gets a Summary block, a `Flag_Check_No` sheet (ticket number + verdict only, tracked) and a SEPARATE git-ignored file `output/qc_footprints_flag_check.xlsx` with the masked context (usernames/emails) - open that one locally; Claude only sees it if pasted.
+- Result on the current data: 29,516 NO PASSWORD WORD FOUND, 466 MENTIONS PASSWORD WORD ONLY (mostly 'reset your password' style), **7 LIKELY REAL PASSWORD** (the flag misses listed in the open items), 0 MEETING PASSCODE - the DB flags every Zoom `?pwd=` ticket, so its flag is not a plain keyword search (it flags 140 meeting-passcode tickets but misses 'pw is' / 'Password :' / 'Password -' wording and flags only 34 word-only tickets vs 466 unflagged ones).
+- CRED_WORD_RX now ignores `PW-xxxx` project codes (was inflating unflagged word-only from 466 to 1,075).
