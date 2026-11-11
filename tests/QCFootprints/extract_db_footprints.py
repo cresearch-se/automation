@@ -24,6 +24,7 @@ import argparse
 import os
 import re
 import sys
+import warnings
 
 import pandas as pd
 from dotenv import load_dotenv
@@ -78,7 +79,9 @@ def main():
     conn = get_db_connection_from_env(args.server, args.database, trusted_connection=True)
     try:
         print(f"Running: {args.query}")
-        df = pd.read_sql(args.query, conn)
+        with warnings.catch_warnings():  # pandas prefers SQLAlchemy; a pyodbc connection works fine
+            warnings.simplefilter("ignore", UserWarning)
+            df = pd.read_sql(args.query, conn)
     finally:
         conn.close()
     print(f"Fetched {len(df):,} rows x {df.shape[1]} columns")
@@ -95,7 +98,9 @@ def main():
         dups = df[key].duplicated().sum()
         print(f"Ticket range: {df[key].min()} .. {df[key].max()}   duplicate ticket numbers: {dups}")
 
-    obj_cols = df.select_dtypes(include="object").columns
+    obj_cols = [c for c in df.columns
+                if not pd.api.types.is_numeric_dtype(df[c]) and not pd.api.types.is_datetime64_any_dtype(df[c])
+                and not pd.api.types.is_bool_dtype(df[c])]
     too_long = {c: int((df[c].astype(str).str.len() > EXCEL_CELL_LIMIT).sum()) for c in obj_cols}
     too_long = {c: n for c, n in too_long.items() if n}
     if too_long:
@@ -105,7 +110,7 @@ def main():
 
     # Excel cannot store timezone-aware datetimes
     for c in df.columns:
-        if pd.api.types.is_datetime64tz_dtype(df[c]):
+        if isinstance(df[c].dtype, pd.DatetimeTZDtype):
             df[c] = df[c].dt.tz_localize(None)
 
     if args.check:
