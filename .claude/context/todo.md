@@ -13,7 +13,12 @@
 - [ ] After the fresh DB export: re-run extract_db_footprints.py -> compare -> push; expect the 90 'changed after export' cells and 95 newer tickets to clear.
 - [ ] Human review of the 67 LIKELY REAL PASSWORD tickets (Credential_Review sheet); decide whether the report (tracked in git, shows usernames/emails in masked context) should stay tracked.
 - [ ] Gurpreet's question: scan attachment contents (about 489 zip/archive files) for passwords; Kim still working on zip attachments.
-- [x] D-drive existence + health check done 2026-11-12 via check_attachment_files.py on Z:. Open: explain the ~2.6% size gap (ask devs), review 78 corrupt + 13 mismatch files, stage 3 (byte compare with the app download) and stage 4 (scan attachment contents).
+- [x] D-drive existence + health check done 2026-11-12 via `check_attachment_files.py` on `Z:` (runs on the dev server; sheets explained in qcfootprints.md).
+- [ ] Attachment file findings to resolve: (1) ~2.6% size gap, 27,386 files + 751 others (ask devs how the app computes 'Size (bytes)' / whether the export rewrites files); (2) 78 suspicious files (68 pdf, 8 gif, 2 xls) - devs open them in the app; (3) 13 extension/content mismatches.
+- [ ] Quick extra checks I can run: existence of the 310 deleted-ticket paths; `--deep` on zip/Office files; readability of the 1,734 text-like files; full read of the 78 files.
+- [ ] Stage 3: download attachments from the app (needs a fresh cookie, user runs) and compare size/hash with `Z:` - on the 78 + 13 + a random sample. Script not written.
+- [ ] Stage 4: scan attachment contents for passwords (Gurpreet; needs go-ahead; zip waits for Kim; images need OCR - skipped; time 200 PDFs first, data is 24.4 GB / 32k files). Script not written.
+- [ ] After re-running `compare_footprints.py`, re-run `check_attachment_files.py` (compare rewrites the report and drops its four sheets).
 - [ ] Optional builds (not requested yet): Credential_Flag_Mismatch sheet (unflagged tickets with a likely password, kept out of git); compare app Description vs DB Latest Description Entry / Full Description History; HTML report; pytest wrapper.
 - [ ] Housekeeping: remove the plaintext password in a commented line of `src/cornerstone_automation/utils/api_utils.py` (also in git history) and rotate it; open a PR for `qc_footprints`; `backup-untracked-files` branch has no PR.
 - Done 2026-11-11: root cause of the 6 'missing in DB' tickets (SSMS paste), direct DB extract script, split-history columns, attachments file complete (12,893), credential scan fixes (PW- codes, plain-word values), Excel lock-file ignore.

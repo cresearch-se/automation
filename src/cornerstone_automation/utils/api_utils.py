@@ -9,9 +9,6 @@ load_dotenv(env_path)
 USERNAME = os.getenv("API_USERNAME", "")
 PASSWORD = os.getenv("API_PASSWORD", "")
 
-#USERNAME = 'sowjikarumuri'
-#PASSWORD = 'Thankgoodness$123'
-
 # Create NTLM auth object if credentials are provided
 auth = HttpNtlmAuth(USERNAME, PASSWORD) if USERNAME and PASSWORD else None
 

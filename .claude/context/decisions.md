@@ -63,3 +63,7 @@
 ## QCFootprints: flag-check context file is now tracked (2026-11-11, user request)
 **Decision:** Superseded 2026-11-12: there is now ONE output file. The `Flag_Check_No` sheet in `output/qc_footprints_report.xlsx` carries the masked context itself; the separate `qc_footprints_flag_check.xlsx` was removed (git rm). Earlier: that file was committed, superseding the "keep out of git" decision.
 **Why:** The user wants to pull it instead of re-running the compare; Credential_Review in the tracked report already shows the same kind of masked context (usernames/emails, values `[REDACTED]`). The repo is the private cresearch-se org. Revisit if the repo's audience widens.
+
+## QCFootprints: attachment file check runs on the server and adds sheets to the single report (2026-11-12)
+**Decision:** `check_attachment_files.py` runs on this server against `Z:` (mapped to the export server's D drive) and APPENDS its four sheets to `output/qc_footprints_report.xlsx` instead of writing a second file. Run compare_footprints.py first, because it rewrites the report.
+**Why:** The user wants one output file; `Z:` is only mapped here. Size gap flagged as its own category (disk/UI 0.973-0.976) so the 27k regular cases do not bury the 751 irregular ones. Health findings are labelled 'suspicious', not 'corrupt': only the first 16 / last 2048 bytes (and the zip table of contents) are read, nothing is opened in Office/Acrobat.
