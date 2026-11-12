@@ -11,7 +11,7 @@ Run on the server (needs the Z: drive and a report that already holds the Attach
     python tests/QCFootprints/open_check_files.py --limit 10      # trial, not written to the report
 
 Targets
-    SUSPICIOUS       files in sheet Attachment_File_Health, categories NO END MARKER and CORRUPT (written by check_attachment_files.py)
+    HEALTH FLAG      files in sheet Attachment_File_Health in the categories NO END MARKER..., FLAGGED BUT OPENS FINE and CORRUPT (written by check_attachment_files.py)
     MISMATCH         (optional) the EXTENSION / CONTENT MISMATCH files
     TEXT SPOT CHECK  random sample of the text-like files check_attachment_files.py could not check (eml, txt, csv, htm, ...)
 
@@ -274,8 +274,8 @@ def main():
 
     targets = []
     for _, r in health.iterrows():
-        if r["Category"] in (caf.H_CORRUPT, caf.H_NOEND):
-            targets.append(("SUSPICIOUS", r["Record Number"], r["Attachment name"], r["Mapped path"], r["Detail"]))
+        if r["Category"] in (caf.H_CORRUPT, caf.H_NOEND, caf.H_OPENS):
+            targets.append(("HEALTH FLAG", r["Record Number"], r["Attachment name"], r["Mapped path"], r["Detail"]))
         elif r["Category"] == caf.H_MISMATCH and args.include_mismatch:
             targets.append(("MISMATCH", r["Record Number"], r["Attachment name"], r["Mapped path"], r["Detail"]))
     n_fixed = len(targets)

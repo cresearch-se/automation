@@ -22,8 +22,8 @@ Stage 1 - existence and sizes (UI <-> disk <-> DB)
     * files in the ticket folder that no DB path points to      -> sheet Attachment_Orphan_Files
 Stage 2 - file health (skip with --no-health)
     * header matches the extension (pdf, docx/xlsx/pptx, zip, doc/xls/ppt/msg, jpg, png, gif, bmp, tif, rtf)
-    * end markers: pdf without %%EOF, jpg/png/gif without end marker -> NO END MARKER (only a hint; many open fine,
-      open_check_files.py gives the verdict); bad header or zip/Office files that do not open -> CORRUPT
+    * end markers: pdf without %%EOF, jpg/png/gif without end marker -> a hint only: the file is then really opened (MuPDF for PDFs, Pillow for images); opens -> FLAGGED BUT OPENS FINE (INFO), does not open -> NO END MARKER AND CANNOT BE OPENED;
+      bad header or zip/Office files that do not open -> CORRUPT (an unrecognised header on a PDF/image that still opens is FLAGGED BUT OPENS FINE)
     * text-like types (eml, txt, csv, htm, ...) have no signature and are counted as NOT CHECKED
 
 Output: sheets are ADDED to tests/QCFootprints/output/qc_footprints_report.xlsx (same single report file):
@@ -62,7 +62,8 @@ C_COUNT = "PATH COUNT != NAME COUNT"
 
 H_MISMATCH = "EXTENSION / CONTENT MISMATCH"
 H_CORRUPT = "CORRUPT (BAD HEADER OR ZIP)"
-H_NOEND = "NO END MARKER (CHECK - see File_Open_Check)"
+H_NOEND = "NO END MARKER AND CANNOT BE OPENED"
+H_OPENS = "FLAGGED BUT OPENS FINE (INFO)"
 H_UNREAD = "CANNOT READ FILE"
 
 
@@ -110,6 +111,30 @@ EXPECT = {  # extension -> acceptable content kinds
 OFFICE_ZIP = {"docx", "xlsx", "pptx", "docm", "xlsm", "xlsb"}
 
 
+def opens_fine(path, kind):
+    """Really open a PDF (MuPDF, tolerant like Acrobat/Edge) or an image (Pillow). Returns (ok, info)."""
+    try:
+        if kind == "pdf":
+            import pymupdf
+            pymupdf.TOOLS.mupdf_display_errors(False)
+            with pymupdf.open(long_path(path)) as doc:
+                n = doc.page_count
+                if n == 0:
+                    return False, "0 pages"
+                for pg in doc:  # every page must load
+                    pg.get_text()
+            return True, f"{n} pages"
+        from PIL import Image
+        with Image.open(long_path(path)) as im:
+            fmt, size = im.format, im.size
+            im.load()
+        return True, f"{fmt} {size[0]}x{size[1]}"
+    except ImportError:
+        return False, "pymupdf/pillow not installed"
+    except Exception as e:
+        return False, f"{type(e).__name__}: {str(e)[:80]}"
+
+
 def health_check(path, deep):
     """Returns (category, detail) for a problem, ('OK', kind) or ('NOT CHECKED', '')."""
     ext = os.path.splitext(path)[1].lower().lstrip(".")
@@ -125,18 +150,28 @@ def health_check(path, deep):
         return H_UNREAD, str(e)[:200]
     kind = next((k for k, sig in SIGS if head.startswith(sig)), None)
     if kind is None:
+        if ext == "pdf" or ext in ("jpg", "jpeg", "png", "gif", "bmp", "tif", "tiff"):
+            ok, info = opens_fine(path, "pdf" if ext == "pdf" else "img")
+            if ok:
+                return H_OPENS, f"header not recognised (starts {head[:8].hex()}), but the file opens fine ({info})"
         return H_CORRUPT, f"header not recognised for .{ext} (starts {head[:8].hex()})"
     if kind not in EXPECT[ext]:
         return H_MISMATCH, f".{ext} but content is {kind}"
     t = tail.rstrip(b"\x00\r\n ")
+    missing = None
     if kind == "pdf" and b"%%EOF" not in tail:
-        return H_NOEND, "no %%EOF marker; many PDFs still open fine - see File_Open_Check"
-    if kind == "jpg" and not t.endswith(b"\xff\xd9"):
-        return H_NOEND, "missing JPEG end marker - see File_Open_Check"
-    if kind == "png" and b"IEND" not in tail:
-        return H_NOEND, "missing PNG IEND chunk - see File_Open_Check"
-    if kind == "gif" and not t.endswith(b";"):
-        return H_NOEND, "missing GIF trailer - see File_Open_Check"
+        missing = "no %%EOF marker"
+    elif kind == "jpg" and not t.endswith(b"\xff\xd9"):
+        missing = "missing JPEG end marker"
+    elif kind == "png" and b"IEND" not in tail:
+        missing = "missing PNG IEND chunk"
+    elif kind == "gif" and not t.endswith(b";"):
+        missing = "missing GIF trailer"
+    if missing:  # only a hint: really open it before calling it a problem
+        ok, info = opens_fine(path, kind)
+        if ok:
+            return H_OPENS, f"{missing}, but the file opens fine ({info})"
+        return H_NOEND, f"{missing} and it cannot be opened ({info})"
     if kind == "zip":
         try:
             with zipfile.ZipFile(long_path(path)) as z:
@@ -388,7 +423,7 @@ def main():
     if not args.no_health:
         srows += [("--- STAGE 2: file health ---", ""), ("Files read OK (header/end marker/zip)", kinds["OK"]),
                   ("Not checked (text-like type, no signature)", kinds["NOT CHECKED"]),
-                  (H_MISMATCH, kinds[H_MISMATCH]), (H_NOEND, kinds[H_NOEND]),
+                  (H_MISMATCH, kinds[H_MISMATCH]), (H_NOEND, kinds[H_NOEND]), (H_OPENS, kinds[H_OPENS]),
                   (H_CORRUPT, kinds[H_CORRUPT]), (H_UNREAD, kinds[H_UNREAD])]
     summary = pd.DataFrame(srows, columns=["Item", "Value"])
 
