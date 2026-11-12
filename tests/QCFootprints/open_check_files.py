@@ -11,7 +11,7 @@ Run on the server (needs the Z: drive and a report that already holds the Attach
     python tests/QCFootprints/open_check_files.py --limit 10      # trial, not written to the report
 
 Targets
-    SUSPICIOUS       files in sheet Attachment_File_Health, category CORRUPT OR TRUNCATED (written by check_attachment_files.py)
+    SUSPICIOUS       files in sheet Attachment_File_Health, categories NO END MARKER and CORRUPT (written by check_attachment_files.py)
     MISMATCH         (optional) the EXTENSION / CONTENT MISMATCH files
     TEXT SPOT CHECK  random sample of the text-like files check_attachment_files.py could not check (eml, txt, csv, htm, ...)
 
@@ -57,6 +57,46 @@ class _Capture(logging.Handler):
 
 
 def open_pdf(path):
+    """MuPDF first (tolerant, like Acrobat/Edge: rebuilds a damaged index), pypdf as the strict second opinion.
+
+    pypdf alone said 'cannot open' for 64 PDFs that viewers open fine, so the verdict comes from MuPDF:
+    FAILS = no readable pages; WARNINGS = opens but repaired / no %%EOF end marker / some page unreadable.
+    """
+    try:
+        import pymupdf
+    except ImportError:
+        return open_pdf_pypdf(path)
+    try:
+        pymupdf.TOOLS.mupdf_display_errors(False)
+        with pymupdf.open(caf.long_path(path)) as doc:
+            n, repaired = doc.page_count, doc.is_repaired
+            if n == 0:
+                return FAIL, f"MuPDF found 0 pages (repaired: {repaired})"
+            chars, bad = 0, 0
+            for pg in doc:
+                try:
+                    chars += len(pg.get_text())
+                except Exception:
+                    bad += 1
+        with open(caf.long_path(path), "rb") as f:
+            f.seek(max(0, os.path.getsize(caf.long_path(path)) - 2048))
+            no_eof = b"%%EOF" not in f.read()
+        detail = f"{n} pages, {chars} text chars"
+        notes = []
+        if bad:
+            notes.append(f"{bad} page(s) unreadable")
+        if repaired:
+            notes.append("index repaired by MuPDF")
+        if no_eof:
+            notes.append("no %%EOF end marker (viewer opens it anyway)")
+        if notes:
+            return WARN, detail + "; " + "; ".join(notes)
+        return OK, detail
+    except Exception as e:
+        return FAIL, f"{type(e).__name__}: {str(e)[:150]}"
+
+
+def open_pdf_pypdf(path):
     from pypdf import PdfReader
     cap = _Capture()
     lg = logging.getLogger("pypdf")
@@ -234,7 +274,7 @@ def main():
 
     targets = []
     for _, r in health.iterrows():
-        if r["Category"] == caf.H_CORRUPT:
+        if r["Category"] in (caf.H_CORRUPT, caf.H_NOEND):
             targets.append(("SUSPICIOUS", r["Record Number"], r["Attachment name"], r["Mapped path"], r["Detail"]))
         elif r["Category"] == caf.H_MISMATCH and args.include_mismatch:
             targets.append(("MISMATCH", r["Record Number"], r["Attachment name"], r["Mapped path"], r["Detail"]))

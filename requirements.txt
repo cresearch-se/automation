@@ -6,6 +6,7 @@ openpyxl>=3.1.0
 # QCFootprints open_check_files.py (really open PDFs, images, old .xls)
 pypdf>=4.0.0
 pillow>=10.0.0
+pymupdf>=1.24.0
 xlrd>=2.0.1
 
 # Add your project-specific dependencies here

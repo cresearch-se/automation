@@ -22,7 +22,8 @@ Stage 1 - existence and sizes (UI <-> disk <-> DB)
     * files in the ticket folder that no DB path points to      -> sheet Attachment_Orphan_Files
 Stage 2 - file health (skip with --no-health)
     * header matches the extension (pdf, docx/xlsx/pptx, zip, doc/xls/ppt/msg, jpg, png, gif, bmp, tif, rtf)
-    * truncation: pdf without %%EOF, jpg/png/gif without end marker, zip/Office files that do not open
+    * end markers: pdf without %%EOF, jpg/png/gif without end marker -> NO END MARKER (only a hint; many open fine,
+      open_check_files.py gives the verdict); bad header or zip/Office files that do not open -> CORRUPT
     * text-like types (eml, txt, csv, htm, ...) have no signature and are counted as NOT CHECKED
 
 Output: sheets are ADDED to tests/QCFootprints/output/qc_footprints_report.xlsx (same single report file):
@@ -60,7 +61,8 @@ C_BADPATH = "UNEXPECTED DB PATH"
 C_COUNT = "PATH COUNT != NAME COUNT"
 
 H_MISMATCH = "EXTENSION / CONTENT MISMATCH"
-H_CORRUPT = "CORRUPT OR TRUNCATED"
+H_CORRUPT = "CORRUPT (BAD HEADER OR ZIP)"
+H_NOEND = "NO END MARKER (CHECK - see File_Open_Check)"
 H_UNREAD = "CANNOT READ FILE"
 
 
@@ -128,13 +130,13 @@ def health_check(path, deep):
         return H_MISMATCH, f".{ext} but content is {kind}"
     t = tail.rstrip(b"\x00\r\n ")
     if kind == "pdf" and b"%%EOF" not in tail:
-        return H_CORRUPT, "no %%EOF marker (possibly truncated)"
+        return H_NOEND, "no %%EOF marker; many PDFs still open fine - see File_Open_Check"
     if kind == "jpg" and not t.endswith(b"\xff\xd9"):
-        return H_CORRUPT, "missing JPEG end marker (possibly truncated)"
+        return H_NOEND, "missing JPEG end marker - see File_Open_Check"
     if kind == "png" and b"IEND" not in tail:
-        return H_CORRUPT, "missing PNG IEND chunk (possibly truncated)"
+        return H_NOEND, "missing PNG IEND chunk - see File_Open_Check"
     if kind == "gif" and not t.endswith(b";"):
-        return H_CORRUPT, "missing GIF trailer (possibly truncated)"
+        return H_NOEND, "missing GIF trailer - see File_Open_Check"
     if kind == "zip":
         try:
             with zipfile.ZipFile(long_path(path)) as z:
@@ -386,7 +388,8 @@ def main():
     if not args.no_health:
         srows += [("--- STAGE 2: file health ---", ""), ("Files read OK (header/end marker/zip)", kinds["OK"]),
                   ("Not checked (text-like type, no signature)", kinds["NOT CHECKED"]),
-                  (H_MISMATCH, kinds[H_MISMATCH]), (H_CORRUPT, kinds[H_CORRUPT]), (H_UNREAD, kinds[H_UNREAD])]
+                  (H_MISMATCH, kinds[H_MISMATCH]), (H_NOEND, kinds[H_NOEND]),
+                  (H_CORRUPT, kinds[H_CORRUPT]), (H_UNREAD, kinds[H_UNREAD])]
     summary = pd.DataFrame(srows, columns=["Item", "Value"])
 
     print("\n==== ATTACHMENT FILE CHECK ====")
