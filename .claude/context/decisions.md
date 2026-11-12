@@ -61,5 +61,5 @@
 **Why:** Context text includes usernames/emails around the password label; the report lives in a repo. (Credential_Review still shows context for flagged tickets - revisit.)
 
 ## QCFootprints: flag-check context file is now tracked (2026-11-11, user request)
-**Decision:** `output/qc_footprints_flag_check.xlsx` (masked context for tickets flagged No/blank) is committed, superseding the earlier "keep out of git" decision.
+**Decision:** Superseded 2026-11-12: there is now ONE output file. The `Flag_Check_No` sheet in `output/qc_footprints_report.xlsx` carries the masked context itself; the separate `qc_footprints_flag_check.xlsx` was removed (git rm). Earlier: that file was committed, superseding the "keep out of git" decision.
 **Why:** The user wants to pull it instead of re-running the compare; Credential_Review in the tracked report already shows the same kind of masked context (usernames/emails, values `[REDACTED]`). The repo is the private cresearch-se org. Revisit if the repo's audience widens.
