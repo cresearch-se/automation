@@ -1,11 +1,12 @@
 # QCFootprints — Footprints app vs DB validation
 
-Status as of 2026-11-11 (report commit `9ae7591`, branch `qc_footprints`). Rewritten as a current-state summary; the
+Status as of 2026-11-12 (branch `qc_footprints`; attachment FILE check added, see the last section). Rewritten as a current-state summary; the
 history of how we got here is in git log and in the "Lessons" section.
 
 ## Workflow (see memory: code-here-run-on-local-machine)
 - The Footprints app and the fpdb001 DB are NOT reachable from the dev server. Code is written here; the user runs it on the
   local machine, pushes results to GitHub, and Claude pulls and reviews them. Claude only sees what is pushed or pasted.
+- Exception: `check_attachment_files.py` runs HERE because drive `Z:` (the export server's D drive) is mapped on this server. This server has no Excel viewer, so the user pulls and reviews the report locally.
 - Branch `qc_footprints`, push with `git push origin qc_footprints`. If a push is rejected:
   `git pull --no-rebase --no-edit origin qc_footprints` then push again.
 - Outputs have FIXED names (overwritten each run, tracked in git, no timestamped copies):
@@ -86,7 +87,7 @@ Current DB file: 31,232 rows (30,230 live + 1,002 deleted), IR-57299..IR-88530, 
 - Ask Kim/Ofmara: why created/updated-by is `-315` instead of 'Email Request'; get a fresh DB export (clears the 90 CHANGED AFTER cells and 95 newer tickets); the 7 tickets the DB credential flag missed; numeric prefixes / `~` shortening / `_` replacement in D-drive file names; 4 tickets with History Entry Count mismatches.
 - Gurpreet's question: scan attachment contents for passwords (about 489 zip/archive attachments; Kim is still working on zip attachments).
 - Human review of the 67 LIKELY REAL PASSWORD tickets.
-- D-drive existence/openability check: needs a machine that sees D: (script not written).
+- D-drive existence/health check: DONE 2026-11-12 (see the last section); open items are listed there.
 - Not built yet: compare app Description vs DB Latest Description Entry / Full History; Credential_Flag_Mismatch sheet; HTML report; pytest wrapper.
 - Repo housekeeping: plaintext password in a commented line of `src/cornerstone_automation/utils/api_utils.py` (in git history) - remove and rotate; no PR yet for `qc_footprints`; `backup-untracked-files` branch has no PR.
 
@@ -96,6 +97,44 @@ Current DB file: 31,232 rows (30,230 live + 1,002 deleted), IR-57299..IR-88530, 
 - CRED_WORD_RX now ignores `PW-xxxx` project codes (was inflating unflagged word-only from 466 to 1,075).
 
 ## Attachment file validation on the drive (added 2026-11-12) - `check_attachment_files.py`
-- Runs HERE (not on the user's machine): `Z:` = `\25sqlt4cotest\d$` is the export server's D drive; DB paths `D:\FPextract\...` map to `Z:\FPextract\...`. (`D:` on this server is an unrelated empty drive.) Option `--drive`, `--limit N` (trial, not written), `--no-health`, `--deep`.
-- Uses fixtures only (UI attachments file + DB export); stage 1 = existence / zero-byte / size UI vs disk / UI-only files / ticket total vs DB MB / orphan files; stage 2 = header-vs-extension and truncation checks (pdf %%EOF, jpg/png/gif end markers, zip/Office open). ADDS sheets File_Check_Summary, Attachment_File_Check, Attachment_File_Health, Attachment_Orphan_Files to `output/qc_footprints_report.xlsx` (single report). Run compare_footprints.py FIRST (it rewrites the report and drops these sheets).
-- Results (first full run): 32,266 DB paths, ALL present, 0 zero-byte, 0 orphans, 0 bad paths. SIZES: only 4,129 files equal the UI size; 27,386 are ~2.6% smaller on disk than the UI/DB size (disk/UI ~0.974) and 751 more are 3-8% smaller; 5,025 tickets' disk total != DB total MB. Not explained yet - ask Kim/Ofmara; stage 3 (download from app and compare bytes) would show whether the UI 'Size (bytes)' field or the export file is wrong. HEALTH: 30,441 OK, 1,734 not checked (text-like), 13 extension/content mismatches (e.g. .png that is tif/jpg, .docx that is ole), 78 corrupt/truncated (mostly pdf without %%EOF, 8 tiny gifs; IR-59636 is exactly 96 KiB = likely cut).
+### How it runs
+- Runs HERE on the dev server (unlike the other scripts): drive `Z:` = `\\25sqlt4cotest\d$` is the export server's D drive. DB paths `D:\FPextract\...` are mapped to `Z:\FPextract\...`. (`D:` on this server is an unrelated empty drive - do not use it.) Options: `--drive`, `--limit N` (trial run, not written), `--no-health`, `--deep` (reads every member of zip/Office files; not run yet), `--threads`.
+- Inputs are fixtures only (UI attachments file + DB export, no app/DB access). Full run takes about 3 minutes (stage 1 ~30 s, stage 2 ~100 s).
+- It ADDS four sheets to `output/qc_footprints_report.xlsx` (the single report file). Run `compare_footprints.py` FIRST: it rewrites the report and drops these sheets. Close the report in Excel first.
+- Scope: the 32,266 paths on the 12,393 LIVE tickets that have attachments (12,893 tickets incl. the 500 'DB says none' sample). NOT covered: 310 paths on 164 tickets flagged deleted in the DB (no UI data; an existence-only check could be added).
+
+### What was and was NOT verified
+- Paths: DB path -> `Z:` file exists. (Path pattern / ticket-folder checks are in Attachment_Path_Check from compare.) The app has no D: path, so paths cannot be compared with the UI.
+- Sizes: each file's size on disk vs the UI `Size (bytes)`, paired by attachment name (sorted by size when a name repeats); ticket total on disk vs DB `Total Attachment Size Recorded (MB)` (MiB; the DB has no per-file size).
+- Health = reads CONTENT, not file names (extension only decides what to expect). For every non-empty file: first 16 bytes + last 2 KB. Checks: header matches type (pdf, zip family, OLE doc/xls/ppt/msg incl. old BIFF xls, jpg, png, gif, bmp, tif, rtf); end markers (pdf `%%EOF`, jpg FFD9, png IEND, gif `;`); zip/docx/xlsx/pptx opened with Python zipfile (table of contents only, Office files must contain `[Content_Types].xml`). Text-like types (eml, txt, csv, htm...) have no signature -> 'not checked'.
+- NOT done: opening files in Word/Excel/Acrobat, reading the middle of files, extracting zip members (`--deep`), byte compare with the app's download. So 'CORRUPT OR TRUNCATED' = suspicious, not proven; every file could be opened and read (CANNOT READ FILE = 0) and no zip/Office file failed to open.
+
+### Sheets added by this script (what each is for)
+| Sheet | Use |
+|---|---|
+| `File_Check_Summary` | Counts for everything below; start here. |
+| `Attachment_File_Check` | Existence/size problems. One row per file; a row with a BLANK attachment name is a ticket-level total row (Note: `DB x MB, disk y MiB`). Columns: Record Number, Attachment name, UI size (bytes), Disk size (bytes), DB path, Mapped path, Note, Category. |
+| `Attachment_File_Health` | Files that look damaged (only problems are listed). Columns incl. Extension, Detail, Mapped path. |
+| `Attachment_Orphan_Files` | Files in a ticket's folder that no DB path points to (empty so far). |
+
+### Categories
+- `Attachment_File_Check`: FILE MISSING ON DRIVE (DB path has no file) | ZERO-BYTE FILE | DISK ~2.6% SMALLER THAN UI (disk/UI between 0.973 and 0.976) | SIZE DIFFERS (UI vs DISK) (any other difference) | TICKET TOTAL SIZE != DB (ticket-level; same gap rolled up) | IN UI BUT NOT IN DB (app attachment without DB path) | CREATED AFTER DB EXPORT (same, but file newer than the export cutoff - expected) | CHANGED AFTER DB EXPORT (ticket total differs because of such a file - expected) | UNEXPECTED DB PATH | PATH COUNT != NAME COUNT (malformed DB values).
+- `Attachment_File_Health`: CORRUPT OR TRUNCATED (bad ending / header / zip will not open) | EXTENSION / CONTENT MISMATCH (e.g. `.png` that is a tif) | CANNOT READ FILE.
+
+### Results (first full run, 2026-11-12)
+- 32,266 DB paths: ALL present, 0 zero-byte, 0 orphans, 0 bad paths.
+- SIZES (the main open issue): only 4,129 files equal the UI size; 27,386 are about 2.6% smaller on disk (disk/UI ~0.974 = 38/39, i.e. UI = disk + 2 bytes per 76, like MIME line wrapping - only a hypothesis); 751 more are 3-8% smaller; 5,025 tickets' disk total != DB total (e.g. IR-57299: UI/DB 2.88 MB, disk 2.81 MiB). The DB total equals the sum of UI sizes, so the DISK is the odd one out. Cause unknown: either the app's size field overstates the size or the export rewrote the files. About 20,000 PDFs read fine, so it does not look like systematic truncation.
+- HEALTH: 30,441 OK, 1,734 not checked (text-like), 13 extension/content mismatches (png that is tif/jpg, docx/xlsx that are old OLE, rtf that is OLE; probably mislabelled), 78 corrupt/truncated (68 pdf without `%%EOF`, 8 tiny gifs without trailer, 2 old xls with unrecognised header; IR-59636 is exactly 96 KiB = likely cut). A first run flagged 10 more xls that were only old BIFF headers; fixed in SIGS.
+- Expected, not defects: 9 files / 1 ticket total created or changed after the DB export (a fresh export clears them).
+
+### What still needs attention (priority order)
+1. The size gap - decide via stage 3 and the devs' answer.
+2. The 78 suspicious files - open in the app and on the drive (devs).
+3. The 13 mismatched extensions.
+4. Small: 9+1 after-export items; 310 deleted-ticket paths not checked.
+
+### Planned next validations
+- Quick, no one else needed: existence check of the 310 deleted-ticket paths; `--deep` on zip/Office files; readability check of the 1,734 text-like files; full read of the 78 files (is `%%EOF` really absent?).
+- Stage 3 (needs a fresh browser cookie, run by the user): download attachments from the app and compare size and hash with the file on Z:. Run on the 78 suspicious + 13 mismatched + a random ~50-500 sample. Settles the size gap: downloaded size == disk size -> the app's size field is inflated; == UI size -> exported files differ.
+- Stage 4 (Gurpreet's question, needs go-ahead): extract text from pdf/docx/xlsx/txt/eml and run `assess_text()`; masked context only. Zip waits for Kim (476 zip files, 2.3 GB); images (~7,000 png/jpg/gif) hold no text and would need OCR - skip and list as not scanned; scanned PDFs show 'no text found'. Data volume: 32,275 files, 24.4 GB, of which 13,658 PDFs = 18.4 GB. Estimate (not measured): roughly 30 min - 2 h with 16 threads over the share; time 200 PDFs first.
+- Dev questions: how Footprints computes attachment 'Size (bytes)'; does the export decode/rewrite attachments; open the 78 files in the app; renaming rules (numeric prefix is NOT the ticket number or folder ID - looks like an attachment-level ID added when names clash; 5,472 of 32,266 paths carry it).
