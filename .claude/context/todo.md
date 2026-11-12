@@ -13,7 +13,7 @@
 - [ ] After the fresh DB export: re-run extract_db_footprints.py -> compare -> push; expect the 90 'changed after export' cells and 95 newer tickets to clear.
 - [ ] Human review of the 67 LIKELY REAL PASSWORD tickets (Credential_Review sheet); decide whether the report (tracked in git, shows usernames/emails in masked context) should stay tracked.
 - [ ] Gurpreet's question: scan attachment contents (about 489 zip/archive files) for passwords; Kim still working on zip attachments.
-- [ ] D-drive existence/openability check of the 32,265 attachment paths (needs a machine that sees D:; script not written).
+- [x] D-drive existence + health check done 2026-11-12 via check_attachment_files.py on Z:. Open: explain the ~2.6% size gap (ask devs), review 78 corrupt + 13 mismatch files, stage 3 (byte compare with the app download) and stage 4 (scan attachment contents).
 - [ ] Optional builds (not requested yet): Credential_Flag_Mismatch sheet (unflagged tickets with a likely password, kept out of git); compare app Description vs DB Latest Description Entry / Full Description History; HTML report; pytest wrapper.
 - [ ] Housekeeping: remove the plaintext password in a commented line of `src/cornerstone_automation/utils/api_utils.py` (also in git history) and rotate it; open a PR for `qc_footprints`; `backup-untracked-files` branch has no PR.
 - Done 2026-11-11: root cause of the 6 'missing in DB' tickets (SSMS paste), direct DB extract script, split-history columns, attachments file complete (12,893), credential scan fixes (PW- codes, plain-word values), Excel lock-file ignore.

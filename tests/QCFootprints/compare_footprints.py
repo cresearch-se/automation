@@ -699,16 +699,10 @@ def write_report(res, sample, app_path, db_path):
                     cap(d["paths"]).to_excel(xw, sheet_name="Attachment_Path_Check", index=False)
             if cred:
                 cap(cred["table"]).to_excel(xw, sheet_name="Credential_Review", index=False)
-            if fno:  # ticket numbers + verdict only; the masked text goes to the untracked file below
-                cap(fno["table"]).to_excel(xw, sheet_name="Flag_Check_No", index=False)
-        if fno:
-            ctx_out = os.path.join(OUTPUT_DIR, "qc_footprints_flag_check_sample.xlsx" if sample
-                                   else "qc_footprints_flag_check.xlsx")
-            with pd.ExcelWriter(ctx_out, engine="openpyxl") as xw:  # git-ignored: shows usernames/emails
+            if fno:  # includes the masked context, same as Credential_Review
                 cap(fno["table_ctx"]).to_excel(xw, sheet_name="Flag_Check_No", index=False)
-            print(f"Flag check with masked context (not tracked in git): {ctx_out}")
     except PermissionError:
-        sys.exit(f"Cannot write {out} (or the flag-check file) - close it in Excel and run again.")
+        sys.exit(f"Cannot write {out} - close it in Excel and run again.")
     return out, summary
 
 
