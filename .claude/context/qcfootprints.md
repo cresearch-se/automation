@@ -3,6 +3,8 @@
 Status as of 2026-11-12 (branch `qc_footprints`; attachment FILE check added, see the last section). Rewritten as a current-state summary; the
 history of how we got here is in git log and in the "Lessons" section.
 
+> A teammate-facing README (purpose, flow, how to run, what every report sheet means) lives at `tests/QCFootprints/README.md`. Keep it in sync when sheets, categories or run steps change.
+
 ## Workflow (see memory: code-here-run-on-local-machine)
 - The Footprints app and the fpdb001 DB are NOT reachable from the dev server. Code is written here; the user runs it on the
   local machine, pushes results to GitHub, and Claude pulls and reviews them. Claude only sees what is pushed or pasted.
