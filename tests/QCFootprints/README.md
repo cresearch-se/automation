@@ -37,6 +37,9 @@ check_attachment_files.py     DB paths + UI data vs files on Z:  ->  ADDS 4 shee
             |
             v
 open_check_files.py           really opens the suspicious files    ->  ADDS 2 sheets to the report
+
+check_ui_credentials.py       (separate, your machine) reads the full ticket text from the app for the LIKELY REAL
+                              PASSWORD tickets and checks whether a password is still there  ->  ADDS 2 sheets
 ```
 
 **Run order matters:** `compare_footprints.py` rewrites the whole report and drops the sheets added by the two later
@@ -52,6 +55,7 @@ anything that writes it, otherwise Windows blocks the write.
 | `extract_db_footprints.py` | Your own machine | Needs the DB (Windows Auth) |
 | `extract_api_tickets.py`, `extract_api_attachments.py` | Your own machine | The app is not reachable from the dev server; needs a browser cookie |
 | `compare_footprints.py` | Anywhere (reads the three Excel files only) | |
+| `check_ui_credentials.py` | Your own machine | Needs the app and a fresh cookie |
 | `check_attachment_files.py`, `open_check_files.py` | The dev server | Drive `Z:` (= `\\25sqlt4cotest\d$`, the export server's D drive) is mapped there |
 
 Run everything from the repo root with the virtual env active. The libraries the file-open check needs (pymupdf, pillow,
@@ -169,6 +173,17 @@ Categories in `Attachment_File_Health` (a flag is a hint; every flagged PDF or i
 Results: `OPENS OK` | `OPENS WITH WARNINGS` (the parser repaired something, but the content reads) | `FAILS TO OPEN` |
 `NO PARSER` (type we cannot open here, e.g. rtf, rar, mp3, not a failure). PDFs are opened with PyMuPDF (tolerant like a
 real viewer; pypdf is too strict and gave false failures), images with Pillow, old `.xls` with xlrd, `.eml` with the mail parser.
+
+### Added by `check_ui_credentials.py` (run after the devs redact passwords)
+
+| Sheet | What it shows |
+|---|---|
+| `UI_Credential_Summary` | Counts per result. |
+| `UI_Credential_Check` | One row per ticket from `Credential_Review` with Assessment = LIKELY REAL PASSWORD - REVIEW: the DB assessment, the result from the app's text, how many password-like values and `[REDACTED]` values were found, and a masked context. Values are never written. |
+
+Results: `PASSWORD STILL PRESENT - REVIEW` | `REDACTED (NO PASSWORD LEFT)` | `MENTIONS PASSWORD WORD ONLY` | `NO PASSWORD WORD FOUND` |
+`NO TEXT RETURNED` (wrong endpoint, use `--probe`) | `FETCH ERROR`. Raw responses are cached in `output/raw_ui/` (git-ignored; may
+contain real passwords, delete when done). Run `--probe IR-nnnnn` first to find the endpoint that returns the description entries.
 
 ## 6. Current status and open items (as of 2026-11-12)
 
